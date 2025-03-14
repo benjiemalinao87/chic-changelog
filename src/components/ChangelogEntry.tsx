@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -16,6 +17,18 @@ interface ChangelogEntryProps {
 
 /**
  * ChangelogEntryComponent displays an individual changelog entry with its details
+ * 
+ * Database Table Structure:
+ * - id: Primary key (integer)
+ * - title: Entry title (text)
+ * - content: Main content in markdown format (text)
+ * - category: Category identifier (text) - e.g., 'feature', 'fix', 'performance'
+ * - release_date: Date of release (timestamp)
+ * - released_by: Person/team who released (text)
+ * - dev: Development team responsible (text)
+ * - lessons_learned: Lessons learned in markdown format (text, optional)
+ * - modified_date: Last modification date (timestamp, optional)
+ * - created_at: Creation timestamp (timestamp)
  * 
  * @param entry - The changelog entry data to display
  * @param isLatest - Boolean indicating if this is the latest entry
@@ -39,7 +52,7 @@ const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLates
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: animationDelay }}
     >
-      {/* Badge for latest entry - moved to top-right instead of left side */}
+      {/* "Latest" badge - not stored in database, determined by sort order */}
       {isLatest && (
         <div className="absolute -top-2 right-0 flex items-center">
           <span className="relative flex h-3 w-3">
@@ -52,6 +65,7 @@ const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLates
       
       <div className="pt-2">
         {/* Entry header with category and title */}
+        {/* Maps to 'category' and 'title' columns */}
         <div className="flex items-center gap-2 mb-2">
           <CategoryBadge category={entry.category} />
           <Link to={`/changelog/${entry.id}`} className="hover:underline">
@@ -59,12 +73,12 @@ const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLates
           </Link>
         </div>
         
-        {/* Main content */}
+        {/* Main content - Maps to 'content' column */}
         <div className="prose prose-sm dark:prose-invert max-w-none mb-3 overflow-hidden">
           <ReactMarkdown>{entry.content}</ReactMarkdown>
         </div>
         
-        {/* Lessons learned section - only shown if there are lessons */}
+        {/* Lessons learned section - Maps to 'lessons_learned' column (optional) */}
         {entry.lessons_learned && (
           <div className="mt-4 mb-3">
             <button
@@ -96,15 +110,19 @@ const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLates
         
         {/* Entry footer with metadata */}
         <div className="flex items-center text-xs text-muted-foreground gap-2">
+          {/* Release date - Maps to 'release_date' column */}
           {entry.release_date && (
             <span>
               {format(parseISO(entry.release_date), 'MMMM d, yyyy')}
             </span>
           )}
           <span>•</span>
+          {/* Released by - Maps to 'released_by' column */}
           <span>{entry.released_by}</span>
           <span>•</span>
+          {/* Dev team - Maps to 'dev' column */}
           <span>{entry.dev}</span>
+          {/* Link to details view using the entry ID (primary key) */}
           <Link 
             to={`/changelog/${entry.id}`}
             className="ml-auto text-xs text-primary hover:underline"

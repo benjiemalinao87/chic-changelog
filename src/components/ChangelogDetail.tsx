@@ -9,8 +9,22 @@ import { ArrowLeft, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import CategoryBadge from './CategoryBadge';
-import { Separator } from '@/components/ui/separator';
 
+/**
+ * ChangelogDetail component displays a single changelog entry in detail
+ * 
+ * Database Table Structure:
+ * - id: Primary key (integer) - Used for fetching specific entry
+ * - title: Entry title (text)
+ * - content: Main content in markdown format (text)
+ * - category: Category identifier (text) - e.g., 'feature', 'fix', 'performance'
+ * - release_date: Date of release (timestamp)
+ * - released_by: Person/team who released (text)
+ * - dev: Development team responsible (text)
+ * - lessons_learned: Lessons learned in markdown format (text, optional)
+ * - modified_date: Last modification date (timestamp, optional)
+ * - created_at: Creation timestamp (timestamp)
+ */
 const ChangelogDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,13 +33,14 @@ const ChangelogDetail = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Function to fetch the specific changelog entry by ID
+    // Function to fetch the specific changelog entry by ID (primary key)
     const fetchEntry = async () => {
       if (!id) return;
       
       try {
         setLoading(true);
         const entryId = parseInt(id, 10);
+        // This function queries the database by ID column
         const data = await getChangelogEntryById(entryId);
         setEntry(data);
         setError(null);
@@ -101,7 +116,7 @@ const ChangelogDetail = () => {
           Back to Changelog
         </Button>
         
-        {/* Release date */}
+        {/* Release date - Maps to 'release_date' column */}
         {entry.release_date && (
           <span className="text-sm text-muted-foreground">
             {format(parseISO(entry.release_date), 'MMMM d, yyyy')}
@@ -112,11 +127,13 @@ const ChangelogDetail = () => {
       {/* Entry header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
+          {/* Category - Maps to 'category' column */}
           <CategoryBadge category={entry.category} />
+          {/* Title - Maps to 'title' column */}
           <h2 className="text-2xl font-semibold">{entry.title}</h2>
         </div>
         
-        {/* Entry metadata */}
+        {/* Entry metadata - Maps to 'released_by' and 'dev' columns */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <span>Released by: {entry.released_by}</span>
           <span>•</span>
@@ -124,12 +141,12 @@ const ChangelogDetail = () => {
         </div>
       </div>
       
-      {/* Main content */}
+      {/* Main content - Maps to 'content' column */}
       <div className="prose prose-sm dark:prose-invert max-w-none neo-blur p-6 rounded-xl">
         <ReactMarkdown>{entry.content}</ReactMarkdown>
       </div>
       
-      {/* Lessons learned section */}
+      {/* Lessons learned section - Maps to 'lessons_learned' column (optional) */}
       {entry.lessons_learned && (
         <div className="mt-8">
           <div className="flex items-center gap-2 mb-4">
