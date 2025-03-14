@@ -15,6 +15,13 @@ interface ChangelogEntryProps {
   index: number;
 }
 
+/**
+ * ChangelogEntryComponent displays an individual changelog entry with its details
+ * 
+ * @param entry - The changelog entry data to display
+ * @param isLatest - Boolean indicating if this is the latest entry
+ * @param index - Index position in the list for animation timing
+ */
 const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLatest, index }) => {
   // State to control the expansion of the lessons learned section
   const [lessonsExpanded, setLessonsExpanded] = useState(false);
@@ -46,9 +53,9 @@ const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLates
       
       <div className="pt-2">
         {/* Entry header with category and title */}
-        <div className="flex items-center mb-2">
+        <div className="flex items-center gap-2 mb-2">
           <CategoryBadge category={entry.category} />
-          <Link to={`/changelog/${entry.id}`} className="ml-2 hover:underline">
+          <Link to={`/changelog/${entry.id}`} className="hover:underline">
             <h3 className="text-xl font-medium">{entry.title}</h3>
           </Link>
         </div>
