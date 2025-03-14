@@ -1,5 +1,5 @@
-
 import { createClient } from '@supabase/supabase-js';
+import { toast } from 'sonner';
 
 // Using environment variables for Supabase connection
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://example.supabase.co';
@@ -76,25 +76,72 @@ export const supabase = isSupabaseConfigured
   ? createClient(supabaseUrl, supabaseKey)
   : null;
 
+// Function to check Supabase connection status
+export const getSupabaseStatus = async (): Promise<{ connected: boolean; message: string }> => {
+  if (!isSupabaseConfigured) {
+    return { 
+      connected: false, 
+      message: 'Supabase not configured. Using mock data.' 
+    };
+  }
+  
+  try {
+    // Try to make a simple query to test connection
+    const { error } = await supabase!.from('changelog').select('count', { count: 'exact', head: true });
+    
+    if (error) {
+      console.error('Supabase connection error:', error);
+      return { 
+        connected: false, 
+        message: `Connection error: ${error.message}` 
+      };
+    }
+    
+    return { 
+      connected: true, 
+      message: 'Connected to Supabase' 
+    };
+  } catch (err) {
+    console.error('Unexpected error connecting to Supabase:', err);
+    return { 
+      connected: false, 
+      message: `Unexpected error: ${err instanceof Error ? err.message : String(err)}` 
+    };
+  }
+};
+
 // Function to fetch changelog entries
 export const getChangelogEntries = async () => {
   try {
-    // If Supabase is configured, fetch real data
-    if (supabase) {
+    // Check connection status
+    const status = await getSupabaseStatus();
+    
+    // If Supabase is connected, fetch real data
+    if (status.connected && supabase) {
       const { data, error } = await supabase
         .from('changelog')
         .select('*')
         .order('release_date', { ascending: false });
       
-      if (error) throw error;
+      if (error) {
+        console.error('Error fetching entries:', error);
+        toast.error('Failed to fetch entries', {
+          description: error.message
+        });
+        throw error;
+      }
+      
       return data as ChangelogEntry[];
     } 
     
     // Otherwise, use mock data
-    console.log('Using mock changelog data (Supabase not configured)');
+    console.log('Using mock changelog data:', status.message);
     return mockEntries;
   } catch (error) {
     console.error('Error fetching changelog entries:', error);
+    toast.error('Error fetching entries', {
+      description: 'Falling back to mock data'
+    });
     // Return mock data as fallback
     return mockEntries;
   }
@@ -103,25 +150,37 @@ export const getChangelogEntries = async () => {
 // Function to create a new changelog entry
 export const createChangelogEntry = async (entry: ChangelogEntry) => {
   try {
-    // If Supabase is configured, add to real database
-    if (supabase) {
+    // Check connection status
+    const status = await getSupabaseStatus();
+    
+    // If Supabase is connected, add to real database
+    if (status.connected && supabase) {
       const { data, error } = await supabase
         .from('changelog')
         .insert([entry])
         .select();
       
-      if (error) throw error;
+      if (error) {
+        console.error('Error creating entry:', error);
+        toast.error('Failed to create entry', {
+          description: error.message
+        });
+        throw error;
+      }
+      
+      toast.success('Entry created successfully');
       return data[0] as ChangelogEntry;
     }
     
     // Otherwise, simulate adding to mock data
-    console.log('Adding to mock changelog data (Supabase not configured)');
+    console.log('Adding to mock changelog data:', status.message);
     const newEntry = {
       ...entry,
       id: mockEntries.length + 1,
       created_at: new Date().toISOString()
     };
     mockEntries.unshift(newEntry);
+    toast.success('Entry created in mock data');
     return newEntry;
   } catch (error) {
     console.error('Error creating changelog entry:', error);
@@ -132,20 +191,30 @@ export const createChangelogEntry = async (entry: ChangelogEntry) => {
 // Function to retrieve a single changelog entry by id
 export const getChangelogEntryById = async (id: number) => {
   try {
-    // If Supabase is configured, fetch from real database
-    if (supabase) {
+    // Check connection status
+    const status = await getSupabaseStatus();
+    
+    // If Supabase is connected, fetch from real database
+    if (status.connected && supabase) {
       const { data, error } = await supabase
         .from('changelog')
         .select('*')
         .eq('id', id)
         .single();
       
-      if (error) throw error;
+      if (error) {
+        console.error(`Error fetching entry ${id}:`, error);
+        toast.error('Failed to fetch entry', {
+          description: error.message
+        });
+        throw error;
+      }
+      
       return data as ChangelogEntry;
     }
     
     // Otherwise, fetch from mock data
-    console.log('Fetching from mock changelog data (Supabase not configured)');
+    console.log('Fetching from mock changelog data:', status.message);
     const entry = mockEntries.find(e => e.id === id);
     if (!entry) throw new Error(`Entry with id ${id} not found`);
     return entry;
