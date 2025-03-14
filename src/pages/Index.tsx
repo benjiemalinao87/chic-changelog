@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import ChangelogList from '@/components/ChangelogList';
 import { simulateWebhook } from '@/api/webhook';
 import { Button } from '@/components/ui/button';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 
 const Index = () => {
   const [isSimulating, setIsSimulating] = useState(false);
