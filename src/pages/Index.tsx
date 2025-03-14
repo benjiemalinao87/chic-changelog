@@ -1,12 +1,86 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Header from '@/components/Header';
+import ChangelogList from '@/components/ChangelogList';
+import { simulateWebhook } from '@/api/webhook';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/sonner';
 
 const Index = () => {
+  const [isSimulating, setIsSimulating] = useState(false);
+
+  // Example function to simulate a webhook POST
+  const handleSimulateWebhook = async () => {
+    setIsSimulating(true);
+    try {
+      const examplePayload = {
+        title: "New Feature Release v2.5.0",
+        content: "**Major improvements in this release:**\n\n- Added dark mode support across all platforms\n- Improved performance by 30% on mobile devices\n- Fixed issue with notifications not appearing on iOS\n\n**Minor updates:**\n- Updated dependencies to latest versions\n- Refreshed UI elements for better accessibility",
+        category: "feature",
+        release_date: new Date().toISOString(),
+        released_by: "Sarah Johnson",
+        dev: "Dev Team Alpha"
+      };
+      
+      await simulateWebhook(examplePayload);
+      toast.success("Webhook simulated successfully!", {
+        description: "Refresh the page to see the new entry.",
+      });
+    } catch (error) {
+      console.error("Error simulating webhook:", error);
+      toast.error("Failed to simulate webhook", {
+        description: "Check console for details.",
+      });
+    } finally {
+      setIsSimulating(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <motion.div 
+        className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Header />
+        
+        <motion.div 
+          className="mb-8 glass rounded-xl p-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h2 className="text-2xl font-medium mb-2">Recent Updates</h2>
+              <p className="text-muted-foreground">
+                Stay up to date with all the latest changes and improvements.
+              </p>
+            </div>
+            
+            <Button 
+              variant="default" 
+              onClick={handleSimulateWebhook}
+              disabled={isSimulating}
+              className="rounded-full"
+            >
+              {isSimulating ? "Simulating..." : "Simulate Webhook"}
+            </Button>
+          </div>
+        </motion.div>
+        
+        <motion.div 
+          className="glass rounded-xl p-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <ChangelogList />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
