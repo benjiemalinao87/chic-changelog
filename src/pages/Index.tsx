@@ -1,14 +1,21 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import ChangelogList from '@/components/ChangelogList';
+import ChangelogDetail from '@/components/ChangelogDetail';
 import { simulateWebhook } from '@/api/webhook';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-const Index = () => {
+interface IndexProps {
+  detailView?: boolean;
+}
+
+const Index: React.FC<IndexProps> = ({ detailView = false }) => {
   const [isSimulating, setIsSimulating] = useState(false);
+  const { id } = useParams();
 
   // Example function to simulate a webhook POST
   const handleSimulateWebhook = async () => {
@@ -55,20 +62,26 @@ const Index = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h2 className="text-2xl font-medium mb-2">Recent Updates</h2>
+              <h2 className="text-2xl font-medium mb-2">
+                {detailView ? "Changelog Details" : "Recent Updates"}
+              </h2>
               <p className="text-muted-foreground">
-                Stay up to date with all the latest changes and improvements.
+                {detailView 
+                  ? "Detailed information about this update."
+                  : "Stay up to date with all the latest changes and improvements."}
               </p>
             </div>
             
-            <Button 
-              variant="default" 
-              onClick={handleSimulateWebhook}
-              disabled={isSimulating}
-              className="rounded-full"
-            >
-              {isSimulating ? "Simulating..." : "Simulate Webhook"}
-            </Button>
+            {!detailView && (
+              <Button 
+                variant="default" 
+                onClick={handleSimulateWebhook}
+                disabled={isSimulating}
+                className="rounded-full"
+              >
+                {isSimulating ? "Simulating..." : "Simulate Webhook"}
+              </Button>
+            )}
           </div>
         </motion.div>
         
@@ -78,7 +91,11 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <ChangelogList />
+          {detailView ? (
+            <ChangelogDetail />
+          ) : (
+            <ChangelogList />
+          )}
         </motion.div>
       </motion.div>
     </div>

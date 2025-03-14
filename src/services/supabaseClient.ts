@@ -1,3 +1,4 @@
+
 import { createClient } from '@supabase/supabase-js';
 
 // These would be replaced with actual environment variables when connected to Supabase
@@ -50,8 +51,19 @@ const mockEntries: ChangelogEntry[] = [
   }
 ];
 
+// Validate Supabase URL to avoid "Invalid URL" errors
+const isValidUrl = (urlString: string): boolean => {
+  try {
+    new URL(urlString);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 // Check if we can connect to Supabase
 const isSupabaseConfigured = 
+  isValidUrl(supabaseUrl) && 
   supabaseUrl !== 'https://example.supabase.co' && 
   supabaseKey !== 'your-supabase-key';
 

@@ -4,18 +4,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { getChangelogEntries, ChangelogEntry as ChangelogEntryType } from '@/services/supabaseClient';
 import ChangelogEntryComponent from './ChangelogEntry';
 import { Skeleton } from '@/components/ui/skeleton';
+import CategoryFilter from './CategoryFilter';
+import { useSearchParams } from 'react-router-dom';
 
 const ChangelogList = () => {
   const [entries, setEntries] = useState<ChangelogEntryType[]>([]);
+  const [allEntries, setAllEntries] = useState<ChangelogEntryType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [categories, setCategories] = useState<string[]>([]);
+  
+  // Get filter from URL or null
+  const categoryFilter = searchParams.get('category');
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
         setLoading(true);
         const data = await getChangelogEntries();
-        setEntries(data);
+        setAllEntries(data);
+        
+        // Extract unique categories for the filter
+        const uniqueCategories = Array.from(new Set(data.map(entry => entry.category)));
+        setCategories(uniqueCategories);
+        
         setError(null);
       } catch (err) {
         console.error('Failed to fetch changelog entries', err);
@@ -27,6 +40,25 @@ const ChangelogList = () => {
 
     fetchEntries();
   }, []);
+
+  // Filter entries whenever the filter changes
+  useEffect(() => {
+    if (allEntries.length > 0) {
+      if (categoryFilter) {
+        setEntries(allEntries.filter(entry => entry.category === categoryFilter));
+      } else {
+        setEntries(allEntries);
+      }
+    }
+  }, [categoryFilter, allEntries]);
+
+  const handleCategoryChange = (category: string | null) => {
+    if (category) {
+      setSearchParams({ category });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   if (loading) {
     return (
@@ -62,7 +94,7 @@ const ChangelogList = () => {
     );
   }
 
-  if (entries.length === 0) {
+  if (allEntries.length === 0) {
     return (
       <motion.div 
         className="p-6 bg-secondary rounded-lg text-center"
@@ -77,15 +109,35 @@ const ChangelogList = () => {
 
   return (
     <AnimatePresence>
-      <div className="space-y-8 entry-animation">
-        {entries.map((entry, index) => (
-          <ChangelogEntryComponent 
-            key={entry.id || index} 
-            entry={entry} 
-            isLatest={index === 0}
-            index={index}
+      <div>
+        {categories.length > 0 && (
+          <CategoryFilter 
+            selectedCategory={categoryFilter} 
+            onCategoryChange={handleCategoryChange}
+            categories={categories}
           />
-        ))}
+        )}
+        
+        {entries.length === 0 && categoryFilter ? (
+          <motion.div 
+            className="p-6 bg-secondary rounded-lg text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <p className="text-muted-foreground">No entries found for category "{categoryFilter}"</p>
+          </motion.div>
+        ) : (
+          <div className="space-y-8 entry-animation">
+            {entries.map((entry, index) => (
+              <ChangelogEntryComponent 
+                key={entry.id || index} 
+                entry={entry} 
+                isLatest={index === 0 && !categoryFilter}
+                index={index}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </AnimatePresence>
   );
