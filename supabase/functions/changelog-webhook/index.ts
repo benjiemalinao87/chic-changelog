@@ -5,7 +5,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.38.4";
 // Define CORS headers
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "apikey, content-type",
 };
 
 // Create Supabase client
@@ -89,10 +89,6 @@ serve(async (req) => {
         }
       );
     }
-
-    // Determine the next version number
-    // Since we're using auto-incrementing IDs, we don't need to explicitly set a version number
-    // The database will auto-assign the next available ID
 
     // Set modified_date to current timestamp
     const modified_date = new Date().toISOString();
