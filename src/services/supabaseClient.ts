@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -93,16 +94,31 @@ export const createChangelogViaWebhook = async (entry: ChangelogEntry) => {
   try {
     console.log('Sending data to webhook:', entry);
     
-    const response = await fetch('https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-webhook', {
+    // Use the complete URL with no authentication header
+    const webhookUrl = 'https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-webhook';
+    console.log('Using webhook URL:', webhookUrl);
+    
+    const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        // No Authorization header
       },
       body: JSON.stringify(entry),
     });
     
+    console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries([...response.headers.entries()]));
+    
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (e) {
+        console.error('Error parsing error response:', e);
+        errorData = { error: 'Unknown error: ' + response.statusText };
+      }
+      
       console.error('Error sending to webhook:', errorData);
       toast.error('Failed to send to webhook', {
         description: errorData.error || response.statusText

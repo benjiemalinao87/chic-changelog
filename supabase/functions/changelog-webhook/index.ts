@@ -2,33 +2,14 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.38.4";
 
-// Define CORS headers
+// Define CORS headers - remove authorization from the required headers
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "apikey, content-type",
+  "Access-Control-Allow-Headers": "content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-// Create Supabase client
-const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
-const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-const supabase = createClient(supabaseUrl, supabaseKey, {
-  auth: {
-    persistSession: false, // Don't persist the session
-    autoRefreshToken: false, // Don't auto refresh the token
-  },
-});
-
-// Define the expected payload structure
-interface ChangelogPayload {
-  title: string;
-  content: string;
-  category: string;
-  release_date: string;
-  released_by: string;
-  dev: string;
-  lessons_learned?: string;
-}
+console.log("Changelog webhook function loaded");
 
 serve(async (req) => {
   console.log("Received request to changelog-webhook");
@@ -60,9 +41,42 @@ serve(async (req) => {
 
     console.log("Processing POST request");
     
+    // Create Supabase client with service role key (no auth required)
+    const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+    console.log("Supabase URL:", supabaseUrl);
+    console.log("Using service role key for Supabase client");
+    
+    const supabase = createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        persistSession: false, // Don't persist the session
+        autoRefreshToken: false, // Don't auto refresh the token
+      },
+      global: {
+        headers: {
+          // No authorization header needed with service role key
+        },
+      },
+    });
+    
     // Parse request body
-    const payload: ChangelogPayload = await req.json();
-    console.log("Received payload:", JSON.stringify(payload));
+    let payload;
+    try {
+      payload = await req.json();
+      console.log("Received payload:", JSON.stringify(payload));
+    } catch (error) {
+      console.error("Error parsing request body:", error);
+      return new Response(
+        JSON.stringify({ error: "Invalid JSON payload" }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+            ...corsHeaders,
+          },
+        }
+      );
+    }
     
     // Validate required fields
     const requiredFields = ["title", "content", "category", "release_date", "released_by", "dev"];
