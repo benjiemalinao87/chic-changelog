@@ -77,7 +77,7 @@ The application provides the following API endpoints:
 
 This endpoint receives data about new changelog entries and stores them in the database.
 
-- **URL**: `https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-webhook`
+- **URL**: `https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-api`
 - **Method**: `POST`
 - **Headers**:
   - `Content-Type: application/json`
@@ -135,11 +135,54 @@ This endpoint receives data about new changelog entries and stores them in the d
 
 The `version` field in the response is automatically assigned based on the auto-incrementing ID in the database.
 
-#### Error Responses
+### Get All Changelog Entries
 
-- **Missing Fields**:
-  - **Status Code**: 400 Bad Request
-  - **Response Body**: `{ "error": "Missing required fields: field1, field2" }`
+This endpoint retrieves all changelog entries, ordered by release date (newest first).
+
+- **URL**: `https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-api/all`
+- **Method**: `GET`
+- **Headers**:
+  - `Authorization: Bearer <supabase_anon_key>` (for authenticated requests)
+
+#### Success Response
+
+- **Status Code**: 200 OK
+- **Response Body**:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 123,
+      "title": "New Feature Release v2.5.0",
+      "content": "**Major improvements in this release:**\n\n...",
+      "category": "feature",
+      "release_date": "2023-08-15T12:00:00Z",
+      "released_by": "Release Team",
+      "dev": "Dev Team Alpha",
+      "lessons_learned": "**Lessons Learned:**\n\n...",
+      "modified_date": "2023-08-15T14:30:45Z",
+      "created_at": "2023-08-15T14:30:45Z"
+    },
+    {
+      "id": 122,
+      "title": "Bug Fix Release v2.4.1",
+      "content": "**Bug fixes in this release:**\n\n...",
+      "category": "bug",
+      "release_date": "2023-08-10T09:00:00Z",
+      "released_by": "Release Team",
+      "dev": "Dev Team Beta",
+      "lessons_learned": null,
+      "modified_date": "2023-08-10T10:15:30Z",
+      "created_at": "2023-08-10T10:15:30Z"
+    }
+  ],
+  "count": 2
+}
+```
+
+#### Error Responses
 
 - **Database Error**:
   - **Status Code**: 500 Internal Server Error
@@ -148,6 +191,10 @@ The `version` field in the response is automatically assigned based on the auto-
 - **Method Not Allowed**:
   - **Status Code**: 405 Method Not Allowed
   - **Response Body**: `{ "error": "Method not allowed" }`
+
+- **Endpoint Not Found**:
+  - **Status Code**: 404 Not Found
+  - **Response Body**: `{ "error": "Endpoint not found" }`
 
 - **Unexpected Error**:
   - **Status Code**: 500 Internal Server Error
