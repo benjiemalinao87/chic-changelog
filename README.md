@@ -1,3 +1,4 @@
+
 # Welcome to your Lovable project
 
 ## Project info
@@ -59,6 +60,29 @@ This project is built with .
 - React
 - shadcn-ui
 - Tailwind CSS
+
+## Connecting to Supabase
+
+This app is built to connect to Supabase for backend functionality. Here's how to connect your project:
+
+1. Create a Supabase project at [https://supabase.com](https://supabase.com)
+2. Create a `changelog` table with the following columns:
+   - `id` (auto-incrementing integer, primary key)
+   - `title` (text, not null)
+   - `content` (text, not null)
+   - `category` (text, not null)
+   - `release_date` (timestamp with time zone, not null)
+   - `released_by` (text, not null)
+   - `dev` (text, not null)
+   - `lessons_learned` (text)
+   - `modified_date` (timestamp with time zone)
+   - `created_at` (timestamp with time zone, default: now())
+
+3. Create environment variables:
+   - Set `VITE_SUPABASE_URL` to your Supabase project URL
+   - Set `VITE_SUPABASE_KEY` to your Supabase anon/public key
+
+Once connected, the app will automatically use your Supabase database instead of the mock data.
 
 ## How can I deploy this project?
 
