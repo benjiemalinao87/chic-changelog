@@ -1,7 +1,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// These would be replaced with actual environment variables when connected to Supabase
+// Using environment variables for Supabase connection
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://example.supabase.co';
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY || 'your-supabase-key';
 
@@ -13,7 +13,7 @@ export type ChangelogEntry = {
   release_date: string;
   released_by: string;
   dev: string;
-  lessons_learned?: string; // New field for lessons learned
+  lessons_learned?: string;
   modified_date?: string;
   created_at?: string;
 };
