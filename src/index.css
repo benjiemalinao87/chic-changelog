@@ -7,6 +7,38 @@
 
 @layer base {
   :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 211 100% 65%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 211 100% 65%;
+
+    --radius: 0.8rem;
+  }
+
+  .light {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -34,54 +66,45 @@
     --border: 240 6% 90%;
     --input: 240 6% 90%;
     --ring: 211 100% 45%;
-
-    --radius: 0.8rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 211 100% 45%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
-
-    --accent: 240 4% 16%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 211 100% 45%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border selection:bg-primary/20 selection:text-primary;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium tracking-tight;
+  }
+}
+
+/* MacOS-inspired glass morphism utilities */
+@layer utilities {
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .neo-blur {
+    @apply backdrop-blur-xl bg-black/40 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-gradient-to-br from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent;
   }
 }
 
@@ -110,11 +133,11 @@
 
 /* Glass effect for macOS style UI elements */
 .glass {
-  @apply bg-white/75 dark:bg-black/75 backdrop-blur-lg border border-white/20 dark:border-white/10;
+  @apply neo-blur; /* Use the new neo-blur utility */
 }
 
 .glass-hover:hover {
-  @apply bg-white/85 dark:bg-black/85;
+  @apply bg-black/50 border-white/20;
 }
 
 /* Entry animations */

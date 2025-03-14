@@ -13,6 +13,7 @@ export type ChangelogEntry = {
   release_date: string;
   released_by: string;
   dev: string;
+  lessons_learned?: string; // New field for lessons learned
   modified_date?: string;
   created_at?: string;
 };
@@ -27,6 +28,7 @@ const mockEntries: ChangelogEntry[] = [
     release_date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
     released_by: "Dev Team",
     dev: "Frontend Team",
+    lessons_learned: "**Lessons Learned:**\n\n- Early user testing proved invaluable for UI decisions\n- Breaking the redesign into smaller PRs helped maintain code quality\n- Need to improve our testing infrastructure for future releases",
     created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
   },
   {
@@ -37,6 +39,7 @@ const mockEntries: ChangelogEntry[] = [
     release_date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
     released_by: "Maintenance Team",
     dev: "Backend Team",
+    lessons_learned: "**Lessons Learned:**\n\n- Need better error tracking in production\n- Created new automated tests to prevent regression\n- Improved our documentation around authentication flows",
     created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
   },
   {
@@ -47,6 +50,7 @@ const mockEntries: ChangelogEntry[] = [
     release_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
     released_by: "Performance Team",
     dev: "Full Stack Team",
+    lessons_learned: "**Lessons Learned:**\n\n- Measuring performance metrics before optimization is crucial\n- Some complex queries needed complete rewrites rather than tweaks\n- Client-side caching provided bigger wins than expected",
     created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
   }
 ];

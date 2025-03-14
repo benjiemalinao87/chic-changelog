@@ -5,10 +5,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import ChangelogDetail from "./components/ChangelogDetail";
 
+// Create a React Query client with configuration
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -18,23 +19,33 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/changelog/:id" element={<Index detailView={true} />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AnimatePresence>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Force dark mode on app load
+  useEffect(() => {
+    // Add dark class to html element to ensure dark mode
+    document.documentElement.classList.add('dark');
+    // Remove light class if it exists
+    document.documentElement.classList.remove('light');
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/changelog/:id" element={<Index detailView={true} />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AnimatePresence>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

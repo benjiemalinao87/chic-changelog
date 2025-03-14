@@ -21,15 +21,18 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
   const handleSimulateWebhook = async () => {
     setIsSimulating(true);
     try {
+      // Example payload for simulating a new changelog entry
       const examplePayload = {
         title: "New Feature Release v2.5.0",
         content: "**Major improvements in this release:**\n\n- Added dark mode support across all platforms\n- Improved performance by 30% on mobile devices\n- Fixed issue with notifications not appearing on iOS\n\n**Minor updates:**\n- Updated dependencies to latest versions\n- Refreshed UI elements for better accessibility",
         category: "feature",
         release_date: new Date().toISOString(),
         released_by: "Sarah Johnson",
-        dev: "Dev Team Alpha"
+        dev: "Dev Team Alpha",
+        lessons_learned: "**Lessons Learned:**\n\n- Cross-platform testing earlier in the cycle would have identified iOS issues sooner\n- Performance benchmarking helped us measure the actual impact of optimizations\n- User research was vital for creating an intuitive dark mode experience"
       };
       
+      // Send the webhook payload to be processed
       await simulateWebhook(examplePayload);
       toast.success("Webhook simulated successfully!", {
         description: "Refresh the page to see the new entry.",
@@ -55,14 +58,14 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
         <Header />
         
         <motion.div 
-          className="mb-8 glass rounded-xl p-6"
+          className="mb-8 neo-blur rounded-xl p-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h2 className="text-2xl font-medium mb-2">
+              <h2 className="text-2xl font-medium mb-2 text-gradient">
                 {detailView ? "Changelog Details" : "Recent Updates"}
               </h2>
               <p className="text-muted-foreground">
@@ -77,7 +80,7 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
                 variant="default" 
                 onClick={handleSimulateWebhook}
                 disabled={isSimulating}
-                className="rounded-full"
+                className="rounded-full neo-blur"
               >
                 {isSimulating ? "Simulating..." : "Simulate Webhook"}
               </Button>
@@ -86,7 +89,7 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
         </motion.div>
         
         <motion.div 
-          className="glass rounded-xl p-6"
+          className="neo-blur rounded-xl p-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
