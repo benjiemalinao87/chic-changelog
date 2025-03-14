@@ -6,12 +6,18 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.38.4";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
 // Create Supabase client
 const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
 const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    persistSession: false, // Don't persist the session
+    autoRefreshToken: false, // Don't auto refresh the token
+  },
+});
 
 // Define the expected payload structure
 interface ChangelogPayload {
@@ -25,18 +31,21 @@ interface ChangelogPayload {
 }
 
 serve(async (req) => {
+  console.log("Received request to changelog-webhook");
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
+    console.log("Handling OPTIONS request");
     return new Response(null, {
-      headers: {
-        ...corsHeaders,
-      },
+      status: 204,
+      headers: corsHeaders,
     });
   }
 
   try {
     // Only accept POST requests
     if (req.method !== "POST") {
+      console.log(`Rejected ${req.method} request, only POST is allowed`);
       return new Response(
         JSON.stringify({ error: "Method not allowed" }),
         {
@@ -49,14 +58,18 @@ serve(async (req) => {
       );
     }
 
+    console.log("Processing POST request");
+    
     // Parse request body
     const payload: ChangelogPayload = await req.json();
+    console.log("Received payload:", JSON.stringify(payload));
     
     // Validate required fields
     const requiredFields = ["title", "content", "category", "release_date", "released_by", "dev"];
     const missingFields = requiredFields.filter(field => !(field in payload));
     
     if (missingFields.length > 0) {
+      console.log(`Missing required fields: ${missingFields.join(", ")}`);
       return new Response(
         JSON.stringify({ error: `Missing required fields: ${missingFields.join(", ")}` }),
         {
@@ -69,29 +82,9 @@ serve(async (req) => {
       );
     }
 
-    // Get the latest version number from the database
-    const { data: latestEntry, error: fetchError } = await supabase
-      .from("changelog")
-      .select("id")
-      .order("id", { ascending: false })
-      .limit(1);
-
-    if (fetchError) {
-      console.error("Error fetching latest changelog entry:", fetchError);
-      return new Response(
-        JSON.stringify({ error: "Error determining next version number" }),
-        {
-          status: 500,
-          headers: {
-            "Content-Type": "application/json",
-            ...corsHeaders,
-          },
-        }
-      );
-    }
-
     // Set modified_date to current timestamp
     const modified_date = new Date().toISOString();
+    console.log("Inserting data into changelog table");
     
     // Insert into changelog table
     const { data, error } = await supabase
@@ -126,6 +119,8 @@ serve(async (req) => {
       );
     }
 
+    console.log("Successfully created changelog entry:", data);
+    
     // Return success response with the auto-assigned ID as the version
     return new Response(
       JSON.stringify({ 
@@ -147,7 +142,7 @@ serve(async (req) => {
     // Handle unexpected errors
     console.error("Unexpected error:", error);
     return new Response(
-      JSON.stringify({ error: "Internal server error" }),
+      JSON.stringify({ error: "Internal server error", details: error.message }),
       {
         status: 500,
         headers: {

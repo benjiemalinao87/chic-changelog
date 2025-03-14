@@ -6,20 +6,28 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.38.4";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "apikey, content-type",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
 };
 
 // Create Supabase client
 const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
 const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+  },
+});
 
 serve(async (req) => {
+  console.log("Received request to changelog-api");
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
+    console.log("Handling OPTIONS request");
     return new Response(null, {
-      headers: {
-        ...corsHeaders,
-      },
+      status: 204,
+      headers: corsHeaders,
     });
   }
 
@@ -29,6 +37,8 @@ serve(async (req) => {
   try {
     // Route handler for GET /all - fetch all changelog entries
     if (req.method === "GET" && path === "all") {
+      console.log("Processing GET /all request");
+      
       const { data, error } = await supabase
         .from("changelog")
         .select("*")
@@ -48,6 +58,8 @@ serve(async (req) => {
         );
       }
 
+      console.log(`Successfully fetched ${data.length} changelog entries`);
+      
       return new Response(
         JSON.stringify({ 
           success: true, 
@@ -66,14 +78,18 @@ serve(async (req) => {
     
     // Route handler for webhook POST - create new changelog entry
     if (req.method === "POST" && !path) {
+      console.log("Processing POST request");
+      
       // Parse request body
       const payload = await req.json();
+      console.log("Received payload:", JSON.stringify(payload));
       
       // Validate required fields
       const requiredFields = ["title", "content", "category", "release_date", "released_by", "dev"];
       const missingFields = requiredFields.filter(field => !(field in payload));
       
       if (missingFields.length > 0) {
+        console.log(`Missing required fields: ${missingFields.join(", ")}`);
         return new Response(
           JSON.stringify({ error: `Missing required fields: ${missingFields.join(", ")}` }),
           {
@@ -88,6 +104,7 @@ serve(async (req) => {
 
       // Set modified_date to current timestamp
       const modified_date = new Date().toISOString();
+      console.log("Inserting data into changelog table");
       
       // Insert into changelog table
       const { data, error } = await supabase
@@ -122,6 +139,8 @@ serve(async (req) => {
         );
       }
 
+      console.log("Successfully created changelog entry:", data);
+      
       // Return success response with the auto-assigned ID as the version
       return new Response(
         JSON.stringify({ 
@@ -141,6 +160,7 @@ serve(async (req) => {
     }
 
     // If no matching route, return 404
+    console.log("No matching route found");
     return new Response(
       JSON.stringify({ error: "Endpoint not found" }),
       {
@@ -156,7 +176,7 @@ serve(async (req) => {
     // Handle unexpected errors
     console.error("Unexpected error:", error);
     return new Response(
-      JSON.stringify({ error: "Internal server error" }),
+      JSON.stringify({ error: "Internal server error", details: error.message }),
       {
         status: 500,
         headers: {
