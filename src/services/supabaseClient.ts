@@ -94,39 +94,21 @@ export const createChangelogViaWebhook = async (entry: ChangelogEntry) => {
   try {
     console.log('Sending data to webhook:', entry);
     
-    // Use the complete URL with no authentication header
-    const webhookUrl = 'https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-webhook';
-    console.log('Using webhook URL:', webhookUrl);
-    
-    const response = await fetch(webhookUrl, {
+    // Use Supabase Edge Function invoke method instead of raw fetch
+    // This automatically handles authentication and endpoint URL construction
+    const { data, error } = await supabase.functions.invoke('changelog-webhook', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // No Authorization header
-      },
       body: JSON.stringify(entry),
     });
     
-    console.log('Response status:', response.status);
-    console.log('Response headers:', Object.fromEntries([...response.headers.entries()]));
-    
-    if (!response.ok) {
-      let errorData;
-      try {
-        errorData = await response.json();
-      } catch (e) {
-        console.error('Error parsing error response:', e);
-        errorData = { error: 'Unknown error: ' + response.statusText };
-      }
-      
-      console.error('Error sending to webhook:', errorData);
+    if (error) {
+      console.error('Error sending to webhook:', error);
       toast.error('Failed to send to webhook', {
-        description: errorData.error || response.statusText
+        description: error.message
       });
-      throw new Error(errorData.error || response.statusText);
+      throw error;
     }
     
-    const data = await response.json();
     console.log('Webhook response:', data);
     toast.success('Entry created via webhook successfully');
     return data;

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
@@ -32,7 +31,7 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
         lessons_learned: "**Lessons Learned:**\n\n- Cross-platform testing earlier in the cycle would have identified iOS issues sooner\n- Performance benchmarking helped us measure the actual impact of optimizations\n- User research was vital for creating an intuitive dark mode experience"
       };
       
-      // Send the webhook payload directly to the endpoint
+      // Send the webhook payload
       await createChangelogViaWebhook(examplePayload);
       toast.success("Webhook simulated successfully!", {
         description: "Refresh the page to see the new entry.",

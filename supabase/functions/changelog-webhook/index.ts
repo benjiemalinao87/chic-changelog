@@ -2,10 +2,10 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.38.4";
 
-// Define CORS headers - remove authorization from the required headers
+// Define CORS headers
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "content-type",
+  "Access-Control-Allow-Headers": "authorization, apikey, x-client-info, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
@@ -13,6 +13,8 @@ console.log("Changelog webhook function loaded");
 
 serve(async (req) => {
   console.log("Received request to changelog-webhook");
+  console.log("Request method:", req.method);
+  console.log("Request headers:", Object.fromEntries([...req.headers.entries()]));
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -41,23 +43,15 @@ serve(async (req) => {
 
     console.log("Processing POST request");
     
-    // Create Supabase client with service role key (no auth required)
+    // Create Supabase client with service role key
     const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-    console.log("Supabase URL:", supabaseUrl);
-    console.log("Using service role key for Supabase client");
     
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-      auth: {
-        persistSession: false, // Don't persist the session
-        autoRefreshToken: false, // Don't auto refresh the token
-      },
-      global: {
-        headers: {
-          // No authorization header needed with service role key
-        },
-      },
-    });
+    console.log("Supabase URL:", supabaseUrl);
+    console.log("Service role key available:", !!supabaseKey);
+    
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    console.log("Supabase client created");
     
     // Parse request body
     let payload;
