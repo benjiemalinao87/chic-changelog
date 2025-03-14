@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import ChangelogList from '@/components/ChangelogList';
 import ChangelogDetail from '@/components/ChangelogDetail';
-import { simulateWebhook } from '@/api/webhook';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { createChangelogViaWebhook } from '@/services/supabaseClient';
 
 interface IndexProps {
   detailView?: boolean;
@@ -32,8 +32,8 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
         lessons_learned: "**Lessons Learned:**\n\n- Cross-platform testing earlier in the cycle would have identified iOS issues sooner\n- Performance benchmarking helped us measure the actual impact of optimizations\n- User research was vital for creating an intuitive dark mode experience"
       };
       
-      // Send the webhook payload to be processed
-      await simulateWebhook(examplePayload);
+      // Send the webhook payload directly to the endpoint
+      await createChangelogViaWebhook(examplePayload);
       toast.success("Webhook simulated successfully!", {
         description: "Refresh the page to see the new entry.",
       });

@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -85,6 +84,38 @@ export const getChangelogEntryById = async (id: number) => {
     return data as ChangelogEntry;
   } catch (error) {
     console.error(`Error fetching changelog entry with id ${id}:`, error);
+    throw error;
+  }
+};
+
+// Function to create a changelog entry via webhook API
+export const createChangelogViaWebhook = async (entry: ChangelogEntry) => {
+  try {
+    console.log('Sending data to webhook:', entry);
+    
+    const response = await fetch('https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-webhook', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(entry),
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+      console.error('Error sending to webhook:', errorData);
+      toast.error('Failed to send to webhook', {
+        description: errorData.error || response.statusText
+      });
+      throw new Error(errorData.error || response.statusText);
+    }
+    
+    const data = await response.json();
+    console.log('Webhook response:', data);
+    toast.success('Entry created via webhook successfully');
+    return data;
+  } catch (error) {
+    console.error('Error sending to webhook:', error);
     throw error;
   }
 };
