@@ -1,5 +1,4 @@
 
-
 # Welcome to your Lovable project
 
 ## Project info
@@ -68,6 +67,50 @@ erDiagram
         timestamp modified_date
         timestamp created_at
     }
+```
+
+### Project File Structure
+```mermaid
+graph TD
+    A[src] --> B[api]
+    A --> C[components]
+    A --> D[hooks]
+    A --> E[lib]
+    A --> F[pages]
+    A --> G[services]
+
+    B --> B1[webhook.ts]
+
+    C --> C1[ui]
+    C --> C2[CategoryBadge.tsx]
+    C --> C3[CategoryFilter.tsx]
+    C --> C4[ChangelogDetail.tsx]
+    C --> C5[ChangelogEntry.tsx]
+    C --> C6[ChangelogList.tsx]
+    C --> C7[Header.tsx]
+
+    C1 -->|UI Components| C1A[toast.tsx]
+    C1 -->|UI Components| C1B[button.tsx]
+    C1 -->|UI Components| C1C[...]
+
+    D --> D1[use-mobile.tsx]
+    D --> D2[use-toast.ts]
+
+    E --> E1[utils.ts]
+
+    F --> F1[Index.tsx]
+    F --> F2[NotFound.tsx]
+
+    G --> G1[aiProcessor.ts]
+    G --> G2[supabaseClient.ts]
+
+    Root[Project Root] --> A
+    Root --> Config[Configuration Files]
+    
+    Config --> Conf1[package.json]
+    Config --> Conf2[tailwind.config.ts]
+    Config --> Conf3[vite.config.ts]
+    Config --> Conf4[tsconfig.json]
 ```
 
 ## How can I edit this code?
