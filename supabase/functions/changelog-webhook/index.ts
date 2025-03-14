@@ -69,6 +69,31 @@ serve(async (req) => {
       );
     }
 
+    // Get the latest version number from the database
+    const { data: latestEntry, error: fetchError } = await supabase
+      .from("changelog")
+      .select("id")
+      .order("id", { ascending: false })
+      .limit(1);
+
+    if (fetchError) {
+      console.error("Error fetching latest changelog entry:", fetchError);
+      return new Response(
+        JSON.stringify({ error: "Error determining next version number" }),
+        {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+            ...corsHeaders,
+          },
+        }
+      );
+    }
+
+    // Determine the next version number
+    // Since we're using auto-incrementing IDs, we don't need to explicitly set a version number
+    // The database will auto-assign the next available ID
+
     // Set modified_date to current timestamp
     const modified_date = new Date().toISOString();
     
@@ -105,12 +130,13 @@ serve(async (req) => {
       );
     }
 
-    // Return success response
+    // Return success response with the auto-assigned ID as the version
     return new Response(
       JSON.stringify({ 
         success: true, 
         message: "Changelog entry created successfully",
-        data: data[0]
+        data: data[0],
+        version: data[0].id // The auto-incremented ID serves as the version
       }),
       {
         status: 201,
