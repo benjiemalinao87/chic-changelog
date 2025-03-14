@@ -1,9 +1,74 @@
 
+
 # Welcome to your Lovable project
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/ffe72f2e-edfa-4cfa-929e-d0ae51700f64
+
+## System Architecture and Flows
+
+### User Journey
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Supabase
+    
+    User->>Frontend: Visit changelog page
+    Frontend->>Supabase: Fetch changelog entries
+    Supabase-->>Frontend: Return entries data
+    Frontend-->>User: Display changelog entries
+    
+    User->>Frontend: Click on entry details
+    Frontend->>Supabase: Fetch single entry data
+    Supabase-->>Frontend: Return detailed entry
+    Frontend-->>User: Display entry details
+    
+    User->>Frontend: Filter by category
+    Frontend->>Frontend: Apply filter to existing data
+    Frontend-->>User: Show filtered entries
+```
+
+### Admin User Flow (Webhook Integration)
+```mermaid
+sequenceDiagram
+    participant Admin
+    participant CI/CD System
+    participant Webhook API
+    participant AIProcessor
+    participant Supabase
+    participant Frontend
+    
+    Admin->>CI/CD System: Trigger release
+    CI/CD System->>Webhook API: POST release data
+    Webhook API->>AIProcessor: Process webhook data
+    AIProcessor->>AIProcessor: Format and enhance content
+    AIProcessor->>Supabase: Store new changelog entry
+    Supabase-->>Webhook API: Confirm storage
+    Webhook API-->>CI/CD System: Success response
+    
+    Frontend->>Supabase: Poll for new entries
+    Supabase-->>Frontend: Return updated entries
+    Frontend-->>User: Display new changelog
+```
+
+### Database Schema
+```mermaid
+erDiagram
+    CHANGELOG {
+        int id PK
+        string title
+        text content
+        string category
+        timestamp release_date
+        string released_by
+        string dev
+        text lessons_learned
+        timestamp modified_date
+        timestamp created_at
+    }
+```
 
 ## How can I edit this code?
 
@@ -84,6 +149,24 @@ This app is built to connect to Supabase for backend functionality. Here's how t
 
 Once connected, the app will automatically use your Supabase database instead of the mock data.
 
+## API & Webhook Integration
+
+The app supports webhooks to automatically create changelog entries. The webhook endpoint accepts POST requests with the following JSON structure:
+
+```json
+{
+  "title": "New Feature Release v2.5.0",
+  "content": "**Major improvements in this release:**\n\n- Added new features...",
+  "category": "feature",
+  "release_date": "2023-08-15T12:00:00Z",
+  "released_by": "Release Team",
+  "dev": "Dev Team Alpha",
+  "lessons_learned": "**Lessons Learned:**\n\n- Cross-platform testing..."
+}
+```
+
+This can be integrated with your CI/CD pipeline to automatically create changelog entries when releases are made.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/ffe72f2e-edfa-4cfa-929e-d0ae51700f64) and click on Share -> Publish.
@@ -91,3 +174,4 @@ Simply open [Lovable](https://lovable.dev/projects/ffe72f2e-edfa-4cfa-929e-d0ae5
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
