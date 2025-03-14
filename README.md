@@ -69,6 +69,90 @@ erDiagram
     }
 ```
 
+## API Endpoints
+
+The application provides the following API endpoints:
+
+### Changelog Webhook
+
+This endpoint receives data about new changelog entries and stores them in the database.
+
+- **URL**: `https://ycwttshvizkotcwwyjpt.supabase.co/functions/v1/changelog-webhook`
+- **Method**: `POST`
+- **Headers**:
+  - `Content-Type: application/json`
+  - `Authorization: Bearer <supabase_anon_key>` (for authenticated requests)
+
+#### Request Body
+
+```json
+{
+  "title": "New Feature Release v2.5.0",
+  "content": "**Major improvements in this release:**\n\n- Added new features...",
+  "category": "feature",
+  "release_date": "2023-08-15T12:00:00Z",
+  "released_by": "Release Team",
+  "dev": "Dev Team Alpha",
+  "lessons_learned": "**Lessons Learned:**\n\n- Cross-platform testing..." // Optional
+}
+```
+
+#### Required Fields:
+- `title`: The title of the changelog entry
+- `content`: The detailed content of the changelog entry (supports Markdown)
+- `category`: The category of the change (e.g., feature, bug, improvement)
+- `release_date`: ISO 8601 formatted date when the release occurred
+- `released_by`: Name of the person or team that released the update
+- `dev`: Name of the developer or team that implemented the change
+
+#### Optional Fields:
+- `lessons_learned`: Lessons learned during implementation (supports Markdown)
+
+#### Success Response
+
+- **Status Code**: 201 Created
+- **Response Body**:
+
+```json
+{
+  "success": true,
+  "message": "Changelog entry created successfully",
+  "data": {
+    "id": 123,
+    "title": "New Feature Release v2.5.0",
+    "content": "**Major improvements in this release:**\n\n- Added new features...",
+    "category": "feature",
+    "release_date": "2023-08-15T12:00:00Z",
+    "released_by": "Release Team",
+    "dev": "Dev Team Alpha",
+    "lessons_learned": "**Lessons Learned:**\n\n- Cross-platform testing...",
+    "modified_date": "2023-08-15T14:30:45Z",
+    "created_at": "2023-08-15T14:30:45Z"
+  },
+  "version": 123
+}
+```
+
+The `version` field in the response is automatically assigned based on the auto-incrementing ID in the database.
+
+#### Error Responses
+
+- **Missing Fields**:
+  - **Status Code**: 400 Bad Request
+  - **Response Body**: `{ "error": "Missing required fields: field1, field2" }`
+
+- **Database Error**:
+  - **Status Code**: 500 Internal Server Error
+  - **Response Body**: `{ "error": "Error message from database" }`
+
+- **Method Not Allowed**:
+  - **Status Code**: 405 Method Not Allowed
+  - **Response Body**: `{ "error": "Method not allowed" }`
+
+- **Unexpected Error**:
+  - **Status Code**: 500 Internal Server Error
+  - **Response Body**: `{ "error": "Internal server error" }`
+
 ### Project File Structure
 ```mermaid
 graph TD
