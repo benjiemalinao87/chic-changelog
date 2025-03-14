@@ -1,9 +1,6 @@
-import { createClient } from '@supabase/supabase-js';
-import { toast } from 'sonner';
 
-// Using environment variables for Supabase connection
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://example.supabase.co';
-const supabaseKey = import.meta.env.VITE_SUPABASE_KEY || 'your-supabase-key';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 export type ChangelogEntry = {
   id?: number;
@@ -18,170 +15,50 @@ export type ChangelogEntry = {
   created_at?: string;
 };
 
-// Sample mock data to use when not connected to Supabase
-const mockEntries: ChangelogEntry[] = [
-  {
-    id: 1,
-    title: "Version 2.0.0 Released",
-    content: "**Key Highlights:**\n\n- Completely redesigned UI for better user experience\n- Added dark mode support\n- Performance improvements across the board\n- Fixed several critical bugs",
-    category: "feature",
-    release_date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-    released_by: "Dev Team",
-    dev: "Frontend Team",
-    lessons_learned: "**Lessons Learned:**\n\n- Early user testing proved invaluable for UI decisions\n- Breaking the redesign into smaller PRs helped maintain code quality\n- Need to improve our testing infrastructure for future releases",
-    created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-  },
-  {
-    id: 2,
-    title: "Bug Fix Release",
-    content: "**Key Highlights:**\n\n- Fixed authentication issues\n- Resolved data loading problems\n- Improved error handling",
-    category: "fix",
-    release_date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-    released_by: "Maintenance Team",
-    dev: "Backend Team",
-    lessons_learned: "**Lessons Learned:**\n\n- Need better error tracking in production\n- Created new automated tests to prevent regression\n- Improved our documentation around authentication flows",
-    created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
-  },
-  {
-    id: 3,
-    title: "Performance Optimization",
-    content: "**Key Highlights:**\n\n- Reduced load times by 40%\n- Optimized database queries\n- Improved API response times\n- Added request caching",
-    category: "performance",
-    release_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
-    released_by: "Performance Team",
-    dev: "Full Stack Team",
-    lessons_learned: "**Lessons Learned:**\n\n- Measuring performance metrics before optimization is crucial\n- Some complex queries needed complete rewrites rather than tweaks\n- Client-side caching provided bigger wins than expected",
-    created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
-  }
-];
-
-// Validate Supabase URL to avoid "Invalid URL" errors
-const isValidUrl = (urlString: string): boolean => {
-  try {
-    new URL(urlString);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
-// Check if we can connect to Supabase
-const isSupabaseConfigured = 
-  isValidUrl(supabaseUrl) && 
-  supabaseUrl !== 'https://example.supabase.co' && 
-  supabaseKey !== 'your-supabase-key';
-
-// Initialize the Supabase client or use mock data
-export const supabase = isSupabaseConfigured 
-  ? createClient(supabaseUrl, supabaseKey)
-  : null;
-
-// Function to check Supabase connection status
-export const getSupabaseStatus = async (): Promise<{ connected: boolean; message: string }> => {
-  if (!isSupabaseConfigured) {
-    return { 
-      connected: false, 
-      message: 'Supabase not configured. Using mock data.' 
-    };
-  }
-  
-  try {
-    // Try to make a simple query to test connection
-    const { error } = await supabase!.from('changelog').select('count', { count: 'exact', head: true });
-    
-    if (error) {
-      console.error('Supabase connection error:', error);
-      return { 
-        connected: false, 
-        message: `Connection error: ${error.message}` 
-      };
-    }
-    
-    return { 
-      connected: true, 
-      message: 'Connected to Supabase' 
-    };
-  } catch (err) {
-    console.error('Unexpected error connecting to Supabase:', err);
-    return { 
-      connected: false, 
-      message: `Unexpected error: ${err instanceof Error ? err.message : String(err)}` 
-    };
-  }
-};
-
 // Function to fetch changelog entries
 export const getChangelogEntries = async () => {
   try {
-    // Check connection status
-    const status = await getSupabaseStatus();
+    const { data, error } = await supabase
+      .from('changelog')
+      .select('*')
+      .order('release_date', { ascending: false });
     
-    // If Supabase is connected, fetch real data
-    if (status.connected && supabase) {
-      const { data, error } = await supabase
-        .from('changelog')
-        .select('*')
-        .order('release_date', { ascending: false });
-      
-      if (error) {
-        console.error('Error fetching entries:', error);
-        toast.error('Failed to fetch entries', {
-          description: error.message
-        });
-        throw error;
-      }
-      
-      return data as ChangelogEntry[];
-    } 
+    if (error) {
+      console.error('Error fetching entries:', error);
+      toast.error('Failed to fetch entries', {
+        description: error.message
+      });
+      throw error;
+    }
     
-    // Otherwise, use mock data
-    console.log('Using mock changelog data:', status.message);
-    return mockEntries;
+    return data as ChangelogEntry[];
   } catch (error) {
     console.error('Error fetching changelog entries:', error);
     toast.error('Error fetching entries', {
-      description: 'Falling back to mock data'
+      description: 'Could not retrieve changelog data'
     });
-    // Return mock data as fallback
-    return mockEntries;
+    throw error;
   }
 };
 
 // Function to create a new changelog entry
 export const createChangelogEntry = async (entry: ChangelogEntry) => {
   try {
-    // Check connection status
-    const status = await getSupabaseStatus();
+    const { data, error } = await supabase
+      .from('changelog')
+      .insert([entry])
+      .select();
     
-    // If Supabase is connected, add to real database
-    if (status.connected && supabase) {
-      const { data, error } = await supabase
-        .from('changelog')
-        .insert([entry])
-        .select();
-      
-      if (error) {
-        console.error('Error creating entry:', error);
-        toast.error('Failed to create entry', {
-          description: error.message
-        });
-        throw error;
-      }
-      
-      toast.success('Entry created successfully');
-      return data[0] as ChangelogEntry;
+    if (error) {
+      console.error('Error creating entry:', error);
+      toast.error('Failed to create entry', {
+        description: error.message
+      });
+      throw error;
     }
     
-    // Otherwise, simulate adding to mock data
-    console.log('Adding to mock changelog data:', status.message);
-    const newEntry = {
-      ...entry,
-      id: mockEntries.length + 1,
-      created_at: new Date().toISOString()
-    };
-    mockEntries.unshift(newEntry);
-    toast.success('Entry created in mock data');
-    return newEntry;
+    toast.success('Entry created successfully');
+    return data[0] as ChangelogEntry;
   } catch (error) {
     console.error('Error creating changelog entry:', error);
     throw error;
@@ -191,33 +68,21 @@ export const createChangelogEntry = async (entry: ChangelogEntry) => {
 // Function to retrieve a single changelog entry by id
 export const getChangelogEntryById = async (id: number) => {
   try {
-    // Check connection status
-    const status = await getSupabaseStatus();
+    const { data, error } = await supabase
+      .from('changelog')
+      .select('*')
+      .eq('id', id)
+      .single();
     
-    // If Supabase is connected, fetch from real database
-    if (status.connected && supabase) {
-      const { data, error } = await supabase
-        .from('changelog')
-        .select('*')
-        .eq('id', id)
-        .single();
-      
-      if (error) {
-        console.error(`Error fetching entry ${id}:`, error);
-        toast.error('Failed to fetch entry', {
-          description: error.message
-        });
-        throw error;
-      }
-      
-      return data as ChangelogEntry;
+    if (error) {
+      console.error(`Error fetching entry ${id}:`, error);
+      toast.error('Failed to fetch entry', {
+        description: error.message
+      });
+      throw error;
     }
     
-    // Otherwise, fetch from mock data
-    console.log('Fetching from mock changelog data:', status.message);
-    const entry = mockEntries.find(e => e.id === id);
-    if (!entry) throw new Error(`Entry with id ${id} not found`);
-    return entry;
+    return data as ChangelogEntry;
   } catch (error) {
     console.error(`Error fetching changelog entry with id ${id}:`, error);
     throw error;
