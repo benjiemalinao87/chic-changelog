@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -40,9 +39,9 @@ const ChangelogEntryComponent: React.FC<ChangelogEntryProps> = ({ entry, isLates
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: animationDelay }}
     >
-      {/* Badge for latest entry */}
+      {/* Badge for latest entry - moved to top-right instead of left side */}
       {isLatest && (
-        <div className="absolute -left-4 top-3 flex items-center">
+        <div className="absolute -top-2 right-0 flex items-center">
           <span className="relative flex h-3 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
