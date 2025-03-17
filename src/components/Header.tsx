@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
 const Header = () => {
+  // Get current date formatted as "Month DD, YYYY"
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  
   return (
     <motion.header 
       className="sticky top-0 z-10 glass px-6 py-4 mb-8 flex items-center justify-between"
@@ -73,7 +80,7 @@ const Header = () => {
         
         <div className="hidden md:block text-sm text-right">
           <p className="text-muted-foreground">Latest Update</p>
-          <p className="font-medium">v2.5.0 · June 15, 2023</p>
+          <p className="font-medium">v3.0.0 · {currentDate}</p>
         </div>
       </motion.div>
     </motion.header>
