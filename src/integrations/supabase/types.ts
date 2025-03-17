@@ -677,14 +677,14 @@ export type Database = {
           {
             foreignKeyName: "board_contacts_contact_id_fkey"
             columns: ["contact_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "contact_current_status"
             referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "board_contacts_contact_id_fkey"
             columns: ["contact_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
@@ -2981,27 +2981,36 @@ export type Database = {
           created_at: string | null
           friendly_name: string | null
           id: string
-          is_active: boolean | null
           phone_number: string
+          sid: string
+          status: string | null
           updated_at: string | null
+          webhook_type: string | null
+          webhook_url: string | null
           workspace_id: string
         }
         Insert: {
           created_at?: string | null
           friendly_name?: string | null
           id?: string
-          is_active?: boolean | null
           phone_number: string
+          sid: string
+          status?: string | null
           updated_at?: string | null
+          webhook_type?: string | null
+          webhook_url?: string | null
           workspace_id: string
         }
         Update: {
           created_at?: string | null
           friendly_name?: string | null
           id?: string
-          is_active?: boolean | null
           phone_number?: string
+          sid?: string
+          status?: string | null
           updated_at?: string | null
+          webhook_type?: string | null
+          webhook_url?: string | null
           workspace_id?: string
         }
         Relationships: [
@@ -3080,6 +3089,8 @@ export type Database = {
           error_message: string | null
           id: string
           payload: Json | null
+          preprocessing_duration: number | null
+          preprocessing_error: string | null
           processed_contact_id: string | null
           result: Json | null
           status: string
@@ -3091,6 +3102,8 @@ export type Database = {
           error_message?: string | null
           id?: string
           payload?: Json | null
+          preprocessing_duration?: number | null
+          preprocessing_error?: string | null
           processed_contact_id?: string | null
           result?: Json | null
           status: string
@@ -3102,6 +3115,8 @@ export type Database = {
           error_message?: string | null
           id?: string
           payload?: Json | null
+          preprocessing_duration?: number | null
+          preprocessing_error?: string | null
           processed_contact_id?: string | null
           result?: Json | null
           status?: string
@@ -3142,6 +3157,10 @@ export type Database = {
           last_used: string | null
           mappings: Json | null
           name: string
+          preprocessing_code: string | null
+          preprocessing_enabled: boolean | null
+          preprocessing_updated_at: string | null
+          preprocessing_updated_by: string | null
           source: string
           status: string
           workspace_id: string
@@ -3154,6 +3173,10 @@ export type Database = {
           last_used?: string | null
           mappings?: Json | null
           name: string
+          preprocessing_code?: string | null
+          preprocessing_enabled?: boolean | null
+          preprocessing_updated_at?: string | null
+          preprocessing_updated_by?: string | null
           source: string
           status?: string
           workspace_id: string
@@ -3166,6 +3189,10 @@ export type Database = {
           last_used?: string | null
           mappings?: Json | null
           name?: string
+          preprocessing_code?: string | null
+          preprocessing_enabled?: boolean | null
+          preprocessing_updated_at?: string | null
+          preprocessing_updated_by?: string | null
           source?: string
           status?: string
           workspace_id?: string
@@ -3864,6 +3891,61 @@ export type Database = {
               "": unknown
             }
             Returns: unknown
+          }
+      move_contact_between_boards:
+        | {
+            Args: {
+              p_contact_id: string
+              p_from_board_id: string
+              p_to_board_id: string
+              p_to_column_id: string
+              p_metadata: Json
+            }
+            Returns: {
+              board_id: string
+              column_id: string | null
+              contact_id: string
+              created_at: string | null
+              created_by: string | null
+              duplicate_group_id: string | null
+              id: string
+              inquiry_type: string | null
+              is_duplicate: boolean | null
+              last_activity_at: string | null
+              metadata: Json | null
+              notes: string | null
+              source: string | null
+              source_data: Json | null
+              status: string | null
+              updated_at: string | null
+            }
+          }
+        | {
+            Args: {
+              p_contact_id: string
+              p_from_board_id: string
+              p_to_board_id: string
+              p_to_column_id: string
+              p_metadata: Json
+            }
+            Returns: {
+              board_id: string
+              column_id: string | null
+              contact_id: string
+              created_at: string | null
+              created_by: string | null
+              duplicate_group_id: string | null
+              id: string
+              inquiry_type: string | null
+              is_duplicate: boolean | null
+              last_activity_at: string | null
+              metadata: Json | null
+              notes: string | null
+              source: string | null
+              source_data: Json | null
+              status: string | null
+              updated_at: string | null
+            }
           }
       refresh_segment_contacts: {
         Args: {

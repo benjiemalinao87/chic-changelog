@@ -1,6 +1,7 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import ChangelogList from '@/components/ChangelogList';
 import ChangelogDetail from '@/components/ChangelogDetail';
@@ -75,14 +76,24 @@ const Index: React.FC<IndexProps> = ({ detailView = false }) => {
             </div>
             
             {!detailView && (
-              <Button 
-                variant="default" 
-                onClick={handleSimulateWebhook}
-                disabled={isSimulating}
-                className="rounded-full neo-blur"
-              >
-                {isSimulating ? "Simulating..." : "Simulate Webhook"}
-              </Button>
+              <div className="flex gap-3">
+                <Button 
+                  variant="default" 
+                  onClick={handleSimulateWebhook}
+                  disabled={isSimulating}
+                  className="rounded-full neo-blur"
+                >
+                  {isSimulating ? "Simulating..." : "Simulate Webhook"}
+                </Button>
+                
+                <Button 
+                  variant="secondary" 
+                  className="rounded-full neo-blur"
+                  asChild
+                >
+                  <Link to="/progress">View Progress Report</Link>
+                </Button>
+              </div>
             )}
           </div>
         </motion.div>

@@ -1,7 +1,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bell } from 'lucide-react';
+import { Bell, BarChart2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
 const Header = () => {
   return (
@@ -12,13 +14,15 @@ const Header = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="flex items-center space-x-4">
-        <motion.div
-          className="h-9 w-9 bg-apple-blue rounded-full flex items-center justify-center"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Bell className="h-5 w-5 text-white" />
-        </motion.div>
+        <Link to="/">
+          <motion.div
+            className="h-9 w-9 bg-apple-blue rounded-full flex items-center justify-center"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Bell className="h-5 w-5 text-white" />
+          </motion.div>
+        </Link>
         <div>
           <h1 className="text-xl font-medium">Changelog</h1>
           <p className="text-sm text-muted-foreground">Track all your updates</p>
@@ -26,12 +30,28 @@ const Header = () => {
       </div>
       
       <motion.div 
-        className="hidden md:flex items-center space-x-4"
+        className="flex items-center space-x-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <div className="text-sm text-right">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <Link to="/" className={navigationMenuTriggerStyle()}>
+                Changelog
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to="/progress" className={navigationMenuTriggerStyle()}>
+                <BarChart2 className="h-4 w-4 mr-1" />
+                Progress Report
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        
+        <div className="hidden md:block text-sm text-right">
           <p className="text-muted-foreground">Latest Update</p>
           <p className="font-medium">v2.5.0 · June 15, 2023</p>
         </div>

@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import Index from "./pages/Index";
+import ProgressReport from "./pages/ProgressReport";
 import NotFound from "./pages/NotFound";
 
 // Create a React Query client with configuration
@@ -38,6 +39,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/changelog/:id" element={<Index detailView={true} />} />
+              <Route path="/progress" element={<ProgressReport />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
