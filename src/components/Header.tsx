@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bell, BarChart2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+
 const Header = () => {
   // Get current date formatted as "Month DD, YYYY"
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -10,6 +12,7 @@ const Header = () => {
     month: 'long',
     day: 'numeric'
   });
+
   return <motion.header className="sticky top-0 z-10 glass px-6 py-4 mb-8 flex items-center justify-between" initial={{
     opacity: 0,
     y: -20
