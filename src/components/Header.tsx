@@ -24,7 +24,7 @@ const Header = () => {
   }}>
       <div className="flex items-center space-x-4">
         <Link to="/">
-          <motion.div className="h-9 w-9 bg-apple-blue rounded-full flex items-center justify-center" whileHover={{
+          <motion.div className="h-9 w-9 bg-purple-500 rounded-full flex items-center justify-center" whileHover={{
           scale: 1.05
         }} whileTap={{
           scale: 0.95
@@ -62,12 +62,12 @@ const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
         
-        <motion.a href="https://cc1.automate8.com/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-primary to-primary/80 text-white font-medium px-4 py-2 rounded-full shadow-[0_0_15px_rgba(30,147,255,0.5)] transition-all hover:shadow-[0_0_20px_rgba(30,147,255,0.7)] hover:scale-105" whileHover={{
+        <motion.a href="https://cc1.automate8.com/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium px-4 py-2 rounded-full shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-all hover:shadow-[0_0_20px_rgba(155,135,245,0.7)] hover:scale-105" whileHover={{
         scale: 1.05
       }} whileTap={{
         scale: 0.95
       }} animate={{
-        boxShadow: ['0 0 15px rgba(30,147,255,0.5)', '0 0 25px rgba(30,147,255,0.7)', '0 0 15px rgba(30,147,255,0.5)']
+        boxShadow: ['0 0 15px rgba(155,135,245,0.5)', '0 0 25px rgba(155,135,245,0.7)', '0 0 15px rgba(155,135,245,0.5)']
       }} transition={{
         boxShadow: {
           repeat: Infinity,
