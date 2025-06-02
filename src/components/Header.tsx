@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bell, BarChart2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-
 const Header = () => {
   // Get current date formatted as "Month DD, YYYY"
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -12,7 +10,6 @@ const Header = () => {
     month: 'long',
     day: 'numeric'
   });
-
   return <motion.header className="sticky top-0 z-10 glass px-6 py-4 mb-8 flex items-center justify-between" initial={{
     opacity: 0,
     y: -20
@@ -33,8 +30,8 @@ const Header = () => {
           </motion.div>
         </Link>
         <div>
-          <h1 className="text-xl font-medium">CA v2</h1>
-          <p className="text-sm text-muted-foreground">Track all your updates</p>
+          <h1 className="text-xl font-medium">Customer Connect</h1>
+          
         </div>
       </div>
       
@@ -49,15 +46,10 @@ const Header = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link to="/" className={navigationMenuTriggerStyle()}>
-                Changelog
-              </Link>
+              
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to="/progress" className={navigationMenuTriggerStyle()}>
-                <BarChart2 className="h-4 w-4 mr-1" />
-                Progress Report
-              </Link>
+              
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
