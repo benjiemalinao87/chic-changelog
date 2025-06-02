@@ -119,7 +119,7 @@ const MetricsSection = () => {
           ))}
         </div>
         
-        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-80 w-full" />
       </motion.div>
     );
   }
@@ -157,46 +157,48 @@ const MetricsSection = () => {
       </div>
 
       {/* Chart */}
-      <ChartContainer config={chartConfig} className="h-64 -mx-6">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={metricsData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-            <XAxis 
-              dataKey="displayDate" 
-              fontSize={12}
-              tickLine={false}
-              axisLine={false}
-              interval={0}
-              angle={-45}
-              textAnchor="end"
-              height={60}
-            />
-            <YAxis 
-              fontSize={12}
-              tickLine={false}
-              axisLine={false}
-            />
-            <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar 
-              dataKey="features" 
-              fill="var(--color-features)"
-              radius={[2, 2, 0, 0]}
-              stackId="stack"
-            />
-            <Bar 
-              dataKey="bugs" 
-              fill="var(--color-bugs)"
-              radius={[2, 2, 0, 0]}
-              stackId="stack"
-            />
-            <Bar 
-              dataKey="enhancements" 
-              fill="var(--color-enhancements)"
-              radius={[2, 2, 0, 0]}
-              stackId="stack"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </ChartContainer>
+      <div className="w-full h-80 -mx-6">
+        <ChartContainer config={chartConfig} className="w-full h-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={metricsData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
+              <XAxis 
+                dataKey="displayDate" 
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                interval={0}
+                angle={-45}
+                textAnchor="end"
+                height={60}
+              />
+              <YAxis 
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+              />
+              <ChartTooltip content={<ChartTooltipContent />} />
+              <Bar 
+                dataKey="features" 
+                fill="var(--color-features)"
+                radius={[2, 2, 0, 0]}
+                stackId="stack"
+              />
+              <Bar 
+                dataKey="bugs" 
+                fill="var(--color-bugs)"
+                radius={[2, 2, 0, 0]}
+                stackId="stack"
+              />
+              <Bar 
+                dataKey="enhancements" 
+                fill="var(--color-enhancements)"
+                radius={[2, 2, 0, 0]}
+                stackId="stack"
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartContainer>
+      </div>
     </motion.div>
   );
 };
