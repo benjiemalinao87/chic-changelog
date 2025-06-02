@@ -13,7 +13,8 @@ const MetricsSection = () => {
   const [totalCounts, setTotalCounts] = useState({
     features: 0,
     bugs: 0,
-    enhancements: 0
+    enhancements: 0,
+    dailyBugAverage: 0
   });
 
   useEffect(() => {
@@ -65,10 +66,14 @@ const MetricsSection = () => {
           }
         });
         
+        // Calculate daily average for bugs (total bugs / 30 days)
+        const dailyBugAverage = Number((totalBugs / 30).toFixed(1));
+        
         setTotalCounts({
           features: totalFeatures,
           bugs: totalBugs,
-          enhancements: totalEnhancements
+          enhancements: totalEnhancements,
+          dailyBugAverage: dailyBugAverage
         });
         
         setMetricsData(last30Days);
@@ -110,8 +115,8 @@ const MetricsSection = () => {
           <h3 className="text-xl font-medium text-gradient">Development Metrics</h3>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          {[1, 2, 3].map((i) => (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          {[1, 2, 3, 4].map((i) => (
             <div key={i} className="glass-morphism p-4 rounded-lg">
               <Skeleton className="h-4 w-20 mb-2" />
               <Skeleton className="h-8 w-12" />
@@ -141,7 +146,7 @@ const MetricsSection = () => {
       </div>
       
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="glass-morphism p-4 rounded-lg">
           <div className="text-sm text-muted-foreground mb-1">Features Shipped</div>
           <div className="text-2xl font-bold text-purple-400">{totalCounts.features}</div>
@@ -149,6 +154,10 @@ const MetricsSection = () => {
         <div className="glass-morphism p-4 rounded-lg">
           <div className="text-sm text-muted-foreground mb-1">Bugs Squashed</div>
           <div className="text-2xl font-bold text-green-400">{totalCounts.bugs}</div>
+        </div>
+        <div className="glass-morphism p-4 rounded-lg">
+          <div className="text-sm text-muted-foreground mb-1">Daily Bug Average</div>
+          <div className="text-2xl font-bold text-green-300">{totalCounts.dailyBugAverage}</div>
         </div>
         <div className="glass-morphism p-4 rounded-lg">
           <div className="text-sm text-muted-foreground mb-1">Enhancements</div>
