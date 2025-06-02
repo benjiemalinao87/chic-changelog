@@ -630,17 +630,17 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "fk_workspace_contact"
-            columns: ["contact_id", "workspace_id"]
+            columns: ["contact_id"]
             isOneToOne: false
             referencedRelation: "contact_current_status"
-            referencedColumns: ["contact_id", "workspace_id"]
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "fk_workspace_contact"
-            columns: ["contact_id", "workspace_id"]
+            columns: ["contact_id"]
             isOneToOne: false
             referencedRelation: "contacts"
-            referencedColumns: ["id", "workspace_id"]
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -818,6 +818,72 @@ export type Database = {
           },
           {
             foreignKeyName: "fk_workspace"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      api_keys: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          expires_at: string | null
+          id: string
+          is_active: boolean | null
+          key_full: string | null
+          key_hash: string
+          key_prefix: string
+          last_used_at: string | null
+          name: string
+          permissions: Json | null
+          updated_at: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          key_full?: string | null
+          key_hash: string
+          key_prefix?: string
+          last_used_at?: string | null
+          name: string
+          permissions?: Json | null
+          updated_at?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          key_full?: string | null
+          key_hash?: string
+          key_prefix?: string
+          last_used_at?: string | null
+          name?: string
+          permissions?: Json | null
+          updated_at?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "api_keys_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "api_keys_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -3070,6 +3136,54 @@ export type Database = {
           },
         ]
       }
+      contact_field_changes: {
+        Row: {
+          changed_at: string | null
+          contact_id: string
+          created_at: string | null
+          field_name: string
+          id: string
+          new_value: string | null
+          old_value: string | null
+          workspace_id: string
+        }
+        Insert: {
+          changed_at?: string | null
+          contact_id: string
+          created_at?: string | null
+          field_name: string
+          id?: string
+          new_value?: string | null
+          old_value?: string | null
+          workspace_id: string
+        }
+        Update: {
+          changed_at?: string | null
+          contact_id?: string
+          created_at?: string | null
+          field_name?: string
+          id?: string
+          new_value?: string | null
+          old_value?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_field_changes_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contact_field_changes_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_livechat_board_column: {
         Row: {
           assigned_at: string
@@ -3191,45 +3305,6 @@ export type Database = {
           },
         ]
       }
-      contact_pipeline_stages: {
-        Row: {
-          contact_id: string
-          created_at: string | null
-          id: string
-          stage: string
-          updated_at: string | null
-        }
-        Insert: {
-          contact_id: string
-          created_at?: string | null
-          id?: string
-          stage: string
-          updated_at?: string | null
-        }
-        Update: {
-          contact_id?: string
-          created_at?: string | null
-          id?: string
-          stage?: string
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "contact_pipeline_stages_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "contact_current_status"
-            referencedColumns: ["contact_id"]
-          },
-          {
-            foreignKeyName: "contact_pipeline_stages_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "contacts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       contact_stages: {
         Row: {
           contact_id: string | null
@@ -3273,27 +3348,6 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "contact_stages_pipeline_id_fkey"
-            columns: ["pipeline_id"]
-            isOneToOne: false
-            referencedRelation: "pipelines"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "contact_stages_previous_stage_id_fkey"
-            columns: ["previous_stage_id"]
-            isOneToOne: false
-            referencedRelation: "pipeline_stages"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "contact_stages_stage_id_fkey"
-            columns: ["stage_id"]
-            isOneToOne: false
-            referencedRelation: "pipeline_stages"
-            referencedColumns: ["id"]
-          },
         ]
       }
       contacts: {
@@ -3334,6 +3388,7 @@ export type Database = {
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
+          search_vector: unknown | null
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
@@ -3385,6 +3440,7 @@ export type Database = {
           product?: string | null
           property_insights_data?: Json | null
           property_insights_updated_at?: string | null
+          search_vector?: unknown | null
           sentiment?: string | null
           sentiment_history?: Json | null
           st_address?: string | null
@@ -3436,6 +3492,7 @@ export type Database = {
           product?: string | null
           property_insights_data?: Json | null
           property_insights_updated_at?: string | null
+          search_vector?: unknown | null
           sentiment?: string | null
           sentiment_history?: Json | null
           st_address?: string | null
@@ -4458,6 +4515,190 @@ export type Database = {
           },
         ]
       }
+      flow_sequence_executions: {
+        Row: {
+          completed_at: string | null
+          contact_id: string
+          created_at: string | null
+          id: string
+          sequence_id: string
+          started_at: string | null
+          status: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          contact_id: string
+          created_at?: string | null
+          id?: string
+          sequence_id: string
+          started_at?: string | null
+          status?: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          contact_id?: string
+          created_at?: string | null
+          id?: string
+          sequence_id?: string
+          started_at?: string | null
+          status?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flow_sequence_executions_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      flow_sequence_message_jobs: {
+        Row: {
+          created_at: string | null
+          execution_id: string
+          id: string
+          message_id: string
+          message_type: string
+          scheduled_sms_job_id: string | null
+          scheduled_time: string
+          sent_at: string | null
+          status: string
+          subject: string | null
+          trigger_task_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          execution_id: string
+          id?: string
+          message_id: string
+          message_type?: string
+          scheduled_sms_job_id?: string | null
+          scheduled_time: string
+          sent_at?: string | null
+          status?: string
+          subject?: string | null
+          trigger_task_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          execution_id?: string
+          id?: string
+          message_id?: string
+          message_type?: string
+          scheduled_sms_job_id?: string | null
+          scheduled_time?: string
+          sent_at?: string | null
+          status?: string
+          subject?: string | null
+          trigger_task_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flow_sequence_message_jobs_execution_id_fkey"
+            columns: ["execution_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequence_executions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flow_sequence_message_jobs_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequence_messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      flow_sequence_messages: {
+        Row: {
+          created_at: string | null
+          id: string
+          message_type: string
+          order_index: number
+          sequence_id: string
+          subflow_id: string | null
+          subject: string | null
+          text: string
+          time_unit: string
+          time_value: number
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          message_type?: string
+          order_index: number
+          sequence_id: string
+          subflow_id?: string | null
+          subject?: string | null
+          text: string
+          time_unit: string
+          time_value: number
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          message_type?: string
+          order_index?: number
+          sequence_id?: string
+          subflow_id?: string | null
+          subject?: string | null
+          text?: string
+          time_unit?: string
+          time_value?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flow_sequence_messages_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      flow_sequences: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          name: string
+          status: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name: string
+          status?: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       flows: {
         Row: {
           created_at: string | null
@@ -4509,6 +4750,124 @@ export type Database = {
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ip_whitelist: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          ip_address: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          ip_address: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          ip_address?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      keyword_rule_logs: {
+        Row: {
+          contact_id: string
+          id: string
+          message_id: string
+          response_type: string
+          rule_id: string
+          success: boolean | null
+          triggered_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          id?: string
+          message_id: string
+          response_type: string
+          rule_id: string
+          success?: boolean | null
+          triggered_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          id?: string
+          message_id?: string
+          response_type?: string
+          rule_id?: string
+          success?: boolean | null
+          triggered_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "keyword_rule_logs_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "keyword_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      keyword_rules: {
+        Row: {
+          created_at: string | null
+          flow_id: string | null
+          id: string
+          is_active: boolean | null
+          keywords: Json
+          name: string
+          reply_text: string | null
+          rule_type: string
+          tags: Json | null
+          twilio_number_id: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          keywords: Json
+          name: string
+          reply_text?: string | null
+          rule_type: string
+          tags?: Json | null
+          twilio_number_id?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          keywords?: Json
+          name?: string
+          reply_text?: string | null
+          rule_type?: string
+          tags?: Json | null
+          twilio_number_id?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_keyword_rules_twilio_number"
+            columns: ["twilio_number_id"]
+            isOneToOne: false
+            referencedRelation: "twilio_numbers"
             referencedColumns: ["id"]
           },
         ]
@@ -4590,33 +4949,56 @@ export type Database = {
       }
       livechat_board_assignments: {
         Row: {
+          assignment_type: string
+          contact_id: string | null
           created_at: string | null
           created_by: string | null
           id: string
           livechat_board_id: string
+          status: string
           updated_at: string | null
           user_id: string
           workspace_id: string
         }
         Insert: {
+          assignment_type?: string
+          contact_id?: string | null
           created_at?: string | null
           created_by?: string | null
           id?: string
           livechat_board_id: string
+          status?: string
           updated_at?: string | null
           user_id: string
           workspace_id: string
         }
         Update: {
+          assignment_type?: string
+          contact_id?: string | null
           created_at?: string | null
           created_by?: string | null
           id?: string
           livechat_board_id?: string
+          status?: string
           updated_at?: string | null
           user_id?: string
           workspace_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "livechat_board_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_board_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "livechat_board_assignments_livechat_board_id_fkey"
             columns: ["livechat_board_id"]
@@ -4677,6 +5059,51 @@ export type Database = {
             columns: ["board_id"]
             isOneToOne: false
             referencedRelation: "livechat_board"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      livechat_contact_assignments: {
+        Row: {
+          contact_id: string
+          created_at: string | null
+          created_by: string | null
+          id: string
+          status: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          status?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          status?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
         ]
@@ -4742,6 +5169,7 @@ export type Database = {
           media_paths: Json | null
           media_urls: Json | null
           message_type: string | null
+          metadata: Json | null
           msg_type: string
           parent_id: string | null
           sender: string
@@ -4773,6 +5201,7 @@ export type Database = {
           media_paths?: Json | null
           media_urls?: Json | null
           message_type?: string | null
+          metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
           sender: string
@@ -4804,6 +5233,7 @@ export type Database = {
           media_paths?: Json | null
           media_urls?: Json | null
           message_type?: string | null
+          metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
           sender?: string
@@ -4867,6 +5297,7 @@ export type Database = {
           media_paths: Json | null
           media_urls: Json | null
           message_type: string | null
+          metadata: Json | null
           msg_type: string
           parent_id: string | null
           sender: string
@@ -4898,6 +5329,7 @@ export type Database = {
           media_paths?: Json | null
           media_urls?: Json | null
           message_type?: string | null
+          metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
           sender: string
@@ -4929,6 +5361,7 @@ export type Database = {
           media_paths?: Json | null
           media_urls?: Json | null
           message_type?: string | null
+          metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
           sender?: string
@@ -4963,6 +5396,7 @@ export type Database = {
           media_paths: Json | null
           media_urls: Json | null
           message_type: string | null
+          metadata: Json | null
           msg_type: string
           parent_id: string | null
           sender: string
@@ -4994,6 +5428,7 @@ export type Database = {
           media_paths?: Json | null
           media_urls?: Json | null
           message_type?: string | null
+          metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
           sender: string
@@ -5025,6 +5460,304 @@ export type Database = {
           media_paths?: Json | null
           media_urls?: Json | null
           message_type?: string | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2025_06: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          message_type: string | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2025_07: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          message_type: string | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2025_08: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          message_type: string | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
           sender?: string
@@ -5476,6 +6209,365 @@ export type Database = {
         }
         Relationships: []
       }
+      opportunities: {
+        Row: {
+          amount: number | null
+          closed_at: string | null
+          company_id: string | null
+          contact_id: string | null
+          created_at: string | null
+          created_by: string
+          currency: string | null
+          description: string | null
+          expected_close_date: string | null
+          id: string
+          is_closed: boolean | null
+          is_won: boolean | null
+          priority: string | null
+          probability: number | null
+          stage_id: string | null
+          tags: Json | null
+          title: string
+          updated_at: string | null
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          amount?: number | null
+          closed_at?: string | null
+          company_id?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          created_by: string
+          currency?: string | null
+          description?: string | null
+          expected_close_date?: string | null
+          id?: string
+          is_closed?: boolean | null
+          is_won?: boolean | null
+          priority?: string | null
+          probability?: number | null
+          stage_id?: string | null
+          tags?: Json | null
+          title: string
+          updated_at?: string | null
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          amount?: number | null
+          closed_at?: string | null
+          company_id?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          created_by?: string
+          currency?: string | null
+          description?: string | null
+          expected_close_date?: string | null
+          id?: string
+          is_closed?: boolean | null
+          is_won?: boolean | null
+          priority?: string | null
+          probability?: number | null
+          stage_id?: string | null
+          tags?: Json | null
+          title?: string
+          updated_at?: string | null
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_opportunities_stage"
+            columns: ["stage_id"]
+            isOneToOne: false
+            referencedRelation: "opportunity_stages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunities_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunities_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "opportunities_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_activities: {
+        Row: {
+          activity_type: string
+          assigned_to: string | null
+          completed_at: string | null
+          created_at: string | null
+          created_by: string
+          description: string
+          due_date: string | null
+          id: string
+          is_completed: boolean | null
+          opportunity_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          activity_type: string
+          assigned_to?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          created_by: string
+          description: string
+          due_date?: string | null
+          id?: string
+          is_completed?: boolean | null
+          opportunity_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          activity_type?: string
+          assigned_to?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          created_by?: string
+          description?: string
+          due_date?: string | null
+          id?: string
+          is_completed?: boolean | null
+          opportunity_id?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_activities_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_appointments: {
+        Row: {
+          appointment_id: string
+          created_at: string | null
+          created_by: string
+          id: string
+          opportunity_id: string
+        }
+        Insert: {
+          appointment_id: string
+          created_at?: string | null
+          created_by: string
+          id?: string
+          opportunity_id: string
+        }
+        Update: {
+          appointment_id?: string
+          created_at?: string | null
+          created_by?: string
+          id?: string
+          opportunity_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_appointments_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_appointments_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_history: {
+        Row: {
+          changed_at: string | null
+          changed_by: string
+          field_name: string
+          id: string
+          new_value: string | null
+          old_value: string | null
+          opportunity_id: string
+        }
+        Insert: {
+          changed_at?: string | null
+          changed_by: string
+          field_name: string
+          id?: string
+          new_value?: string | null
+          old_value?: string | null
+          opportunity_id: string
+        }
+        Update: {
+          changed_at?: string | null
+          changed_by?: string
+          field_name?: string
+          id?: string
+          new_value?: string | null
+          old_value?: string | null
+          opportunity_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_history_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_stages: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          default_probability: number | null
+          description: string | null
+          id: string
+          is_lost_stage: boolean | null
+          is_won_stage: boolean | null
+          name: string
+          pipeline_id: string
+          position: number
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          default_probability?: number | null
+          description?: string | null
+          id?: string
+          is_lost_stage?: boolean | null
+          is_won_stage?: boolean | null
+          name: string
+          pipeline_id: string
+          position: number
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          default_probability?: number | null
+          description?: string | null
+          id?: string
+          is_lost_stage?: boolean | null
+          is_won_stage?: boolean | null
+          name?: string
+          pipeline_id?: string
+          position?: number
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_stages_pipeline_id_fkey"
+            columns: ["pipeline_id"]
+            isOneToOne: false
+            referencedRelation: "pipelines"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      partner_signups: {
+        Row: {
+          created_at: string | null
+          device_fingerprint: string | null
+          id: string
+          ip_address: string | null
+          metadata: Json | null
+          phone_number: string | null
+          signup_date: string | null
+          status: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_agent: string | null
+          user_id: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          device_fingerprint?: string | null
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          phone_number?: string | null
+          signup_date?: string | null
+          status?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          device_fingerprint?: string | null
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          phone_number?: string | null
+          signup_date?: string | null
+          status?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      partner_twilio_config: {
+        Row: {
+          account_sid: string
+          auth_token: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          max_numbers_per_fingerprint: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          account_sid: string
+          auth_token: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_numbers_per_fingerprint?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          account_sid?: string
+          auth_token?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_numbers_per_fingerprint?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       phone_numbers: {
         Row: {
           created_at: string
@@ -5524,114 +6616,50 @@ export type Database = {
           },
         ]
       }
-      pipeline_deals: {
+      pipelines: {
         Row: {
-          amount: number | null
-          contact_id: string
           created_at: string | null
-          id: string
-          status: string
-          updated_at: string | null
-        }
-        Insert: {
-          amount?: number | null
-          contact_id: string
-          created_at?: string | null
-          id?: string
-          status: string
-          updated_at?: string | null
-        }
-        Update: {
-          amount?: number | null
-          contact_id?: string
-          created_at?: string | null
-          id?: string
-          status?: string
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "pipeline_deals_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "contact_current_status"
-            referencedColumns: ["contact_id"]
-          },
-          {
-            foreignKeyName: "pipeline_deals_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "contacts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      pipeline_stages: {
-        Row: {
-          color: string | null
-          created_at: string | null
+          created_by: string | null
           description: string | null
-          icon: string | null
           id: string
           is_active: boolean | null
-          is_completed: boolean | null
-          metadata: Json | null
+          is_default: boolean | null
           name: string
-          order_index: number
-          pipeline_id: string | null
-          position: number
           updated_at: string | null
           workspace_id: string
         }
         Insert: {
-          color?: string | null
           created_at?: string | null
+          created_by?: string | null
           description?: string | null
-          icon?: string | null
           id?: string
           is_active?: boolean | null
-          is_completed?: boolean | null
-          metadata?: Json | null
+          is_default?: boolean | null
           name: string
-          order_index: number
-          pipeline_id?: string | null
-          position: number
           updated_at?: string | null
           workspace_id: string
         }
         Update: {
-          color?: string | null
           created_at?: string | null
+          created_by?: string | null
           description?: string | null
-          icon?: string | null
           id?: string
           is_active?: boolean | null
-          is_completed?: boolean | null
-          metadata?: Json | null
+          is_default?: boolean | null
           name?: string
-          order_index?: number
-          pipeline_id?: string | null
-          position?: number
           updated_at?: string | null
           workspace_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "pipeline_stages_pipeline_id_fkey"
-            columns: ["pipeline_id"]
-            isOneToOne: false
-            referencedRelation: "pipelines"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "pipeline_stages_workspace_id_fkey"
+            foreignKeyName: "pipelines_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "user_profiles_with_workspace"
             referencedColumns: ["workspace_id"]
           },
           {
-            foreignKeyName: "pipeline_stages_workspace_id_fkey"
+            foreignKeyName: "pipelines_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -5639,47 +6667,94 @@ export type Database = {
           },
         ]
       }
-      pipelines: {
+      recurring_message_logs: {
         Row: {
-          created_at: string | null
-          description: string | null
+          body: string
+          created_at: string
           id: string
-          name: string
-          updated_at: string | null
-          workspace_id: string | null
+          metadata: Json | null
+          recurring_id: string
+          status: string
+          to_phone: string
+          twilio_sid: string | null
+          workspace_id: string
         }
         Insert: {
-          created_at?: string | null
-          description?: string | null
+          body: string
+          created_at?: string
           id?: string
-          name: string
-          updated_at?: string | null
-          workspace_id?: string | null
+          metadata?: Json | null
+          recurring_id: string
+          status: string
+          to_phone: string
+          twilio_sid?: string | null
+          workspace_id: string
         }
         Update: {
-          created_at?: string | null
-          description?: string | null
+          body?: string
+          created_at?: string
           id?: string
-          name?: string
-          updated_at?: string | null
-          workspace_id?: string | null
+          metadata?: Json | null
+          recurring_id?: string
+          status?: string
+          to_phone?: string
+          twilio_sid?: string | null
+          workspace_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "pipelines_workspace_id_fkey"
-            columns: ["workspace_id"]
+            foreignKeyName: "recurring_message_logs_recurring_id_fkey"
+            columns: ["recurring_id"]
             isOneToOne: false
-            referencedRelation: "user_profiles_with_workspace"
-            referencedColumns: ["workspace_id"]
-          },
-          {
-            foreignKeyName: "pipelines_workspace_id_fkey"
-            columns: ["workspace_id"]
-            isOneToOne: false
-            referencedRelation: "workspaces"
+            referencedRelation: "recurring_messages"
             referencedColumns: ["id"]
           },
         ]
+      }
+      recurring_messages: {
+        Row: {
+          body: string
+          created_at: string
+          cron_expression: string
+          id: string
+          media_url: string | null
+          metadata: Json | null
+          name: string
+          status: string
+          timezone: string
+          to_phone: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          cron_expression: string
+          id?: string
+          media_url?: string | null
+          metadata?: Json | null
+          name: string
+          status?: string
+          timezone?: string
+          to_phone: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          cron_expression?: string
+          id?: string
+          media_url?: string | null
+          metadata?: Json | null
+          name?: string
+          status?: string
+          timezone?: string
+          to_phone?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
       }
       scheduled_messages: {
         Row: {
@@ -5688,11 +6763,13 @@ export type Database = {
           created_at: string | null
           id: string
           last_sent_at: string | null
+          message_type: string
           metadata: Json | null
           next_send_at: string | null
           schedule_config: Json
           schedule_type: string
           status: string
+          subject: string | null
           updated_at: string | null
           workspace_id: string
         }
@@ -5702,11 +6779,13 @@ export type Database = {
           created_at?: string | null
           id?: string
           last_sent_at?: string | null
+          message_type?: string
           metadata?: Json | null
           next_send_at?: string | null
           schedule_config: Json
           schedule_type: string
           status?: string
+          subject?: string | null
           updated_at?: string | null
           workspace_id: string
         }
@@ -5716,11 +6795,13 @@ export type Database = {
           created_at?: string | null
           id?: string
           last_sent_at?: string | null
+          message_type?: string
           metadata?: Json | null
           next_send_at?: string | null
           schedule_config?: Json
           schedule_type?: string
           status?: string
+          subject?: string | null
           updated_at?: string | null
           workspace_id?: string
         }
@@ -5734,6 +6815,69 @@ export type Database = {
           },
           {
             foreignKeyName: "scheduled_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scheduled_sms_jobs: {
+        Row: {
+          body: string
+          contact_id: string | null
+          created_at: string | null
+          id: string
+          media_url: string | null
+          metadata: Json | null
+          processed_at: string | null
+          scheduled_time: string
+          status: string | null
+          timezone: string | null
+          to_phone: string
+          twilio_sid: string | null
+          workspace_id: string
+        }
+        Insert: {
+          body: string
+          contact_id?: string | null
+          created_at?: string | null
+          id?: string
+          media_url?: string | null
+          metadata?: Json | null
+          processed_at?: string | null
+          scheduled_time: string
+          status?: string | null
+          timezone?: string | null
+          to_phone: string
+          twilio_sid?: string | null
+          workspace_id: string
+        }
+        Update: {
+          body?: string
+          contact_id?: string | null
+          created_at?: string | null
+          id?: string
+          media_url?: string | null
+          metadata?: Json | null
+          processed_at?: string | null
+          scheduled_time?: string
+          status?: string | null
+          timezone?: string | null
+          to_phone?: string
+          twilio_sid?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scheduled_sms_jobs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "scheduled_sms_jobs_contact_id_fkey"
             columns: ["contact_id"]
             isOneToOne: false
             referencedRelation: "contacts"
@@ -5901,9 +7045,11 @@ export type Database = {
           created_at: string | null
           day: number
           id: string
+          message_type: string
           send_time: string
           sequence_id: string
           status: string
+          subject: string | null
           updated_at: string | null
         }
         Insert: {
@@ -5911,9 +7057,11 @@ export type Database = {
           created_at?: string | null
           day: number
           id?: string
+          message_type?: string
           send_time: string
           sequence_id: string
           status?: string
+          subject?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -5921,9 +7069,11 @@ export type Database = {
           created_at?: string | null
           day?: number
           id?: string
+          message_type?: string
           send_time?: string
           sequence_id?: string
           status?: string
+          subject?: string | null
           updated_at?: string | null
         }
         Relationships: [
@@ -6047,6 +7197,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      signup_fingerprints: {
+        Row: {
+          block_reason: string | null
+          created_at: string | null
+          fingerprint: string | null
+          first_seen: string | null
+          id: string
+          ip_address: string | null
+          is_blocked: boolean | null
+          last_seen: string | null
+          updated_at: string | null
+          usage_count: number | null
+        }
+        Insert: {
+          block_reason?: string | null
+          created_at?: string | null
+          fingerprint?: string | null
+          first_seen?: string | null
+          id?: string
+          ip_address?: string | null
+          is_blocked?: boolean | null
+          last_seen?: string | null
+          updated_at?: string | null
+          usage_count?: number | null
+        }
+        Update: {
+          block_reason?: string | null
+          created_at?: string | null
+          fingerprint?: string | null
+          first_seen?: string | null
+          id?: string
+          ip_address?: string | null
+          is_blocked?: boolean | null
+          last_seen?: string | null
+          updated_at?: string | null
+          usage_count?: number | null
+        }
+        Relationships: []
       }
       status_categories: {
         Row: {
@@ -6232,6 +7421,185 @@ export type Database = {
           },
           {
             foreignKeyName: "status_timelines_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trigger_events: {
+        Row: {
+          created_at: string
+          event_data: Json
+          event_type: string
+          id: string
+          processed: boolean
+          processed_at: string | null
+          source: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_data: Json
+          event_type: string
+          id?: string
+          processed?: boolean
+          processed_at?: string | null
+          source?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json
+          event_type?: string
+          id?: string
+          processed?: boolean
+          processed_at?: string | null
+          source?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trigger_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "trigger_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trigger_executions: {
+        Row: {
+          error_details: string | null
+          event_id: string | null
+          executed_at: string
+          execution_data: Json | null
+          flow_execution_id: string | null
+          id: string
+          status: string
+          trigger_id: string
+          workspace_id: string
+        }
+        Insert: {
+          error_details?: string | null
+          event_id?: string | null
+          executed_at?: string
+          execution_data?: Json | null
+          flow_execution_id?: string | null
+          id?: string
+          status: string
+          trigger_id: string
+          workspace_id: string
+        }
+        Update: {
+          error_details?: string | null
+          event_id?: string | null
+          executed_at?: string
+          execution_data?: Json | null
+          flow_execution_id?: string | null
+          id?: string
+          status?: string
+          trigger_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trigger_executions_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "trigger_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trigger_executions_trigger_id_fkey"
+            columns: ["trigger_id"]
+            isOneToOne: false
+            referencedRelation: "triggers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trigger_executions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "trigger_executions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      triggers: {
+        Row: {
+          conditions: Json | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          event_type: string
+          execution_count: number
+          external_request_config: Json | null
+          flow_id: string | null
+          id: string
+          is_active: boolean
+          last_execution_at: string | null
+          name: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          conditions?: Json | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          event_type: string
+          execution_count?: number
+          external_request_config?: Json | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean
+          last_execution_at?: string | null
+          name: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          conditions?: Json | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          event_type?: string
+          execution_count?: number
+          external_request_config?: Json | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean
+          last_execution_at?: string | null
+          name?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "triggers_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "triggers_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -6472,6 +7840,65 @@ export type Database = {
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhook_board_rules: {
+        Row: {
+          board_id: string
+          column_id: string
+          created_at: string | null
+          id: string
+          updated_at: string | null
+          webhook_id: string
+          workspace_id: string
+        }
+        Insert: {
+          board_id: string
+          column_id: string
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          webhook_id: string
+          workspace_id: string
+        }
+        Update: {
+          board_id?: string
+          column_id?: string
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          webhook_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_board_rules_board_id_workspace_id_fkey"
+            columns: ["board_id", "workspace_id"]
+            isOneToOne: false
+            referencedRelation: "board_performance_ranking"
+            referencedColumns: ["board_id", "workspace_id"]
+          },
+          {
+            foreignKeyName: "webhook_board_rules_board_id_workspace_id_fkey"
+            columns: ["board_id", "workspace_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id", "workspace_id"]
+          },
+          {
+            foreignKeyName: "webhook_board_rules_column_id_fkey"
+            columns: ["column_id"]
+            isOneToOne: false
+            referencedRelation: "board_columns"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_board_rules_webhook_id_fkey"
+            columns: ["webhook_id"]
+            isOneToOne: false
+            referencedRelation: "webhooks"
             referencedColumns: ["id"]
           },
         ]
@@ -7390,13 +8817,6 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "status_timelines_status_id_fkey"
-            columns: ["appointment_status_id"]
-            isOneToOne: false
-            referencedRelation: "status_options"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "status_timelines_status_id_fkey"
             columns: ["lead_status_id"]
             isOneToOne: false
             referencedRelation: "status_options"
@@ -7405,13 +8825,20 @@ export type Database = {
           {
             foreignKeyName: "status_timelines_status_id_fkey"
             columns: ["appointment_status_id"]
+            isOneToOne: false
+            referencedRelation: "status_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "status_timelines_status_id_fkey"
+            columns: ["lead_status_id"]
             isOneToOne: false
             referencedRelation: "statuses"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "status_timelines_status_id_fkey"
-            columns: ["lead_status_id"]
+            columns: ["appointment_status_id"]
             isOneToOne: false
             referencedRelation: "statuses"
             referencedColumns: ["id"]
@@ -7450,6 +8877,37 @@ export type Database = {
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      livechat_contact_assignments_with_details: {
+        Row: {
+          agent_email: string | null
+          agent_name: string | null
+          avatar_url: string | null
+          contact_id: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string | null
+          online_status: string | null
+          status: string | null
+          user_id: string | null
+          workspace_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
         ]
@@ -7706,6 +9164,10 @@ export type Database = {
         Args: { p_user_id: string }
         Returns: Json
       }
+      create_monthly_partition: {
+        Args: { table_name: string; start_date: string }
+        Returns: undefined
+      }
       create_status_categories_safely: {
         Args: { p_workspace_id: string }
         Returns: undefined
@@ -7771,12 +9233,20 @@ export type Database = {
           total_recipients: number
         }[]
       }
+      ensure_livechat_partitions: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       ensure_user_has_workspace: {
         Args: { p_user_id: string }
         Returns: Json
       }
       evaluate_segment_conditions: {
         Args: { contact_record: Json; segment_id: string }
+        Returns: boolean
+      }
+      evaluate_trigger_conditions: {
+        Args: { event_data: Json; trigger_conditions: Json }
         Returns: boolean
       }
       exec_sql: {
@@ -7835,6 +9305,7 @@ export type Database = {
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
+          search_vector: unknown | null
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
@@ -7889,6 +9360,7 @@ export type Database = {
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
+          search_vector: unknown | null
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
@@ -7920,6 +9392,13 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      get_all_board_unread_counts: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          board_id: string
+          unread_count: number
+        }[]
+      }
       get_appointment_result_options: {
         Args: Record<PropertyKey, never>
         Returns: Json
@@ -7927,6 +9406,10 @@ export type Database = {
       get_appointment_status_options: {
         Args: { workspace_id_param: string }
         Returns: Json
+      }
+      get_board_unread_count: {
+        Args: { board_id_param: string }
+        Returns: number
       }
       get_broadcast_analytics: {
         Args: { p_broadcast_id: string; p_workspace_id: string }
@@ -8041,6 +9524,83 @@ export type Database = {
         Args: { contact_id_param: string }
         Returns: Json
       }
+      get_contacts_by_lead_status: {
+        Args: {
+          workspace_id_param: string
+          lead_status_param?: string
+          page_number?: number
+          page_size?: number
+        }
+        Returns: {
+          id: string
+          name: string
+          phone_number: string
+          email: string
+          workspace_id: string
+          created_at: string
+          updated_at: string
+          metadata: Json
+          unread_count: number
+          firstname: string
+          lastname: string
+          conversation_status: string
+          tags: Json
+          priority: string
+          follow_up_date: string
+          is_favorite: boolean
+          is_archived: boolean
+          needs_response: boolean
+          sentiment: string
+          team: string
+          lead_status: string
+          lastMessage: string
+          lastMessageTimestamp: string
+          lastMessageDirection: string
+          lastMessageSender: string
+          lastMessageId: string
+          lastMessageType: string
+          total_count: number
+        }[]
+      }
+      get_contacts_by_webhook: {
+        Args: {
+          workspace_id_param: string
+          webhook_name_param?: string
+          page_number?: number
+          page_size?: number
+        }
+        Returns: {
+          id: string
+          name: string
+          phone_number: string
+          email: string
+          workspace_id: string
+          created_at: string
+          updated_at: string
+          metadata: Json
+          unread_count: number
+          firstname: string
+          lastname: string
+          conversation_status: string
+          tags: Json
+          priority: string
+          follow_up_date: string
+          is_favorite: boolean
+          is_archived: boolean
+          needs_response: boolean
+          sentiment: string
+          team: string
+          webhook_name: string
+          webhook_id: string
+          lastMessage: string
+          lastMessageTimestamp: string
+          lastMessageDirection: string
+          lastMessageSender: string
+          lastMessageId: string
+          lastMessageType: string
+          total_count: number
+        }[]
+      }
       get_distinct_field_values: {
         Args: { p_workspace_id: string }
         Returns: {
@@ -8048,9 +9608,32 @@ export type Database = {
           field_values: Json
         }[]
       }
+      get_lead_status_sources: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          lead_status: string
+          count: number
+        }[]
+      }
       get_media_url: {
         Args: { media_path: string }
         Returns: string
+      }
+      get_messages_with_workspace: {
+        Args: { p_contact_id: string; p_limit?: number; p_offset?: number }
+        Returns: {
+          id: string
+          contact_id: string
+          workspace_id: string
+          body: string
+          direction: string
+          status: string
+          created_at: string
+          updated_at: string
+          twilio_sid: string
+          message_type: string
+          metadata: Json
+        }[]
       }
       get_paginated_contacts_with_last_message: {
         Args: {
@@ -8086,6 +9669,8 @@ export type Database = {
           lastMessageSender: string
           lastMessageId: string
           lastMessageType: string
+          assignee_id: string
+          webhook_name: string
           total_count: number
         }[]
       }
@@ -8134,6 +9719,35 @@ export type Database = {
           row_count: number
         }[]
       }
+      get_trigger_analytics: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          trigger_id: string
+          trigger_name: string
+          event_type: string
+          is_active: boolean
+          total_executions: number
+          unique_contacts_affected: number
+          last_execution_at: string
+          recent_executions: Json
+          affected_contacts: Json
+          field_conditions: Json
+        }[]
+      }
+      get_trigger_analytics_simple: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          trigger_id: string
+          trigger_name: string
+          event_type: string
+          is_active: boolean
+          total_executions: number
+          unique_contacts_affected: number
+          last_execution_at: string
+          affected_contact_names: string[]
+          field_conditions: Json
+        }[]
+      }
       get_user_accessible_tables: {
         Args: { workspace_id_param: string }
         Returns: string[]
@@ -8145,6 +9759,13 @@ export type Database = {
       get_user_workspaces: {
         Args: Record<PropertyKey, never>
         Returns: string[]
+      }
+      get_webhook_sources: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          webhook_name: string
+          count: number
+        }[]
       }
       get_webhook_url: {
         Args: { webhook_id: string; workspace_id: string }
@@ -8216,6 +9837,10 @@ export type Database = {
         Args: { "": unknown }
         Returns: unknown
       }
+      increment: {
+        Args: { row_id: string; increment_by: number }
+        Returns: undefined
+      }
       ivfflat_bit_support: {
         Args: { "": unknown }
         Returns: unknown
@@ -8264,6 +9889,20 @@ export type Database = {
         Args: { p_workspace_id: string; p_user_id: string }
         Returns: Json
       }
+      log_trigger_execution: {
+        Args: {
+          trigger_id: string
+          event_id: string
+          execution_status: string
+          error_text?: string
+          execution_data?: Json
+        }
+        Returns: string
+      }
+      maintain_livechat_partitions: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
+      }
       manually_process_user_registration: {
         Args: { p_user_id: string }
         Returns: Json
@@ -8303,6 +9942,15 @@ export type Database = {
           status: string | null
           updated_at: string | null
         }
+      }
+      purchase_partner_phone_number: {
+        Args: {
+          phone_number: string
+          workspace_id: string
+          user_id: string
+          fingerprint_data: Json
+        }
+        Returns: Json
       }
       queue_ai_response: {
         Args: {
@@ -8345,6 +9993,134 @@ export type Database = {
         }
         Returns: boolean
       }
+      search_available_phone_numbers: {
+        Args: { area_code: string; limit_count?: number }
+        Returns: Json
+      }
+      search_contacts: {
+        Args:
+          | {
+              workspace_id_param: string
+              search_term: string
+              result_limit?: number
+            }
+          | {
+              workspace_id_param: string
+              search_term: string
+              result_limit?: number
+            }
+        Returns: {
+          appointment_result_id: number | null
+          appointment_status_id: number | null
+          board_id: string | null
+          board_name: string | null
+          city: string | null
+          conversation_status: string | null
+          created_at: string | null
+          created_by: string | null
+          crm_id: string | null
+          email: string | null
+          firstname: string
+          follow_up_date: string | null
+          id: string
+          is_archived: boolean | null
+          is_completed: boolean | null
+          is_demo: boolean | null
+          is_favorite: boolean | null
+          last_action_at: string | null
+          last_action_type: string | null
+          lastname: string
+          lead_source: string | null
+          lead_status: string | null
+          lead_status_id: number | null
+          market: string | null
+          metadata: Json | null
+          name: string | null
+          needs_response: boolean | null
+          notes: string | null
+          opt_in_through: string
+          opted_in_email: boolean | null
+          opted_in_sms: boolean | null
+          phone_number: string
+          priority: string | null
+          product: string | null
+          property_insights_data: Json | null
+          property_insights_updated_at: string | null
+          search_vector: unknown | null
+          sentiment: string | null
+          sentiment_history: Json | null
+          st_address: string | null
+          state: string | null
+          tags: Json | null
+          team: string | null
+          unread_count: number | null
+          updated_at: string | null
+          webhook_id: string | null
+          webhook_name: string | null
+          webhook_received_at: string | null
+          workspace_id: string
+          zip: string | null
+        }[]
+      }
+      search_contacts_hybrid: {
+        Args: {
+          workspace_id_param: string
+          search_term: string
+          result_limit?: number
+        }
+        Returns: {
+          appointment_result_id: number | null
+          appointment_status_id: number | null
+          board_id: string | null
+          board_name: string | null
+          city: string | null
+          conversation_status: string | null
+          created_at: string | null
+          created_by: string | null
+          crm_id: string | null
+          email: string | null
+          firstname: string
+          follow_up_date: string | null
+          id: string
+          is_archived: boolean | null
+          is_completed: boolean | null
+          is_demo: boolean | null
+          is_favorite: boolean | null
+          last_action_at: string | null
+          last_action_type: string | null
+          lastname: string
+          lead_source: string | null
+          lead_status: string | null
+          lead_status_id: number | null
+          market: string | null
+          metadata: Json | null
+          name: string | null
+          needs_response: boolean | null
+          notes: string | null
+          opt_in_through: string
+          opted_in_email: boolean | null
+          opted_in_sms: boolean | null
+          phone_number: string
+          priority: string | null
+          product: string | null
+          property_insights_data: Json | null
+          property_insights_updated_at: string | null
+          search_vector: unknown | null
+          sentiment: string | null
+          sentiment_history: Json | null
+          st_address: string | null
+          state: string | null
+          tags: Json | null
+          team: string | null
+          unread_count: number | null
+          updated_at: string | null
+          webhook_id: string | null
+          webhook_name: string | null
+          webhook_received_at: string | null
+          workspace_id: string
+          zip: string | null
+        }[]
+      }
       send_livechat_comment: {
         Args: {
           p_body: string
@@ -8370,6 +10146,15 @@ export type Database = {
       set_app_setting: {
         Args: { name: string; value: string }
         Returns: undefined
+      }
+      set_contact_webhook_fields: {
+        Args: {
+          p_webhook_id: string
+          p_webhook_name: string
+          p_phone_number: string
+          p_workspace_id: string
+        }
+        Returns: boolean
       }
       set_limit: {
         Args: { "": number }
@@ -8413,6 +10198,14 @@ export type Database = {
         }
         Returns: Json
       }
+      test_field_change_detection: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          step_name: string
+          result: string
+          details: Json
+        }[]
+      }
       test_grant_developer_access: {
         Args: Record<PropertyKey, never>
         Returns: Json
@@ -8450,6 +10243,14 @@ export type Database = {
             }
         Returns: boolean
       }
+      update_contact_webhook: {
+        Args: {
+          p_contact_id: string
+          p_webhook_id: string
+          p_webhook_name: string
+        }
+        Returns: boolean
+      }
       update_conversation_status: {
         Args:
           | { p_contact_id: string; p_status: string; p_unread_count: number }
@@ -8466,6 +10267,22 @@ export type Database = {
           p_message_id?: string
         }
         Returns: undefined
+      }
+      update_sms_job_status_completed: {
+        Args: { _id: string; _message_sid: string }
+        Returns: undefined
+      }
+      update_sms_job_status_direct: {
+        Args: { _id: string; _twilio_sid: string }
+        Returns: Json
+      }
+      update_sms_job_status_failed: {
+        Args: { _id: string; _error: string }
+        Returns: undefined
+      }
+      update_sms_job_status_failed_direct: {
+        Args: { _id: string; _error: string }
+        Returns: Json
       }
       update_user_workspace_metadata: {
         Args: { user_id: string; workspace_id: string }
@@ -8538,6 +10355,7 @@ export type Database = {
         | "delivered"
         | "failed"
       message_type: "sms" | "email" | "whatsapp" | "voice"
+      workspace_role: "owner" | "admin" | "member" | "super_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -8677,6 +10495,7 @@ export const Constants = {
         "failed",
       ],
       message_type: ["sms", "email", "whatsapp", "voice"],
+      workspace_role: ["owner", "admin", "member", "super_admin"],
     },
   },
 } as const

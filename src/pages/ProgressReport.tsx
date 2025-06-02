@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Check, ArrowRight, Calendar } from 'lucide-react';
 import Header from '@/components/Header';
+import MetricsSection from '@/components/MetricsSection';
 
 const ProgressReport = () => {
   const [activeTab, setActiveTab] = useState("completed");
@@ -35,6 +36,8 @@ const ProgressReport = () => {
             </div>
           </div>
         </motion.div>
+
+        <MetricsSection />
         
         <motion.div 
           className="neo-blur rounded-xl p-6"
