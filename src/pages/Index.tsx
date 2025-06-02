@@ -1,22 +1,22 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import ChangelogList from '@/components/ChangelogList';
 import ChangelogDetail from '@/components/ChangelogDetail';
+import MetricsSection from '@/components/MetricsSection';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { createChangelogViaWebhook } from '@/services/supabaseClient';
+
 interface IndexProps {
   detailView?: boolean;
 }
-const Index: React.FC<IndexProps> = ({
-  detailView = false
-}) => {
+
+const Index: React.FC<IndexProps> = ({ detailView = false }) => {
   const [isSimulating, setIsSimulating] = useState(false);
-  const {
-    id
-  } = useParams();
+  const { id } = useParams();
 
   // Example function to simulate a webhook POST
   const handleSimulateWebhook = async () => {
@@ -47,26 +47,23 @@ const Index: React.FC<IndexProps> = ({
       setIsSimulating(false);
     }
   };
-  return <div className="min-h-screen bg-background">
-      <motion.div className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8" initial={{
-      opacity: 0
-    }} animate={{
-      opacity: 1
-    }} transition={{
-      duration: 0.5
-    }}>
+
+  return (
+    <div className="min-h-screen bg-background">
+      <motion.div 
+        className="max-w-4xl mx-auto px-4 py-6 sm:px-6 lg:px-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <Header />
         
-        <motion.div className="mb-8 neo-blur rounded-xl p-6" initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.2,
-        duration: 0.5
-      }}>
+        <motion.div 
+          className="mb-8 neo-blur rounded-xl p-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
               <h2 className="text-2xl font-medium mb-2 text-gradient">
@@ -77,29 +74,38 @@ const Index: React.FC<IndexProps> = ({
               </p>
             </div>
             
-            {!detailView && <div className="flex gap-3">
-                
-                
+            {!detailView && (
+              <div className="flex gap-3">
                 <Button variant="secondary" className="rounded-full neo-blur" asChild>
                   <Link to="/progress">View Progress Report</Link>
                 </Button>
-              </div>}
+              </div>
+            )}
           </div>
         </motion.div>
+
+        {/* Add MetricsSection with emphasis for home page */}
+        {!detailView && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
+          >
+            <MetricsSection />
+          </motion.div>
+        )}
         
-        <motion.div className="neo-blur rounded-xl p-6" initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.3,
-        duration: 0.5
-      }}>
+        <motion.div 
+          className="neo-blur rounded-xl p-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
           {detailView ? <ChangelogDetail /> : <ChangelogList />}
         </motion.div>
       </motion.div>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
