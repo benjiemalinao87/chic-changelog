@@ -53,7 +53,7 @@ const Header = () => {
         </NavigationMenu>
         
         <motion.a 
-          href="https://api.customerconnects.app/" 
+          href="https://api.customerconnects.app/docs" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium px-4 py-2 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all hover:shadow-[0_0_20px_rgba(59,130,246,0.7)] hover:scale-105 flex items-center gap-2" 
