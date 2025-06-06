@@ -260,6 +260,13 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["workspace_id", "id"]
           },
+          {
+            foreignKeyName: "activities_workspace_contact_fkey"
+            columns: ["workspace_id", "contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["workspace_id", "contact_id"]
+          },
         ]
       }
       admins: {
@@ -642,6 +649,13 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "fk_workspace_contact"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
         ]
       }
       ai_table_access: {
@@ -825,6 +839,180 @@ export type Database = {
           },
         ]
       }
+      analytics_data_sources: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          display_name: string
+          fields: Json
+          id: string
+          is_active: boolean | null
+          relationships: Json | null
+          source_name: string
+          table_name: string
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          display_name: string
+          fields: Json
+          id?: string
+          is_active?: boolean | null
+          relationships?: Json | null
+          source_name: string
+          table_name: string
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          display_name?: string
+          fields?: Json
+          id?: string
+          is_active?: boolean | null
+          relationships?: Json | null
+          source_name?: string
+          table_name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      analytics_query_executions: {
+        Row: {
+          error_details: string | null
+          executed_at: string | null
+          execution_time_ms: number | null
+          id: string
+          query_config: Json
+          query_id: string | null
+          result_count: number | null
+          sql_query: string
+          status: string
+          user_email: string | null
+          workspace_id: string
+        }
+        Insert: {
+          error_details?: string | null
+          executed_at?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          query_config: Json
+          query_id?: string | null
+          result_count?: number | null
+          sql_query: string
+          status?: string
+          user_email?: string | null
+          workspace_id: string
+        }
+        Update: {
+          error_details?: string | null
+          executed_at?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          query_config?: Json
+          query_id?: string | null
+          result_count?: number | null
+          sql_query?: string
+          status?: string
+          user_email?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      analytics_query_templates: {
+        Row: {
+          category: string
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          id: string
+          is_public: boolean | null
+          name: string
+          query_config: Json
+          sql_template: string
+          updated_at: string | null
+          visualization_type: string
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_public?: boolean | null
+          name: string
+          query_config: Json
+          sql_template: string
+          updated_at?: string | null
+          visualization_type?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_public?: boolean | null
+          name?: string
+          query_config?: Json
+          sql_template?: string
+          updated_at?: string | null
+          visualization_type?: string
+        }
+        Relationships: []
+      }
+      analytics_saved_queries: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          execution_count: number | null
+          id: string
+          is_shared: boolean | null
+          last_executed_at: string | null
+          name: string
+          query_config: Json
+          sql_query: string
+          updated_at: string | null
+          user_email: string
+          visualization_config: Json | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          execution_count?: number | null
+          id?: string
+          is_shared?: boolean | null
+          last_executed_at?: string | null
+          name: string
+          query_config: Json
+          sql_query: string
+          updated_at?: string | null
+          user_email: string
+          visualization_config?: Json | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          execution_count?: number | null
+          id?: string
+          is_shared?: boolean | null
+          last_executed_at?: string | null
+          name?: string
+          query_config?: Json
+          sql_query?: string
+          updated_at?: string | null
+          user_email?: string
+          visualization_config?: Json | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       api_keys: {
         Row: {
           created_at: string | null
@@ -838,6 +1026,7 @@ export type Database = {
           last_used_at: string | null
           name: string
           permissions: Json | null
+          scope: string | null
           updated_at: string | null
           user_id: string
           workspace_id: string
@@ -854,6 +1043,7 @@ export type Database = {
           last_used_at?: string | null
           name: string
           permissions?: Json | null
+          scope?: string | null
           updated_at?: string | null
           user_id: string
           workspace_id: string
@@ -870,6 +1060,7 @@ export type Database = {
           last_used_at?: string | null
           name?: string
           permissions?: Json | null
+          scope?: string | null
           updated_at?: string | null
           user_id?: string
           workspace_id?: string
@@ -1140,6 +1331,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "appointments_result_id_fkey"
@@ -1564,6 +1762,13 @@ export type Database = {
             isOneToOne: true
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "board_contacts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -2021,6 +2226,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "broadcast_recipients_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
             foreignKeyName: "broadcast_recipients_sequence_id_fkey"
             columns: ["sequence_id"]
             isOneToOne: false
@@ -2290,6 +2502,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "calendar_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
             foreignKeyName: "calendar_events_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
@@ -2437,6 +2656,13 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["id", "workspace_id"]
           },
+          {
+            foreignKeyName: "fk_contact"
+            columns: ["contact_id", "workspace_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id", "workspace_id"]
+          },
         ]
       }
       campaign_executions: {
@@ -2510,6 +2736,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id", "workspace_id"]
+          },
+          {
+            foreignKeyName: "fk_contact"
+            columns: ["contact_id", "workspace_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id", "workspace_id"]
           },
           {
             foreignKeyName: "fk_node"
@@ -2812,6 +3045,13 @@ export type Database = {
             referencedColumns: ["id", "workspace_id"]
           },
           {
+            foreignKeyName: "fk_contact"
+            columns: ["contact_id", "workspace_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id", "workspace_id"]
+          },
+          {
             foreignKeyName: "fk_message"
             columns: ["message_id"]
             isOneToOne: false
@@ -3013,6 +3253,39 @@ export type Database = {
         }
         Relationships: []
       }
+      cloudflare_api_logs: {
+        Row: {
+          api_action: string
+          created_at: string | null
+          email_address: string
+          error_message: string | null
+          id: number
+          request_payload: Json | null
+          response_payload: Json | null
+          status: string
+        }
+        Insert: {
+          api_action: string
+          created_at?: string | null
+          email_address: string
+          error_message?: string | null
+          id?: number
+          request_payload?: Json | null
+          response_payload?: Json | null
+          status: string
+        }
+        Update: {
+          api_action?: string
+          created_at?: string | null
+          email_address?: string
+          error_message?: string | null
+          id?: number
+          request_payload?: Json | null
+          response_payload?: Json | null
+          status?: string
+        }
+        Relationships: []
+      }
       companies: {
         Row: {
           created_at: string | null
@@ -3128,6 +3401,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "contact_custom_fields_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
             foreignKeyName: "contact_custom_fields_field_id_fkey"
             columns: ["field_id"]
             isOneToOne: false
@@ -3181,6 +3461,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_field_changes_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -3237,6 +3524,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_livechat_board_column_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "fk_contact_board_workspace"
@@ -3347,6 +3641,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_stages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -3885,6 +4186,167 @@ export type Database = {
           },
         ]
       }
+      email_accounts: {
+        Row: {
+          account_type: string
+          created_at: string | null
+          display_name: string
+          email_address: string
+          id: string
+          imap_host: string | null
+          imap_password_encrypted: string | null
+          imap_port: number | null
+          imap_use_ssl: boolean | null
+          imap_username: string | null
+          is_active: boolean | null
+          is_default: boolean | null
+          last_sync_at: string | null
+          oauth_access_token: string | null
+          oauth_refresh_token: string | null
+          oauth_token_expires_at: string | null
+          smtp_host: string | null
+          smtp_password_encrypted: string | null
+          smtp_port: number | null
+          smtp_use_tls: boolean | null
+          smtp_username: string | null
+          sync_enabled: boolean | null
+          updated_at: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          account_type?: string
+          created_at?: string | null
+          display_name: string
+          email_address: string
+          id?: string
+          imap_host?: string | null
+          imap_password_encrypted?: string | null
+          imap_port?: number | null
+          imap_use_ssl?: boolean | null
+          imap_username?: string | null
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_sync_at?: string | null
+          oauth_access_token?: string | null
+          oauth_refresh_token?: string | null
+          oauth_token_expires_at?: string | null
+          smtp_host?: string | null
+          smtp_password_encrypted?: string | null
+          smtp_port?: number | null
+          smtp_use_tls?: boolean | null
+          smtp_username?: string | null
+          sync_enabled?: boolean | null
+          updated_at?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          account_type?: string
+          created_at?: string | null
+          display_name?: string
+          email_address?: string
+          id?: string
+          imap_host?: string | null
+          imap_password_encrypted?: string | null
+          imap_port?: number | null
+          imap_use_ssl?: boolean | null
+          imap_username?: string | null
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_sync_at?: string | null
+          oauth_access_token?: string | null
+          oauth_refresh_token?: string | null
+          oauth_token_expires_at?: string | null
+          smtp_host?: string | null
+          smtp_password_encrypted?: string | null
+          smtp_port?: number | null
+          smtp_use_tls?: boolean | null
+          smtp_username?: string | null
+          sync_enabled?: boolean | null
+          updated_at?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_accounts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_accounts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_actions: {
+        Row: {
+          action_type: string
+          created_at: string | null
+          email_id: string
+          id: string
+          new_value: Json | null
+          old_value: Json | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          action_type: string
+          created_at?: string | null
+          email_id: string
+          id?: string
+          new_value?: Json | null
+          old_value?: Json | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          action_type?: string
+          created_at?: string | null
+          email_id?: string
+          id?: string
+          new_value?: Json | null
+          old_value?: Json | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_actions_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "email_list_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_actions_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "emails"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_actions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_actions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       email_activities: {
         Row: {
           contact_id: string
@@ -3946,6 +4408,350 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "email_activities_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      email_attachments: {
+        Row: {
+          content_id: string | null
+          content_type: string | null
+          created_at: string | null
+          email_id: string
+          file_path: string | null
+          file_size_bytes: number | null
+          filename: string
+          id: string
+          is_inline: boolean | null
+          is_scanned: boolean | null
+          original_filename: string
+          scan_result: string | null
+          storage_provider: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          content_id?: string | null
+          content_type?: string | null
+          created_at?: string | null
+          email_id: string
+          file_path?: string | null
+          file_size_bytes?: number | null
+          filename: string
+          id?: string
+          is_inline?: boolean | null
+          is_scanned?: boolean | null
+          original_filename: string
+          scan_result?: string | null
+          storage_provider?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          content_id?: string | null
+          content_type?: string | null
+          created_at?: string | null
+          email_id?: string
+          file_path?: string | null
+          file_size_bytes?: number | null
+          filename?: string
+          id?: string
+          is_inline?: boolean | null
+          is_scanned?: boolean | null
+          original_filename?: string
+          scan_result?: string | null
+          storage_provider?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_attachments_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "email_messages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_attachments_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_attachments_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_folders: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          email_account_id: string
+          folder_type: string
+          icon: string | null
+          id: string
+          is_system_folder: boolean | null
+          is_visible: boolean | null
+          name: string
+          sort_order: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          email_account_id: string
+          folder_type?: string
+          icon?: string | null
+          id?: string
+          is_system_folder?: boolean | null
+          is_visible?: boolean | null
+          name: string
+          sort_order?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          email_account_id?: string
+          folder_type?: string
+          icon?: string | null
+          id?: string
+          is_system_folder?: boolean | null
+          is_visible?: boolean | null
+          name?: string
+          sort_order?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_folders_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_messages: {
+        Row: {
+          bcc_recipients: Json | null
+          body_html: string | null
+          body_text: string | null
+          cc_recipients: Json | null
+          contact_id: string | null
+          created_at: string
+          email_account_id: string | null
+          folder: string
+          id: string
+          in_reply_to_header: string | null
+          is_outgoing: boolean
+          is_read: boolean
+          is_starred: boolean
+          message_id_header: string | null
+          received_at: string | null
+          references_header: string | null
+          sender_email: string
+          sender_name: string | null
+          sent_at: string | null
+          subject: string | null
+          thread_id: string | null
+          to_recipients: Json | null
+          updated_at: string
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          bcc_recipients?: Json | null
+          body_html?: string | null
+          body_text?: string | null
+          cc_recipients?: Json | null
+          contact_id?: string | null
+          created_at?: string
+          email_account_id?: string | null
+          folder?: string
+          id?: string
+          in_reply_to_header?: string | null
+          is_outgoing?: boolean
+          is_read?: boolean
+          is_starred?: boolean
+          message_id_header?: string | null
+          received_at?: string | null
+          references_header?: string | null
+          sender_email: string
+          sender_name?: string | null
+          sent_at?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          to_recipients?: Json | null
+          updated_at?: string
+          user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          bcc_recipients?: Json | null
+          body_html?: string | null
+          body_text?: string | null
+          cc_recipients?: Json | null
+          contact_id?: string | null
+          created_at?: string
+          email_account_id?: string | null
+          folder?: string
+          id?: string
+          in_reply_to_header?: string | null
+          is_outgoing?: boolean
+          is_read?: boolean
+          is_starred?: boolean
+          message_id_header?: string | null
+          received_at?: string | null
+          references_header?: string | null
+          sender_email?: string
+          sender_name?: string | null
+          sent_at?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          to_recipients?: Json | null
+          updated_at?: string
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "email_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "email_messages_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_messages_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_messages_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_signatures: {
+        Row: {
+          created_at: string | null
+          email_account_id: string
+          id: string
+          is_default: boolean | null
+          name: string
+          signature_html: string | null
+          signature_text: string | null
+          updated_at: string | null
+          use_for_new_emails: boolean | null
+          use_for_replies: boolean | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          email_account_id: string
+          id?: string
+          is_default?: boolean | null
+          name: string
+          signature_html?: string | null
+          signature_text?: string | null
+          updated_at?: string | null
+          use_for_new_emails?: boolean | null
+          use_for_replies?: boolean | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          email_account_id?: string
+          id?: string
+          is_default?: boolean | null
+          name?: string
+          signature_html?: string | null
+          signature_text?: string | null
+          updated_at?: string | null
+          use_for_new_emails?: boolean | null
+          use_for_replies?: boolean | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_signatures_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_signatures_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_signatures_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
         ]
       }
       email_templates: {
@@ -3983,6 +4789,261 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: []
+      }
+      email_threads: {
+        Row: {
+          created_at: string | null
+          email_account_id: string
+          id: string
+          is_important: boolean | null
+          is_read: boolean | null
+          is_starred: boolean | null
+          last_message_at: string | null
+          participants: Json | null
+          subject: string
+          thread_id: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          email_account_id: string
+          id?: string
+          is_important?: boolean | null
+          is_read?: boolean | null
+          is_starred?: boolean | null
+          last_message_at?: string | null
+          participants?: Json | null
+          subject: string
+          thread_id?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          email_account_id?: string
+          id?: string
+          is_important?: boolean | null
+          is_read?: boolean | null
+          is_starred?: boolean | null
+          last_message_at?: string | null
+          participants?: Json | null
+          subject?: string
+          thread_id?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_threads_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_threads_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_threads_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      emails: {
+        Row: {
+          attachment_count: number | null
+          bcc_emails: Json | null
+          body_html: string | null
+          body_text: string | null
+          cc_emails: Json | null
+          contact_id: string | null
+          created_at: string | null
+          email_account_id: string
+          email_references: string[] | null
+          email_size_bytes: number | null
+          external_id: string | null
+          folder_id: string | null
+          from_email: string
+          from_name: string | null
+          has_attachments: boolean | null
+          id: string
+          in_reply_to: string | null
+          is_draft: boolean | null
+          is_important: boolean | null
+          is_read: boolean | null
+          is_sent: boolean | null
+          is_starred: boolean | null
+          labels: string[] | null
+          last_synced_at: string | null
+          message_id: string
+          priority: string | null
+          received_at: string | null
+          reply_to_email: string | null
+          reply_to_name: string | null
+          sent_at: string
+          snippet: string | null
+          subject: string | null
+          thread_id: string | null
+          to_emails: Json | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          attachment_count?: number | null
+          bcc_emails?: Json | null
+          body_html?: string | null
+          body_text?: string | null
+          cc_emails?: Json | null
+          contact_id?: string | null
+          created_at?: string | null
+          email_account_id: string
+          email_references?: string[] | null
+          email_size_bytes?: number | null
+          external_id?: string | null
+          folder_id?: string | null
+          from_email: string
+          from_name?: string | null
+          has_attachments?: boolean | null
+          id?: string
+          in_reply_to?: string | null
+          is_draft?: boolean | null
+          is_important?: boolean | null
+          is_read?: boolean | null
+          is_sent?: boolean | null
+          is_starred?: boolean | null
+          labels?: string[] | null
+          last_synced_at?: string | null
+          message_id: string
+          priority?: string | null
+          received_at?: string | null
+          reply_to_email?: string | null
+          reply_to_name?: string | null
+          sent_at: string
+          snippet?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          to_emails?: Json | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          attachment_count?: number | null
+          bcc_emails?: Json | null
+          body_html?: string | null
+          body_text?: string | null
+          cc_emails?: Json | null
+          contact_id?: string | null
+          created_at?: string | null
+          email_account_id?: string
+          email_references?: string[] | null
+          email_size_bytes?: number | null
+          external_id?: string | null
+          folder_id?: string | null
+          from_email?: string
+          from_name?: string | null
+          has_attachments?: boolean | null
+          id?: string
+          in_reply_to?: string | null
+          is_draft?: boolean | null
+          is_important?: boolean | null
+          is_read?: boolean | null
+          is_sent?: boolean | null
+          is_starred?: boolean | null
+          labels?: string[] | null
+          last_synced_at?: string | null
+          message_id?: string
+          priority?: string | null
+          received_at?: string | null
+          reply_to_email?: string | null
+          reply_to_name?: string | null
+          sent_at?: string
+          snippet?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          to_emails?: Json | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emails_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "emails_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "emails_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "email_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "folder_unread_counts"
+            referencedColumns: ["folder_id"]
+          },
+          {
+            foreignKeyName: "emails_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "email_thread_summary"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "email_threads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "emails_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       execution_steps: {
         Row: {
@@ -4359,6 +5420,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flow_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "flow_executions_flow_id_fkey"
@@ -5000,6 +6068,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "livechat_board_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
             foreignKeyName: "livechat_board_assignments_livechat_board_id_fkey"
             columns: ["livechat_board_id"]
             isOneToOne: false
@@ -5105,6 +6180,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -5275,6 +6357,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -5831,6 +6920,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "message_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
             foreignKeyName: "message_events_message_id_fkey"
             columns: ["message_id"]
             isOneToOne: false
@@ -5965,6 +7061,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -6304,6 +7407,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunities_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -6820,6 +7930,13 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "scheduled_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
         ]
       }
       scheduled_sms_jobs: {
@@ -6882,6 +7999,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scheduled_sms_jobs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -6982,6 +8106,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "segment_contacts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "segment_contacts_segment_id_fkey"
@@ -7131,6 +8262,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sequence_recipients_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "sequence_recipients_sequence_id_fkey"
@@ -7397,6 +8535,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "status_timelines_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "status_timelines_status_id_fkey"
@@ -7728,28 +8873,58 @@ export type Database = {
         Row: {
           api_token: string | null
           avatar_url: string | null
+          background_blur: number | null
+          background_color: string | null
+          background_image_url: string | null
+          background_type: string | null
           created_at: string | null
           full_name: string | null
           id: string
+          music_autoplay: boolean | null
+          music_enabled: boolean | null
+          music_loop: boolean | null
+          music_track_url: string | null
+          music_volume: number | null
           timezone: string | null
+          ui_theme: string | null
           updated_at: string | null
         }
         Insert: {
           api_token?: string | null
           avatar_url?: string | null
+          background_blur?: number | null
+          background_color?: string | null
+          background_image_url?: string | null
+          background_type?: string | null
           created_at?: string | null
           full_name?: string | null
           id: string
+          music_autoplay?: boolean | null
+          music_enabled?: boolean | null
+          music_loop?: boolean | null
+          music_track_url?: string | null
+          music_volume?: number | null
           timezone?: string | null
+          ui_theme?: string | null
           updated_at?: string | null
         }
         Update: {
           api_token?: string | null
           avatar_url?: string | null
+          background_blur?: number | null
+          background_color?: string | null
+          background_image_url?: string | null
+          background_type?: string | null
           created_at?: string | null
           full_name?: string | null
           id?: string
+          music_autoplay?: boolean | null
+          music_enabled?: boolean | null
+          music_loop?: boolean | null
+          music_track_url?: string | null
+          music_volume?: number | null
           timezone?: string | null
+          ui_theme?: string | null
           updated_at?: string | null
         }
         Relationships: []
@@ -8438,6 +9613,7 @@ export type Database = {
         Row: {
           created_at: string
           created_by: string | null
+          email_sender: string | null
           id: string
           is_default: boolean | null
           name: string
@@ -8449,6 +9625,7 @@ export type Database = {
         Insert: {
           created_at?: string
           created_by?: string | null
+          email_sender?: string | null
           id?: string
           is_default?: boolean | null
           name: string
@@ -8460,6 +9637,7 @@ export type Database = {
         Update: {
           created_at?: string
           created_by?: string | null
+          email_sender?: string | null
           id?: string
           is_default?: boolean | null
           name?: string
@@ -8630,6 +9808,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "broadcast_recipients_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
           {
             foreignKeyName: "broadcast_recipients_sequence_id_fkey"
@@ -8817,13 +10002,6 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "status_timelines_status_id_fkey"
-            columns: ["lead_status_id"]
-            isOneToOne: false
-            referencedRelation: "status_options"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "status_timelines_status_id_fkey"
             columns: ["appointment_status_id"]
             isOneToOne: false
             referencedRelation: "status_options"
@@ -8832,18 +10010,273 @@ export type Database = {
           {
             foreignKeyName: "status_timelines_status_id_fkey"
             columns: ["lead_status_id"]
+            isOneToOne: false
+            referencedRelation: "status_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "status_timelines_status_id_fkey"
+            columns: ["appointment_status_id"]
             isOneToOne: false
             referencedRelation: "statuses"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "status_timelines_status_id_fkey"
-            columns: ["appointment_status_id"]
+            columns: ["lead_status_id"]
             isOneToOne: false
             referencedRelation: "statuses"
             referencedColumns: ["id"]
           },
         ]
+      }
+      email_list_view: {
+        Row: {
+          account_email: string | null
+          attachment_count: number | null
+          bcc_emails: Json | null
+          body_html: string | null
+          body_text: string | null
+          cc_emails: Json | null
+          contact_display_name: string | null
+          contact_id: string | null
+          contact_name: string | null
+          created_at: string | null
+          email_account_id: string | null
+          email_references: string[] | null
+          email_size_bytes: number | null
+          external_id: string | null
+          folder_color: string | null
+          folder_id: string | null
+          folder_name: string | null
+          folder_type: string | null
+          from_email: string | null
+          from_name: string | null
+          has_attachments: boolean | null
+          id: string | null
+          in_reply_to: string | null
+          is_draft: boolean | null
+          is_important: boolean | null
+          is_read: boolean | null
+          is_sent: boolean | null
+          is_starred: boolean | null
+          labels: string[] | null
+          last_synced_at: string | null
+          message_id: string | null
+          priority: string | null
+          received_at: string | null
+          reply_to_email: string | null
+          reply_to_name: string | null
+          sent_at: string | null
+          snippet: string | null
+          subject: string | null
+          thread_id: string | null
+          to_emails: Json | null
+          updated_at: string | null
+          workspace_id: string | null
+          workspace_sender: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emails_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "emails_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "emails_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "email_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "folder_unread_counts"
+            referencedColumns: ["folder_id"]
+          },
+          {
+            foreignKeyName: "emails_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "email_thread_summary"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "email_threads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "emails_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_thread_summary: {
+        Row: {
+          contact_names: string | null
+          created_at: string | null
+          email_account_id: string | null
+          id: string | null
+          is_important: boolean | null
+          is_read: boolean | null
+          is_starred: boolean | null
+          last_message_at: string | null
+          latest_message_at: string | null
+          message_count: number | null
+          participants: Json | null
+          subject: string | null
+          thread_id: string | null
+          unread_count: number | null
+          updated_at: string | null
+          workspace_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_threads_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_threads_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_threads_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      folder_unread_counts: {
+        Row: {
+          email_account_id: string | null
+          folder_id: string | null
+          folder_name: string | null
+          folder_type: string | null
+          priority_count: number | null
+          starred_count: number | null
+          unread_count: number | null
+          workspace_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_folders_email_account_id_fkey"
+            columns: ["email_account_id"]
+            isOneToOne: false
+            referencedRelation: "email_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_conversion_analytics: {
+        Row: {
+          contact_created_at: string | null
+          contact_id: string | null
+          contact_name: string | null
+          current_status: string | null
+          days_since_created: number | null
+          days_since_last_change: number | null
+          email: string | null
+          first_status: string | null
+          first_status_date: string | null
+          latest_status: string | null
+          latest_status_date: string | null
+          lead_source: string | null
+          status_change_count: number | null
+          workspace_id: string | null
+        }
+        Insert: {
+          contact_created_at?: string | null
+          contact_id?: string | null
+          contact_name?: string | null
+          current_status?: string | null
+          days_since_created?: never
+          days_since_last_change?: never
+          email?: string | null
+          first_status?: never
+          first_status_date?: never
+          latest_status?: never
+          latest_status_date?: never
+          lead_source?: string | null
+          status_change_count?: never
+          workspace_id?: string | null
+        }
+        Update: {
+          contact_created_at?: string | null
+          contact_id?: string | null
+          contact_name?: string | null
+          current_status?: string | null
+          days_since_created?: never
+          days_since_last_change?: never
+          email?: string | null
+          first_status?: never
+          first_status_date?: never
+          latest_status?: never
+          latest_status_date?: never
+          lead_source?: string | null
+          status_change_count?: never
+          workspace_id?: string | null
+        }
+        Relationships: []
       }
       livechat_board_assignments_with_details: {
         Row: {
@@ -8910,6 +10343,13 @@ export type Database = {
             referencedRelation: "contacts"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
         ]
       }
       livechat_messages_view: {
@@ -8953,6 +10393,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -9085,6 +10532,20 @@ export type Database = {
         }
         Returns: undefined
       }
+      bytea_to_text: {
+        Args: { data: string }
+        Returns: string
+      }
+      call_trigger_webhook: {
+        Args: {
+          p_contact_id: string
+          p_workspace_id: string
+          p_field_name: string
+          p_old_value?: string
+          p_new_value?: string
+        }
+        Returns: undefined
+      }
       check_broadcast_completion: {
         Args: { p_broadcast_id: string }
         Returns: boolean
@@ -9159,6 +10620,14 @@ export type Database = {
           p_workspace_id: string
         }
         Returns: Json
+      }
+      create_cloudflare_email_rule: {
+        Args: { email_address: string }
+        Returns: Json
+      }
+      create_default_email_folders: {
+        Args: { p_workspace_id: string; p_email_account_id: string }
+        Returns: undefined
       }
       create_default_workspace_for_user: {
         Args: { p_user_id: string }
@@ -9252,6 +10721,10 @@ export type Database = {
       exec_sql: {
         Args: { sql_query: string }
         Returns: undefined
+      }
+      execute_analytics_query: {
+        Args: { query_sql: string; workspace_id?: string }
+        Returns: Json
       }
       execute_sql: {
         Args: { sql_query: string }
@@ -9378,6 +10851,10 @@ export type Database = {
       }
       fix_user_workspace: {
         Args: { p_user_id: string }
+        Returns: string
+      }
+      generate_email_sender: {
+        Args: { company_name: string }
         Returns: string
       }
       generate_system_report: {
@@ -9606,6 +11083,13 @@ export type Database = {
         Returns: {
           field_name: string
           field_values: Json
+        }[]
+      }
+      get_folder_counts: {
+        Args: { workspace_id_param: string } | { workspace_id_param: string }
+        Returns: {
+          folder: string
+          count: number
         }[]
       }
       get_lead_status_sources: {
@@ -9837,6 +11321,57 @@ export type Database = {
         Args: { "": unknown }
         Returns: unknown
       }
+      http: {
+        Args: { request: Database["public"]["CompositeTypes"]["http_request"] }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_delete: {
+        Args:
+          | { uri: string }
+          | { uri: string; content: string; content_type: string }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_get: {
+        Args: { uri: string } | { uri: string; data: Json }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_head: {
+        Args: { uri: string }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_header: {
+        Args: { field: string; value: string }
+        Returns: Database["public"]["CompositeTypes"]["http_header"]
+      }
+      http_list_curlopt: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          curlopt: string
+          value: string
+        }[]
+      }
+      http_patch: {
+        Args: { uri: string; content: string; content_type: string }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_post: {
+        Args:
+          | { uri: string; content: string; content_type: string }
+          | { uri: string; data: Json }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_put: {
+        Args: { uri: string; content: string; content_type: string }
+        Returns: Database["public"]["CompositeTypes"]["http_response"]
+      }
+      http_reset_curlopt: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      http_set_curlopt: {
+        Args: { curlopt: string; value: string }
+        Returns: boolean
+      }
       increment: {
         Args: { row_id: string; increment_by: number }
         Returns: undefined
@@ -9983,6 +11518,10 @@ export type Database = {
           p_reason?: string
         }
         Returns: Json
+      }
+      sanitize_company_name_for_email: {
+        Args: { company_name: string }
+        Returns: string
       }
       save_onboarding_response: {
         Args: {
@@ -10164,6 +11703,10 @@ export type Database = {
         Args: { p_user_id: string; p_password: string }
         Returns: boolean
       }
+      set_workspace_context: {
+        Args: { workspace_id: string }
+        Returns: undefined
+      }
       setup_workspace_lead_status: {
         Args:
           | { workspace_id: string; creator_id: string }
@@ -10209,6 +11752,10 @@ export type Database = {
       test_grant_developer_access: {
         Args: Record<PropertyKey, never>
         Returns: Json
+      }
+      text_to_bytea: {
+        Args: { data: string }
+        Returns: string
       }
       trigger_update_campaign_statuses: {
         Args: Record<PropertyKey, never>
@@ -10288,6 +11835,10 @@ export type Database = {
         Args: { user_id: string; workspace_id: string }
         Returns: boolean
       }
+      urlencode: {
+        Args: { data: Json } | { string: string } | { string: string }
+        Returns: string
+      }
       user_has_workspace: {
         Args: { p_user_id: string }
         Returns: boolean
@@ -10358,7 +11909,23 @@ export type Database = {
       workspace_role: "owner" | "admin" | "member" | "super_admin"
     }
     CompositeTypes: {
-      [_ in never]: never
+      http_header: {
+        field: string | null
+        value: string | null
+      }
+      http_request: {
+        method: unknown | null
+        uri: string | null
+        headers: Database["public"]["CompositeTypes"]["http_header"][] | null
+        content_type: string | null
+        content: string | null
+      }
+      http_response: {
+        status: number | null
+        content_type: string | null
+        headers: Database["public"]["CompositeTypes"]["http_header"][] | null
+        content: string | null
+      }
     }
   }
 }
