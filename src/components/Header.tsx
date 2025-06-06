@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bell, BarChart2 } from 'lucide-react';
+import { Bell, BarChart2, Code } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
@@ -51,6 +51,18 @@ const Header = () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        
+        <motion.a 
+          href="https://api.customerconnects.app/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium px-4 py-2 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all hover:shadow-[0_0_20px_rgba(59,130,246,0.7)] hover:scale-105 flex items-center gap-2" 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Code className="h-4 w-4" />
+          API
+        </motion.a>
         
         <motion.a 
           href="https://cc1.automate8.com/" 
