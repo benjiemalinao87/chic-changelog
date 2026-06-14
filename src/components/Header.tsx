@@ -31,7 +31,7 @@ const Header = () => {
           </motion.div>
         </Link>
         <div>
-          <h1 className="text-xl font-medium">Customer Connect</h1>
+          <h1 className="text-xl font-medium">Channel Automation</h1>
         </div>
       </div>
       

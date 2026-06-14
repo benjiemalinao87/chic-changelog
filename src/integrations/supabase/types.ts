@@ -7,8 +7,130 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)"
+  }
   public: {
     Tables: {
+      _flow_backup_outbound_20260612: {
+        Row: {
+          backed_up_from: string | null
+          edges: Json | null
+          id: string | null
+          name: string | null
+          nodes: Json | null
+        }
+        Insert: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Update: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Relationships: []
+      }
+      _flow_backup_send_recording_20260528: {
+        Row: {
+          backed_up_from: string | null
+          edges: Json | null
+          id: string | null
+          name: string | null
+          nodes: Json | null
+        }
+        Insert: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Update: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Relationships: []
+      }
+      _flow_backup_sf_booking_20260611: {
+        Row: {
+          backed_up_from: string | null
+          edges: Json | null
+          id: string | null
+          name: string | null
+          nodes: Json | null
+        }
+        Insert: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Update: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Relationships: []
+      }
+      _flow_backup_smartwait_v2_20260611: {
+        Row: {
+          backed_up_from: string | null
+          edges: Json | null
+          id: string | null
+          name: string | null
+          nodes: Json | null
+        }
+        Insert: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Update: {
+          backed_up_from?: string | null
+          edges?: Json | null
+          id?: string | null
+          name?: string | null
+          nodes?: Json | null
+        }
+        Relationships: []
+      }
+      _seq_backup_internal_demo_testing_20260612: {
+        Row: {
+          auto_stop_rules: Json | null
+          backed_up_from: string | null
+          id: string | null
+          name: string | null
+        }
+        Insert: {
+          auto_stop_rules?: Json | null
+          backed_up_from?: string | null
+          id?: string | null
+          name?: string | null
+        }
+        Update: {
+          auto_stop_rules?: Json | null
+          backed_up_from?: string | null
+          id?: string | null
+          name?: string | null
+        }
+        Relationships: []
+      }
       a2p_brands: {
         Row: {
           brand_type: string
@@ -197,6 +319,95 @@ export type Database = {
           },
         ]
       }
+      action_executions: {
+        Row: {
+          action_type: string
+          completed_at: string | null
+          contact_id: string | null
+          created_at: string | null
+          error_message: string | null
+          execution_time_ms: number | null
+          flow_action_id: string | null
+          flow_execution_id: string
+          id: string
+          input_data: Json | null
+          output_data: Json | null
+          status: string
+          workspace_id: string
+        }
+        Insert: {
+          action_type: string
+          completed_at?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          execution_time_ms?: number | null
+          flow_action_id?: string | null
+          flow_execution_id: string
+          id?: string
+          input_data?: Json | null
+          output_data?: Json | null
+          status: string
+          workspace_id: string
+        }
+        Update: {
+          action_type?: string
+          completed_at?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          execution_time_ms?: number | null
+          flow_action_id?: string | null
+          flow_execution_id?: string
+          id?: string
+          input_data?: Json | null
+          output_data?: Json | null
+          status?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "action_executions_flow_action_id_fkey"
+            columns: ["flow_action_id"]
+            isOneToOne: false
+            referencedRelation: "flow_actions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      action_variables: {
+        Row: {
+          created_at: string | null
+          flow_execution_id: string
+          id: string
+          updated_at: string | null
+          variable_name: string
+          variable_type: string
+          variable_value: Json
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          flow_execution_id: string
+          id?: string
+          updated_at?: string | null
+          variable_name: string
+          variable_type: string
+          variable_value: Json
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          flow_execution_id?: string
+          id?: string
+          updated_at?: string | null
+          variable_name?: string
+          variable_type?: string
+          variable_value?: Json
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       activities: {
         Row: {
           contact_id: string
@@ -310,6 +521,396 @@ export type Database = {
           },
         ]
       }
+      agent_assignment_visibility_overrides: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          scope_id: string
+          scope_type: string
+          updated_at: string
+          updated_by: string | null
+          visibility_mode: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          scope_id: string
+          scope_type: string
+          updated_at?: string
+          updated_by?: string | null
+          visibility_mode: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          scope_id?: string
+          scope_type?: string
+          updated_at?: string
+          updated_by?: string | null
+          visibility_mode?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_assignment_visibility_overrides_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "agent_assignment_visibility_overrides_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_capacity_overrides: {
+        Row: {
+          calls_capacity: number | null
+          email_capacity: number | null
+          messaging_capacity: number | null
+          updated_at: string
+          updated_by: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          calls_capacity?: number | null
+          email_capacity?: number | null
+          messaging_capacity?: number | null
+          updated_at?: string
+          updated_by?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          calls_capacity?: number | null
+          email_capacity?: number | null
+          messaging_capacity?: number | null
+          updated_at?: string
+          updated_by?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_capacity_overrides_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "agent_capacity_overrides_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_presence_current: {
+        Row: {
+          active_call: boolean
+          calls_enabled: boolean
+          derived_from_sessions_at: string
+          effective_status: string
+          email_enabled: boolean
+          last_seen_at: string | null
+          manual_status: string
+          messaging_enabled: boolean
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          active_call?: boolean
+          calls_enabled?: boolean
+          derived_from_sessions_at?: string
+          effective_status?: string
+          email_enabled?: boolean
+          last_seen_at?: string | null
+          manual_status?: string
+          messaging_enabled?: boolean
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          active_call?: boolean
+          calls_enabled?: boolean
+          derived_from_sessions_at?: string
+          effective_status?: string
+          email_enabled?: boolean
+          last_seen_at?: string | null
+          manual_status?: string
+          messaging_enabled?: boolean
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_presence_current_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "agent_presence_current_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_presence_sessions: {
+        Row: {
+          active_call: boolean
+          activity_state: string
+          calls_enabled: boolean
+          created_at: string
+          email_enabled: boolean
+          last_seen_at: string
+          manual_status: string
+          messaging_enabled: boolean
+          session_id: string
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          active_call?: boolean
+          activity_state?: string
+          calls_enabled?: boolean
+          created_at?: string
+          email_enabled?: boolean
+          last_seen_at?: string
+          manual_status?: string
+          messaging_enabled?: boolean
+          session_id: string
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          active_call?: boolean
+          activity_state?: string
+          calls_enabled?: boolean
+          created_at?: string
+          email_enabled?: boolean
+          last_seen_at?: string
+          manual_status?: string
+          messaging_enabled?: boolean
+          session_id?: string
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_presence_sessions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "agent_presence_sessions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_tags: {
+        Row: {
+          created_at: string | null
+          id: string
+          tag_name: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          tag_name: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          tag_name?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_tags_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "agent_tags_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_team_members: {
+        Row: {
+          added_at: string
+          team_id: string
+          user_id: string
+        }
+        Insert: {
+          added_at?: string
+          team_id: string
+          user_id: string
+        }
+        Update: {
+          added_at?: string
+          team_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "agent_teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_team_round_robin_tracker: {
+        Row: {
+          last_assigned_at: string
+          last_assigned_user_id: string | null
+          team_id: string
+        }
+        Insert: {
+          last_assigned_at?: string
+          last_assigned_user_id?: string | null
+          team_id: string
+        }
+        Update: {
+          last_assigned_at?: string
+          last_assigned_user_id?: string | null
+          team_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_team_round_robin_tracker_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: true
+            referencedRelation: "agent_teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_team_rules: {
+        Row: {
+          conditions: Json
+          created_at: string
+          id: string
+          team_id: string
+          updated_at: string
+        }
+        Insert: {
+          conditions?: Json
+          created_at?: string
+          id?: string
+          team_id: string
+          updated_at?: string
+        }
+        Update: {
+          conditions?: Json
+          created_at?: string
+          id?: string
+          team_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_team_rules_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: true
+            referencedRelation: "agent_teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_teams: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          distribution_strategy: string
+          id: string
+          is_enabled: boolean
+          name: string
+          priority: number
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          distribution_strategy?: string
+          id?: string
+          is_enabled?: boolean
+          name: string
+          priority?: number
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          distribution_strategy?: string
+          id?: string
+          is_enabled?: boolean
+          name?: string
+          priority?: number
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_teams_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "agent_teams_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agents: {
         Row: {
           company_id: string | null
@@ -351,8 +952,74 @@ export type Database = {
           },
         ]
       }
+      ai_agent_activity_events: {
+        Row: {
+          agent_config_id: string | null
+          contact_id: string | null
+          created_at: string
+          event_type: string
+          expires_at: string
+          id: string
+          metadata: Json
+          summary: string | null
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          contact_id?: string | null
+          created_at?: string
+          event_type: string
+          expires_at?: string
+          id?: string
+          metadata?: Json
+          summary?: string | null
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          contact_id?: string | null
+          created_at?: string
+          event_type?: string
+          expires_at?: string
+          id?: string
+          metadata?: Json
+          summary?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_agent_activity_events_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_agent_activity_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_agent_activity_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_agent_activity_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
       ai_agent_configs: {
         Row: {
+          agent_type: string | null
           base_prompt: string | null
           context_depth: number | null
           created_at: string | null
@@ -362,14 +1029,19 @@ export type Database = {
           max_tokens: number | null
           model: string | null
           name: string
+          priority: number
           provider: string | null
+          routing_rules: Json | null
+          safety_config: Json | null
           temperature: number | null
+          templates: Json | null
           tone: string | null
           updated_at: string | null
           verbosity: string | null
           workspace_id: string
         }
         Insert: {
+          agent_type?: string | null
           base_prompt?: string | null
           context_depth?: number | null
           created_at?: string | null
@@ -379,14 +1051,19 @@ export type Database = {
           max_tokens?: number | null
           model?: string | null
           name: string
+          priority?: number
           provider?: string | null
+          routing_rules?: Json | null
+          safety_config?: Json | null
           temperature?: number | null
+          templates?: Json | null
           tone?: string | null
           updated_at?: string | null
           verbosity?: string | null
           workspace_id: string
         }
         Update: {
+          agent_type?: string | null
           base_prompt?: string | null
           context_depth?: number | null
           created_at?: string | null
@@ -396,8 +1073,12 @@ export type Database = {
           max_tokens?: number | null
           model?: string | null
           name?: string
+          priority?: number
           provider?: string | null
+          routing_rules?: Json | null
+          safety_config?: Json | null
           temperature?: number | null
+          templates?: Json | null
           tone?: string | null
           updated_at?: string | null
           verbosity?: string | null
@@ -525,6 +1206,821 @@ export type Database = {
           },
         ]
       }
+      ai_context_resets: {
+        Row: {
+          cleared: Json
+          contact_id: string
+          created_at: string
+          id: string
+          note: string | null
+          reset_at: string
+          reset_by: string | null
+          reset_by_email: string | null
+          workspace_id: string
+        }
+        Insert: {
+          cleared?: Json
+          contact_id: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          reset_at?: string
+          reset_by?: string | null
+          reset_by_email?: string | null
+          workspace_id: string
+        }
+        Update: {
+          cleared?: Json
+          contact_id?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          reset_at?: string
+          reset_by?: string | null
+          reset_by_email?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_context_resets_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_context_resets_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_context_resets_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      ai_conversation_examples: {
+        Row: {
+          agent_config_id: string | null
+          contact_message: string
+          conversation_context: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          ideal_response: string
+          is_approved: boolean | null
+          scenario_name: string | null
+          scenario_type: string
+          tags: string[] | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          contact_message: string
+          conversation_context?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          ideal_response: string
+          is_approved?: boolean | null
+          scenario_name?: string | null
+          scenario_type: string
+          tags?: string[] | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          contact_message?: string
+          conversation_context?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          ideal_response?: string
+          is_approved?: boolean | null
+          scenario_name?: string | null
+          scenario_type?: string
+          tags?: string[] | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_conversation_examples_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_conversation_examples_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "ai_conversation_examples_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_conversation_state: {
+        Row: {
+          booking_confirmed: boolean | null
+          booking_confirmed_at: string | null
+          booking_link_clicked: boolean | null
+          booking_link_clicked_at: string | null
+          booking_offered: boolean | null
+          booking_offered_at: string | null
+          contact_id: string
+          created_at: string | null
+          escalated_at: string | null
+          escalated_to_user_id: string | null
+          escalation_reason: string | null
+          exchange_count: number | null
+          first_message_at: string | null
+          id: string
+          intent_history: Json | null
+          last_intent: string | null
+          last_message_at: string | null
+          objection_count: number | null
+          objections_raised: string[] | null
+          should_escalate: boolean | null
+          tool_call_counts: Json
+          tool_memory: Json
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          booking_confirmed?: boolean | null
+          booking_confirmed_at?: string | null
+          booking_link_clicked?: boolean | null
+          booking_link_clicked_at?: string | null
+          booking_offered?: boolean | null
+          booking_offered_at?: string | null
+          contact_id: string
+          created_at?: string | null
+          escalated_at?: string | null
+          escalated_to_user_id?: string | null
+          escalation_reason?: string | null
+          exchange_count?: number | null
+          first_message_at?: string | null
+          id?: string
+          intent_history?: Json | null
+          last_intent?: string | null
+          last_message_at?: string | null
+          objection_count?: number | null
+          objections_raised?: string[] | null
+          should_escalate?: boolean | null
+          tool_call_counts?: Json
+          tool_memory?: Json
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          booking_confirmed?: boolean | null
+          booking_confirmed_at?: string | null
+          booking_link_clicked?: boolean | null
+          booking_link_clicked_at?: string | null
+          booking_offered?: boolean | null
+          booking_offered_at?: string | null
+          contact_id?: string
+          created_at?: string | null
+          escalated_at?: string | null
+          escalated_to_user_id?: string | null
+          escalation_reason?: string | null
+          exchange_count?: number | null
+          first_message_at?: string | null
+          id?: string
+          intent_history?: Json | null
+          last_intent?: string | null
+          last_message_at?: string | null
+          objection_count?: number | null
+          objections_raised?: string[] | null
+          should_escalate?: boolean | null
+          tool_call_counts?: Json
+          tool_memory?: Json
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_conversation_state_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_conversation_state_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_conversation_state_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_conversation_state_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "ai_conversation_state_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_function_bindings: {
+        Row: {
+          agent_id: string
+          created_at: string
+          enabled: boolean
+          function_id: string
+          id: string
+          overrides: Json
+          sort_order: number
+          surface: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_id: string
+          created_at?: string
+          enabled?: boolean
+          function_id: string
+          id?: string
+          overrides?: Json
+          sort_order?: number
+          surface?: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          agent_id?: string
+          created_at?: string
+          enabled?: boolean
+          function_id?: string
+          id?: string
+          overrides?: Json
+          sort_order?: number
+          surface?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_function_bindings_function_id_fkey"
+            columns: ["function_id"]
+            isOneToOne: false
+            referencedRelation: "ai_function_definitions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_function_definitions: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string
+          enabled: boolean
+          example_messages: Json
+          execution_mode: string
+          id: string
+          input_schema: Json
+          label: string
+          name: string
+          namespace: string
+          policy_config: Json
+          result_schema: Json | null
+          target_workflow_id: string | null
+          target_workflow_kind: string
+          ui_parameters: Json
+          updated_at: string
+          when_not_to_call: string | null
+          when_to_call: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description: string
+          enabled?: boolean
+          example_messages?: Json
+          execution_mode: string
+          id?: string
+          input_schema: Json
+          label: string
+          name: string
+          namespace: string
+          policy_config?: Json
+          result_schema?: Json | null
+          target_workflow_id?: string | null
+          target_workflow_kind?: string
+          ui_parameters?: Json
+          updated_at?: string
+          when_not_to_call?: string | null
+          when_to_call?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          enabled?: boolean
+          example_messages?: Json
+          execution_mode?: string
+          id?: string
+          input_schema?: Json
+          label?: string
+          name?: string
+          namespace?: string
+          policy_config?: Json
+          result_schema?: Json | null
+          target_workflow_id?: string | null
+          target_workflow_kind?: string
+          ui_parameters?: Json
+          updated_at?: string
+          when_not_to_call?: string | null
+          when_to_call?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      ai_function_runs: {
+        Row: {
+          agent_id: string | null
+          binding_id: string | null
+          blocked_reason: string | null
+          contact_id: string | null
+          created_at: string
+          duration_ms: number | null
+          execution_mode: string | null
+          function_id: string | null
+          id: string
+          model: string | null
+          provider: string | null
+          raw_args: Json
+          request_message_excerpt: string | null
+          save_targets_applied: Json
+          status: string
+          surface: string
+          tool_name: string
+          tool_result: Json | null
+          validated_args: Json
+          workflow_id: string | null
+          workflow_kind: string | null
+          workflow_run_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          agent_id?: string | null
+          binding_id?: string | null
+          blocked_reason?: string | null
+          contact_id?: string | null
+          created_at?: string
+          duration_ms?: number | null
+          execution_mode?: string | null
+          function_id?: string | null
+          id?: string
+          model?: string | null
+          provider?: string | null
+          raw_args?: Json
+          request_message_excerpt?: string | null
+          save_targets_applied?: Json
+          status: string
+          surface?: string
+          tool_name: string
+          tool_result?: Json | null
+          validated_args?: Json
+          workflow_id?: string | null
+          workflow_kind?: string | null
+          workflow_run_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          agent_id?: string | null
+          binding_id?: string | null
+          blocked_reason?: string | null
+          contact_id?: string | null
+          created_at?: string
+          duration_ms?: number | null
+          execution_mode?: string | null
+          function_id?: string | null
+          id?: string
+          model?: string | null
+          provider?: string | null
+          raw_args?: Json
+          request_message_excerpt?: string | null
+          save_targets_applied?: Json
+          status?: string
+          surface?: string
+          tool_name?: string
+          tool_result?: Json | null
+          validated_args?: Json
+          workflow_id?: string | null
+          workflow_kind?: string | null
+          workflow_run_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_function_runs_binding_id_fkey"
+            columns: ["binding_id"]
+            isOneToOne: false
+            referencedRelation: "ai_function_bindings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_function_runs_function_id_fkey"
+            columns: ["function_id"]
+            isOneToOne: false
+            referencedRelation: "ai_function_definitions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_knowledge_base: {
+        Row: {
+          agent_config_id: string | null
+          category: string
+          content: string
+          created_at: string | null
+          embedding: string | null
+          id: string
+          is_active: boolean | null
+          title: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          category: string
+          content: string
+          created_at?: string | null
+          embedding?: string | null
+          id?: string
+          is_active?: boolean | null
+          title: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          category?: string
+          content?: string
+          created_at?: string | null
+          embedding?: string | null
+          id?: string
+          is_active?: boolean | null
+          title?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_knowledge_base_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_knowledge_base_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "ai_knowledge_base_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_lead_scores: {
+        Row: {
+          agent_config_id: string | null
+          contact_id: string
+          current_stage: string | null
+          falloff_field_key: string | null
+          falloff_reason: string | null
+          grade: string | null
+          id: string
+          score: number
+          scoring_snapshot: Json
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          contact_id: string
+          current_stage?: string | null
+          falloff_field_key?: string | null
+          falloff_reason?: string | null
+          grade?: string | null
+          id?: string
+          score?: number
+          scoring_snapshot?: Json
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          contact_id?: string
+          current_stage?: string | null
+          falloff_field_key?: string | null
+          falloff_reason?: string | null
+          grade?: string | null
+          id?: string
+          score?: number
+          scoring_snapshot?: Json
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_lead_scores_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_lead_scores_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_lead_scores_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_lead_scores_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      ai_no_response_policies: {
+        Row: {
+          action_channels: string[]
+          action_payload: Json
+          action_type: string
+          agent_config_id: string | null
+          created_at: string
+          crm_routing_rules: Json
+          delay_minutes: number
+          filter_rules: Json
+          id: string
+          is_enabled: boolean
+          max_attempts: number
+          name: string
+          scoring_rules: Json
+          source_type: string
+          stage_field_key: string | null
+          stage_type: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          action_channels?: string[]
+          action_payload?: Json
+          action_type: string
+          agent_config_id?: string | null
+          created_at?: string
+          crm_routing_rules?: Json
+          delay_minutes: number
+          filter_rules?: Json
+          id?: string
+          is_enabled?: boolean
+          max_attempts?: number
+          name: string
+          scoring_rules?: Json
+          source_type?: string
+          stage_field_key?: string | null
+          stage_type?: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          action_channels?: string[]
+          action_payload?: Json
+          action_type?: string
+          agent_config_id?: string | null
+          created_at?: string
+          crm_routing_rules?: Json
+          delay_minutes?: number
+          filter_rules?: Json
+          id?: string
+          is_enabled?: boolean
+          max_attempts?: number
+          name?: string
+          scoring_rules?: Json
+          source_type?: string
+          stage_field_key?: string | null
+          stage_type?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_no_response_policies_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_no_response_run_actions: {
+        Row: {
+          action_type: string
+          attempt_number: number
+          block_reason: string | null
+          completed_at: string | null
+          error_text: string | null
+          id: string
+          idempotency_key: string
+          result_flow_execution_id: string | null
+          result_message_id: string | null
+          run_id: string
+          started_at: string
+          status: string
+        }
+        Insert: {
+          action_type: string
+          attempt_number: number
+          block_reason?: string | null
+          completed_at?: string | null
+          error_text?: string | null
+          id?: string
+          idempotency_key: string
+          result_flow_execution_id?: string | null
+          result_message_id?: string | null
+          run_id: string
+          started_at?: string
+          status?: string
+        }
+        Update: {
+          action_type?: string
+          attempt_number?: number
+          block_reason?: string | null
+          completed_at?: string | null
+          error_text?: string | null
+          id?: string
+          idempotency_key?: string
+          result_flow_execution_id?: string | null
+          result_message_id?: string | null
+          run_id?: string
+          started_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_no_response_run_actions_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "ai_no_response_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_no_response_runs: {
+        Row: {
+          agent_config_id: string | null
+          attempt_count: number
+          cancelled_at: string | null
+          cancelled_reason: string | null
+          claimed_at: string | null
+          claimed_by: string | null
+          contact_id: string
+          created_at: string
+          due_at: string
+          fired_at: string | null
+          id: string
+          last_checked_at: string | null
+          metadata: Json
+          outbound_message_id: string
+          policy_id: string
+          qualifying_question_field_key: string | null
+          stage_type: string
+          status: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          attempt_count?: number
+          cancelled_at?: string | null
+          cancelled_reason?: string | null
+          claimed_at?: string | null
+          claimed_by?: string | null
+          contact_id: string
+          created_at?: string
+          due_at: string
+          fired_at?: string | null
+          id?: string
+          last_checked_at?: string | null
+          metadata?: Json
+          outbound_message_id: string
+          policy_id: string
+          qualifying_question_field_key?: string | null
+          stage_type: string
+          status?: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          attempt_count?: number
+          cancelled_at?: string | null
+          cancelled_reason?: string | null
+          claimed_at?: string | null
+          claimed_by?: string | null
+          contact_id?: string
+          created_at?: string
+          due_at?: string
+          fired_at?: string | null
+          id?: string
+          last_checked_at?: string | null
+          metadata?: Json
+          outbound_message_id?: string
+          policy_id?: string
+          qualifying_question_field_key?: string | null
+          stage_type?: string
+          status?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_no_response_runs_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_no_response_runs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_no_response_runs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_no_response_runs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_no_response_runs_policy_id_fkey"
+            columns: ["policy_id"]
+            isOneToOne: false
+            referencedRelation: "ai_no_response_policies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ai_response_logs: {
         Row: {
           ai_model: string | null
@@ -533,6 +2029,7 @@ export type Database = {
           cost: number
           created_at: string
           id: string
+          intent: string | null
           message_id: string | null
           model: string | null
           prompt: string | null
@@ -552,6 +2049,7 @@ export type Database = {
           cost?: number
           created_at?: string
           id?: string
+          intent?: string | null
           message_id?: string | null
           model?: string | null
           prompt?: string | null
@@ -571,6 +2069,7 @@ export type Database = {
           cost?: number
           created_at?: string
           id?: string
+          intent?: string | null
           message_id?: string | null
           model?: string | null
           prompt?: string | null
@@ -655,6 +2154,88 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "lead_conversion_analytics"
             referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      ai_safety_audit_log: {
+        Row: {
+          agent_config_id: string | null
+          blocked_reason: string | null
+          contact_id: string
+          created_at: string | null
+          gate_result: string
+          gates_passed: string[] | null
+          id: string
+          inbound_message_id: string | null
+          metadata: Json | null
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          blocked_reason?: string | null
+          contact_id: string
+          created_at?: string | null
+          gate_result: string
+          gates_passed?: string[] | null
+          id?: string
+          inbound_message_id?: string | null
+          metadata?: Json | null
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          blocked_reason?: string | null
+          contact_id?: string
+          created_at?: string | null
+          gate_result?: string
+          gates_passed?: string[] | null
+          id?: string
+          inbound_message_id?: string | null
+          metadata?: Json | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_safety_audit_log_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_safety_audit_log_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_safety_audit_log_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ai_safety_audit_log_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "ai_safety_audit_log_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "ai_safety_audit_log_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -788,6 +2369,54 @@ export type Database = {
           },
         ]
       }
+      ai_tool_call_logs: {
+        Row: {
+          ai_response_text: string | null
+          contact_id: string
+          contact_message: string | null
+          conversation_state: Json | null
+          created_at: string | null
+          flow_id: string | null
+          id: string
+          outcome: string
+          reason: string | null
+          task_run_id: string | null
+          tool_args: Json | null
+          tool_name: string
+          workspace_id: string
+        }
+        Insert: {
+          ai_response_text?: string | null
+          contact_id: string
+          contact_message?: string | null
+          conversation_state?: Json | null
+          created_at?: string | null
+          flow_id?: string | null
+          id?: string
+          outcome: string
+          reason?: string | null
+          task_run_id?: string | null
+          tool_args?: Json | null
+          tool_name: string
+          workspace_id: string
+        }
+        Update: {
+          ai_response_text?: string | null
+          contact_id?: string
+          contact_message?: string | null
+          conversation_state?: Json | null
+          created_at?: string | null
+          flow_id?: string | null
+          id?: string
+          outcome?: string
+          reason?: string | null
+          task_run_id?: string | null
+          tool_args?: Json | null
+          tool_name?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       ai_training_records: {
         Row: {
           content: string
@@ -839,6 +2468,105 @@ export type Database = {
           },
         ]
       }
+      allison_voice_sessions: {
+        Row: {
+          created_at: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          id: string
+          metadata: Json | null
+          recommendations_count: number | null
+          recording_url: string | null
+          session_id: string | null
+          started_at: string | null
+          status: string | null
+          tool_count: number | null
+          tools_used: Json | null
+          user_email: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          id?: string
+          metadata?: Json | null
+          recommendations_count?: number | null
+          recording_url?: string | null
+          session_id?: string | null
+          started_at?: string | null
+          status?: string | null
+          tool_count?: number | null
+          tools_used?: Json | null
+          user_email?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          id?: string
+          metadata?: Json | null
+          recommendations_count?: number | null
+          recording_url?: string | null
+          session_id?: string | null
+          started_at?: string | null
+          status?: string | null
+          tool_count?: number | null
+          tools_used?: Json | null
+          user_email?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      analytics_conversion_attribution_daily: {
+        Row: {
+          appointments_set: number
+          attribution_channel: string
+          confirmed_leads: number
+          created_at: string
+          metric_date: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          appointments_set?: number
+          attribution_channel: string
+          confirmed_leads?: number
+          created_at?: string
+          metric_date: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          appointments_set?: number
+          attribution_channel?: string
+          confirmed_leads?: number
+          created_at?: string
+          metric_date?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_conversion_attribution_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "analytics_conversion_attribution_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       analytics_data_sources: {
         Row: {
           category: string
@@ -880,6 +2608,147 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      analytics_lead_status_daily: {
+        Row: {
+          attribution_channel: string
+          change_count: number
+          created_at: string
+          lead_status: string
+          metric_date: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          attribution_channel: string
+          change_count?: number
+          created_at?: string
+          lead_status: string
+          metric_date: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          attribution_channel?: string
+          change_count?: number
+          created_at?: string
+          lead_status?: string
+          metric_date?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_lead_status_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "analytics_lead_status_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      analytics_message_engagement_daily: {
+        Row: {
+          bounce_events: number
+          channel: string
+          click_events: number
+          created_at: string
+          delivered_recipients: number
+          flow_id: string | null
+          flow_key: string
+          flow_name: string | null
+          link_key: string
+          link_url: string | null
+          message_id: string | null
+          message_key: string
+          message_name: string | null
+          metric_date: string
+          open_events: number
+          sent_recipients: number
+          sms_click_events: number
+          sms_unique_clicks: number
+          spam_events: number
+          unique_clicks: number
+          unique_opens: number
+          unsubscribe_events: number
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          bounce_events?: number
+          channel: string
+          click_events?: number
+          created_at?: string
+          delivered_recipients?: number
+          flow_id?: string | null
+          flow_key?: string
+          flow_name?: string | null
+          link_key?: string
+          link_url?: string | null
+          message_id?: string | null
+          message_key?: string
+          message_name?: string | null
+          metric_date: string
+          open_events?: number
+          sent_recipients?: number
+          sms_click_events?: number
+          sms_unique_clicks?: number
+          spam_events?: number
+          unique_clicks?: number
+          unique_opens?: number
+          unsubscribe_events?: number
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          bounce_events?: number
+          channel?: string
+          click_events?: number
+          created_at?: string
+          delivered_recipients?: number
+          flow_id?: string | null
+          flow_key?: string
+          flow_name?: string | null
+          link_key?: string
+          link_url?: string | null
+          message_id?: string | null
+          message_key?: string
+          message_name?: string | null
+          metric_date?: string
+          open_events?: number
+          sent_recipients?: number
+          sms_click_events?: number
+          sms_unique_clicks?: number
+          spam_events?: number
+          unique_clicks?: number
+          unique_opens?: number
+          unsubscribe_events?: number
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_message_engagement_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "analytics_message_engagement_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       analytics_query_executions: {
         Row: {
@@ -975,6 +2844,7 @@ export type Database = {
           last_executed_at: string | null
           name: string
           query_config: Json
+          share_token: string | null
           sql_query: string
           updated_at: string | null
           user_email: string
@@ -990,6 +2860,7 @@ export type Database = {
           last_executed_at?: string | null
           name: string
           query_config: Json
+          share_token?: string | null
           sql_query: string
           updated_at?: string | null
           user_email: string
@@ -1005,6 +2876,7 @@ export type Database = {
           last_executed_at?: string | null
           name?: string
           query_config?: Json
+          share_token?: string | null
           sql_query?: string
           updated_at?: string | null
           user_email?: string
@@ -1012,6 +2884,78 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: []
+      }
+      analytics_sms_clicks_daily: {
+        Row: {
+          created_at: string
+          flow_id: string | null
+          flow_key: string
+          flow_name: string | null
+          link_id: string | null
+          link_key: string
+          link_url: string | null
+          message_id: string | null
+          message_key: string
+          message_name: string | null
+          metric_date: string
+          sms_clicks: number
+          sms_recipients: number
+          sms_unique_clicks: number
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          flow_id?: string | null
+          flow_key?: string
+          flow_name?: string | null
+          link_id?: string | null
+          link_key: string
+          link_url?: string | null
+          message_id?: string | null
+          message_key?: string
+          message_name?: string | null
+          metric_date: string
+          sms_clicks?: number
+          sms_recipients?: number
+          sms_unique_clicks?: number
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          flow_id?: string | null
+          flow_key?: string
+          flow_name?: string | null
+          link_id?: string | null
+          link_key?: string
+          link_url?: string | null
+          message_id?: string | null
+          message_key?: string
+          message_name?: string | null
+          metric_date?: string
+          sms_clicks?: number
+          sms_recipients?: number
+          sms_unique_clicks?: number
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_sms_clicks_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "analytics_sms_clicks_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       api_keys: {
         Row: {
@@ -1082,12 +3026,76 @@ export type Database = {
           },
         ]
       }
+      api_requests: {
+        Row: {
+          created_at: string | null
+          endpoint: string
+          id: string
+          ip_address: string | null
+          metadata: Json | null
+          method: string
+          response_time_ms: number | null
+          status_code: number | null
+          user_agent: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          endpoint: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          method: string
+          response_time_ms?: number | null
+          status_code?: number | null
+          user_agent?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          endpoint?: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          method?: string
+          response_time_ms?: number | null
+          status_code?: number | null
+          user_agent?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      app_settings: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          key: string
+          updated_at: string | null
+          value: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          key: string
+          updated_at?: string | null
+          value: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          key?: string
+          updated_at?: string | null
+          value?: string
+        }
+        Relationships: []
+      }
       appointment_follow_ups: {
         Row: {
           action_type: string
-          appointment_id: string
+          appointment_id: string | null
           assigned_to: string | null
           completed_at: string | null
+          contact_id: string | null
           created_at: string | null
           created_by: string
           description: string
@@ -1095,12 +3103,14 @@ export type Database = {
           id: string
           is_completed: boolean | null
           updated_at: string | null
+          workspace_id: string | null
         }
         Insert: {
           action_type: string
-          appointment_id: string
+          appointment_id?: string | null
           assigned_to?: string | null
           completed_at?: string | null
+          contact_id?: string | null
           created_at?: string | null
           created_by: string
           description: string
@@ -1108,12 +3118,14 @@ export type Database = {
           id?: string
           is_completed?: boolean | null
           updated_at?: string | null
+          workspace_id?: string | null
         }
         Update: {
           action_type?: string
-          appointment_id?: string
+          appointment_id?: string | null
           assigned_to?: string | null
           completed_at?: string | null
+          contact_id?: string | null
           created_at?: string | null
           created_by?: string
           description?: string
@@ -1121,6 +3133,7 @@ export type Database = {
           id?: string
           is_completed?: boolean | null
           updated_at?: string | null
+          workspace_id?: string | null
         }
         Relationships: [
           {
@@ -1129,6 +3142,180 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "appointments"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_follow_ups_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      appointment_reminder_settings: {
+        Row: {
+          confirmation_email_subject: string | null
+          confirmation_email_template: string | null
+          confirmation_sms_template: string | null
+          created_at: string | null
+          email_enabled: boolean | null
+          event_type_id: string | null
+          id: string
+          reminder_1hr_email_subject: string | null
+          reminder_1hr_email_template: string | null
+          reminder_1hr_sms_template: string | null
+          reminder_24hr_email_subject: string | null
+          reminder_24hr_email_template: string | null
+          reminder_24hr_sms_template: string | null
+          send_1hr_reminder: boolean | null
+          send_24hr_reminder: boolean | null
+          send_confirmation: boolean | null
+          sms_enabled: boolean | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          confirmation_email_subject?: string | null
+          confirmation_email_template?: string | null
+          confirmation_sms_template?: string | null
+          created_at?: string | null
+          email_enabled?: boolean | null
+          event_type_id?: string | null
+          id?: string
+          reminder_1hr_email_subject?: string | null
+          reminder_1hr_email_template?: string | null
+          reminder_1hr_sms_template?: string | null
+          reminder_24hr_email_subject?: string | null
+          reminder_24hr_email_template?: string | null
+          reminder_24hr_sms_template?: string | null
+          send_1hr_reminder?: boolean | null
+          send_24hr_reminder?: boolean | null
+          send_confirmation?: boolean | null
+          sms_enabled?: boolean | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          confirmation_email_subject?: string | null
+          confirmation_email_template?: string | null
+          confirmation_sms_template?: string | null
+          created_at?: string | null
+          email_enabled?: boolean | null
+          event_type_id?: string | null
+          id?: string
+          reminder_1hr_email_subject?: string | null
+          reminder_1hr_email_template?: string | null
+          reminder_1hr_sms_template?: string | null
+          reminder_24hr_email_subject?: string | null
+          reminder_24hr_email_template?: string | null
+          reminder_24hr_sms_template?: string | null
+          send_1hr_reminder?: boolean | null
+          send_24hr_reminder?: boolean | null
+          send_confirmation?: boolean | null
+          sms_enabled?: boolean | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointment_reminder_settings_event_type_id_fkey"
+            columns: ["event_type_id"]
+            isOneToOne: false
+            referencedRelation: "event_type_settings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      appointment_reminders: {
+        Row: {
+          appointment_id: string
+          channel: string
+          contact_id: string
+          created_at: string | null
+          email_subject: string | null
+          error_message: string | null
+          id: string
+          message_content: string | null
+          reminder_type: string
+          scheduled_for: string
+          sendgrid_message_id: string | null
+          sent_at: string | null
+          status: string | null
+          trigger_task_id: string | null
+          twilio_sid: string | null
+          workspace_id: string
+        }
+        Insert: {
+          appointment_id: string
+          channel: string
+          contact_id: string
+          created_at?: string | null
+          email_subject?: string | null
+          error_message?: string | null
+          id?: string
+          message_content?: string | null
+          reminder_type: string
+          scheduled_for: string
+          sendgrid_message_id?: string | null
+          sent_at?: string | null
+          status?: string | null
+          trigger_task_id?: string | null
+          twilio_sid?: string | null
+          workspace_id: string
+        }
+        Update: {
+          appointment_id?: string
+          channel?: string
+          contact_id?: string
+          created_at?: string | null
+          email_subject?: string | null
+          error_message?: string | null
+          id?: string
+          message_content?: string | null
+          reminder_type?: string
+          scheduled_for?: string
+          sendgrid_message_id?: string | null
+          sent_at?: string | null
+          status?: string | null
+          trigger_task_id?: string | null
+          twilio_sid?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointment_reminders_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_reminders_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_reminders_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "appointment_reminders_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_reminders_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -1175,6 +3362,13 @@ export type Database = {
             columns: ["appointment_id"]
             isOneToOne: false
             referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_results_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
             referencedColumns: ["id"]
           },
           {
@@ -1233,6 +3427,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "appointment_status_history_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "appointment_status_history_result_id_fkey"
             columns: ["result_id"]
             isOneToOne: false
@@ -1262,18 +3463,147 @@ export type Database = {
           },
         ]
       }
+      appointment_webhook_integrations: {
+        Row: {
+          body_template: Json
+          created_at: string | null
+          description: string | null
+          enabled: boolean | null
+          headers: Json | null
+          http_method: string | null
+          id: string
+          name: string
+          updated_at: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Insert: {
+          body_template: Json
+          created_at?: string | null
+          description?: string | null
+          enabled?: boolean | null
+          headers?: Json | null
+          http_method?: string | null
+          id?: string
+          name: string
+          updated_at?: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Update: {
+          body_template?: Json
+          created_at?: string | null
+          description?: string | null
+          enabled?: boolean | null
+          headers?: Json | null
+          http_method?: string | null
+          id?: string
+          name?: string
+          updated_at?: string | null
+          webhook_url?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      appointment_webhook_logs: {
+        Row: {
+          appointment_id: string
+          attempted_at: string | null
+          completed_at: string | null
+          duration_ms: number | null
+          error_message: string | null
+          http_method: string | null
+          id: string
+          request_body: Json | null
+          request_headers: Json | null
+          response_body: string | null
+          response_headers: Json | null
+          response_status: number | null
+          status: string | null
+          webhook_integration_id: string
+          webhook_url: string
+          workspace_id: string
+        }
+        Insert: {
+          appointment_id: string
+          attempted_at?: string | null
+          completed_at?: string | null
+          duration_ms?: number | null
+          error_message?: string | null
+          http_method?: string | null
+          id?: string
+          request_body?: Json | null
+          request_headers?: Json | null
+          response_body?: string | null
+          response_headers?: Json | null
+          response_status?: number | null
+          status?: string | null
+          webhook_integration_id: string
+          webhook_url: string
+          workspace_id: string
+        }
+        Update: {
+          appointment_id?: string
+          attempted_at?: string | null
+          completed_at?: string | null
+          duration_ms?: number | null
+          error_message?: string | null
+          http_method?: string | null
+          id?: string
+          request_body?: Json | null
+          request_headers?: Json | null
+          response_body?: string | null
+          response_headers?: Json | null
+          response_status?: number | null
+          status?: string | null
+          webhook_integration_id?: string
+          webhook_url?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointment_webhook_logs_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_webhook_logs_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointment_webhook_logs_webhook_integration_id_fkey"
+            columns: ["webhook_integration_id"]
+            isOneToOne: false
+            referencedRelation: "appointment_webhook_integrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       appointments: {
         Row: {
           appointment_date: string
+          attributed_agent_config_id: string | null
+          attribution_source: string | null
+          booking_channel: string | null
+          booking_timezone: string | null
+          calendar_links: Json | null
           contact_id: string
           created_at: string | null
           created_by: string
           deleted_at: string | null
           description: string | null
           duration_minutes: number
+          external_id: string | null
+          external_source: string | null
           id: string
           location: string | null
           meeting_link: string | null
+          metadata: Json | null
           result_id: number | null
           status_id: number | null
           title: string
@@ -1283,15 +3613,23 @@ export type Database = {
         }
         Insert: {
           appointment_date: string
+          attributed_agent_config_id?: string | null
+          attribution_source?: string | null
+          booking_channel?: string | null
+          booking_timezone?: string | null
+          calendar_links?: Json | null
           contact_id: string
           created_at?: string | null
           created_by: string
           deleted_at?: string | null
           description?: string | null
           duration_minutes?: number
+          external_id?: string | null
+          external_source?: string | null
           id?: string
           location?: string | null
           meeting_link?: string | null
+          metadata?: Json | null
           result_id?: number | null
           status_id?: number | null
           title: string
@@ -1301,15 +3639,23 @@ export type Database = {
         }
         Update: {
           appointment_date?: string
+          attributed_agent_config_id?: string | null
+          attribution_source?: string | null
+          booking_channel?: string | null
+          booking_timezone?: string | null
+          calendar_links?: Json | null
           contact_id?: string
           created_at?: string | null
           created_by?: string
           deleted_at?: string | null
           description?: string | null
           duration_minutes?: number
+          external_id?: string | null
+          external_source?: string | null
           id?: string
           location?: string | null
           meeting_link?: string | null
+          metadata?: Json | null
           result_id?: number | null
           status_id?: number | null
           title?: string
@@ -1318,6 +3664,13 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "appointments_attributed_agent_config_id_fkey"
+            columns: ["attributed_agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "appointments_contact_id_fkey"
             columns: ["contact_id"]
@@ -1441,6 +3794,39 @@ export type Database = {
           },
         ]
       }
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string | null
+          details: string | null
+          id: string
+          metadata: Json | null
+          section: string | null
+          user_email: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          details?: string | null
+          id?: string
+          metadata?: Json | null
+          section?: string | null
+          user_email?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          details?: string | null
+          id?: string
+          metadata?: Json | null
+          section?: string | null
+          user_email?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       authorized_developers: {
         Row: {
           created_at: string | null
@@ -1497,6 +3883,447 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: []
+      }
+      auto_assign_round_robin_tracker: {
+        Row: {
+          assignment_count: number | null
+          board_id: string | null
+          id: string
+          last_assigned_agent_id: string | null
+          updated_at: string | null
+          webhook_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          assignment_count?: number | null
+          board_id?: string | null
+          id?: string
+          last_assigned_agent_id?: string | null
+          updated_at?: string | null
+          webhook_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          assignment_count?: number | null
+          board_id?: string | null
+          id?: string
+          last_assigned_agent_id?: string | null
+          updated_at?: string | null
+          webhook_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      automation_template_installs: {
+        Row: {
+          created_at: string
+          destination_workspace_id: string
+          error_message: string | null
+          id: string
+          install_summary: Json
+          installed_by: string | null
+          remap_report: Json
+          source_workspace_id: string
+          status: string
+          template_id: string
+          template_version_id: string
+        }
+        Insert: {
+          created_at?: string
+          destination_workspace_id: string
+          error_message?: string | null
+          id?: string
+          install_summary?: Json
+          installed_by?: string | null
+          remap_report?: Json
+          source_workspace_id: string
+          status?: string
+          template_id: string
+          template_version_id: string
+        }
+        Update: {
+          created_at?: string
+          destination_workspace_id?: string
+          error_message?: string | null
+          id?: string
+          install_summary?: Json
+          installed_by?: string | null
+          remap_report?: Json
+          source_workspace_id?: string
+          status?: string
+          template_id?: string
+          template_version_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automation_template_installs_destination_workspace_id_fkey"
+            columns: ["destination_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "automation_template_installs_destination_workspace_id_fkey"
+            columns: ["destination_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automation_template_installs_source_workspace_id_fkey"
+            columns: ["source_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "automation_template_installs_source_workspace_id_fkey"
+            columns: ["source_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automation_template_installs_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "automation_templates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automation_template_installs_template_version_id_fkey"
+            columns: ["template_version_id"]
+            isOneToOne: false
+            referencedRelation: "automation_template_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      automation_template_versions: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          snapshot: Json
+          summary: Json
+          template_id: string
+          updated_at: string
+          version_label: string
+          version_number: number
+          warnings: Json
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          snapshot?: Json
+          summary?: Json
+          template_id: string
+          updated_at?: string
+          version_label?: string
+          version_number: number
+          warnings?: Json
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          snapshot?: Json
+          summary?: Json
+          template_id?: string
+          updated_at?: string
+          version_label?: string
+          version_number?: number
+          warnings?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automation_template_versions_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "automation_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      automation_templates: {
+        Row: {
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          latest_version_number: number
+          name: string
+          slug: string
+          source_workspace_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          latest_version_number?: number
+          name: string
+          slug: string
+          source_workspace_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          latest_version_number?: number
+          name?: string
+          slug?: string
+          source_workspace_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automation_templates_source_workspace_id_fkey"
+            columns: ["source_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "automation_templates_source_workspace_id_fkey"
+            columns: ["source_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      availability_settings: {
+        Row: {
+          admin_id: string
+          allow_reschedule: boolean | null
+          auto_confirm: boolean | null
+          booking_window: number | null
+          buffer_time: number | null
+          created_at: string | null
+          daily_limit: number | null
+          id: string
+          minimum_notice: number | null
+          require_payment: boolean | null
+          timezone: string | null
+          updated_at: string | null
+          weekly_schedule: Json | null
+          workspace_id: string
+        }
+        Insert: {
+          admin_id: string
+          allow_reschedule?: boolean | null
+          auto_confirm?: boolean | null
+          booking_window?: number | null
+          buffer_time?: number | null
+          created_at?: string | null
+          daily_limit?: number | null
+          id?: string
+          minimum_notice?: number | null
+          require_payment?: boolean | null
+          timezone?: string | null
+          updated_at?: string | null
+          weekly_schedule?: Json | null
+          workspace_id: string
+        }
+        Update: {
+          admin_id?: string
+          allow_reschedule?: boolean | null
+          auto_confirm?: boolean | null
+          booking_window?: number | null
+          buffer_time?: number | null
+          created_at?: string | null
+          daily_limit?: number | null
+          id?: string
+          minimum_notice?: number | null
+          require_payment?: boolean | null
+          timezone?: string | null
+          updated_at?: string | null
+          weekly_schedule?: Json | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      background_jobs: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          error_message: string | null
+          id: string
+          max_retries: number | null
+          payload: Json
+          processed_items: number | null
+          result: Json | null
+          retry_count: number | null
+          started_at: string | null
+          status: string
+          total_items: number | null
+          type: string
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          max_retries?: number | null
+          payload?: Json
+          processed_items?: number | null
+          result?: Json | null
+          retry_count?: number | null
+          started_at?: string | null
+          status?: string
+          total_items?: number | null
+          type: string
+          user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          max_retries?: number | null
+          payload?: Json
+          processed_items?: number | null
+          result?: Json | null
+          retry_count?: number | null
+          started_at?: string | null
+          status?: string
+          total_items?: number | null
+          type?: string
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "background_jobs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "background_jobs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      beta_feature_catalog: {
+        Row: {
+          badge: string | null
+          created_at: string
+          created_by: string | null
+          cta_label: string | null
+          description: string | null
+          form_description: string | null
+          form_email_hint: string | null
+          form_email_label: string | null
+          form_title: string | null
+          id: string
+          is_active: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          badge?: string | null
+          created_at?: string
+          created_by?: string | null
+          cta_label?: string | null
+          description?: string | null
+          form_description?: string | null
+          form_email_hint?: string | null
+          form_email_label?: string | null
+          form_title?: string | null
+          id: string
+          is_active?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          badge?: string | null
+          created_at?: string
+          created_by?: string | null
+          cta_label?: string | null
+          description?: string | null
+          form_description?: string | null
+          form_email_hint?: string | null
+          form_email_label?: string | null
+          form_title?: string | null
+          id?: string
+          is_active?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      beta_feature_signups: {
+        Row: {
+          created_at: string | null
+          email: string
+          feature_id: string
+          feature_name: string | null
+          id: string
+          metadata: Json | null
+          source: string | null
+          updated_at: string | null
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          feature_id: string
+          feature_name?: string | null
+          id?: string
+          metadata?: Json | null
+          source?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          feature_id?: string
+          feature_name?: string | null
+          id?: string
+          metadata?: Json | null
+          source?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "beta_feature_signups_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "beta_feature_signups_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       board_activities: {
         Row: {
@@ -1618,6 +4445,73 @@ export type Database = {
           },
           {
             foreignKeyName: "board_assignments_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      board_auto_assign_config: {
+        Row: {
+          assignment_strategy: string
+          board_id: string
+          created_at: string | null
+          id: string
+          inherit_from_workspace: boolean | null
+          is_enabled: boolean | null
+          role_type: string | null
+          selected_agent_ids: string[] | null
+          skip_presence_check: boolean | null
+          specific_agent_id: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          assignment_strategy: string
+          board_id: string
+          created_at?: string | null
+          id?: string
+          inherit_from_workspace?: boolean | null
+          is_enabled?: boolean | null
+          role_type?: string | null
+          selected_agent_ids?: string[] | null
+          skip_presence_check?: boolean | null
+          specific_agent_id?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          assignment_strategy?: string
+          board_id?: string
+          created_at?: string | null
+          id?: string
+          inherit_from_workspace?: boolean | null
+          is_enabled?: boolean | null
+          role_type?: string | null
+          selected_agent_ids?: string[] | null
+          skip_presence_check?: boolean | null
+          specific_agent_id?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "board_auto_assign_config_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "livechat_board"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "board_auto_assign_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "board_auto_assign_config_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -1819,6 +4713,7 @@ export type Database = {
           created_at: string | null
           created_by: string | null
           description: string | null
+          display_order: number | null
           id: string
           is_demo: boolean | null
           name: string
@@ -1834,6 +4729,7 @@ export type Database = {
           created_at?: string | null
           created_by?: string | null
           description?: string | null
+          display_order?: number | null
           id?: string
           is_demo?: boolean | null
           name: string
@@ -1849,6 +4745,7 @@ export type Database = {
           created_at?: string | null
           created_by?: string | null
           description?: string | null
+          display_order?: number | null
           id?: string
           is_demo?: boolean | null
           name?: string
@@ -2526,45 +5423,114 @@ export type Database = {
       }
       call_logs: {
         Row: {
+          assistant_name: string | null
+          call_details: Json | null
           call_sid: string
+          call_summary: string | null
+          call_type: string | null
+          contact_id: string | null
+          conversation_transcript: Json | null
           created_at: string | null
+          customer_phone: string | null
           direction: string
           duration: number | null
+          end_time: string | null
+          ended_reason: string | null
+          event: string | null
           from_number: string | null
           id: string
+          metadata: Json | null
           recording_url: string | null
+          start_time: string | null
           status: string | null
+          structured_outputs: Json | null
           to_number: string | null
           updated_at: string | null
+          user_id: string | null
+          vapi_call_id: string | null
+          vapi_raw_payload: Json | null
           workspace_id: string | null
         }
         Insert: {
+          assistant_name?: string | null
+          call_details?: Json | null
           call_sid: string
+          call_summary?: string | null
+          call_type?: string | null
+          contact_id?: string | null
+          conversation_transcript?: Json | null
           created_at?: string | null
+          customer_phone?: string | null
           direction: string
           duration?: number | null
+          end_time?: string | null
+          ended_reason?: string | null
+          event?: string | null
           from_number?: string | null
           id?: string
+          metadata?: Json | null
           recording_url?: string | null
+          start_time?: string | null
           status?: string | null
+          structured_outputs?: Json | null
           to_number?: string | null
           updated_at?: string | null
+          user_id?: string | null
+          vapi_call_id?: string | null
+          vapi_raw_payload?: Json | null
           workspace_id?: string | null
         }
         Update: {
+          assistant_name?: string | null
+          call_details?: Json | null
           call_sid?: string
+          call_summary?: string | null
+          call_type?: string | null
+          contact_id?: string | null
+          conversation_transcript?: Json | null
           created_at?: string | null
+          customer_phone?: string | null
           direction?: string
           duration?: number | null
+          end_time?: string | null
+          ended_reason?: string | null
+          event?: string | null
           from_number?: string | null
           id?: string
+          metadata?: Json | null
           recording_url?: string | null
+          start_time?: string | null
           status?: string | null
+          structured_outputs?: Json | null
           to_number?: string | null
           updated_at?: string | null
+          user_id?: string | null
+          vapi_call_id?: string | null
+          vapi_raw_payload?: Json | null
           workspace_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "call_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "call_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "call_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
           {
             foreignKeyName: "call_logs_workspace_id_fkey"
             columns: ["workspace_id"]
@@ -2580,6 +5546,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      call_routing_rules: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          criteria: Json
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          priority: number
+          route_to_agent_ids: string[]
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          criteria?: Json
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          priority?: number
+          route_to_agent_ids: string[]
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          criteria?: Json
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          priority?: number
+          route_to_agent_ids?: string[]
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
       }
       campaign_contact_status: {
         Row: {
@@ -2989,47 +5997,42 @@ export type Database = {
       }
       campaign_responses: {
         Row: {
+          auto_stop_triggered: boolean | null
           campaign_id: string
           contact_id: string
+          execution_id: string | null
           id: string
           message_id: string
           response_text: string
           response_time: string | null
+          step_number: number | null
           workspace_id: string
         }
         Insert: {
+          auto_stop_triggered?: boolean | null
           campaign_id: string
           contact_id: string
+          execution_id?: string | null
           id?: string
           message_id: string
           response_text: string
           response_time?: string | null
+          step_number?: number | null
           workspace_id: string
         }
         Update: {
+          auto_stop_triggered?: boolean | null
           campaign_id?: string
           contact_id?: string
+          execution_id?: string | null
           id?: string
           message_id?: string
           response_text?: string
           response_time?: string | null
+          step_number?: number | null
           workspace_id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "fk_campaign"
-            columns: ["campaign_id", "workspace_id"]
-            isOneToOne: false
-            referencedRelation: "campaign_stats"
-            referencedColumns: ["id", "workspace_id"]
-          },
-          {
-            foreignKeyName: "fk_campaign"
-            columns: ["campaign_id", "workspace_id"]
-            isOneToOne: false
-            referencedRelation: "campaigns"
-            referencedColumns: ["id", "workspace_id"]
-          },
           {
             foreignKeyName: "fk_contact"
             columns: ["contact_id", "workspace_id"]
@@ -3052,10 +6055,17 @@ export type Database = {
             referencedColumns: ["contact_id", "workspace_id"]
           },
           {
-            foreignKeyName: "fk_message"
-            columns: ["message_id"]
+            foreignKeyName: "fk_execution_id"
+            columns: ["execution_id"]
             isOneToOne: false
-            referencedRelation: "campaign_nodes"
+            referencedRelation: "flow_sequence_executions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_flow_sequence"
+            columns: ["campaign_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
             referencedColumns: ["id"]
           },
         ]
@@ -3214,6 +6224,1705 @@ export type Database = {
           },
         ]
       }
+      cdo_agent_contact_engagement: {
+        Row: {
+          contact_id: string
+          first_msg_at: string | null
+          msg_count: number
+          refreshed_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          first_msg_at?: string | null
+          msg_count?: number
+          refreshed_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          first_msg_at?: string | null
+          msg_count?: number
+          refreshed_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_agent_msg_daily: {
+        Row: {
+          agent_messages: number
+          contacts_touched: number
+          day: string
+          refreshed_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_messages?: number
+          contacts_touched?: number
+          day: string
+          refreshed_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          agent_messages?: number
+          contacts_touched?: number
+          day?: string
+          refreshed_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_ai_assisted_appointments_daily: {
+        Row: {
+          ai_engaged: number
+          ai_involved: number
+          ai_started: number
+          ai_touched: number
+          computed_at: string
+          metric_date: string
+          total_appointments: number
+          workspace_id: string
+        }
+        Insert: {
+          ai_engaged?: number
+          ai_involved?: number
+          ai_started?: number
+          ai_touched?: number
+          computed_at?: string
+          metric_date: string
+          total_appointments?: number
+          workspace_id: string
+        }
+        Update: {
+          ai_engaged?: number
+          ai_involved?: number
+          ai_started?: number
+          ai_touched?: number
+          computed_at?: string
+          metric_date?: string
+          total_appointments?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_ai_followup_outcome: {
+        Row: {
+          computed_at: string
+          contact_id: string
+          has_future_appt: boolean
+          last_run_at: string | null
+          outcome: string
+          run_count: number
+          terminal_run_count: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          contact_id: string
+          has_future_appt?: boolean
+          last_run_at?: string | null
+          outcome: string
+          run_count?: number
+          terminal_run_count?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          contact_id?: string
+          has_future_appt?: boolean
+          last_run_at?: string | null
+          outcome?: string
+          run_count?: number
+          terminal_run_count?: number
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cdo_ai_followup_outcome_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "cdo_ai_followup_outcome_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cdo_ai_followup_outcome_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      cdo_ai_qualifying_funnel: {
+        Row: {
+          agent_config_id: string
+          contacts_answered: number
+          contacts_reached: number
+          field_key: string | null
+          question_id: string
+          question_order: number
+          question_text: string | null
+          refreshed_at: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id: string
+          contacts_answered?: number
+          contacts_reached?: number
+          field_key?: string | null
+          question_id: string
+          question_order: number
+          question_text?: string | null
+          refreshed_at?: string
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string
+          contacts_answered?: number
+          contacts_reached?: number
+          field_key?: string | null
+          question_id?: string
+          question_order?: number
+          question_text?: string | null
+          refreshed_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_appointment_attribution_facts: {
+        Row: {
+          appointment_id: string
+          attribution_id: string
+          attribution_kind: string
+          channel: string
+          computed_at: string
+          contact_id: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          appointment_id: string
+          attribution_id: string
+          attribution_kind: string
+          channel: string
+          computed_at?: string
+          contact_id: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          appointment_id?: string
+          attribution_id?: string
+          attribution_kind?: string
+          channel?: string
+          computed_at?: string
+          contact_id?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_chat_conversation_facts: {
+        Row: {
+          attribution_sequence_id: string | null
+          computed_at: string
+          contact_id: string
+          first_inbound_at: string | null
+          first_response_at: string | null
+          inbound_msg_count: number
+          is_closed: boolean
+          last_outbound_at: string | null
+          last_rep_user_id: string | null
+          lead_source: string | null
+          metric_date: string
+          outbound_rep_msg_count: number
+          workspace_id: string
+        }
+        Insert: {
+          attribution_sequence_id?: string | null
+          computed_at?: string
+          contact_id: string
+          first_inbound_at?: string | null
+          first_response_at?: string | null
+          inbound_msg_count?: number
+          is_closed?: boolean
+          last_outbound_at?: string | null
+          last_rep_user_id?: string | null
+          lead_source?: string | null
+          metric_date: string
+          outbound_rep_msg_count?: number
+          workspace_id: string
+        }
+        Update: {
+          attribution_sequence_id?: string | null
+          computed_at?: string
+          contact_id?: string
+          first_inbound_at?: string | null
+          first_response_at?: string | null
+          inbound_msg_count?: number
+          is_closed?: boolean
+          last_outbound_at?: string | null
+          last_rep_user_id?: string | null
+          lead_source?: string | null
+          metric_date?: string
+          outbound_rep_msg_count?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_contact_facts: {
+        Row: {
+          computed_at: string
+          contact_id: string
+          contact_lead_score: number | null
+          contact_lead_score_tier: string | null
+          email_validity: string
+          enhanced_credit_range: string | null
+          enhanced_credit_tier: string | null
+          lead_status: string
+          metric_date: string
+          phone_number: string | null
+          scrub_status: string
+          tier: string
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          contact_id: string
+          contact_lead_score?: number | null
+          contact_lead_score_tier?: string | null
+          email_validity: string
+          enhanced_credit_range?: string | null
+          enhanced_credit_tier?: string | null
+          lead_status?: string
+          metric_date: string
+          phone_number?: string | null
+          scrub_status: string
+          tier: string
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          contact_id?: string
+          contact_lead_score?: number | null
+          contact_lead_score_tier?: string | null
+          email_validity?: string
+          enhanced_credit_range?: string | null
+          enhanced_credit_tier?: string | null
+          lead_status?: string
+          metric_date?: string
+          phone_number?: string | null
+          scrub_status?: string
+          tier?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_contact_state_facts: {
+        Row: {
+          computed_at: string
+          contact_id: string
+          lead_status: string
+          opted_in_email: boolean | null
+          opted_in_sms: boolean | null
+          scrub_status: string
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          contact_id: string
+          lead_status?: string
+          opted_in_email?: boolean | null
+          opted_in_sms?: boolean | null
+          scrub_status?: string
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          contact_id?: string
+          lead_status?: string
+          opted_in_email?: boolean | null
+          opted_in_sms?: boolean | null
+          scrub_status?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_ai_activity: {
+        Row: {
+          ai_messages: number
+          computed_at: string
+          metric_date: string
+          unique_contacts: number
+          workspace_id: string
+        }
+        Insert: {
+          ai_messages?: number
+          computed_at?: string
+          metric_date: string
+          unique_contacts?: number
+          workspace_id: string
+        }
+        Update: {
+          ai_messages?: number
+          computed_at?: string
+          metric_date?: string
+          unique_contacts?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_appointment_attribution: {
+        Row: {
+          appointments_booked: number
+          attribution_id: string
+          attribution_kind: string
+          computed_at: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          appointments_booked?: number
+          attribution_id: string
+          attribution_kind: string
+          computed_at?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          appointments_booked?: number
+          attribution_id?: string
+          attribution_kind?: string
+          computed_at?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_contact_sources: {
+        Row: {
+          computed_at: string
+          contacts: number
+          lead_source: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          contacts?: number
+          lead_source: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          contacts?: number
+          lead_source?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_inbound_outbound: {
+        Row: {
+          computed_at: string
+          email_in: number
+          email_out: number
+          metric_date: string
+          sms_in: number
+          sms_out: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          email_in?: number
+          email_out?: number
+          metric_date: string
+          sms_in?: number
+          sms_out?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          email_in?: number
+          email_out?: number
+          metric_date?: string
+          sms_in?: number
+          sms_out?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_lead_attribution: {
+        Row: {
+          attribution_id: string
+          attribution_kind: string
+          computed_at: string
+          metric_date: string
+          new_leads: number
+          workspace_id: string
+        }
+        Insert: {
+          attribution_id: string
+          attribution_kind: string
+          computed_at?: string
+          metric_date: string
+          new_leads?: number
+          workspace_id: string
+        }
+        Update: {
+          attribution_id?: string
+          attribution_kind?: string
+          computed_at?: string
+          metric_date?: string
+          new_leads?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_new_contacts: {
+        Row: {
+          computed_at: string
+          metric_date: string
+          new_contacts: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          metric_date: string
+          new_contacts?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          metric_date?: string
+          new_contacts?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_team_activity: {
+        Row: {
+          activity_count: number
+          computed_at: string
+          metric_date: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          activity_count?: number
+          computed_at?: string
+          metric_date: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          activity_count?: number
+          computed_at?: string
+          metric_date?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_daily_workspace_activity: {
+        Row: {
+          activity_count: number
+          activity_type: string
+          computed_at: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          activity_count?: number
+          activity_type: string
+          computed_at?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          activity_count?: number
+          activity_type?: string
+          computed_at?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_duplicate_lead_arrival_pairs: {
+        Row: {
+          affected_contacts: number
+          computed_at: string
+          duplicate_events: number
+          duplicate_source: string
+          match_type: string
+          metric_date: string
+          original_source: string
+          workspace_id: string
+        }
+        Insert: {
+          affected_contacts?: number
+          computed_at?: string
+          duplicate_events?: number
+          duplicate_source: string
+          match_type: string
+          metric_date: string
+          original_source: string
+          workspace_id: string
+        }
+        Update: {
+          affected_contacts?: number
+          computed_at?: string
+          duplicate_events?: number
+          duplicate_source?: string
+          match_type?: string
+          metric_date?: string
+          original_source?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_duplicate_lead_arrival_summary_daily: {
+        Row: {
+          computed_at: string
+          crm_id_duplicates: number
+          cross_source_duplicates: number
+          duplicate_lead_arrivals: number
+          eligible_lead_arrivals: number
+          metric_date: string
+          new_lead_arrivals: number
+          phone_duplicates: number
+          same_source_duplicates: number
+          total_lead_arrivals: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          crm_id_duplicates?: number
+          cross_source_duplicates?: number
+          duplicate_lead_arrivals?: number
+          eligible_lead_arrivals?: number
+          metric_date: string
+          new_lead_arrivals?: number
+          phone_duplicates?: number
+          same_source_duplicates?: number
+          total_lead_arrivals?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          crm_id_duplicates?: number
+          cross_source_duplicates?: number
+          duplicate_lead_arrivals?: number
+          eligible_lead_arrivals?: number
+          metric_date?: string
+          new_lead_arrivals?: number
+          phone_duplicates?: number
+          same_source_duplicates?: number
+          total_lead_arrivals?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_email_engagement_facts: {
+        Row: {
+          bounced: boolean
+          clicked: boolean
+          computed_at: string
+          contact_id: string
+          delivered: boolean
+          email_unsubscribed: boolean
+          emailed: boolean
+          metric_date: string
+          opened: boolean
+          replied: boolean
+          workspace_id: string
+        }
+        Insert: {
+          bounced?: boolean
+          clicked?: boolean
+          computed_at?: string
+          contact_id: string
+          delivered?: boolean
+          email_unsubscribed?: boolean
+          emailed?: boolean
+          metric_date: string
+          opened?: boolean
+          replied?: boolean
+          workspace_id: string
+        }
+        Update: {
+          bounced?: boolean
+          clicked?: boolean
+          computed_at?: string
+          contact_id?: string
+          delivered?: boolean
+          email_unsubscribed?: boolean
+          emailed?: boolean
+          metric_date?: string
+          opened?: boolean
+          replied?: boolean
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_engagement_hourly: {
+        Row: {
+          computed_at: string
+          email_clicks: number
+          email_opens: number
+          hour: number
+          metric_date: string
+          sms_clicks: number
+          sms_replies: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          email_clicks?: number
+          email_opens?: number
+          hour: number
+          metric_date: string
+          sms_clicks?: number
+          sms_replies?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          email_clicks?: number
+          email_opens?: number
+          hour?: number
+          metric_date?: string
+          sms_clicks?: number
+          sms_replies?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_flow_execution_steps_age_daily: {
+        Row: {
+          computed_at: string
+          metric_date: string
+          step_count: number
+          step_status: string
+        }
+        Insert: {
+          computed_at?: string
+          metric_date: string
+          step_count?: number
+          step_status: string
+        }
+        Update: {
+          computed_at?: string
+          metric_date?: string
+          step_count?: number
+          step_status?: string
+        }
+        Relationships: []
+      }
+      cdo_intent_message_facts: {
+        Row: {
+          ai_logged_at: string | null
+          computed_at: string
+          contact_id: string | null
+          intent_bucket: string
+          intent_source: string
+          keywords: string[]
+          livechat_message_id: string
+          metric_date: string
+          msg_type: string
+          raw_intent: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_logged_at?: string | null
+          computed_at?: string
+          contact_id?: string | null
+          intent_bucket: string
+          intent_source: string
+          keywords?: string[]
+          livechat_message_id: string
+          metric_date: string
+          msg_type: string
+          raw_intent?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_logged_at?: string | null
+          computed_at?: string
+          contact_id?: string | null
+          intent_bucket?: string
+          intent_source?: string
+          keywords?: string[]
+          livechat_message_id?: string
+          metric_date?: string
+          msg_type?: string
+          raw_intent?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_lead_score_signal_source_facts: {
+        Row: {
+          computed_at: string
+          email_open_events: number
+          email_open_points: number
+          inbound_email_events: number
+          inbound_email_points: number
+          inbound_sms_events: number
+          inbound_sms_points: number
+          lead_source: string
+          metric_date: string
+          scheduler_link_click_events: number
+          scheduler_link_click_points: number
+          total_events: number
+          total_points: number
+          tracked_link_click_events: number
+          tracked_link_click_points: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          email_open_events?: number
+          email_open_points?: number
+          inbound_email_events?: number
+          inbound_email_points?: number
+          inbound_sms_events?: number
+          inbound_sms_points?: number
+          lead_source: string
+          metric_date: string
+          scheduler_link_click_events?: number
+          scheduler_link_click_points?: number
+          total_events?: number
+          total_points?: number
+          tracked_link_click_events?: number
+          tracked_link_click_points?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          email_open_events?: number
+          email_open_points?: number
+          inbound_email_events?: number
+          inbound_email_points?: number
+          inbound_sms_events?: number
+          inbound_sms_points?: number
+          lead_source?: string
+          metric_date?: string
+          scheduler_link_click_events?: number
+          scheduler_link_click_points?: number
+          total_events?: number
+          total_points?: number
+          tracked_link_click_events?: number
+          tracked_link_click_points?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_sms_engagement_facts: {
+        Row: {
+          clicked: boolean
+          computed_at: string
+          contact_id: string
+          delivered: boolean
+          metric_date: string
+          replied: boolean
+          sent: boolean
+          sms_optout: boolean
+          workspace_id: string
+        }
+        Insert: {
+          clicked?: boolean
+          computed_at?: string
+          contact_id: string
+          delivered?: boolean
+          metric_date: string
+          replied?: boolean
+          sent?: boolean
+          sms_optout?: boolean
+          workspace_id: string
+        }
+        Update: {
+          clicked?: boolean
+          computed_at?: string
+          contact_id?: string
+          delivered?: boolean
+          metric_date?: string
+          replied?: boolean
+          sent?: boolean
+          sms_optout?: boolean
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_sms_failure_by_code_daily_facts: {
+        Row: {
+          computed_at: string
+          error_code: string
+          failed_count: number
+          metric_date: string
+          total_count: number
+          undelivered_count: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          error_code: string
+          failed_count?: number
+          metric_date: string
+          total_count?: number
+          undelivered_count?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          error_code?: string
+          failed_count?: number
+          metric_date?: string
+          total_count?: number
+          undelivered_count?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_sms_failure_daily_facts: {
+        Row: {
+          computed_at: string
+          failed_count: number
+          metric_date: string
+          total_outbound: number
+          undelivered_count: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          failed_count?: number
+          metric_date: string
+          total_outbound?: number
+          undelivered_count?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          failed_count?: number
+          metric_date?: string
+          total_outbound?: number
+          undelivered_count?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_sms_first_response_hourly_facts: {
+        Row: {
+          answered_sessions: number
+          computed_at: string
+          hour_of_day: number
+          metric_date: string
+          sum_response_seconds: number
+          unanswered_sessions: number
+          workspace_id: string
+        }
+        Insert: {
+          answered_sessions?: number
+          computed_at?: string
+          hour_of_day: number
+          metric_date: string
+          sum_response_seconds?: number
+          unanswered_sessions?: number
+          workspace_id: string
+        }
+        Update: {
+          answered_sessions?: number
+          computed_at?: string
+          hour_of_day?: number
+          metric_date?: string
+          sum_response_seconds?: number
+          unanswered_sessions?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_sms_session_hourly_facts: {
+        Row: {
+          computed_at: string
+          hour_of_day: number
+          inbound_msgs: number
+          metric_date: string
+          session_count: number
+          workspace_id: string
+        }
+        Insert: {
+          computed_at?: string
+          hour_of_day: number
+          inbound_msgs?: number
+          metric_date: string
+          session_count?: number
+          workspace_id: string
+        }
+        Update: {
+          computed_at?: string
+          hour_of_day?: number
+          inbound_msgs?: number
+          metric_date?: string
+          session_count?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_touchpoint_facts: {
+        Row: {
+          channel: string
+          clicked: boolean
+          computed_at: string
+          contact_id: string
+          delivered: boolean
+          metric_date: string
+          opened: boolean
+          optout: boolean
+          replied: boolean
+          sent: boolean
+          sequence_id: string | null
+          step_id: string
+          step_name: string | null
+          step_order: number | null
+          workspace_id: string
+        }
+        Insert: {
+          channel: string
+          clicked?: boolean
+          computed_at?: string
+          contact_id: string
+          delivered?: boolean
+          metric_date: string
+          opened?: boolean
+          optout?: boolean
+          replied?: boolean
+          sent?: boolean
+          sequence_id?: string | null
+          step_id: string
+          step_name?: string | null
+          step_order?: number | null
+          workspace_id: string
+        }
+        Update: {
+          channel?: string
+          clicked?: boolean
+          computed_at?: string
+          contact_id?: string
+          delivered?: boolean
+          metric_date?: string
+          opened?: boolean
+          optout?: boolean
+          replied?: boolean
+          sent?: boolean
+          sequence_id?: string | null
+          step_id?: string
+          step_name?: string | null
+          step_order?: number | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_touchpoint_step_daily: {
+        Row: {
+          channel: string
+          computed_at: string
+          metric_date: string
+          step_id: string
+          step_name: string | null
+          step_order: number | null
+          unique_clicked: number
+          unique_delivered: number
+          unique_opened: number
+          unique_optout: number
+          unique_replied: number
+          unique_sent: number
+          workspace_id: string
+        }
+        Insert: {
+          channel: string
+          computed_at?: string
+          metric_date: string
+          step_id: string
+          step_name?: string | null
+          step_order?: number | null
+          unique_clicked?: number
+          unique_delivered?: number
+          unique_opened?: number
+          unique_optout?: number
+          unique_replied?: number
+          unique_sent?: number
+          workspace_id: string
+        }
+        Update: {
+          channel?: string
+          computed_at?: string
+          metric_date?: string
+          step_id?: string
+          step_name?: string | null
+          step_order?: number | null
+          unique_clicked?: number
+          unique_delivered?: number
+          unique_opened?: number
+          unique_optout?: number
+          unique_replied?: number
+          unique_sent?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_ai_booking_funnel_facts: {
+        Row: {
+          appointment_attribution_source: string | null
+          appointment_booking_channel: string | null
+          appointment_created_at: string | null
+          appointment_date: string | null
+          appointment_id: string | null
+          booking_link_clicks: number
+          booking_link_id: string | null
+          booking_link_short_url: string | null
+          booking_sms_livechat_message_id: string | null
+          booking_sms_sent_at: string
+          booking_sms_status: string | null
+          computed_at: string
+          contact_id: string
+          contact_name: string | null
+          execution_id: string
+          existing_appointment_created_at: string | null
+          existing_appointment_date: string | null
+          existing_appointment_id: string | null
+          first_booking_link_clicked_at: string | null
+          in_salesforce: boolean
+          last_booking_link_clicked_at: string | null
+          message_job_id: string
+          metric_date: string
+          needs_salesforce_entry: boolean
+          normalized_phone: string | null
+          salesforce_appointment_created: string | null
+          salesforce_appointment_id: string | null
+          salesforce_appointment_status: string | null
+          salesforce_contact_id: string | null
+          sequence_id: string
+          workspace_id: string
+        }
+        Insert: {
+          appointment_attribution_source?: string | null
+          appointment_booking_channel?: string | null
+          appointment_created_at?: string | null
+          appointment_date?: string | null
+          appointment_id?: string | null
+          booking_link_clicks?: number
+          booking_link_id?: string | null
+          booking_link_short_url?: string | null
+          booking_sms_livechat_message_id?: string | null
+          booking_sms_sent_at: string
+          booking_sms_status?: string | null
+          computed_at?: string
+          contact_id: string
+          contact_name?: string | null
+          execution_id: string
+          existing_appointment_created_at?: string | null
+          existing_appointment_date?: string | null
+          existing_appointment_id?: string | null
+          first_booking_link_clicked_at?: string | null
+          in_salesforce?: boolean
+          last_booking_link_clicked_at?: string | null
+          message_job_id: string
+          metric_date: string
+          needs_salesforce_entry?: boolean
+          normalized_phone?: string | null
+          salesforce_appointment_created?: string | null
+          salesforce_appointment_id?: string | null
+          salesforce_appointment_status?: string | null
+          salesforce_contact_id?: string | null
+          sequence_id: string
+          workspace_id: string
+        }
+        Update: {
+          appointment_attribution_source?: string | null
+          appointment_booking_channel?: string | null
+          appointment_created_at?: string | null
+          appointment_date?: string | null
+          appointment_id?: string | null
+          booking_link_clicks?: number
+          booking_link_id?: string | null
+          booking_link_short_url?: string | null
+          booking_sms_livechat_message_id?: string | null
+          booking_sms_sent_at?: string
+          booking_sms_status?: string | null
+          computed_at?: string
+          contact_id?: string
+          contact_name?: string | null
+          execution_id?: string
+          existing_appointment_created_at?: string | null
+          existing_appointment_date?: string | null
+          existing_appointment_id?: string | null
+          first_booking_link_clicked_at?: string | null
+          in_salesforce?: boolean
+          last_booking_link_clicked_at?: string | null
+          message_job_id?: string
+          metric_date?: string
+          needs_salesforce_entry?: boolean
+          normalized_phone?: string | null
+          salesforce_appointment_created?: string | null
+          salesforce_appointment_id?: string | null
+          salesforce_appointment_status?: string | null
+          salesforce_contact_id?: string | null
+          sequence_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_call_reason_daily_facts: {
+        Row: {
+          call_reason: string
+          calls: number
+          computed_at: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          call_reason?: string
+          calls?: number
+          computed_at?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          call_reason?: string
+          calls?: number
+          computed_at?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_call_summary_daily_facts: {
+        Row: {
+          answered_calls: number
+          avg_duration_seconds: number | null
+          computed_at: string
+          conversion_pct: number | null
+          cost_total_cents: number
+          direction: string
+          dnc_calls: number
+          metric_date: string
+          missed_calls: number
+          set_appointments: number
+          tokens_completion: number
+          tokens_prompt: number
+          tokens_total: number
+          total_calls: number
+          total_duration_seconds: number
+          unverified_calls: number
+          vapi_assistant_id: string
+          verified_calls: number
+          voicemail_calls: number
+          workspace_id: string
+        }
+        Insert: {
+          answered_calls?: number
+          avg_duration_seconds?: number | null
+          computed_at?: string
+          conversion_pct?: number | null
+          cost_total_cents?: number
+          direction?: string
+          dnc_calls?: number
+          metric_date: string
+          missed_calls?: number
+          set_appointments?: number
+          tokens_completion?: number
+          tokens_prompt?: number
+          tokens_total?: number
+          total_calls?: number
+          total_duration_seconds?: number
+          unverified_calls?: number
+          vapi_assistant_id?: string
+          verified_calls?: number
+          voicemail_calls?: number
+          workspace_id: string
+        }
+        Update: {
+          answered_calls?: number
+          avg_duration_seconds?: number | null
+          computed_at?: string
+          conversion_pct?: number | null
+          cost_total_cents?: number
+          direction?: string
+          dnc_calls?: number
+          metric_date?: string
+          missed_calls?: number
+          set_appointments?: number
+          tokens_completion?: number
+          tokens_prompt?: number
+          tokens_total?: number
+          total_calls?: number
+          total_duration_seconds?: number
+          unverified_calls?: number
+          vapi_assistant_id?: string
+          verified_calls?: number
+          voicemail_calls?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_carrier_lti_daily_facts: {
+        Row: {
+          answered_calls: number
+          calls: number
+          carrier_name: string
+          computed_at: string
+          direction: string
+          dnc_calls: number
+          line_type: string
+          metric_date: string
+          set_appointments: number
+          total_duration_seconds: number
+          workspace_id: string
+        }
+        Insert: {
+          answered_calls?: number
+          calls?: number
+          carrier_name?: string
+          computed_at?: string
+          direction?: string
+          dnc_calls?: number
+          line_type?: string
+          metric_date: string
+          set_appointments?: number
+          total_duration_seconds?: number
+          workspace_id: string
+        }
+        Update: {
+          answered_calls?: number
+          calls?: number
+          carrier_name?: string
+          computed_at?: string
+          direction?: string
+          dnc_calls?: number
+          line_type?: string
+          metric_date?: string
+          set_appointments?: number
+          total_duration_seconds?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_concurrency_hourly_facts: {
+        Row: {
+          calls_started: number
+          carrier_name: string
+          computed_at: string
+          direction: string
+          hour_utc: number
+          metric_date: string
+          total_duration_seconds: number
+          workspace_id: string
+        }
+        Insert: {
+          calls_started?: number
+          carrier_name?: string
+          computed_at?: string
+          direction?: string
+          hour_utc: number
+          metric_date: string
+          total_duration_seconds?: number
+          workspace_id: string
+        }
+        Update: {
+          calls_started?: number
+          carrier_name?: string
+          computed_at?: string
+          direction?: string
+          hour_utc?: number
+          metric_date?: string
+          total_duration_seconds?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_direction_daily_facts: {
+        Row: {
+          calls: number
+          computed_at: string
+          direction: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          calls?: number
+          computed_at?: string
+          direction?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          calls?: number
+          computed_at?: string
+          direction?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_disposition_daily_facts: {
+        Row: {
+          calls: number
+          computed_at: string
+          direction: string
+          ended_reason: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          calls?: number
+          computed_at?: string
+          direction?: string
+          ended_reason?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          calls?: number
+          computed_at?: string
+          direction?: string
+          ended_reason?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_dow_hour_facts: {
+        Row: {
+          answered_calls: number
+          created_at: string
+          direction: string
+          hour_utc: number
+          metric_date: string
+          total_calls: number
+          workspace_id: string
+        }
+        Insert: {
+          answered_calls?: number
+          created_at?: string
+          direction?: string
+          hour_utc: number
+          metric_date: string
+          total_calls?: number
+          workspace_id: string
+        }
+        Update: {
+          answered_calls?: number
+          created_at?: string
+          direction?: string
+          hour_utc?: number
+          metric_date?: string
+          total_calls?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_funnel_appointment_status_daily_facts: {
+        Row: {
+          appointments: number
+          created_at: string
+          metric_date: string
+          status_bucket: string
+          workspace_id: string
+        }
+        Insert: {
+          appointments?: number
+          created_at?: string
+          metric_date: string
+          status_bucket: string
+          workspace_id: string
+        }
+        Update: {
+          appointments?: number
+          created_at?: string
+          metric_date?: string
+          status_bucket?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_intent_daily_facts: {
+        Row: {
+          calls: number
+          computed_at: string
+          intent_value: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          calls?: number
+          computed_at?: string
+          intent_value?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          calls?: number
+          computed_at?: string
+          intent_value?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_llm_usage_daily_facts: {
+        Row: {
+          calls: number
+          computed_at: string
+          cost_total_cents: number
+          llm_model: string
+          llm_provider: string
+          metric_date: string
+          tokens_completion: number
+          tokens_prompt: number
+          tokens_total: number
+          workspace_id: string
+        }
+        Insert: {
+          calls?: number
+          computed_at?: string
+          cost_total_cents?: number
+          llm_model?: string
+          llm_provider?: string
+          metric_date: string
+          tokens_completion?: number
+          tokens_prompt?: number
+          tokens_total?: number
+          workspace_id: string
+        }
+        Update: {
+          calls?: number
+          computed_at?: string
+          cost_total_cents?: number
+          llm_model?: string
+          llm_provider?: string
+          metric_date?: string
+          tokens_completion?: number
+          tokens_prompt?: number
+          tokens_total?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_number_health_daily_facts: {
+        Row: {
+          answer_rate_pct: number | null
+          answered_calls: number
+          computed_at: string
+          metric_date: string
+          missed_calls: number
+          total_calls: number
+          total_duration_seconds: number
+          twilio_phone_number: string
+          voicemail_calls: number
+          workspace_id: string
+        }
+        Insert: {
+          answer_rate_pct?: number | null
+          answered_calls?: number
+          computed_at?: string
+          metric_date: string
+          missed_calls?: number
+          total_calls?: number
+          total_duration_seconds?: number
+          twilio_phone_number?: string
+          voicemail_calls?: number
+          workspace_id: string
+        }
+        Update: {
+          answer_rate_pct?: number | null
+          answered_calls?: number
+          computed_at?: string
+          metric_date?: string
+          missed_calls?: number
+          total_calls?: number
+          total_duration_seconds?: number
+          twilio_phone_number?: string
+          voicemail_calls?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_prospect_customer_daily_facts: {
+        Row: {
+          bucket: string
+          calls: number
+          computed_at: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          bucket?: string
+          calls?: number
+          computed_at?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          bucket?: string
+          calls?: number
+          computed_at?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_reason_direction_daily_facts: {
+        Row: {
+          call_reason: string
+          calls: number
+          computed_at: string
+          direction: string
+          metric_date: string
+          workspace_id: string
+        }
+        Insert: {
+          call_reason?: string
+          calls?: number
+          computed_at?: string
+          direction?: string
+          metric_date: string
+          workspace_id: string
+        }
+        Update: {
+          call_reason?: string
+          calls?: number
+          computed_at?: string
+          direction?: string
+          metric_date?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_voice_transcript_summary_daily_facts: {
+        Row: {
+          assistant_chars: number
+          computed_at: string
+          direction: string
+          metric_date: string
+          set_appointments_count: number
+          total_calls: number
+          total_chars: number
+          total_turns: number
+          user_chars: number
+          workspace_id: string
+        }
+        Insert: {
+          assistant_chars?: number
+          computed_at?: string
+          direction: string
+          metric_date: string
+          set_appointments_count?: number
+          total_calls?: number
+          total_chars?: number
+          total_turns?: number
+          user_chars?: number
+          workspace_id: string
+        }
+        Update: {
+          assistant_chars?: number
+          computed_at?: string
+          direction?: string
+          metric_date?: string
+          set_appointments_count?: number
+          total_calls?: number
+          total_chars?: number
+          total_turns?: number
+          user_chars?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_workspace_health_daily: {
+        Row: {
+          archetype: string | null
+          computed_at: string
+          days_dark: number | null
+          health: number | null
+          metric_date: string
+          name: string | null
+          reasons: string[] | null
+          signals: Json | null
+          tier: string | null
+          workspace_id: string
+        }
+        Insert: {
+          archetype?: string | null
+          computed_at?: string
+          days_dark?: number | null
+          health?: number | null
+          metric_date: string
+          name?: string | null
+          reasons?: string[] | null
+          signals?: Json | null
+          tier?: string | null
+          workspace_id: string
+        }
+        Update: {
+          archetype?: string | null
+          computed_at?: string
+          days_dark?: number | null
+          health?: number | null
+          metric_date?: string
+          name?: string | null
+          reasons?: string[] | null
+          signals?: Json | null
+          tier?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      cdo_workspace_msg_daily: {
+        Row: {
+          agent_contacts_touched: number
+          agent_outbound: number
+          automated_outbound: number
+          day: string
+          inbound_messages: number
+          refreshed_at: string
+          total_messages: number
+          workspace_id: string
+        }
+        Insert: {
+          agent_contacts_touched?: number
+          agent_outbound?: number
+          automated_outbound?: number
+          day: string
+          inbound_messages?: number
+          refreshed_at?: string
+          total_messages?: number
+          workspace_id: string
+        }
+        Update: {
+          agent_contacts_touched?: number
+          agent_outbound?: number
+          automated_outbound?: number
+          day?: string
+          inbound_messages?: number
+          refreshed_at?: string
+          total_messages?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       changelog: {
         Row: {
           category: string
@@ -3252,6 +7961,128 @@ export type Database = {
           title?: string
         }
         Relationships: []
+      }
+      click_to_text_clicks: {
+        Row: {
+          browser: string | null
+          city: string | null
+          clicked_at: string | null
+          country_code: string | null
+          device_type: string | null
+          id: string
+          ip_address: unknown
+          link_id: string
+          metadata: Json | null
+          os: string | null
+          referrer: string | null
+          user_agent: string | null
+          workspace_id: string
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          clicked_at?: string | null
+          country_code?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown
+          link_id: string
+          metadata?: Json | null
+          os?: string | null
+          referrer?: string | null
+          user_agent?: string | null
+          workspace_id: string
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          clicked_at?: string | null
+          country_code?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown
+          link_id?: string
+          metadata?: Json | null
+          os?: string | null
+          referrer?: string | null
+          user_agent?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "click_to_text_clicks_link_id_fkey"
+            columns: ["link_id"]
+            isOneToOne: false
+            referencedRelation: "click_to_text_links"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      click_to_text_links: {
+        Row: {
+          click_count: number | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          last_clicked_at: string | null
+          name: string
+          phone_number: string
+          prefilled_message: string
+          short_code: string
+          short_url: string
+          sms_url: string
+          source_tag: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          click_count?: number | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          last_clicked_at?: string | null
+          name: string
+          phone_number: string
+          prefilled_message: string
+          short_code: string
+          short_url: string
+          sms_url: string
+          source_tag?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          click_count?: number | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          last_clicked_at?: string | null
+          name?: string
+          phone_number?: string
+          prefilled_message?: string
+          short_code?: string
+          short_url?: string
+          sms_url?: string
+          source_tag?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "click_to_text_links_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "click_to_text_links_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       cloudflare_api_logs: {
         Row: {
@@ -3357,6 +8188,538 @@ export type Database = {
           },
         ]
       }
+      connector_executions: {
+        Row: {
+          completed_at: string | null
+          connector_id: string
+          contact_id: string | null
+          created_at: string | null
+          current_step: string | null
+          error_message: string | null
+          execution_time_ms: number | null
+          flow_run_id: string | null
+          id: string
+          input_data: Json | null
+          output_data: Json | null
+          started_at: string | null
+          status: string
+          steps_executed: Json | null
+          trigger_run_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          connector_id: string
+          contact_id?: string | null
+          created_at?: string | null
+          current_step?: string | null
+          error_message?: string | null
+          execution_time_ms?: number | null
+          flow_run_id?: string | null
+          id?: string
+          input_data?: Json | null
+          output_data?: Json | null
+          started_at?: string | null
+          status?: string
+          steps_executed?: Json | null
+          trigger_run_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          connector_id?: string
+          contact_id?: string | null
+          created_at?: string | null
+          current_step?: string | null
+          error_message?: string | null
+          execution_time_ms?: number | null
+          flow_run_id?: string | null
+          id?: string
+          input_data?: Json | null
+          output_data?: Json | null
+          started_at?: string | null
+          status?: string
+          steps_executed?: Json | null
+          trigger_run_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "connector_executions_connector_id_fkey"
+            columns: ["connector_id"]
+            isOneToOne: false
+            referencedRelation: "connectors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "connector_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "connector_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "connector_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "connector_executions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "connector_executions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      connector_purchases: {
+        Row: {
+          amount_paid: number | null
+          connector_template_id: string
+          created_at: string | null
+          currency: string | null
+          developer_share: number | null
+          id: string
+          installed_at: string | null
+          is_installed: boolean | null
+          payment_status: string | null
+          platform_share: number | null
+          purchase_type: string
+          purchased_by: string
+          stripe_payment_intent_id: string | null
+          stripe_subscription_id: string | null
+          subscription_current_period_end: string | null
+          subscription_current_period_start: string | null
+          subscription_status: string | null
+          uninstalled_at: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          amount_paid?: number | null
+          connector_template_id: string
+          created_at?: string | null
+          currency?: string | null
+          developer_share?: number | null
+          id?: string
+          installed_at?: string | null
+          is_installed?: boolean | null
+          payment_status?: string | null
+          platform_share?: number | null
+          purchase_type: string
+          purchased_by: string
+          stripe_payment_intent_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_current_period_end?: string | null
+          subscription_current_period_start?: string | null
+          subscription_status?: string | null
+          uninstalled_at?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          amount_paid?: number | null
+          connector_template_id?: string
+          created_at?: string | null
+          currency?: string | null
+          developer_share?: number | null
+          id?: string
+          installed_at?: string | null
+          is_installed?: boolean | null
+          payment_status?: string | null
+          platform_share?: number | null
+          purchase_type?: string
+          purchased_by?: string
+          stripe_payment_intent_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_current_period_end?: string | null
+          subscription_current_period_start?: string | null
+          subscription_status?: string | null
+          uninstalled_at?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "connector_purchases_connector_template_id_fkey"
+            columns: ["connector_template_id"]
+            isOneToOne: false
+            referencedRelation: "connector_templates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "connector_purchases_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "connector_purchases_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      connector_templates: {
+        Row: {
+          base_price: number | null
+          category: string | null
+          config: Json
+          continue_on_error: boolean | null
+          created_at: string | null
+          description: string | null
+          developer_revenue: number | null
+          developer_workspace_id: string | null
+          field_mappings: Json | null
+          icon: string | null
+          id: string
+          input_schema: Json | null
+          install_count: number | null
+          installed_from_marketplace_id: string | null
+          is_featured: boolean | null
+          is_official: boolean | null
+          is_public: boolean | null
+          marketplace_status: string | null
+          max_retries: number | null
+          name: string
+          platform_revenue: number | null
+          pricing_type: string | null
+          published_by: string | null
+          rating: number | null
+          rating_count: number | null
+          rejection_reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          stripe_price_id: string | null
+          stripe_product_id: string | null
+          submitted_for_review_at: string | null
+          subscription_interval: string | null
+          tags: string[] | null
+          timeout_ms: number | null
+          total_revenue: number | null
+          type: string | null
+          updated_at: string | null
+          usage_count: number | null
+          workspace_id: string | null
+        }
+        Insert: {
+          base_price?: number | null
+          category?: string | null
+          config?: Json
+          continue_on_error?: boolean | null
+          created_at?: string | null
+          description?: string | null
+          developer_revenue?: number | null
+          developer_workspace_id?: string | null
+          field_mappings?: Json | null
+          icon?: string | null
+          id?: string
+          input_schema?: Json | null
+          install_count?: number | null
+          installed_from_marketplace_id?: string | null
+          is_featured?: boolean | null
+          is_official?: boolean | null
+          is_public?: boolean | null
+          marketplace_status?: string | null
+          max_retries?: number | null
+          name: string
+          platform_revenue?: number | null
+          pricing_type?: string | null
+          published_by?: string | null
+          rating?: number | null
+          rating_count?: number | null
+          rejection_reason?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          stripe_price_id?: string | null
+          stripe_product_id?: string | null
+          submitted_for_review_at?: string | null
+          subscription_interval?: string | null
+          tags?: string[] | null
+          timeout_ms?: number | null
+          total_revenue?: number | null
+          type?: string | null
+          updated_at?: string | null
+          usage_count?: number | null
+          workspace_id?: string | null
+        }
+        Update: {
+          base_price?: number | null
+          category?: string | null
+          config?: Json
+          continue_on_error?: boolean | null
+          created_at?: string | null
+          description?: string | null
+          developer_revenue?: number | null
+          developer_workspace_id?: string | null
+          field_mappings?: Json | null
+          icon?: string | null
+          id?: string
+          input_schema?: Json | null
+          install_count?: number | null
+          installed_from_marketplace_id?: string | null
+          is_featured?: boolean | null
+          is_official?: boolean | null
+          is_public?: boolean | null
+          marketplace_status?: string | null
+          max_retries?: number | null
+          name?: string
+          platform_revenue?: number | null
+          pricing_type?: string | null
+          published_by?: string | null
+          rating?: number | null
+          rating_count?: number | null
+          rejection_reason?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          stripe_price_id?: string | null
+          stripe_product_id?: string | null
+          submitted_for_review_at?: string | null
+          subscription_interval?: string | null
+          tags?: string[] | null
+          timeout_ms?: number | null
+          total_revenue?: number | null
+          type?: string | null
+          updated_at?: string | null
+          usage_count?: number | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "connector_templates_developer_workspace_id_fkey"
+            columns: ["developer_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "connector_templates_developer_workspace_id_fkey"
+            columns: ["developer_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "connector_templates_installed_from_marketplace_id_fkey"
+            columns: ["installed_from_marketplace_id"]
+            isOneToOne: false
+            referencedRelation: "connector_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      connectors: {
+        Row: {
+          category: string | null
+          config: Json
+          continue_on_error: boolean | null
+          created_at: string | null
+          created_by: string | null
+          created_from_template: string | null
+          description: string | null
+          enabled: boolean | null
+          failed_executions: number | null
+          field_mappings: Json | null
+          icon: string | null
+          id: string
+          input_schema: Json | null
+          last_executed_at: string | null
+          max_retries: number | null
+          name: string
+          successful_executions: number | null
+          timeout_ms: number | null
+          total_executions: number | null
+          type: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          category?: string | null
+          config?: Json
+          continue_on_error?: boolean | null
+          created_at?: string | null
+          created_by?: string | null
+          created_from_template?: string | null
+          description?: string | null
+          enabled?: boolean | null
+          failed_executions?: number | null
+          field_mappings?: Json | null
+          icon?: string | null
+          id?: string
+          input_schema?: Json | null
+          last_executed_at?: string | null
+          max_retries?: number | null
+          name: string
+          successful_executions?: number | null
+          timeout_ms?: number | null
+          total_executions?: number | null
+          type?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          category?: string | null
+          config?: Json
+          continue_on_error?: boolean | null
+          created_at?: string | null
+          created_by?: string | null
+          created_from_template?: string | null
+          description?: string | null
+          enabled?: boolean | null
+          failed_executions?: number | null
+          field_mappings?: Json | null
+          icon?: string | null
+          id?: string
+          input_schema?: Json | null
+          last_executed_at?: string | null
+          max_retries?: number | null
+          name?: string
+          successful_executions?: number | null
+          timeout_ms?: number | null
+          total_executions?: number | null
+          type?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "connectors_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "connectors_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contact_ai_settings: {
+        Row: {
+          agent_config_id: string | null
+          campaign_node_id: string | null
+          contact_id: string
+          cooldown_minutes: number | null
+          created_at: string | null
+          disabled_at: string | null
+          disabled_reason: string | null
+          enabled_at: string | null
+          enabled_via: string | null
+          id: string
+          is_enabled: boolean | null
+          last_response_at: string | null
+          max_responses: number | null
+          responses_sent: number | null
+          timeout_hours: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          campaign_node_id?: string | null
+          contact_id: string
+          cooldown_minutes?: number | null
+          created_at?: string | null
+          disabled_at?: string | null
+          disabled_reason?: string | null
+          enabled_at?: string | null
+          enabled_via?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          last_response_at?: string | null
+          max_responses?: number | null
+          responses_sent?: number | null
+          timeout_hours?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          campaign_node_id?: string | null
+          contact_id?: string
+          cooldown_minutes?: number | null
+          created_at?: string | null
+          disabled_at?: string | null
+          disabled_reason?: string | null
+          enabled_at?: string | null
+          enabled_via?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          last_response_at?: string | null
+          max_responses?: number | null
+          responses_sent?: number | null
+          timeout_hours?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_ai_settings_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_ai_settings_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contact_ai_settings_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_ai_settings_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: true
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contact_ai_settings_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "contact_ai_settings_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_custom_fields: {
         Row: {
           contact_id: string
@@ -3416,6 +8779,105 @@ export type Database = {
           },
         ]
       }
+      contact_enrichment_profiles: {
+        Row: {
+          age: string | null
+          cache_hit: boolean
+          caller_name: string | null
+          caller_type: string | null
+          carrier_name: string | null
+          contact_id: string
+          created_at: string
+          credit_range: string | null
+          credit_score_legacy: string | null
+          credit_tier: string
+          enrichment_status: string
+          fetched_at: string | null
+          household_income: string | null
+          id: string
+          line_type: string | null
+          marital_status: string | null
+          phone_checked_at: string | null
+          phone_lookup_status: string | null
+          phone_number: string | null
+          phone_provider: string | null
+          phone_valid: boolean | null
+          processed_data: Json
+          properties: Json
+          provider: string
+          raw_data: Json | null
+          selected_property: Json | null
+          source: string | null
+          total_score: number | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          age?: string | null
+          cache_hit?: boolean
+          caller_name?: string | null
+          caller_type?: string | null
+          carrier_name?: string | null
+          contact_id: string
+          created_at?: string
+          credit_range?: string | null
+          credit_score_legacy?: string | null
+          credit_tier?: string
+          enrichment_status?: string
+          fetched_at?: string | null
+          household_income?: string | null
+          id?: string
+          line_type?: string | null
+          marital_status?: string | null
+          phone_checked_at?: string | null
+          phone_lookup_status?: string | null
+          phone_number?: string | null
+          phone_provider?: string | null
+          phone_valid?: boolean | null
+          processed_data?: Json
+          properties?: Json
+          provider?: string
+          raw_data?: Json | null
+          selected_property?: Json | null
+          source?: string | null
+          total_score?: number | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          age?: string | null
+          cache_hit?: boolean
+          caller_name?: string | null
+          caller_type?: string | null
+          carrier_name?: string | null
+          contact_id?: string
+          created_at?: string
+          credit_range?: string | null
+          credit_score_legacy?: string | null
+          credit_tier?: string
+          enrichment_status?: string
+          fetched_at?: string | null
+          household_income?: string | null
+          id?: string
+          line_type?: string | null
+          marital_status?: string | null
+          phone_checked_at?: string | null
+          phone_lookup_status?: string | null
+          phone_number?: string | null
+          phone_provider?: string | null
+          phone_valid?: boolean | null
+          processed_data?: Json
+          properties?: Json
+          provider?: string
+          raw_data?: Json | null
+          selected_property?: Json | null
+          source?: string | null
+          total_score?: number | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       contact_field_changes: {
         Row: {
           changed_at: string | null
@@ -3425,7 +8887,7 @@ export type Database = {
           id: string
           new_value: string | null
           old_value: string | null
-          workspace_id: string
+          workspace_id: string | null
         }
         Insert: {
           changed_at?: string | null
@@ -3435,7 +8897,7 @@ export type Database = {
           id?: string
           new_value?: string | null
           old_value?: string | null
-          workspace_id: string
+          workspace_id?: string | null
         }
         Update: {
           changed_at?: string | null
@@ -3445,31 +8907,9 @@ export type Database = {
           id?: string
           new_value?: string | null
           old_value?: string | null
-          workspace_id?: string
+          workspace_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "contact_field_changes_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "contact_current_status"
-            referencedColumns: ["contact_id"]
-          },
-          {
-            foreignKeyName: "contact_field_changes_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "contacts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "contact_field_changes_contact_id_fkey"
-            columns: ["contact_id"]
-            isOneToOne: false
-            referencedRelation: "lead_conversion_analytics"
-            referencedColumns: ["contact_id"]
-          },
-        ]
+        Relationships: []
       }
       contact_livechat_board_column: {
         Row: {
@@ -3547,6 +8987,69 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      contact_phone_intelligence: {
+        Row: {
+          caller_name: string | null
+          caller_type: string | null
+          carrier_name: string | null
+          checked_at: string | null
+          contact_id: string
+          created_at: string
+          error_code: string | null
+          error_message: string | null
+          id: string
+          line_type: string | null
+          lookup_status: string
+          phone_e164: string
+          provider: string
+          raw_response: Json | null
+          reassigned_number: Json | null
+          updated_at: string
+          valid: boolean | null
+          workspace_id: string
+        }
+        Insert: {
+          caller_name?: string | null
+          caller_type?: string | null
+          carrier_name?: string | null
+          checked_at?: string | null
+          contact_id: string
+          created_at?: string
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          line_type?: string | null
+          lookup_status?: string
+          phone_e164: string
+          provider?: string
+          raw_response?: Json | null
+          reassigned_number?: Json | null
+          updated_at?: string
+          valid?: boolean | null
+          workspace_id: string
+        }
+        Update: {
+          caller_name?: string | null
+          caller_type?: string | null
+          carrier_name?: string | null
+          checked_at?: string | null
+          contact_id?: string
+          created_at?: string
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          line_type?: string | null
+          lookup_status?: string
+          phone_e164?: string
+          provider?: string
+          raw_response?: Json | null
+          reassigned_number?: Json | null
+          updated_at?: string
+          valid?: boolean | null
+          workspace_id?: string
+        }
+        Relationships: []
       }
       contact_pinned_fields: {
         Row: {
@@ -3651,12 +9154,71 @@ export type Database = {
           },
         ]
       }
+      contact_tags: {
+        Row: {
+          contact_id: string
+          created_at: string | null
+          id: string
+          tag_id: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string | null
+          id?: string
+          tag_id: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string | null
+          id?: string
+          tag_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_tags_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contact_tags_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contact_tags_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contact_tags_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contacts: {
         Row: {
+          ai_reset_at: string | null
+          appointment_date: string | null
+          appointment_date_display: string | null
           appointment_result_id: number | null
           appointment_status_id: number | null
+          appointment_time: string | null
+          automation_paused_until: string | null
           board_id: string | null
           board_name: string | null
+          calendar_links: Json | null
           city: string | null
           conversation_status: string | null
           created_at: string | null
@@ -3666,17 +9228,28 @@ export type Database = {
           firstname: string
           follow_up_date: string | null
           id: string
+          instagram_id: string | null
           is_archived: boolean | null
           is_completed: boolean | null
           is_demo: boolean | null
           is_favorite: boolean | null
           last_action_at: string | null
           last_action_type: string | null
+          last_ai_response_at: string | null
+          last_inbound_at: string | null
+          last_inbound_text: string | null
+          last_outbound_at: string | null
+          last_outbound_by: string | null
+          last_outbound_text: string | null
+          last_outbound_type: string | null
           lastname: string
+          lead_score: number | null
+          lead_score_updated_at: string | null
           lead_source: string | null
           lead_status: string | null
           lead_status_id: number | null
           market: string | null
+          messenger_psid: string | null
           metadata: Json | null
           name: string | null
           needs_response: boolean | null
@@ -3684,18 +9257,22 @@ export type Database = {
           opt_in_through: string
           opted_in_email: boolean | null
           opted_in_sms: boolean | null
-          phone_number: string
+          phone_number: string | null
           priority: string | null
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
-          search_vector: unknown | null
+          search_vector: unknown
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
           state: string | null
+          sub_source: string | null
           tags: Json | null
           team: string | null
+          text_disposition: string | null
+          text_disposition_id: string | null
+          timezone: string | null
           unread_count: number | null
           updated_at: string | null
           webhook_id: string | null
@@ -3705,10 +9282,16 @@ export type Database = {
           zip: string | null
         }
         Insert: {
+          ai_reset_at?: string | null
+          appointment_date?: string | null
+          appointment_date_display?: string | null
           appointment_result_id?: number | null
           appointment_status_id?: number | null
+          appointment_time?: string | null
+          automation_paused_until?: string | null
           board_id?: string | null
           board_name?: string | null
+          calendar_links?: Json | null
           city?: string | null
           conversation_status?: string | null
           created_at?: string | null
@@ -3718,17 +9301,28 @@ export type Database = {
           firstname: string
           follow_up_date?: string | null
           id?: string
+          instagram_id?: string | null
           is_archived?: boolean | null
           is_completed?: boolean | null
           is_demo?: boolean | null
           is_favorite?: boolean | null
           last_action_at?: string | null
           last_action_type?: string | null
+          last_ai_response_at?: string | null
+          last_inbound_at?: string | null
+          last_inbound_text?: string | null
+          last_outbound_at?: string | null
+          last_outbound_by?: string | null
+          last_outbound_text?: string | null
+          last_outbound_type?: string | null
           lastname: string
+          lead_score?: number | null
+          lead_score_updated_at?: string | null
           lead_source?: string | null
           lead_status?: string | null
           lead_status_id?: number | null
           market?: string | null
+          messenger_psid?: string | null
           metadata?: Json | null
           name?: string | null
           needs_response?: boolean | null
@@ -3736,18 +9330,22 @@ export type Database = {
           opt_in_through?: string
           opted_in_email?: boolean | null
           opted_in_sms?: boolean | null
-          phone_number: string
+          phone_number?: string | null
           priority?: string | null
           product?: string | null
           property_insights_data?: Json | null
           property_insights_updated_at?: string | null
-          search_vector?: unknown | null
+          search_vector?: unknown
           sentiment?: string | null
           sentiment_history?: Json | null
           st_address?: string | null
           state?: string | null
+          sub_source?: string | null
           tags?: Json | null
           team?: string | null
+          text_disposition?: string | null
+          text_disposition_id?: string | null
+          timezone?: string | null
           unread_count?: number | null
           updated_at?: string | null
           webhook_id?: string | null
@@ -3757,10 +9355,16 @@ export type Database = {
           zip?: string | null
         }
         Update: {
+          ai_reset_at?: string | null
+          appointment_date?: string | null
+          appointment_date_display?: string | null
           appointment_result_id?: number | null
           appointment_status_id?: number | null
+          appointment_time?: string | null
+          automation_paused_until?: string | null
           board_id?: string | null
           board_name?: string | null
+          calendar_links?: Json | null
           city?: string | null
           conversation_status?: string | null
           created_at?: string | null
@@ -3770,17 +9374,28 @@ export type Database = {
           firstname?: string
           follow_up_date?: string | null
           id?: string
+          instagram_id?: string | null
           is_archived?: boolean | null
           is_completed?: boolean | null
           is_demo?: boolean | null
           is_favorite?: boolean | null
           last_action_at?: string | null
           last_action_type?: string | null
+          last_ai_response_at?: string | null
+          last_inbound_at?: string | null
+          last_inbound_text?: string | null
+          last_outbound_at?: string | null
+          last_outbound_by?: string | null
+          last_outbound_text?: string | null
+          last_outbound_type?: string | null
           lastname?: string
+          lead_score?: number | null
+          lead_score_updated_at?: string | null
           lead_source?: string | null
           lead_status?: string | null
           lead_status_id?: number | null
           market?: string | null
+          messenger_psid?: string | null
           metadata?: Json | null
           name?: string | null
           needs_response?: boolean | null
@@ -3788,18 +9403,22 @@ export type Database = {
           opt_in_through?: string
           opted_in_email?: boolean | null
           opted_in_sms?: boolean | null
-          phone_number?: string
+          phone_number?: string | null
           priority?: string | null
           product?: string | null
           property_insights_data?: Json | null
           property_insights_updated_at?: string | null
-          search_vector?: unknown | null
+          search_vector?: unknown
           sentiment?: string | null
           sentiment_history?: Json | null
           st_address?: string | null
           state?: string | null
+          sub_source?: string | null
           tags?: Json | null
           team?: string | null
+          text_disposition?: string | null
+          text_disposition_id?: string | null
+          timezone?: string | null
           unread_count?: number | null
           updated_at?: string | null
           webhook_id?: string | null
@@ -3851,106 +9470,65 @@ export type Database = {
             referencedRelation: "statuses"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "contacts_text_disposition_id_fkey"
+            columns: ["text_disposition_id"]
+            isOneToOne: false
+            referencedRelation: "text_dispositions"
+            referencedColumns: ["id"]
+          },
         ]
-      }
-      contacts_backup: {
-        Row: {
-          conversation_status: string | null
-          created_at: string | null
-          created_by: string | null
-          custom_fields: Json | null
-          email: string | null
-          first_name: string | null
-          id: string | null
-          is_active: boolean | null
-          last_name: string | null
-          lead_source: string | null
-          market: string | null
-          phone_number: string | null
-          product: string | null
-          status: string | null
-          tags: string[] | null
-          unread_count: number | null
-          updated_at: string | null
-          workspace_id: string | null
-        }
-        Insert: {
-          conversation_status?: string | null
-          created_at?: string | null
-          created_by?: string | null
-          custom_fields?: Json | null
-          email?: string | null
-          first_name?: string | null
-          id?: string | null
-          is_active?: boolean | null
-          last_name?: string | null
-          lead_source?: string | null
-          market?: string | null
-          phone_number?: string | null
-          product?: string | null
-          status?: string | null
-          tags?: string[] | null
-          unread_count?: number | null
-          updated_at?: string | null
-          workspace_id?: string | null
-        }
-        Update: {
-          conversation_status?: string | null
-          created_at?: string | null
-          created_by?: string | null
-          custom_fields?: Json | null
-          email?: string | null
-          first_name?: string | null
-          id?: string | null
-          is_active?: boolean | null
-          last_name?: string | null
-          lead_source?: string | null
-          market?: string | null
-          phone_number?: string | null
-          product?: string | null
-          status?: string | null
-          tags?: string[] | null
-          unread_count?: number | null
-          updated_at?: string | null
-          workspace_id?: string | null
-        }
-        Relationships: []
       }
       custom_fields: {
         Row: {
           created_at: string | null
           created_by: string | null
           description: string | null
+          display_order: number | null
           field_type: Database["public"]["Enums"]["field_type"]
           id: string
+          is_active: boolean | null
           is_required: boolean | null
           label: string
           name: string
+          object_type: string | null
+          options: Json | null
           updated_at: string | null
+          updated_by: string | null
           workspace_id: string
         }
         Insert: {
           created_at?: string | null
           created_by?: string | null
           description?: string | null
+          display_order?: number | null
           field_type: Database["public"]["Enums"]["field_type"]
           id?: string
+          is_active?: boolean | null
           is_required?: boolean | null
           label: string
           name: string
+          object_type?: string | null
+          options?: Json | null
           updated_at?: string | null
+          updated_by?: string | null
           workspace_id: string
         }
         Update: {
           created_at?: string | null
           created_by?: string | null
           description?: string | null
+          display_order?: number | null
           field_type?: Database["public"]["Enums"]["field_type"]
           id?: string
+          is_active?: boolean | null
           is_required?: boolean | null
           label?: string
           name?: string
+          object_type?: string | null
+          options?: Json | null
           updated_at?: string | null
+          updated_by?: string | null
           workspace_id?: string
         }
         Relationships: [
@@ -3963,6 +9541,241 @@ export type Database = {
           },
           {
             foreignKeyName: "custom_fields_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      custom_inboxes: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          filters: Json | null
+          icon: string | null
+          id: string
+          name: string
+          owner_user_id: string | null
+          scope_type: string
+          sort_order: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          filters?: Json | null
+          icon?: string | null
+          id?: string
+          name: string
+          owner_user_id?: string | null
+          scope_type?: string
+          sort_order?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          filters?: Json | null
+          icon?: string | null
+          id?: string
+          name?: string
+          owner_user_id?: string | null
+          scope_type?: string
+          sort_order?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "custom_inboxes_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "custom_inboxes_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      custom_notifications: {
+        Row: {
+          action_label: string | null
+          action_url: string | null
+          created_at: string | null
+          expires_at: string | null
+          id: string
+          is_dismissed: boolean | null
+          is_read: boolean | null
+          message: string
+          metadata: Json | null
+          priority: string | null
+          title: string
+          type: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          action_label?: string | null
+          action_url?: string | null
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          is_dismissed?: boolean | null
+          is_read?: boolean | null
+          message: string
+          metadata?: Json | null
+          priority?: string | null
+          title: string
+          type?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          action_label?: string | null
+          action_url?: string | null
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          is_dismissed?: boolean | null
+          is_read?: boolean | null
+          message?: string
+          metadata?: Json | null
+          priority?: string | null
+          title?: string
+          type?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      date_distance_trigger_executions: {
+        Row: {
+          contact_id: string
+          created_at: string
+          date_field: string
+          date_value: string
+          days_calculated: number
+          error_message: string | null
+          executed_at: string | null
+          id: string
+          matched_flow_id: string | null
+          matched_rule_id: string | null
+          matched_sequence_id: string | null
+          status: string
+          trigger_id: string
+          trigger_run_id: string | null
+          updated_at: string
+          workflow_run_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string
+          date_field: string
+          date_value: string
+          days_calculated: number
+          error_message?: string | null
+          executed_at?: string | null
+          id?: string
+          matched_flow_id?: string | null
+          matched_rule_id?: string | null
+          matched_sequence_id?: string | null
+          status?: string
+          trigger_id: string
+          trigger_run_id?: string | null
+          updated_at?: string
+          workflow_run_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string
+          date_field?: string
+          date_value?: string
+          days_calculated?: number
+          error_message?: string | null
+          executed_at?: string | null
+          id?: string
+          matched_flow_id?: string | null
+          matched_rule_id?: string | null
+          matched_sequence_id?: string | null
+          status?: string
+          trigger_id?: string
+          trigger_run_id?: string | null
+          updated_at?: string
+          workflow_run_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "date_distance_trigger_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_matched_flow_id_fkey"
+            columns: ["matched_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_matched_flow_id_fkey"
+            columns: ["matched_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_matched_sequence_id_fkey"
+            columns: ["matched_sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_trigger_id_fkey"
+            columns: ["trigger_id"]
+            isOneToOne: false
+            referencedRelation: "triggers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "date_distance_trigger_executions_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -4031,6 +9844,13 @@ export type Database = {
             foreignKeyName: "fk_dead_letter_queue_flow"
             columns: ["flow_id"]
             isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "fk_dead_letter_queue_flow"
+            columns: ["flow_id"]
+            isOneToOne: false
             referencedRelation: "flows"
             referencedColumns: ["id"]
           },
@@ -4080,6 +9900,98 @@ export type Database = {
             columns: ["workspace_id"]
             isOneToOne: true
             referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dev_console_logs: {
+        Row: {
+          action_name: string | null
+          action_type: string
+          completed_at: string | null
+          contact_id: string | null
+          created_at: string | null
+          duration_ms: number | null
+          error_message: string | null
+          execution_id: string | null
+          flow_id: string | null
+          id: string
+          metadata: Json | null
+          node_id: string | null
+          request_data: Json | null
+          response_data: Json | null
+          started_at: string | null
+          status: string
+          status_code: number | null
+          workspace_id: string
+        }
+        Insert: {
+          action_name?: string | null
+          action_type: string
+          completed_at?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          duration_ms?: number | null
+          error_message?: string | null
+          execution_id?: string | null
+          flow_id?: string | null
+          id?: string
+          metadata?: Json | null
+          node_id?: string | null
+          request_data?: Json | null
+          response_data?: Json | null
+          started_at?: string | null
+          status?: string
+          status_code?: number | null
+          workspace_id: string
+        }
+        Update: {
+          action_name?: string | null
+          action_type?: string
+          completed_at?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          duration_ms?: number | null
+          error_message?: string | null
+          execution_id?: string | null
+          flow_id?: string | null
+          id?: string
+          metadata?: Json | null
+          node_id?: string | null
+          request_data?: Json | null
+          response_data?: Json | null
+          started_at?: string | null
+          status?: string
+          status_code?: number | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dev_console_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "dev_console_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dev_console_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "dev_console_logs_execution_id_fkey"
+            columns: ["execution_id"]
+            isOneToOne: false
+            referencedRelation: "flow_executions"
             referencedColumns: ["id"]
           },
         ]
@@ -4179,6 +10091,559 @@ export type Database = {
           },
           {
             foreignKeyName: "developer_access_permissions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      developer_leads: {
+        Row: {
+          admin_notes: string | null
+          company: string | null
+          converted_to_application_id: string | null
+          created_at: string | null
+          developer_email: string
+          developer_name: string
+          experience: string | null
+          id: string
+          intended_use: string
+          referral_code: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          source: string | null
+          status: string | null
+          updated_at: string | null
+          user_id: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          website: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          company?: string | null
+          converted_to_application_id?: string | null
+          created_at?: string | null
+          developer_email: string
+          developer_name: string
+          experience?: string | null
+          id?: string
+          intended_use: string
+          referral_code?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          source?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          website?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          company?: string | null
+          converted_to_application_id?: string | null
+          created_at?: string | null
+          developer_email?: string
+          developer_name?: string
+          experience?: string | null
+          id?: string
+          intended_use?: string
+          referral_code?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          source?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          website?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "developer_leads_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "developer_leads_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      developer_payouts: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          currency: string | null
+          failed_at: string | null
+          failure_reason: string | null
+          gross_revenue: number
+          id: string
+          initiated_at: string | null
+          line_items: Json | null
+          net_payout: number
+          notes: string | null
+          payout_method: string | null
+          period_end: string
+          period_start: string
+          platform_fee: number
+          processed_by: string | null
+          scheduled_at: string | null
+          status: string | null
+          stripe_payout_id: string | null
+          stripe_transfer_id: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          failed_at?: string | null
+          failure_reason?: string | null
+          gross_revenue?: number
+          id?: string
+          initiated_at?: string | null
+          line_items?: Json | null
+          net_payout?: number
+          notes?: string | null
+          payout_method?: string | null
+          period_end: string
+          period_start: string
+          platform_fee?: number
+          processed_by?: string | null
+          scheduled_at?: string | null
+          status?: string | null
+          stripe_payout_id?: string | null
+          stripe_transfer_id?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          failed_at?: string | null
+          failure_reason?: string | null
+          gross_revenue?: number
+          id?: string
+          initiated_at?: string | null
+          line_items?: Json | null
+          net_payout?: number
+          notes?: string | null
+          payout_method?: string | null
+          period_end?: string
+          period_start?: string
+          platform_fee?: number
+          processed_by?: string | null
+          scheduled_at?: string | null
+          status?: string | null
+          stripe_payout_id?: string | null
+          stripe_transfer_id?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "developer_payouts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "developer_payouts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      developer_usage_tracking: {
+        Row: {
+          api_calls_count: number | null
+          api_calls_limit: number | null
+          base_charge: number | null
+          connector_executions: number | null
+          contacts_count: number | null
+          contacts_limit: number | null
+          contacts_overage_count: number | null
+          created_at: string | null
+          developer_share: number | null
+          email_limit: number | null
+          emails_received: number | null
+          emails_sent: number | null
+          id: string
+          is_paid: boolean | null
+          marketplace_revenue: number | null
+          overage_charges: number | null
+          paid_at: string | null
+          period_end: string
+          period_start: string
+          platform_share: number | null
+          sms_limit: number | null
+          sms_overage_count: number | null
+          sms_received: number | null
+          sms_sent: number | null
+          stripe_invoice_id: string | null
+          total_charge: number | null
+          updated_at: string | null
+          webhooks_limit: number | null
+          webhooks_received: number | null
+          webhooks_sent: number | null
+          workflow_executions: number | null
+          workflow_limit: number | null
+          workspace_id: string
+        }
+        Insert: {
+          api_calls_count?: number | null
+          api_calls_limit?: number | null
+          base_charge?: number | null
+          connector_executions?: number | null
+          contacts_count?: number | null
+          contacts_limit?: number | null
+          contacts_overage_count?: number | null
+          created_at?: string | null
+          developer_share?: number | null
+          email_limit?: number | null
+          emails_received?: number | null
+          emails_sent?: number | null
+          id?: string
+          is_paid?: boolean | null
+          marketplace_revenue?: number | null
+          overage_charges?: number | null
+          paid_at?: string | null
+          period_end: string
+          period_start: string
+          platform_share?: number | null
+          sms_limit?: number | null
+          sms_overage_count?: number | null
+          sms_received?: number | null
+          sms_sent?: number | null
+          stripe_invoice_id?: string | null
+          total_charge?: number | null
+          updated_at?: string | null
+          webhooks_limit?: number | null
+          webhooks_received?: number | null
+          webhooks_sent?: number | null
+          workflow_executions?: number | null
+          workflow_limit?: number | null
+          workspace_id: string
+        }
+        Update: {
+          api_calls_count?: number | null
+          api_calls_limit?: number | null
+          base_charge?: number | null
+          connector_executions?: number | null
+          contacts_count?: number | null
+          contacts_limit?: number | null
+          contacts_overage_count?: number | null
+          created_at?: string | null
+          developer_share?: number | null
+          email_limit?: number | null
+          emails_received?: number | null
+          emails_sent?: number | null
+          id?: string
+          is_paid?: boolean | null
+          marketplace_revenue?: number | null
+          overage_charges?: number | null
+          paid_at?: string | null
+          period_end?: string
+          period_start?: string
+          platform_share?: number | null
+          sms_limit?: number | null
+          sms_overage_count?: number | null
+          sms_received?: number | null
+          sms_sent?: number | null
+          stripe_invoice_id?: string | null
+          total_charge?: number | null
+          updated_at?: string | null
+          webhooks_limit?: number | null
+          webhooks_received?: number | null
+          webhooks_sent?: number | null
+          workflow_executions?: number | null
+          workflow_limit?: number | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "developer_usage_tracking_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "developer_usage_tracking_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dnc_events: {
+        Row: {
+          channel: string
+          contact_id: string | null
+          id: string
+          metadata: Json | null
+          occurred_at: string
+          phone_e164: string
+          reason: string | null
+          recorded_at: string
+          source: string | null
+          workspace_id: string
+        }
+        Insert: {
+          channel: string
+          contact_id?: string | null
+          id?: string
+          metadata?: Json | null
+          occurred_at?: string
+          phone_e164: string
+          reason?: string | null
+          recorded_at?: string
+          source?: string | null
+          workspace_id: string
+        }
+        Update: {
+          channel?: string
+          contact_id?: string | null
+          id?: string
+          metadata?: Json | null
+          occurred_at?: string
+          phone_e164?: string
+          reason?: string | null
+          recorded_at?: string
+          source?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      dynamic_form_submissions: {
+        Row: {
+          automation_error: string | null
+          automation_run_id: string | null
+          automation_status: string
+          automation_target_id: string | null
+          automation_target_type: string | null
+          automation_triggered_at: string | null
+          contact_id: string | null
+          created_at: string
+          error_message: string | null
+          form_id: string
+          id: string
+          ip_hash: string | null
+          referrer: string | null
+          schema_snapshot: Json
+          source_url: string | null
+          status: string
+          submitted_at: string
+          submitted_fields: Json
+          user_agent: string | null
+          utm: Json
+          webhook_delivered_at: string | null
+          webhook_error: string | null
+          webhook_response_status: number | null
+          webhook_status: string
+          workspace_id: string
+        }
+        Insert: {
+          automation_error?: string | null
+          automation_run_id?: string | null
+          automation_status?: string
+          automation_target_id?: string | null
+          automation_target_type?: string | null
+          automation_triggered_at?: string | null
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          form_id: string
+          id?: string
+          ip_hash?: string | null
+          referrer?: string | null
+          schema_snapshot?: Json
+          source_url?: string | null
+          status?: string
+          submitted_at?: string
+          submitted_fields?: Json
+          user_agent?: string | null
+          utm?: Json
+          webhook_delivered_at?: string | null
+          webhook_error?: string | null
+          webhook_response_status?: number | null
+          webhook_status?: string
+          workspace_id: string
+        }
+        Update: {
+          automation_error?: string | null
+          automation_run_id?: string | null
+          automation_status?: string
+          automation_target_id?: string | null
+          automation_target_type?: string | null
+          automation_triggered_at?: string | null
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          form_id?: string
+          id?: string
+          ip_hash?: string | null
+          referrer?: string | null
+          schema_snapshot?: Json
+          source_url?: string | null
+          status?: string
+          submitted_at?: string
+          submitted_fields?: Json
+          user_agent?: string | null
+          utm?: Json
+          webhook_delivered_at?: string | null
+          webhook_error?: string | null
+          webhook_response_status?: number | null
+          webhook_status?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dynamic_form_submissions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "dynamic_form_submissions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dynamic_form_submissions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "dynamic_form_submissions_form_id_fkey"
+            columns: ["form_id"]
+            isOneToOne: false
+            referencedRelation: "dynamic_forms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dynamic_form_submissions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "dynamic_form_submissions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dynamic_forms: {
+        Row: {
+          automation_enabled: boolean
+          automation_target_id: string | null
+          automation_target_type: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          design: Json
+          id: string
+          last_submitted_at: string | null
+          name: string
+          public_slug: string
+          published_at: string | null
+          schema: Json
+          slug: string
+          status: string
+          submission_count: number
+          updated_at: string
+          updated_by: string | null
+          webhook_enabled: boolean
+          webhook_url: string | null
+          workspace_id: string
+        }
+        Insert: {
+          automation_enabled?: boolean
+          automation_target_id?: string | null
+          automation_target_type?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          design?: Json
+          id?: string
+          last_submitted_at?: string | null
+          name: string
+          public_slug: string
+          published_at?: string | null
+          schema?: Json
+          slug: string
+          status?: string
+          submission_count?: number
+          updated_at?: string
+          updated_by?: string | null
+          webhook_enabled?: boolean
+          webhook_url?: string | null
+          workspace_id: string
+        }
+        Update: {
+          automation_enabled?: boolean
+          automation_target_id?: string | null
+          automation_target_type?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          design?: Json
+          id?: string
+          last_submitted_at?: string | null
+          name?: string
+          public_slug?: string
+          published_at?: string | null
+          schema?: Json
+          slug?: string
+          status?: string
+          submission_count?: number
+          updated_at?: string
+          updated_by?: string | null
+          webhook_enabled?: boolean
+          webhook_url?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dynamic_forms_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "dynamic_forms_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -4493,6 +10958,129 @@ export type Database = {
           },
         ]
       }
+      email_content_blocks: {
+        Row: {
+          block_type: string
+          created_at: string
+          created_by: string | null
+          design_json: Json | null
+          id: string
+          name: string
+          rendered_html: string | null
+          slug: string
+          status: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          block_type?: string
+          created_at?: string
+          created_by?: string | null
+          design_json?: Json | null
+          id?: string
+          name: string
+          rendered_html?: string | null
+          slug: string
+          status?: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          block_type?: string
+          created_at?: string
+          created_by?: string | null
+          design_json?: Json | null
+          id?: string
+          name?: string
+          rendered_html?: string | null
+          slug?: string
+          status?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_content_blocks_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_content_blocks_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_events: {
+        Row: {
+          bounce_type: string | null
+          contact_id: string | null
+          created_at: string | null
+          email_address: string
+          email_id: string | null
+          event_type: string
+          id: string
+          ip: string | null
+          message_id: string | null
+          processed: boolean | null
+          processed_at: string | null
+          provider: string
+          provider_payload: Json | null
+          reason: string | null
+          status: string | null
+          timestamp: string
+          url: string | null
+          user_agent: string | null
+          workspace_id: string
+        }
+        Insert: {
+          bounce_type?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          email_address: string
+          email_id?: string | null
+          event_type: string
+          id?: string
+          ip?: string | null
+          message_id?: string | null
+          processed?: boolean | null
+          processed_at?: string | null
+          provider: string
+          provider_payload?: Json | null
+          reason?: string | null
+          status?: string | null
+          timestamp: string
+          url?: string | null
+          user_agent?: string | null
+          workspace_id: string
+        }
+        Update: {
+          bounce_type?: string | null
+          contact_id?: string | null
+          created_at?: string | null
+          email_address?: string
+          email_id?: string | null
+          event_type?: string
+          id?: string
+          ip?: string | null
+          message_id?: string | null
+          processed?: boolean | null
+          processed_at?: string | null
+          provider?: string
+          provider_payload?: Json | null
+          reason?: string | null
+          status?: string | null
+          timestamp?: string
+          url?: string | null
+          user_agent?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       email_folders: {
         Row: {
           color: string | null
@@ -4568,6 +11156,7 @@ export type Database = {
           cc_recipients: Json | null
           contact_id: string | null
           created_at: string
+          delivery_status: string | null
           email_account_id: string | null
           folder: string
           id: string
@@ -4595,6 +11184,7 @@ export type Database = {
           cc_recipients?: Json | null
           contact_id?: string | null
           created_at?: string
+          delivery_status?: string | null
           email_account_id?: string | null
           folder?: string
           id?: string
@@ -4622,6 +11212,7 @@ export type Database = {
           cc_recipients?: Json | null
           contact_id?: string | null
           created_at?: string
+          delivery_status?: string | null
           email_account_id?: string | null
           folder?: string
           id?: string
@@ -4754,41 +11345,170 @@ export type Database = {
           },
         ]
       }
-      email_templates: {
+      email_template_folders: {
         Row: {
-          content: string
           created_at: string | null
-          created_by: string | null
           id: string
-          is_active: boolean | null
           name: string
-          subject: string
+          parent_id: string | null
           updated_at: string | null
           workspace_id: string
         }
         Insert: {
-          content: string
           created_at?: string | null
-          created_by?: string | null
           id?: string
-          is_active?: boolean | null
           name: string
-          subject: string
+          parent_id?: string | null
           updated_at?: string | null
           workspace_id: string
         }
         Update: {
-          content?: string
           created_at?: string | null
-          created_by?: string | null
           id?: string
-          is_active?: boolean | null
           name?: string
-          subject?: string
+          parent_id?: string | null
           updated_at?: string | null
           workspace_id?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "email_template_folders_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "email_template_folders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_template_starters: {
+        Row: {
+          blocks: Json
+          builder_version: string
+          created_at: string
+          description: string | null
+          design_json: Json | null
+          display_order: number
+          id: string
+          is_active: boolean
+          name: string
+          rendered_html: string | null
+          subject: string | null
+          thumbnail_url: string | null
+          updated_at: string
+          variables: Json
+        }
+        Insert: {
+          blocks?: Json
+          builder_version?: string
+          created_at?: string
+          description?: string | null
+          design_json?: Json | null
+          display_order?: number
+          id?: string
+          is_active?: boolean
+          name: string
+          rendered_html?: string | null
+          subject?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string
+          variables?: Json
+        }
+        Update: {
+          blocks?: Json
+          builder_version?: string
+          created_at?: string
+          description?: string | null
+          design_json?: Json | null
+          display_order?: number
+          id?: string
+          is_active?: boolean
+          name?: string
+          rendered_html?: string | null
+          subject?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string
+          variables?: Json
+        }
         Relationships: []
+      }
+      email_templates: {
+        Row: {
+          blocks: Json
+          builder_version: string | null
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          design_json: Json | null
+          folder_id: string | null
+          id: string
+          is_default: boolean | null
+          name: string
+          rendered_html: string | null
+          subject: string | null
+          thumbnail_url: string | null
+          updated_at: string | null
+          variables: Json
+          workspace_id: string
+        }
+        Insert: {
+          blocks?: Json
+          builder_version?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          design_json?: Json | null
+          folder_id?: string | null
+          id?: string
+          is_default?: boolean | null
+          name: string
+          rendered_html?: string | null
+          subject?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string | null
+          variables?: Json
+          workspace_id: string
+        }
+        Update: {
+          blocks?: Json
+          builder_version?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          design_json?: Json | null
+          folder_id?: string | null
+          id?: string
+          is_default?: boolean | null
+          name?: string
+          rendered_html?: string | null
+          subject?: string | null
+          thumbnail_url?: string | null
+          updated_at?: string | null
+          variables?: Json
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_templates_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "email_template_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_templates_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "email_templates_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       email_threads: {
         Row: {
@@ -5045,6 +11765,258 @@ export type Database = {
           },
         ]
       }
+      error_logs: {
+        Row: {
+          category: string
+          contact_id: string | null
+          created_at: string | null
+          error_code: string | null
+          error_message: string
+          execution_id: string | null
+          flow_id: string | null
+          id: string
+          is_resolved: boolean
+          message_id: string | null
+          metadata: Json | null
+          resolution_note: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          sequence_id: string | null
+          severity: string
+          source: string | null
+          subcategory: string | null
+          workspace_id: string
+        }
+        Insert: {
+          category: string
+          contact_id?: string | null
+          created_at?: string | null
+          error_code?: string | null
+          error_message: string
+          execution_id?: string | null
+          flow_id?: string | null
+          id?: string
+          is_resolved?: boolean
+          message_id?: string | null
+          metadata?: Json | null
+          resolution_note?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          sequence_id?: string | null
+          severity?: string
+          source?: string | null
+          subcategory?: string | null
+          workspace_id: string
+        }
+        Update: {
+          category?: string
+          contact_id?: string | null
+          created_at?: string | null
+          error_code?: string | null
+          error_message?: string
+          execution_id?: string | null
+          flow_id?: string | null
+          id?: string
+          is_resolved?: boolean
+          message_id?: string | null
+          metadata?: Json | null
+          resolution_note?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          sequence_id?: string | null
+          severity?: string
+          source?: string | null
+          subcategory?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      event_availability_settings: {
+        Row: {
+          admin_id: string
+          allow_reschedule: boolean
+          auto_confirm: boolean
+          booking_window: number
+          buffer_time: number
+          created_at: string | null
+          daily_limit: number
+          event_type_id: string
+          id: string
+          minimum_notice: number
+          require_payment: boolean
+          timezone: string
+          updated_at: string | null
+          weekly_schedule: Json
+          workspace_id: string
+        }
+        Insert: {
+          admin_id: string
+          allow_reschedule?: boolean
+          auto_confirm?: boolean
+          booking_window?: number
+          buffer_time?: number
+          created_at?: string | null
+          daily_limit?: number
+          event_type_id: string
+          id?: string
+          minimum_notice?: number
+          require_payment?: boolean
+          timezone?: string
+          updated_at?: string | null
+          weekly_schedule?: Json
+          workspace_id: string
+        }
+        Update: {
+          admin_id?: string
+          allow_reschedule?: boolean
+          auto_confirm?: boolean
+          booking_window?: number
+          buffer_time?: number
+          created_at?: string | null
+          daily_limit?: number
+          event_type_id?: string
+          id?: string
+          minimum_notice?: number
+          require_payment?: boolean
+          timezone?: string
+          updated_at?: string | null
+          weekly_schedule?: Json
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      event_type_settings: {
+        Row: {
+          address_required: boolean
+          admin_id: string
+          buffer_time: number | null
+          collect_payment: boolean | null
+          color: string | null
+          created_at: string | null
+          custom_questions: Json | null
+          description: string | null
+          duration: number
+          enabled: boolean | null
+          id: string
+          location: string | null
+          max_bookings_per_day: number | null
+          name: string
+          price: number | null
+          requires_confirmation: boolean | null
+          slug: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          address_required?: boolean
+          admin_id: string
+          buffer_time?: number | null
+          collect_payment?: boolean | null
+          color?: string | null
+          created_at?: string | null
+          custom_questions?: Json | null
+          description?: string | null
+          duration: number
+          enabled?: boolean | null
+          id?: string
+          location?: string | null
+          max_bookings_per_day?: number | null
+          name: string
+          price?: number | null
+          requires_confirmation?: boolean | null
+          slug?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          address_required?: boolean
+          admin_id?: string
+          buffer_time?: number | null
+          collect_payment?: boolean | null
+          color?: string | null
+          created_at?: string | null
+          custom_questions?: Json | null
+          description?: string | null
+          duration?: number
+          enabled?: boolean | null
+          id?: string
+          location?: string | null
+          max_bookings_per_day?: number | null
+          name?: string
+          price?: number | null
+          requires_confirmation?: boolean | null
+          slug?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      execution_logs: {
+        Row: {
+          created_at: string | null
+          duration_ms: number | null
+          execution_id: string
+          icon: string | null
+          id: string
+          log_level: string
+          logged_at: string
+          message: string
+          metadata: Json | null
+          sequence_number: number
+          step_id: string | null
+          step_index: number | null
+          step_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          duration_ms?: number | null
+          execution_id: string
+          icon?: string | null
+          id?: string
+          log_level?: string
+          logged_at?: string
+          message: string
+          metadata?: Json | null
+          sequence_number: number
+          step_id?: string | null
+          step_index?: number | null
+          step_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          duration_ms?: number | null
+          execution_id?: string
+          icon?: string | null
+          id?: string
+          log_level?: string
+          logged_at?: string
+          message?: string
+          metadata?: Json | null
+          sequence_number?: number
+          step_id?: string | null
+          step_index?: number | null
+          step_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "execution_logs_execution_id_fkey"
+            columns: ["execution_id"]
+            isOneToOne: false
+            referencedRelation: "flow_executions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "execution_logs_step_id_fkey"
+            columns: ["step_id"]
+            isOneToOne: false
+            referencedRelation: "flow_execution_steps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       execution_steps: {
         Row: {
           completed_at: string | null
@@ -5104,6 +12076,97 @@ export type Database = {
           },
         ]
       }
+      facebook_comments: {
+        Row: {
+          attachment_url: string | null
+          comment_id: string
+          contact_id: string | null
+          created_at: string | null
+          created_time: string
+          dm_message_id: string | null
+          dm_sent: boolean | null
+          from_facebook_id: string
+          from_name: string | null
+          id: string
+          is_hidden: boolean | null
+          is_replied: boolean | null
+          message: string
+          metadata: Json | null
+          parent_id: string | null
+          post_id: string
+          reaction_count: number | null
+          reply_comment_id: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          attachment_url?: string | null
+          comment_id: string
+          contact_id?: string | null
+          created_at?: string | null
+          created_time: string
+          dm_message_id?: string | null
+          dm_sent?: boolean | null
+          from_facebook_id: string
+          from_name?: string | null
+          id?: string
+          is_hidden?: boolean | null
+          is_replied?: boolean | null
+          message: string
+          metadata?: Json | null
+          parent_id?: string | null
+          post_id: string
+          reaction_count?: number | null
+          reply_comment_id?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          attachment_url?: string | null
+          comment_id?: string
+          contact_id?: string | null
+          created_at?: string | null
+          created_time?: string
+          dm_message_id?: string | null
+          dm_sent?: boolean | null
+          from_facebook_id?: string
+          from_name?: string | null
+          id?: string
+          is_hidden?: boolean | null
+          is_replied?: boolean | null
+          message?: string
+          metadata?: Json | null
+          parent_id?: string | null
+          post_id?: string
+          reaction_count?: number | null
+          reply_comment_id?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "facebook_comments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "facebook_comments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "facebook_comments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
       feature_request_votes: {
         Row: {
           created_at: string | null
@@ -5138,14 +12201,23 @@ export type Database = {
       }
       feature_requests: {
         Row: {
+          assigned_to: string | null
           attachment_url: string | null
           category: string | null
           created_at: string | null
           description: string | null
+          due_date: string | null
           feedback: string | null
           id: string
           priority: number | null
+          quality_score: number | null
+          rated_at: string | null
+          rating: number | null
+          rating_comment: string | null
           requested_by: string
+          resolved_at: string | null
+          source: string
+          started_at: string | null
           status: string | null
           title: string
           updated_at: string | null
@@ -5153,14 +12225,23 @@ export type Database = {
           workspace_id: string
         }
         Insert: {
+          assigned_to?: string | null
           attachment_url?: string | null
           category?: string | null
           created_at?: string | null
           description?: string | null
+          due_date?: string | null
           feedback?: string | null
           id?: string
           priority?: number | null
+          quality_score?: number | null
+          rated_at?: string | null
+          rating?: number | null
+          rating_comment?: string | null
           requested_by: string
+          resolved_at?: string | null
+          source?: string
+          started_at?: string | null
           status?: string | null
           title: string
           updated_at?: string | null
@@ -5168,14 +12249,23 @@ export type Database = {
           workspace_id: string
         }
         Update: {
+          assigned_to?: string | null
           attachment_url?: string | null
           category?: string | null
           created_at?: string | null
           description?: string | null
+          due_date?: string | null
           feedback?: string | null
           id?: string
           priority?: number | null
+          quality_score?: number | null
+          rated_at?: string | null
+          rating?: number | null
+          rating_comment?: string | null
           requested_by?: string
+          resolved_at?: string | null
+          source?: string
+          started_at?: string | null
           status?: string | null
           title?: string
           updated_at?: string | null
@@ -5221,6 +12311,251 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      file_folders: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          name: string
+          parent_folder_id: string | null
+          path: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name: string
+          parent_folder_id?: string | null
+          path: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name?: string
+          parent_folder_id?: string | null
+          path?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "file_folders_parent_folder_id_fkey"
+            columns: ["parent_folder_id"]
+            isOneToOne: false
+            referencedRelation: "file_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "file_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "file_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      files: {
+        Row: {
+          bucket_name: string
+          created_at: string | null
+          created_by: string | null
+          deleted_at: string | null
+          file_extension: string | null
+          file_path: string
+          file_size: number | null
+          file_type: string | null
+          folder_id: string | null
+          id: string
+          is_public: boolean | null
+          last_accessed_at: string | null
+          name: string
+          original_name: string
+          public_link_expires_at: string | null
+          public_link_token: string | null
+          public_url: string | null
+          source_id: string | null
+          source_metadata: Json | null
+          source_type: string | null
+          storage_provider: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          bucket_name: string
+          created_at?: string | null
+          created_by?: string | null
+          deleted_at?: string | null
+          file_extension?: string | null
+          file_path: string
+          file_size?: number | null
+          file_type?: string | null
+          folder_id?: string | null
+          id?: string
+          is_public?: boolean | null
+          last_accessed_at?: string | null
+          name: string
+          original_name: string
+          public_link_expires_at?: string | null
+          public_link_token?: string | null
+          public_url?: string | null
+          source_id?: string | null
+          source_metadata?: Json | null
+          source_type?: string | null
+          storage_provider?: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          bucket_name?: string
+          created_at?: string | null
+          created_by?: string | null
+          deleted_at?: string | null
+          file_extension?: string | null
+          file_path?: string
+          file_size?: number | null
+          file_type?: string | null
+          folder_id?: string | null
+          id?: string
+          is_public?: boolean | null
+          last_accessed_at?: string | null
+          name?: string
+          original_name?: string
+          public_link_expires_at?: string | null
+          public_link_token?: string | null
+          public_url?: string | null
+          source_id?: string | null
+          source_metadata?: Json | null
+          source_type?: string | null
+          storage_provider?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "files_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "file_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "files_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "files_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      flow_actions: {
+        Row: {
+          action_category: string
+          action_config: Json
+          action_type: string
+          created_at: string | null
+          flow_id: string | null
+          id: string
+          is_active: boolean | null
+          node_id: string
+          position: number
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          action_category: string
+          action_config?: Json
+          action_type: string
+          created_at?: string | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          node_id: string
+          position?: number
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          action_category?: string
+          action_config?: Json
+          action_type?: string
+          created_at?: string | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          node_id?: string
+          position?: number
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flow_actions_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "flow_actions_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      flow_enrollment_dedup: {
+        Row: {
+          changed_at: string
+          contact_id: string
+          created_at: string
+          field_name: string
+          flow_id: string
+          new_value: string
+          old_value: string
+        }
+        Insert: {
+          changed_at: string
+          contact_id: string
+          created_at?: string
+          field_name: string
+          flow_id: string
+          new_value?: string
+          old_value?: string
+        }
+        Update: {
+          changed_at?: string
+          contact_id?: string
+          created_at?: string
+          field_name?: string
+          flow_id?: string
+          new_value?: string
+          old_value?: string
+        }
+        Relationships: []
       }
       flow_execution_dlq: {
         Row: {
@@ -5286,6 +12621,13 @@ export type Database = {
             foreignKeyName: "flow_execution_dlq_flow_id_fkey"
             columns: ["flow_id"]
             isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "flow_execution_dlq_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
             referencedRelation: "flows"
             referencedColumns: ["id"]
           },
@@ -5300,6 +12642,8 @@ export type Database = {
       }
       flow_execution_steps: {
         Row: {
+          ab_test_node_id: string | null
+          ab_test_variant: string | null
           completed_at: string | null
           execution_id: string | null
           final_failure: boolean | null
@@ -5316,6 +12660,8 @@ export type Database = {
           status: string
         }
         Insert: {
+          ab_test_node_id?: string | null
+          ab_test_variant?: string | null
           completed_at?: string | null
           execution_id?: string | null
           final_failure?: boolean | null
@@ -5332,6 +12678,8 @@ export type Database = {
           status: string
         }
         Update: {
+          ab_test_node_id?: string | null
+          ab_test_variant?: string | null
           completed_at?: string | null
           execution_id?: string | null
           final_failure?: boolean | null
@@ -5364,13 +12712,18 @@ export type Database = {
           created_at: string | null
           error_message: string | null
           execution_time: number | null
+          first_response_message_id: string | null
           flow_id: string | null
           id: string
           metadata: Json | null
+          next_execution_at: string | null
+          responded_at: string | null
+          response_time_minutes: number | null
           result: Json | null
           source: string | null
           started_at: string | null
           status: string
+          trigger_run_id: string | null
           updated_at: string | null
           workspace_id: string
         }
@@ -5380,13 +12733,18 @@ export type Database = {
           created_at?: string | null
           error_message?: string | null
           execution_time?: number | null
+          first_response_message_id?: string | null
           flow_id?: string | null
           id?: string
           metadata?: Json | null
+          next_execution_at?: string | null
+          responded_at?: string | null
+          response_time_minutes?: number | null
           result?: Json | null
           source?: string | null
           started_at?: string | null
           status: string
+          trigger_run_id?: string | null
           updated_at?: string | null
           workspace_id: string
         }
@@ -5396,13 +12754,18 @@ export type Database = {
           created_at?: string | null
           error_message?: string | null
           execution_time?: number | null
+          first_response_message_id?: string | null
           flow_id?: string | null
           id?: string
           metadata?: Json | null
+          next_execution_at?: string | null
+          responded_at?: string | null
+          response_time_minutes?: number | null
           result?: Json | null
           source?: string | null
           started_at?: string | null
           status?: string
+          trigger_run_id?: string | null
           updated_at?: string | null
           workspace_id?: string
         }
@@ -5427,6 +12790,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "lead_conversion_analytics"
             referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "flow_executions_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
           },
           {
             foreignKeyName: "flow_executions_flow_id_fkey"
@@ -5534,6 +12904,13 @@ export type Database = {
             foreignKeyName: "flow_monitoring_alerts_flow_id_fkey"
             columns: ["flow_id"]
             isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "flow_monitoring_alerts_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
             referencedRelation: "flows"
             referencedColumns: ["id"]
           },
@@ -5578,6 +12955,13 @@ export type Database = {
             foreignKeyName: "flow_revisions_flow_id_fkey"
             columns: ["flow_id"]
             isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "flow_revisions_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
             referencedRelation: "flows"
             referencedColumns: ["id"]
           },
@@ -5589,9 +12973,15 @@ export type Database = {
           contact_id: string
           created_at: string | null
           id: string
+          lead_status_at_start: string | null
+          metadata: Json | null
+          response_message_id: string | null
           sequence_id: string
           started_at: string | null
           status: string
+          stopped_at_step: number | null
+          stopped_by_response: boolean | null
+          trigger_run_id: string | null
           updated_at: string | null
           workspace_id: string
         }
@@ -5600,9 +12990,15 @@ export type Database = {
           contact_id: string
           created_at?: string | null
           id?: string
+          lead_status_at_start?: string | null
+          metadata?: Json | null
+          response_message_id?: string | null
           sequence_id: string
           started_at?: string | null
           status?: string
+          stopped_at_step?: number | null
+          stopped_by_response?: boolean | null
+          trigger_run_id?: string | null
           updated_at?: string | null
           workspace_id: string
         }
@@ -5611,9 +13007,15 @@ export type Database = {
           contact_id?: string
           created_at?: string | null
           id?: string
+          lead_status_at_start?: string | null
+          metadata?: Json | null
+          response_message_id?: string | null
           sequence_id?: string
           started_at?: string | null
           status?: string
+          stopped_at_step?: number | null
+          stopped_by_response?: boolean | null
+          trigger_run_id?: string | null
           updated_at?: string | null
           workspace_id?: string
         }
@@ -5632,6 +13034,7 @@ export type Database = {
           created_at: string | null
           execution_id: string
           id: string
+          livechat_message_id: string | null
           message_id: string
           message_type: string
           scheduled_sms_job_id: string | null
@@ -5646,6 +13049,7 @@ export type Database = {
           created_at?: string | null
           execution_id: string
           id?: string
+          livechat_message_id?: string | null
           message_id: string
           message_type?: string
           scheduled_sms_job_id?: string | null
@@ -5660,6 +13064,7 @@ export type Database = {
           created_at?: string | null
           execution_id?: string
           id?: string
+          livechat_message_id?: string | null
           message_id?: string
           message_type?: string
           scheduled_sms_job_id?: string | null
@@ -5689,45 +13094,136 @@ export type Database = {
       }
       flow_sequence_messages: {
         Row: {
+          branch_id: string | null
+          branches: Json | null
+          connector_id: string | null
+          connector_name: string | null
           created_at: string | null
+          day_offset: number | null
+          email_template_id: string | null
+          email_template_name: string | null
+          flow_id: string | null
+          flow_name: string | null
           id: string
+          is_html: boolean | null
+          lead_status_check: Json | null
+          link_shortener_config: Json | null
+          media_url: string | null
           message_type: string
+          on_failure: string | null
           order_index: number
+          otherwise_action: string | null
+          preheader: string | null
+          run_async: boolean | null
           sequence_id: string
+          specific_time: string | null
+          step_name: string | null
+          step_type: string
           subflow_id: string | null
           subject: string | null
-          text: string
+          template_variables: Json | null
+          text: string | null
           time_unit: string
           time_value: number
           updated_at: string | null
         }
         Insert: {
+          branch_id?: string | null
+          branches?: Json | null
+          connector_id?: string | null
+          connector_name?: string | null
           created_at?: string | null
+          day_offset?: number | null
+          email_template_id?: string | null
+          email_template_name?: string | null
+          flow_id?: string | null
+          flow_name?: string | null
           id?: string
+          is_html?: boolean | null
+          lead_status_check?: Json | null
+          link_shortener_config?: Json | null
+          media_url?: string | null
           message_type?: string
+          on_failure?: string | null
           order_index: number
+          otherwise_action?: string | null
+          preheader?: string | null
+          run_async?: boolean | null
           sequence_id: string
+          specific_time?: string | null
+          step_name?: string | null
+          step_type?: string
           subflow_id?: string | null
           subject?: string | null
-          text: string
+          template_variables?: Json | null
+          text?: string | null
           time_unit: string
           time_value: number
           updated_at?: string | null
         }
         Update: {
+          branch_id?: string | null
+          branches?: Json | null
+          connector_id?: string | null
+          connector_name?: string | null
           created_at?: string | null
+          day_offset?: number | null
+          email_template_id?: string | null
+          email_template_name?: string | null
+          flow_id?: string | null
+          flow_name?: string | null
           id?: string
+          is_html?: boolean | null
+          lead_status_check?: Json | null
+          link_shortener_config?: Json | null
+          media_url?: string | null
           message_type?: string
+          on_failure?: string | null
           order_index?: number
+          otherwise_action?: string | null
+          preheader?: string | null
+          run_async?: boolean | null
           sequence_id?: string
+          specific_time?: string | null
+          step_name?: string | null
+          step_type?: string
           subflow_id?: string | null
           subject?: string | null
-          text?: string
+          template_variables?: Json | null
+          text?: string | null
           time_unit?: string
           time_value?: number
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "flow_sequence_messages_connector_id_fkey"
+            columns: ["connector_id"]
+            isOneToOne: false
+            referencedRelation: "connectors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flow_sequence_messages_email_template_id_fkey"
+            columns: ["email_template_id"]
+            isOneToOne: false
+            referencedRelation: "email_templates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flow_sequence_messages_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "flow_sequence_messages_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "flow_sequence_messages_sequence_id_fkey"
             columns: ["sequence_id"]
@@ -5739,33 +13235,139 @@ export type Database = {
       }
       flow_sequences: {
         Row: {
+          ai_generated: boolean | null
+          ai_prompt: Json | null
+          auto_stop_on_reply: boolean | null
+          auto_stop_rules: Json | null
           created_at: string | null
           created_by: string | null
+          enrollment_rules: Json | null
+          exclusion_rules: Json | null
+          generation_version: number | null
           id: string
+          kanban_column_id: string | null
           name: string
+          settings: Json | null
           status: string
           updated_at: string | null
           workspace_id: string
         }
         Insert: {
+          ai_generated?: boolean | null
+          ai_prompt?: Json | null
+          auto_stop_on_reply?: boolean | null
+          auto_stop_rules?: Json | null
           created_at?: string | null
           created_by?: string | null
+          enrollment_rules?: Json | null
+          exclusion_rules?: Json | null
+          generation_version?: number | null
           id?: string
+          kanban_column_id?: string | null
           name: string
+          settings?: Json | null
           status?: string
           updated_at?: string | null
           workspace_id: string
         }
         Update: {
+          ai_generated?: boolean | null
+          ai_prompt?: Json | null
+          auto_stop_on_reply?: boolean | null
+          auto_stop_rules?: Json | null
           created_at?: string | null
           created_by?: string | null
+          enrollment_rules?: Json | null
+          exclusion_rules?: Json | null
+          generation_version?: number | null
           id?: string
+          kanban_column_id?: string | null
           name?: string
+          settings?: Json | null
           status?: string
           updated_at?: string | null
           workspace_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "flow_sequences_kanban_column_id_fkey"
+            columns: ["kanban_column_id"]
+            isOneToOne: false
+            referencedRelation: "sequence_kanban_columns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      flow_summaries: {
+        Row: {
+          flow_id: string
+          flow_version_hash: string
+          generated_at: string
+          generation_error: string | null
+          generation_status: string
+          id: string
+          outline_json: Json
+          stats_json: Json
+          tldr: string | null
+          warnings_json: Json
+          workspace_id: string
+        }
+        Insert: {
+          flow_id: string
+          flow_version_hash: string
+          generated_at?: string
+          generation_error?: string | null
+          generation_status?: string
+          id?: string
+          outline_json: Json
+          stats_json?: Json
+          tldr?: string | null
+          warnings_json?: Json
+          workspace_id: string
+        }
+        Update: {
+          flow_id?: string
+          flow_version_hash?: string
+          generated_at?: string
+          generation_error?: string | null
+          generation_status?: string
+          id?: string
+          outline_json?: Json
+          stats_json?: Json
+          tldr?: string | null
+          warnings_json?: Json
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flow_summaries_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "flow_summaries_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "flow_summaries_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "flow_summaries_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       flows: {
         Row: {
@@ -5775,7 +13377,14 @@ export type Database = {
           id: string
           name: string
           nodes: Json | null
+          settings: Json | null
           updated_at: string | null
+          webhook_enabled: boolean
+          webhook_field_mappings: Json | null
+          webhook_id: string | null
+          webhook_last_payload: Json | null
+          webhook_last_received_at: string | null
+          webhook_secret: string | null
           workspace_id: string | null
         }
         Insert: {
@@ -5785,7 +13394,14 @@ export type Database = {
           id?: string
           name: string
           nodes?: Json | null
+          settings?: Json | null
           updated_at?: string | null
+          webhook_enabled?: boolean
+          webhook_field_mappings?: Json | null
+          webhook_id?: string | null
+          webhook_last_payload?: Json | null
+          webhook_last_received_at?: string | null
+          webhook_secret?: string | null
           workspace_id?: string | null
         }
         Update: {
@@ -5795,7 +13411,14 @@ export type Database = {
           id?: string
           name?: string
           nodes?: Json | null
+          settings?: Json | null
           updated_at?: string | null
+          webhook_enabled?: boolean
+          webhook_field_mappings?: Json | null
+          webhook_id?: string | null
+          webhook_last_payload?: Json | null
+          webhook_last_received_at?: string | null
+          webhook_secret?: string | null
           workspace_id?: string | null
         }
         Relationships: [
@@ -5818,6 +13441,311 @@ export type Database = {
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      in_app_survey_responses: {
+        Row: {
+          answers: Json
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          user_email: string | null
+          user_id: string
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          answers?: Json
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          user_email?: string | null
+          user_id: string
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          answers?: Json
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          user_email?: string | null
+          user_id?: string
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      inbound_sms_action_log: {
+        Row: {
+          action_type: string
+          contact_id: string | null
+          created_at: string
+          id: string
+          idempotency_key: string
+          last_error: string | null
+          outbox_id: string | null
+          provider_message_id: string | null
+          result: Json
+          status: string
+          twilio_sid: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          action_type: string
+          contact_id?: string | null
+          created_at?: string
+          id?: string
+          idempotency_key: string
+          last_error?: string | null
+          outbox_id?: string | null
+          provider_message_id?: string | null
+          result?: Json
+          status?: string
+          twilio_sid?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          action_type?: string
+          contact_id?: string | null
+          created_at?: string
+          id?: string
+          idempotency_key?: string
+          last_error?: string | null
+          outbox_id?: string | null
+          provider_message_id?: string | null
+          result?: Json
+          status?: string
+          twilio_sid?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inbound_sms_action_log_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_action_log_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_action_log_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_action_log_outbox_id_fkey"
+            columns: ["outbox_id"]
+            isOneToOne: false
+            referencedRelation: "inbound_sms_processing_outbox"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_action_log_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_action_log_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inbound_sms_processing_outbox: {
+        Row: {
+          attempt_count: number
+          claimed_at: string | null
+          claimed_by: string | null
+          contact_id: string | null
+          created_at: string
+          event_type: string
+          id: string
+          last_error: string | null
+          legacy_message_id: string | null
+          livechat_message_id: string | null
+          max_attempts: number
+          next_attempt_at: string
+          payload: Json
+          processed_at: string | null
+          status: string
+          trigger_run_id: string | null
+          twilio_sid: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          attempt_count?: number
+          claimed_at?: string | null
+          claimed_by?: string | null
+          contact_id?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          last_error?: string | null
+          legacy_message_id?: string | null
+          livechat_message_id?: string | null
+          max_attempts?: number
+          next_attempt_at?: string
+          payload?: Json
+          processed_at?: string | null
+          status?: string
+          trigger_run_id?: string | null
+          twilio_sid: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          attempt_count?: number
+          claimed_at?: string | null
+          claimed_by?: string | null
+          contact_id?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          last_error?: string | null
+          legacy_message_id?: string | null
+          livechat_message_id?: string | null
+          max_attempts?: number
+          next_attempt_at?: string
+          payload?: Json
+          processed_at?: string | null
+          status?: string
+          trigger_run_id?: string | null
+          twilio_sid?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inbound_sms_processing_outbox_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_processing_outbox_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_processing_outbox_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_processing_outbox_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "inbound_sms_processing_outbox_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      integration_logs: {
+        Row: {
+          created_at: string | null
+          data: Json | null
+          id: string
+          level: string
+          message: string
+          user_integration_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          data?: Json | null
+          id?: string
+          level: string
+          message: string
+          user_integration_id: string
+        }
+        Update: {
+          created_at?: string | null
+          data?: Json | null
+          id?: string
+          level?: string
+          message?: string
+          user_integration_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "integration_logs_user_integration_id_fkey"
+            columns: ["user_integration_id"]
+            isOneToOne: false
+            referencedRelation: "user_integrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      integration_usage_stats: {
+        Row: {
+          action: string
+          created_at: string | null
+          date: string
+          error_count: number
+          id: string
+          success_count: number
+          total_execution_time_ms: number
+          updated_at: string | null
+          user_integration_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          date?: string
+          error_count?: number
+          id?: string
+          success_count?: number
+          total_execution_time_ms?: number
+          updated_at?: string | null
+          user_integration_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          date?: string
+          error_count?: number
+          id?: string
+          success_count?: number
+          total_execution_time_ms?: number
+          updated_at?: string | null
+          user_integration_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "integration_usage_stats_user_integration_id_fkey"
+            columns: ["user_integration_id"]
+            isOneToOne: false
+            referencedRelation: "user_integrations"
             referencedColumns: ["id"]
           },
         ]
@@ -5889,42 +13817,51 @@ export type Database = {
       }
       keyword_rules: {
         Row: {
+          action_type: string | null
           created_at: string | null
           flow_id: string | null
+          frequency: number | null
           id: string
           is_active: boolean | null
           keywords: Json
           name: string
           reply_text: string | null
           rule_type: string
+          schedule: Json | null
           tags: Json | null
           twilio_number_id: string | null
           updated_at: string | null
           workspace_id: string
         }
         Insert: {
+          action_type?: string | null
           created_at?: string | null
           flow_id?: string | null
+          frequency?: number | null
           id?: string
           is_active?: boolean | null
           keywords: Json
           name: string
           reply_text?: string | null
           rule_type: string
+          schedule?: Json | null
           tags?: Json | null
           twilio_number_id?: string | null
           updated_at?: string | null
           workspace_id: string
         }
         Update: {
+          action_type?: string | null
           created_at?: string | null
           flow_id?: string | null
+          frequency?: number | null
           id?: string
           is_active?: boolean | null
           keywords?: Json
           name?: string
           reply_text?: string | null
           rule_type?: string
+          schedule?: Json | null
           tags?: Json | null
           twilio_number_id?: string | null
           updated_at?: string | null
@@ -5939,6 +13876,527 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      keyword_triggers: {
+        Row: {
+          action_type: string
+          created_at: string | null
+          description: string | null
+          flow_id: string | null
+          id: string
+          is_active: boolean | null
+          is_case_sensitive: boolean | null
+          keyword: string
+          keyword_match_type: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          action_type?: string
+          created_at?: string | null
+          description?: string | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_case_sensitive?: boolean | null
+          keyword: string
+          keyword_match_type?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          action_type?: string
+          created_at?: string | null
+          description?: string | null
+          flow_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_case_sensitive?: boolean | null
+          keyword?: string
+          keyword_match_type?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "keyword_triggers_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "keyword_triggers_flow_id_fkey"
+            columns: ["flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "keyword_triggers_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "keyword_triggers_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_activities: {
+        Row: {
+          activity_category: string | null
+          activity_data: Json | null
+          activity_subtype: string | null
+          activity_type: string
+          attachments: Json | null
+          automation_id: string | null
+          campaign_id: string | null
+          channel: string | null
+          completed_at: string | null
+          contact_participants: Json | null
+          cost: number | null
+          created_at: string | null
+          customer_feedback: string | null
+          deleted_at: string | null
+          description: string | null
+          direction: string | null
+          duration_minutes: number | null
+          external_id: string | null
+          external_system: string | null
+          external_url: string | null
+          follow_up_date: string | null
+          follow_up_required: boolean | null
+          id: string
+          internal_notes: string | null
+          is_automated: boolean | null
+          is_billable: boolean | null
+          is_deleted: boolean | null
+          lead_id: string
+          lead_score_change: number | null
+          links: Json | null
+          metadata: Json | null
+          next_action: string | null
+          outcome: string | null
+          participants: Json | null
+          performed_by: string | null
+          priority: string | null
+          quality_score: number | null
+          recordings: Json | null
+          revenue_attributed: number | null
+          scheduled_at: string | null
+          sentiment: string | null
+          sequence_step: number | null
+          started_at: string | null
+          status_after: string | null
+          status_before: string | null
+          tags: Json | null
+          temperature_after: string | null
+          temperature_before: string | null
+          title: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          activity_category?: string | null
+          activity_data?: Json | null
+          activity_subtype?: string | null
+          activity_type: string
+          attachments?: Json | null
+          automation_id?: string | null
+          campaign_id?: string | null
+          channel?: string | null
+          completed_at?: string | null
+          contact_participants?: Json | null
+          cost?: number | null
+          created_at?: string | null
+          customer_feedback?: string | null
+          deleted_at?: string | null
+          description?: string | null
+          direction?: string | null
+          duration_minutes?: number | null
+          external_id?: string | null
+          external_system?: string | null
+          external_url?: string | null
+          follow_up_date?: string | null
+          follow_up_required?: boolean | null
+          id?: string
+          internal_notes?: string | null
+          is_automated?: boolean | null
+          is_billable?: boolean | null
+          is_deleted?: boolean | null
+          lead_id: string
+          lead_score_change?: number | null
+          links?: Json | null
+          metadata?: Json | null
+          next_action?: string | null
+          outcome?: string | null
+          participants?: Json | null
+          performed_by?: string | null
+          priority?: string | null
+          quality_score?: number | null
+          recordings?: Json | null
+          revenue_attributed?: number | null
+          scheduled_at?: string | null
+          sentiment?: string | null
+          sequence_step?: number | null
+          started_at?: string | null
+          status_after?: string | null
+          status_before?: string | null
+          tags?: Json | null
+          temperature_after?: string | null
+          temperature_before?: string | null
+          title: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          activity_category?: string | null
+          activity_data?: Json | null
+          activity_subtype?: string | null
+          activity_type?: string
+          attachments?: Json | null
+          automation_id?: string | null
+          campaign_id?: string | null
+          channel?: string | null
+          completed_at?: string | null
+          contact_participants?: Json | null
+          cost?: number | null
+          created_at?: string | null
+          customer_feedback?: string | null
+          deleted_at?: string | null
+          description?: string | null
+          direction?: string | null
+          duration_minutes?: number | null
+          external_id?: string | null
+          external_system?: string | null
+          external_url?: string | null
+          follow_up_date?: string | null
+          follow_up_required?: boolean | null
+          id?: string
+          internal_notes?: string | null
+          is_automated?: boolean | null
+          is_billable?: boolean | null
+          is_deleted?: boolean | null
+          lead_id?: string
+          lead_score_change?: number | null
+          links?: Json | null
+          metadata?: Json | null
+          next_action?: string | null
+          outcome?: string | null
+          participants?: Json | null
+          performed_by?: string | null
+          priority?: string | null
+          quality_score?: number | null
+          recordings?: Json | null
+          revenue_attributed?: number | null
+          scheduled_at?: string | null
+          sentiment?: string | null
+          sequence_step?: number | null
+          started_at?: string | null
+          status_after?: string | null
+          status_before?: string | null
+          tags?: Json | null
+          temperature_after?: string | null
+          temperature_before?: string | null
+          title?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_activities_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "lead_activity_summary"
+            referencedColumns: ["lead_id"]
+          },
+          {
+            foreignKeyName: "lead_activities_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_custom_fields: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          created_by: string | null
+          default_value: string | null
+          description: string | null
+          display_order: number | null
+          field_group: string | null
+          field_label: string | null
+          field_name: string
+          field_options: Json | null
+          field_type: string | null
+          field_value: string | null
+          id: string
+          is_editable: boolean | null
+          is_required: boolean | null
+          is_searchable: boolean | null
+          is_visible: boolean | null
+          lead_id: string
+          required_role: string | null
+          updated_at: string | null
+          updated_by: string | null
+          validation_rules: Json | null
+          workspace_id: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          default_value?: string | null
+          description?: string | null
+          display_order?: number | null
+          field_group?: string | null
+          field_label?: string | null
+          field_name: string
+          field_options?: Json | null
+          field_type?: string | null
+          field_value?: string | null
+          id?: string
+          is_editable?: boolean | null
+          is_required?: boolean | null
+          is_searchable?: boolean | null
+          is_visible?: boolean | null
+          lead_id: string
+          required_role?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          validation_rules?: Json | null
+          workspace_id: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          default_value?: string | null
+          description?: string | null
+          display_order?: number | null
+          field_group?: string | null
+          field_label?: string | null
+          field_name?: string
+          field_options?: Json | null
+          field_type?: string | null
+          field_value?: string | null
+          id?: string
+          is_editable?: boolean | null
+          is_required?: boolean | null
+          is_searchable?: boolean | null
+          is_visible?: boolean | null
+          lead_id?: string
+          required_role?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          validation_rules?: Json | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_custom_fields_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "lead_activity_summary"
+            referencedColumns: ["lead_id"]
+          },
+          {
+            foreignKeyName: "lead_custom_fields_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_field_definitions: {
+        Row: {
+          archived_at: string | null
+          category: string | null
+          created_at: string | null
+          created_by: string | null
+          default_value: string | null
+          description: string | null
+          display_order: number | null
+          edit_role: string | null
+          field_group: string | null
+          field_label: string
+          field_name: string
+          field_options: Json | null
+          field_type: string
+          help_text: string | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          is_editable: boolean | null
+          is_required: boolean | null
+          is_searchable: boolean | null
+          is_system_field: boolean | null
+          is_visible: boolean | null
+          placeholder: string | null
+          required_role: string | null
+          updated_at: string | null
+          updated_by: string | null
+          validation_rules: Json | null
+          width: string | null
+          workspace_id: string
+        }
+        Insert: {
+          archived_at?: string | null
+          category?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          default_value?: string | null
+          description?: string | null
+          display_order?: number | null
+          edit_role?: string | null
+          field_group?: string | null
+          field_label: string
+          field_name: string
+          field_options?: Json | null
+          field_type?: string
+          help_text?: string | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_editable?: boolean | null
+          is_required?: boolean | null
+          is_searchable?: boolean | null
+          is_system_field?: boolean | null
+          is_visible?: boolean | null
+          placeholder?: string | null
+          required_role?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          validation_rules?: Json | null
+          width?: string | null
+          workspace_id: string
+        }
+        Update: {
+          archived_at?: string | null
+          category?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          default_value?: string | null
+          description?: string | null
+          display_order?: number | null
+          edit_role?: string | null
+          field_group?: string | null
+          field_label?: string
+          field_name?: string
+          field_options?: Json | null
+          field_type?: string
+          help_text?: string | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_editable?: boolean | null
+          is_required?: boolean | null
+          is_searchable?: boolean | null
+          is_system_field?: boolean | null
+          is_visible?: boolean | null
+          placeholder?: string | null
+          required_role?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          validation_rules?: Json | null
+          width?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      "lead_pipeline_stages-not-used": {
+        Row: {
+          advance_conditions: Json | null
+          auto_advance: boolean | null
+          can_edit_roles: Json | null
+          can_view_roles: Json | null
+          color: string | null
+          conversion_probability: number | null
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          entry_actions: Json | null
+          exit_actions: Json | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          is_default: boolean | null
+          is_final: boolean | null
+          reminder_settings: Json | null
+          required_fields: Json | null
+          stage_name: string
+          stage_order: number
+          stage_slug: string
+          target_duration_days: number | null
+          updated_at: string | null
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          advance_conditions?: Json | null
+          auto_advance?: boolean | null
+          can_edit_roles?: Json | null
+          can_view_roles?: Json | null
+          color?: string | null
+          conversion_probability?: number | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          entry_actions?: Json | null
+          exit_actions?: Json | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          is_final?: boolean | null
+          reminder_settings?: Json | null
+          required_fields?: Json | null
+          stage_name: string
+          stage_order: number
+          stage_slug: string
+          target_duration_days?: number | null
+          updated_at?: string | null
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          advance_conditions?: Json | null
+          auto_advance?: boolean | null
+          can_edit_roles?: Json | null
+          can_view_roles?: Json | null
+          color?: string | null
+          conversion_probability?: number | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          entry_actions?: Json | null
+          exit_actions?: Json | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          is_final?: boolean | null
+          reminder_settings?: Json | null
+          required_fields?: Json | null
+          stage_name?: string
+          stage_order?: number
+          stage_slug?: string
+          target_duration_days?: number | null
+          updated_at?: string | null
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
       }
       lead_replying_status: {
         Row: {
@@ -5972,6 +14430,448 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: []
+      }
+      lead_score_events: {
+        Row: {
+          contact_id: string
+          created_at: string | null
+          dedupe_key: string | null
+          event_source_id: string | null
+          event_type: string
+          expired_at: string | null
+          expires_at: string | null
+          id: string
+          is_expired: boolean
+          metadata: Json | null
+          new_score: number
+          occurred_at: string
+          points: number
+          previous_score: number
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string | null
+          dedupe_key?: string | null
+          event_source_id?: string | null
+          event_type: string
+          expired_at?: string | null
+          expires_at?: string | null
+          id?: string
+          is_expired?: boolean
+          metadata?: Json | null
+          new_score: number
+          occurred_at?: string
+          points: number
+          previous_score: number
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string | null
+          dedupe_key?: string | null
+          event_source_id?: string | null
+          event_type?: string
+          expired_at?: string | null
+          expires_at?: string | null
+          id?: string
+          is_expired?: boolean
+          metadata?: Json | null
+          new_score?: number
+          occurred_at?: string
+          points?: number
+          previous_score?: number
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_score_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "lead_score_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_score_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      lead_scoring_rules: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          is_enabled: boolean
+          points: number
+          updated_at: string
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          is_enabled?: boolean
+          points?: number
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          is_enabled?: boolean
+          points?: number
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_scoring_rules_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "lead_scoring_rules_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_scoring_settings: {
+        Row: {
+          created_at: string
+          is_enabled: boolean
+          score_window_days: number
+          updated_at: string
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          is_enabled?: boolean
+          score_window_days?: number
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          is_enabled?: boolean
+          score_window_days?: number
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_scoring_settings_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "lead_scoring_settings_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          assigned_to: string | null
+          best_time_to_contact: string | null
+          budget_range: string | null
+          campaign_id: string | null
+          competition: Json | null
+          contact_id: string
+          conversion_event: string | null
+          conversion_value: number | null
+          converted_at: string | null
+          created_at: string | null
+          created_by: string | null
+          custom_fields: Json | null
+          decision_makers: Json | null
+          estimated_value: number | null
+          expected_close_date: string | null
+          follow_up_count: number | null
+          id: string
+          initial_inquiry: string | null
+          is_active: boolean | null
+          is_converted: boolean | null
+          landing_page_url: string | null
+          last_activity_at: string | null
+          lead_score: number | null
+          lead_source: string | null
+          lead_status_id: number | null
+          lost_at: string | null
+          lost_reason: string | null
+          metadata: Json | null
+          next_follow_up_at: string | null
+          nurture_sequence_id: string | null
+          pain_points: Json | null
+          preferred_contact_method: string | null
+          priority: string | null
+          probability: number | null
+          product_interest: string | null
+          qualification_status: string | null
+          referral_source: string | null
+          secondary_products: Json | null
+          service_type: string | null
+          stage: string | null
+          sub_source: string | null
+          tags: Json | null
+          team_id: string | null
+          temperature: string | null
+          timeline: string | null
+          timezone: string | null
+          updated_at: string | null
+          updated_by: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          workspace_id: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          best_time_to_contact?: string | null
+          budget_range?: string | null
+          campaign_id?: string | null
+          competition?: Json | null
+          contact_id: string
+          conversion_event?: string | null
+          conversion_value?: number | null
+          converted_at?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          custom_fields?: Json | null
+          decision_makers?: Json | null
+          estimated_value?: number | null
+          expected_close_date?: string | null
+          follow_up_count?: number | null
+          id?: string
+          initial_inquiry?: string | null
+          is_active?: boolean | null
+          is_converted?: boolean | null
+          landing_page_url?: string | null
+          last_activity_at?: string | null
+          lead_score?: number | null
+          lead_source?: string | null
+          lead_status_id?: number | null
+          lost_at?: string | null
+          lost_reason?: string | null
+          metadata?: Json | null
+          next_follow_up_at?: string | null
+          nurture_sequence_id?: string | null
+          pain_points?: Json | null
+          preferred_contact_method?: string | null
+          priority?: string | null
+          probability?: number | null
+          product_interest?: string | null
+          qualification_status?: string | null
+          referral_source?: string | null
+          secondary_products?: Json | null
+          service_type?: string | null
+          stage?: string | null
+          sub_source?: string | null
+          tags?: Json | null
+          team_id?: string | null
+          temperature?: string | null
+          timeline?: string | null
+          timezone?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          workspace_id: string
+        }
+        Update: {
+          assigned_to?: string | null
+          best_time_to_contact?: string | null
+          budget_range?: string | null
+          campaign_id?: string | null
+          competition?: Json | null
+          contact_id?: string
+          conversion_event?: string | null
+          conversion_value?: number | null
+          converted_at?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          custom_fields?: Json | null
+          decision_makers?: Json | null
+          estimated_value?: number | null
+          expected_close_date?: string | null
+          follow_up_count?: number | null
+          id?: string
+          initial_inquiry?: string | null
+          is_active?: boolean | null
+          is_converted?: boolean | null
+          landing_page_url?: string | null
+          last_activity_at?: string | null
+          lead_score?: number | null
+          lead_source?: string | null
+          lead_status_id?: number | null
+          lost_at?: string | null
+          lost_reason?: string | null
+          metadata?: Json | null
+          next_follow_up_at?: string | null
+          nurture_sequence_id?: string | null
+          pain_points?: Json | null
+          preferred_contact_method?: string | null
+          priority?: string | null
+          probability?: number | null
+          product_interest?: string | null
+          qualification_status?: string | null
+          referral_source?: string | null
+          secondary_products?: Json | null
+          service_type?: string | null
+          stage?: string | null
+          sub_source?: string | null
+          tags?: Json | null
+          team_id?: string | null
+          temperature?: string | null
+          timeline?: string | null
+          timezone?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "leads_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leads_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "leads_lead_status_id_fkey"
+            columns: ["lead_status_id"]
+            isOneToOne: false
+            referencedRelation: "status_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leads_lead_status_id_fkey"
+            columns: ["lead_status_id"]
+            isOneToOne: false
+            referencedRelation: "statuses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      livechat_assignment_events: {
+        Row: {
+          actor_user_id: string | null
+          contact_id: string
+          created_at: string
+          event_type: string
+          id: string
+          metadata: Json
+          subject_user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          actor_user_id?: string | null
+          contact_id: string
+          created_at?: string
+          event_type: string
+          id?: string
+          metadata?: Json
+          subject_user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          actor_user_id?: string | null
+          contact_id?: string
+          created_at?: string
+          event_type?: string
+          id?: string
+          metadata?: Json
+          subject_user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_assignment_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_assignment_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_assignment_events_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_assignment_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "livechat_assignment_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       livechat_board: {
         Row: {
@@ -6138,6 +15038,124 @@ export type Database = {
           },
         ]
       }
+      livechat_board_custom_columns: {
+        Row: {
+          color: string
+          created_at: string
+          id: string
+          label: string
+          position: number
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          id?: string
+          label: string
+          position?: number
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          id?: string
+          label?: string
+          position?: number
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_board_custom_columns_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "livechat_board_custom_columns_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      livechat_board_pins: {
+        Row: {
+          column_id: string
+          contact_id: string
+          created_at: string
+          id: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          column_id: string
+          contact_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          column_id?: string
+          contact_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_board_pins_column_id_fkey"
+            columns: ["column_id"]
+            isOneToOne: false
+            referencedRelation: "livechat_board_custom_columns"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_board_pins_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_board_pins_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_board_pins_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_board_pins_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "livechat_board_pins_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       livechat_contact_assignments: {
         Row: {
           contact_id: string
@@ -6187,6 +15205,78 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "lead_conversion_analytics"
             referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      livechat_contact_viewer_presence: {
+        Row: {
+          avatar_url: string | null
+          contact_id: string
+          created_at: string
+          last_seen_at: string
+          session_id: string
+          updated_at: string
+          user_id: string
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          contact_id: string
+          created_at?: string
+          last_seen_at?: string
+          session_id: string
+          updated_at?: string
+          user_id: string
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          contact_id?: string
+          created_at?: string
+          last_seen_at?: string
+          session_id?: string
+          updated_at?: string
+          user_id?: string
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_contact_viewer_presence_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_viewer_presence_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_viewer_presence_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_viewer_presence_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "livechat_contact_viewer_presence_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -6250,7 +15340,6 @@ export type Database = {
           is_read: boolean | null
           media_paths: Json | null
           media_urls: Json | null
-          message_type: string | null
           metadata: Json | null
           msg_type: string
           parent_id: string | null
@@ -6262,6 +15351,7 @@ export type Database = {
           twilio_sid: string | null
           updated_at: string | null
           user_avatar: string | null
+          user_id: string | null
           user_name: string | null
           workspace_id: string
         }
@@ -6282,7 +15372,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6294,6 +15383,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id: string
         }
@@ -6314,7 +15404,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6326,6 +15415,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id?: string
         }
@@ -6385,7 +15475,6 @@ export type Database = {
           is_read: boolean | null
           media_paths: Json | null
           media_urls: Json | null
-          message_type: string | null
           metadata: Json | null
           msg_type: string
           parent_id: string | null
@@ -6397,6 +15486,7 @@ export type Database = {
           twilio_sid: string | null
           updated_at: string | null
           user_avatar: string | null
+          user_id: string | null
           user_name: string | null
           workspace_id: string
         }
@@ -6417,7 +15507,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6429,6 +15518,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id: string
         }
@@ -6449,7 +15539,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6461,6 +15550,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id?: string
         }
@@ -6484,7 +15574,6 @@ export type Database = {
           is_read: boolean | null
           media_paths: Json | null
           media_urls: Json | null
-          message_type: string | null
           metadata: Json | null
           msg_type: string
           parent_id: string | null
@@ -6496,6 +15585,7 @@ export type Database = {
           twilio_sid: string | null
           updated_at: string | null
           user_avatar: string | null
+          user_id: string | null
           user_name: string | null
           workspace_id: string
         }
@@ -6516,7 +15606,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6528,6 +15617,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id: string
         }
@@ -6548,7 +15638,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6560,6 +15649,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id?: string
         }
@@ -6583,7 +15673,6 @@ export type Database = {
           is_read: boolean | null
           media_paths: Json | null
           media_urls: Json | null
-          message_type: string | null
           metadata: Json | null
           msg_type: string
           parent_id: string | null
@@ -6595,6 +15684,7 @@ export type Database = {
           twilio_sid: string | null
           updated_at: string | null
           user_avatar: string | null
+          user_id: string | null
           user_name: string | null
           workspace_id: string
         }
@@ -6615,7 +15705,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6627,6 +15716,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id: string
         }
@@ -6647,7 +15737,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6659,6 +15748,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id?: string
         }
@@ -6682,7 +15772,6 @@ export type Database = {
           is_read: boolean | null
           media_paths: Json | null
           media_urls: Json | null
-          message_type: string | null
           metadata: Json | null
           msg_type: string
           parent_id: string | null
@@ -6694,6 +15783,7 @@ export type Database = {
           twilio_sid: string | null
           updated_at: string | null
           user_avatar: string | null
+          user_id: string | null
           user_name: string | null
           workspace_id: string
         }
@@ -6714,7 +15804,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6726,6 +15815,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id: string
         }
@@ -6746,7 +15836,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6758,6 +15847,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id?: string
         }
@@ -6781,7 +15871,6 @@ export type Database = {
           is_read: boolean | null
           media_paths: Json | null
           media_urls: Json | null
-          message_type: string | null
           metadata: Json | null
           msg_type: string
           parent_id: string | null
@@ -6793,6 +15882,7 @@ export type Database = {
           twilio_sid: string | null
           updated_at: string | null
           user_avatar: string | null
+          user_id: string | null
           user_name: string | null
           workspace_id: string
         }
@@ -6813,7 +15903,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6825,6 +15914,7 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id: string
         }
@@ -6845,7 +15935,6 @@ export type Database = {
           is_read?: boolean | null
           media_paths?: Json | null
           media_urls?: Json | null
-          message_type?: string | null
           metadata?: Json | null
           msg_type?: string
           parent_id?: string | null
@@ -6857,10 +15946,1853 @@ export type Database = {
           twilio_sid?: string | null
           updated_at?: string | null
           user_avatar?: string | null
+          user_id?: string | null
           user_name?: string | null
           workspace_id?: string
         }
         Relationships: []
+      }
+      livechat_messages_2025_09: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2025_10: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2025_11: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2025_12: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_01: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_02: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_03: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_04: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_05: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_06: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_07: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_08: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_09: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_10: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_11: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_2026_12: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          metadata?: Json | null
+          msg_type?: string
+          parent_id?: string | null
+          sender?: string
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_id?: string | null
+          user_name?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      livechat_messages_backup_field_fix: {
+        Row: {
+          created_at: string | null
+          id: string | null
+          message_type: string | null
+          msg_type: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string | null
+          message_type?: string | null
+          msg_type?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string | null
+          message_type?: string | null
+          msg_type?: string | null
+        }
+        Relationships: []
+      }
+      mcp_api_keys: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          default_role: string
+          id: string
+          is_active: boolean
+          key_hash: string
+          key_prefix: string
+          label: string
+          last_used_at: string | null
+          staff_member_id: string | null
+          updated_at: string
+          wildcard_role: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          default_role?: string
+          id?: string
+          is_active?: boolean
+          key_hash: string
+          key_prefix: string
+          label: string
+          last_used_at?: string | null
+          staff_member_id?: string | null
+          updated_at?: string
+          wildcard_role?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          default_role?: string
+          id?: string
+          is_active?: boolean
+          key_hash?: string
+          key_prefix?: string
+          label?: string
+          last_used_at?: string | null
+          staff_member_id?: string | null
+          updated_at?: string
+          wildcard_role?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mcp_api_keys_staff_member_id_fkey"
+            columns: ["staff_member_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mcp_audit_log: {
+        Row: {
+          api_key_id: string | null
+          arg_summary: Json | null
+          called_at: string
+          client_ip: unknown
+          error_code: number | null
+          error_message: string | null
+          id: string
+          key_prefix: string | null
+          latency_ms: number | null
+          resolved_role: string | null
+          result_size: number | null
+          staff_member_id: string | null
+          success: boolean
+          tool_name: string
+          user_agent: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          api_key_id?: string | null
+          arg_summary?: Json | null
+          called_at?: string
+          client_ip?: unknown
+          error_code?: number | null
+          error_message?: string | null
+          id?: string
+          key_prefix?: string | null
+          latency_ms?: number | null
+          resolved_role?: string | null
+          result_size?: number | null
+          staff_member_id?: string | null
+          success: boolean
+          tool_name: string
+          user_agent?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          api_key_id?: string | null
+          arg_summary?: Json | null
+          called_at?: string
+          client_ip?: unknown
+          error_code?: number | null
+          error_message?: string | null
+          id?: string
+          key_prefix?: string | null
+          latency_ms?: number | null
+          resolved_role?: string | null
+          result_size?: number | null
+          staff_member_id?: string | null
+          success?: boolean
+          tool_name?: string
+          user_agent?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mcp_audit_log_api_key_id_fkey"
+            columns: ["api_key_id"]
+            isOneToOne: false
+            referencedRelation: "mcp_api_keys"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mcp_workspace_permissions: {
+        Row: {
+          api_key_id: string
+          created_at: string
+          id: string
+          role: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          api_key_id: string
+          created_at?: string
+          id?: string
+          role: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          api_key_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mcp_workspace_permissions_api_key_id_fkey"
+            columns: ["api_key_id"]
+            isOneToOne: false
+            referencedRelation: "mcp_api_keys"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mcp_workspace_permissions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "mcp_workspace_permissions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      message_error_logs: {
+        Row: {
+          contact_id: string | null
+          created_at: string | null
+          details: Json | null
+          direction: string
+          error_code: string | null
+          error_message: string
+          id: string
+          message_body: string | null
+          message_type: string
+          recipient: string | null
+          sender: string | null
+          twilio_sid: string | null
+          workspace_id: string
+        }
+        Insert: {
+          contact_id?: string | null
+          created_at?: string | null
+          details?: Json | null
+          direction: string
+          error_code?: string | null
+          error_message: string
+          id?: string
+          message_body?: string | null
+          message_type: string
+          recipient?: string | null
+          sender?: string | null
+          twilio_sid?: string | null
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string | null
+          created_at?: string | null
+          details?: Json | null
+          direction?: string
+          error_code?: string | null
+          error_message?: string
+          id?: string
+          message_body?: string | null
+          message_type?: string
+          recipient?: string | null
+          sender?: string | null
+          twilio_sid?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_error_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "message_error_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "message_error_logs_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
       }
       message_events: {
         Row: {
@@ -6962,29 +17894,94 @@ export type Database = {
         }
         Relationships: []
       }
-      message_templates: {
+      message_tags: {
         Row: {
-          content: string
+          contact_id: string
           created_at: string | null
           id: string
+          message_id: string
+          tag_id: string
+          tagged_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string | null
+          id?: string
+          message_id: string
+          tag_id: string
+          tagged_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string | null
+          id?: string
+          message_id?: string
+          tag_id?: string
+          tagged_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_tags_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      message_templates: {
+        Row: {
+          ai_generated: boolean | null
+          ai_prompt: Json | null
+          category: string
+          channel: string
+          content: string
+          created_at: string | null
+          generation_version: number | null
+          id: string
+          is_favorite: boolean | null
+          is_sequence: boolean | null
+          messages: Json | null
           name: string
           updated_at: string | null
+          variables: Json | null
           workspace_id: string | null
         }
         Insert: {
+          ai_generated?: boolean | null
+          ai_prompt?: Json | null
+          category?: string
+          channel?: string
           content: string
           created_at?: string | null
+          generation_version?: number | null
           id?: string
+          is_favorite?: boolean | null
+          is_sequence?: boolean | null
+          messages?: Json | null
           name: string
           updated_at?: string | null
+          variables?: Json | null
           workspace_id?: string | null
         }
         Update: {
+          ai_generated?: boolean | null
+          ai_prompt?: Json | null
+          category?: string
+          channel?: string
           content?: string
           created_at?: string | null
+          generation_version?: number | null
           id?: string
+          is_favorite?: boolean | null
+          is_sequence?: boolean | null
+          messages?: Json | null
           name?: string
           updated_at?: string | null
+          variables?: Json | null
           workspace_id?: string | null
         }
         Relationships: [
@@ -7122,29 +18119,207 @@ export type Database = {
         }
         Relationships: []
       }
-      note_folders: {
+      meta_messages: {
+        Row: {
+          attachments: Json | null
+          contact_id: string | null
+          content: string | null
+          created_at: string | null
+          direction: string
+          id: string
+          message_id: string
+          meta_page_id: string | null
+          meta_recipient_id: string | null
+          meta_sender_id: string | null
+          platform: string
+          workspace_id: string
+        }
+        Insert: {
+          attachments?: Json | null
+          contact_id?: string | null
+          content?: string | null
+          created_at?: string | null
+          direction: string
+          id?: string
+          message_id: string
+          meta_page_id?: string | null
+          meta_recipient_id?: string | null
+          meta_sender_id?: string | null
+          platform: string
+          workspace_id: string
+        }
+        Update: {
+          attachments?: Json | null
+          contact_id?: string | null
+          content?: string | null
+          created_at?: string | null
+          direction?: string
+          id?: string
+          message_id?: string
+          meta_page_id?: string | null
+          meta_recipient_id?: string | null
+          meta_sender_id?: string | null
+          platform?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meta_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "meta_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "meta_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "meta_messages_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "meta_messages_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      missed_call_triggers: {
+        Row: {
+          call_log_id: string
+          contact_id: string | null
+          created_at: string
+          error_message: string | null
+          id: string
+          processed_at: string | null
+          status: string
+          trigger_id: string
+          trigger_run_id: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          call_log_id: string
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          processed_at?: string | null
+          status?: string
+          trigger_id: string
+          trigger_run_id?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          call_log_id?: string
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          processed_at?: string | null
+          status?: string
+          trigger_id?: string
+          trigger_run_id?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "missed_call_triggers_trigger_id_fkey"
+            columns: ["trigger_id"]
+            isOneToOne: false
+            referencedRelation: "triggers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      note_ai_analytics: {
         Row: {
           created_at: string | null
           id: string
-          name: string
-          parent_id: string | null
-          updated_at: string | null
+          model_used: string | null
+          note_id: string | null
+          operation: string
+          processing_time_ms: number | null
+          tokens_used: number | null
           workspace_id: string
         }
         Insert: {
           created_at?: string | null
           id?: string
-          name: string
-          parent_id?: string | null
-          updated_at?: string | null
+          model_used?: string | null
+          note_id?: string | null
+          operation: string
+          processing_time_ms?: number | null
+          tokens_used?: number | null
           workspace_id: string
         }
         Update: {
           created_at?: string | null
           id?: string
+          model_used?: string | null
+          note_id?: string | null
+          operation?: string
+          processing_time_ms?: number | null
+          tokens_used?: number | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "note_ai_analytics_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      note_folders: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          name: string
+          parent_id: string | null
+          updated_at: string | null
+          visibility: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name: string
+          parent_id?: string | null
+          updated_at?: string | null
+          visibility?: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
           name?: string
           parent_id?: string | null
           updated_at?: string | null
+          visibility?: string
           workspace_id?: string
         }
         Relationships: [
@@ -7159,33 +18334,51 @@ export type Database = {
       }
       notes: {
         Row: {
+          ai_generated: boolean | null
+          ai_metadata: Json | null
           content: string | null
           created_at: string | null
+          created_by: string | null
           folder_id: string | null
           id: string
+          last_ai_processed_at: string | null
           tags: string[] | null
           title: string | null
           updated_at: string | null
+          visibility: string
+          word_count: number | null
           workspace_id: string
         }
         Insert: {
+          ai_generated?: boolean | null
+          ai_metadata?: Json | null
           content?: string | null
           created_at?: string | null
+          created_by?: string | null
           folder_id?: string | null
           id?: string
+          last_ai_processed_at?: string | null
           tags?: string[] | null
           title?: string | null
           updated_at?: string | null
+          visibility?: string
+          word_count?: number | null
           workspace_id: string
         }
         Update: {
+          ai_generated?: boolean | null
+          ai_metadata?: Json | null
           content?: string | null
           created_at?: string | null
+          created_by?: string | null
           folder_id?: string | null
           id?: string
+          last_ai_processed_at?: string | null
           tags?: string[] | null
           title?: string | null
           updated_at?: string | null
+          visibility?: string
+          word_count?: number | null
           workspace_id?: string
         }
         Relationships: [
@@ -7194,6 +18387,261 @@ export type Database = {
             columns: ["folder_id"]
             isOneToOne: false
             referencedRelation: "note_folders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_alert_firings: {
+        Row: {
+          event_count: number
+          fired_at: string
+          id: string
+          rule_id: string
+          webhook_payload: Json | null
+          webhook_response_status: number | null
+          webhook_success: boolean | null
+          webhook_url: string | null
+          workspace_id: string
+          workspace_name: string | null
+        }
+        Insert: {
+          event_count: number
+          fired_at?: string
+          id?: string
+          rule_id: string
+          webhook_payload?: Json | null
+          webhook_response_status?: number | null
+          webhook_success?: boolean | null
+          webhook_url?: string | null
+          workspace_id: string
+          workspace_name?: string | null
+        }
+        Update: {
+          event_count?: number
+          fired_at?: string
+          id?: string
+          rule_id?: string
+          webhook_payload?: Json | null
+          webhook_response_status?: number | null
+          webhook_success?: boolean | null
+          webhook_url?: string | null
+          workspace_id?: string
+          workspace_name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_alert_firings_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "notification_alert_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_alert_rules: {
+        Row: {
+          alert_type: string
+          cooldown_minutes: number
+          created_at: string
+          description: string | null
+          enabled: boolean
+          id: string
+          name: string
+          threshold: number
+          updated_at: string
+          webhook_url: string | null
+          window_minutes: number
+        }
+        Insert: {
+          alert_type?: string
+          cooldown_minutes?: number
+          created_at?: string
+          description?: string | null
+          enabled?: boolean
+          id?: string
+          name: string
+          threshold?: number
+          updated_at?: string
+          webhook_url?: string | null
+          window_minutes?: number
+        }
+        Update: {
+          alert_type?: string
+          cooldown_minutes?: number
+          created_at?: string
+          description?: string | null
+          enabled?: boolean
+          id?: string
+          name?: string
+          threshold?: number
+          updated_at?: string
+          webhook_url?: string | null
+          window_minutes?: number
+        }
+        Relationships: []
+      }
+      notification_settings: {
+        Row: {
+          admin_id: string
+          booking_cancelled: boolean | null
+          booking_confirmed: boolean | null
+          created_at: string | null
+          email_notifications: boolean | null
+          id: string
+          reminder_1h: boolean | null
+          reminder_24h: boolean | null
+          sms_notifications: boolean | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          admin_id: string
+          booking_cancelled?: boolean | null
+          booking_confirmed?: boolean | null
+          created_at?: string | null
+          email_notifications?: boolean | null
+          id?: string
+          reminder_1h?: boolean | null
+          reminder_24h?: boolean | null
+          sms_notifications?: boolean | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          admin_id?: string
+          booking_cancelled?: boolean | null
+          booking_confirmed?: boolean | null
+          created_at?: string | null
+          email_notifications?: boolean | null
+          id?: string
+          reminder_1h?: boolean | null
+          reminder_24h?: boolean | null
+          sms_notifications?: boolean | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      oauth_provider_configs: {
+        Row: {
+          auth_header_format: string | null
+          category: string | null
+          created_at: string | null
+          custom_headers: Json | null
+          display_name: string
+          documentation_url: string | null
+          extra_fields: Json | null
+          grant_type: string | null
+          id: string
+          is_active: boolean | null
+          logo_url: string | null
+          provider_key: string
+          refresh_buffer: number | null
+          required_fields: Json | null
+          token_endpoints: Json
+          token_expires_in: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          auth_header_format?: string | null
+          category?: string | null
+          created_at?: string | null
+          custom_headers?: Json | null
+          display_name: string
+          documentation_url?: string | null
+          extra_fields?: Json | null
+          grant_type?: string | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string | null
+          provider_key: string
+          refresh_buffer?: number | null
+          required_fields?: Json | null
+          token_endpoints: Json
+          token_expires_in?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          auth_header_format?: string | null
+          category?: string | null
+          created_at?: string | null
+          custom_headers?: Json | null
+          display_name?: string
+          documentation_url?: string | null
+          extra_fields?: Json | null
+          grant_type?: string | null
+          id?: string
+          is_active?: boolean | null
+          logo_url?: string | null
+          provider_key?: string
+          refresh_buffer?: number | null
+          required_fields?: Json | null
+          token_endpoints?: Json
+          token_expires_in?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      oauth_token_refresh_logs: {
+        Row: {
+          created_at: string | null
+          error_message: string | null
+          id: string
+          new_expires_at: string | null
+          oauth_token_id: string
+          old_expires_at: string | null
+          provider: string
+          refresh_duration_ms: number | null
+          refresh_type: string
+          status: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          new_expires_at?: string | null
+          oauth_token_id: string
+          old_expires_at?: string | null
+          provider: string
+          refresh_duration_ms?: number | null
+          refresh_type: string
+          status: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          new_expires_at?: string | null
+          oauth_token_id?: string
+          old_expires_at?: string | null
+          provider?: string
+          refresh_duration_ms?: number | null
+          refresh_type?: string
+          status?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "oauth_token_refresh_logs_oauth_token_id_fkey"
+            columns: ["oauth_token_id"]
+            isOneToOne: false
+            referencedRelation: "workspace_oauth_tokens"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "oauth_token_refresh_logs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "oauth_token_refresh_logs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
             referencedColumns: ["id"]
           },
         ]
@@ -7288,6 +18736,7 @@ export type Database = {
       onboarding_status: {
         Row: {
           created_at: string
+          has_seen_first_contact_prompt: boolean | null
           id: string
           is_completed: boolean | null
           updated_at: string
@@ -7296,6 +18745,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          has_seen_first_contact_prompt?: boolean | null
           id?: string
           is_completed?: boolean | null
           updated_at?: string
@@ -7304,6 +18754,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          has_seen_first_contact_prompt?: boolean | null
           id?: string
           is_completed?: boolean | null
           updated_at?: string
@@ -7498,6 +18949,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "opportunity_appointments_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "opportunity_appointments_opportunity_id_fkey"
             columns: ["opportunity_id"]
             isOneToOne: false
@@ -7600,6 +19058,151 @@ export type Database = {
           },
         ]
       }
+      optin_restore_audit: {
+        Row: {
+          application_name: string | null
+          contact_id: string | null
+          current_user_name: string | null
+          field_name: string
+          id: number
+          new_value: boolean | null
+          occurred_at: string
+          old_value: boolean | null
+          query: string | null
+          session_user_name: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          application_name?: string | null
+          contact_id?: string | null
+          current_user_name?: string | null
+          field_name: string
+          id?: number
+          new_value?: boolean | null
+          occurred_at?: string
+          old_value?: boolean | null
+          query?: string | null
+          session_user_name?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          application_name?: string | null
+          contact_id?: string | null
+          current_user_name?: string | null
+          field_name?: string
+          id?: number
+          new_value?: boolean | null
+          occurred_at?: string
+          old_value?: boolean | null
+          query?: string | null
+          session_user_name?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      outbound_trigger_outbox: {
+        Row: {
+          contact_id: string | null
+          created_at: string
+          delivery_attempt_count: number
+          dispatch_attempt_count: number
+          dispatched_at: string | null
+          event_data: Json
+          event_type: string
+          id: string
+          last_error: string | null
+          message_id: string
+          next_attempt_at: string
+          processed_at: string | null
+          status: string
+          trigger_id: string
+          updated_at: string
+          workflow_instance_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          contact_id?: string | null
+          created_at?: string
+          delivery_attempt_count?: number
+          dispatch_attempt_count?: number
+          dispatched_at?: string | null
+          event_data?: Json
+          event_type: string
+          id?: string
+          last_error?: string | null
+          message_id: string
+          next_attempt_at?: string
+          processed_at?: string | null
+          status?: string
+          trigger_id: string
+          updated_at?: string
+          workflow_instance_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string | null
+          created_at?: string
+          delivery_attempt_count?: number
+          dispatch_attempt_count?: number
+          dispatched_at?: string | null
+          event_data?: Json
+          event_type?: string
+          id?: string
+          last_error?: string | null
+          message_id?: string
+          next_attempt_at?: string
+          processed_at?: string | null
+          status?: string
+          trigger_id?: string
+          updated_at?: string
+          workflow_instance_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "outbound_trigger_outbox_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "outbound_trigger_outbox_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outbound_trigger_outbox_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "outbound_trigger_outbox_trigger_id_fkey"
+            columns: ["trigger_id"]
+            isOneToOne: false
+            referencedRelation: "triggers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outbound_trigger_outbox_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "outbound_trigger_outbox_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       partner_signups: {
         Row: {
           created_at: string | null
@@ -7674,6 +19277,110 @@ export type Database = {
           id?: string
           is_active?: boolean | null
           max_numbers_per_fingerprint?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      permission_categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          display_name: string
+          id: string
+          name: string
+          sort_order: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          display_name: string
+          id?: string
+          name: string
+          sort_order?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          display_name?: string
+          id?: string
+          name?: string
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
+      permissions: {
+        Row: {
+          category_id: string | null
+          created_at: string | null
+          description: string | null
+          display_name: string
+          id: string
+          name: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_name: string
+          id?: string
+          name: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_name?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "permissions_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "permission_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      phone_carrier_cache: {
+        Row: {
+          carrier_name: string | null
+          carrier_type: string | null
+          created_at: string | null
+          expires_at: string | null
+          id: string
+          lookup_source: string | null
+          mobile_country_code: string | null
+          mobile_network_code: string | null
+          phone_number: string
+          raw_response: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          carrier_name?: string | null
+          carrier_type?: string | null
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          lookup_source?: string | null
+          mobile_country_code?: string | null
+          mobile_network_code?: string | null
+          phone_number: string
+          raw_response?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          carrier_name?: string | null
+          carrier_type?: string | null
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          lookup_source?: string | null
+          mobile_country_code?: string | null
+          mobile_network_code?: string | null
+          phone_number?: string
+          raw_response?: Json | null
           updated_at?: string | null
         }
         Relationships: []
@@ -7777,6 +19484,403 @@ export type Database = {
           },
         ]
       }
+      platform_shared_credentials: {
+        Row: {
+          config: Json | null
+          created_at: string | null
+          created_by: string | null
+          credential_type: string
+          credentials: Json
+          description: string | null
+          id: string
+          is_active: boolean | null
+          is_default: boolean | null
+          monthly_api_call_limit: number | null
+          monthly_email_limit: number | null
+          monthly_sms_limit: number | null
+          name: string
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          config?: Json | null
+          created_at?: string | null
+          created_by?: string | null
+          credential_type: string
+          credentials?: Json
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          monthly_api_call_limit?: number | null
+          monthly_email_limit?: number | null
+          monthly_sms_limit?: number | null
+          name: string
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          config?: Json | null
+          created_at?: string | null
+          created_by?: string | null
+          credential_type?: string
+          credentials?: Json
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          monthly_api_call_limit?: number | null
+          monthly_email_limit?: number | null
+          monthly_sms_limit?: number | null
+          name?: string
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      product_announcement_targets: {
+        Row: {
+          announcement_id: string
+          created_at: string
+          workspace_id: string
+        }
+        Insert: {
+          announcement_id: string
+          created_at?: string
+          workspace_id: string
+        }
+        Update: {
+          announcement_id?: string
+          created_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_announcement_targets_announcement_id_fkey"
+            columns: ["announcement_id"]
+            isOneToOne: false
+            referencedRelation: "product_announcements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_announcement_user_states: {
+        Row: {
+          announcement_id: string
+          created_at: string
+          dismissed_at: string | null
+          first_seen_at: string | null
+          opened_at: string | null
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          announcement_id: string
+          created_at?: string
+          dismissed_at?: string | null
+          first_seen_at?: string | null
+          opened_at?: string | null
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          announcement_id?: string
+          created_at?: string
+          dismissed_at?: string | null
+          first_seen_at?: string | null
+          opened_at?: string | null
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_announcement_user_states_announcement_id_fkey"
+            columns: ["announcement_id"]
+            isOneToOne: false
+            referencedRelation: "product_announcements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_announcements: {
+        Row: {
+          attachments: Json
+          body: string
+          category: string
+          created_at: string
+          created_by: string | null
+          cta_label: string | null
+          cta_url: string | null
+          display_until: string | null
+          highlights: Json
+          id: string
+          image_alt: string | null
+          image_url: string | null
+          metadata: Json
+          priority: number
+          published_at: string | null
+          slug: string
+          status: string
+          summary: string
+          target_scope: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          attachments?: Json
+          body?: string
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          cta_label?: string | null
+          cta_url?: string | null
+          display_until?: string | null
+          highlights?: Json
+          id?: string
+          image_alt?: string | null
+          image_url?: string | null
+          metadata?: Json
+          priority?: number
+          published_at?: string | null
+          slug: string
+          status?: string
+          summary: string
+          target_scope?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          attachments?: Json
+          body?: string
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          cta_label?: string | null
+          cta_url?: string | null
+          display_until?: string | null
+          highlights?: Json
+          id?: string
+          image_alt?: string | null
+          image_url?: string | null
+          metadata?: Json
+          priority?: number
+          published_at?: string | null
+          slug?: string
+          status?: string
+          summary?: string
+          target_scope?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      public_dashboard_shares: {
+        Row: {
+          created_at: string | null
+          dashboard_config: Json
+          description: string | null
+          expires_at: string | null
+          id: string
+          is_active: boolean | null
+          last_viewed_at: string | null
+          share_id: string
+          title: string | null
+          updated_at: string | null
+          user_id: string
+          view_count: number | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          dashboard_config: Json
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          last_viewed_at?: string | null
+          share_id: string
+          title?: string | null
+          updated_at?: string | null
+          user_id: string
+          view_count?: number | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          dashboard_config?: Json
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          last_viewed_at?: string | null
+          share_id?: string
+          title?: string | null
+          updated_at?: string | null
+          user_id?: string
+          view_count?: number | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_dashboard_shares_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "public_dashboard_shares_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rate_limit_usage: {
+        Row: {
+          api_key_id: string | null
+          billable_requests: number | null
+          created_at: string | null
+          endpoint_path: string | null
+          endpoint_type: string
+          id: string
+          overage_requests: number | null
+          request_count: number | null
+          response_status: number | null
+          response_time_ms: number | null
+          source_ip: unknown
+          user_agent: string | null
+          user_id: string | null
+          webhook_endpoint_id: string | null
+          window_end: string
+          window_start: string
+          workspace_id: string
+        }
+        Insert: {
+          api_key_id?: string | null
+          billable_requests?: number | null
+          created_at?: string | null
+          endpoint_path?: string | null
+          endpoint_type: string
+          id?: string
+          overage_requests?: number | null
+          request_count?: number | null
+          response_status?: number | null
+          response_time_ms?: number | null
+          source_ip?: unknown
+          user_agent?: string | null
+          user_id?: string | null
+          webhook_endpoint_id?: string | null
+          window_end: string
+          window_start: string
+          workspace_id: string
+        }
+        Update: {
+          api_key_id?: string | null
+          billable_requests?: number | null
+          created_at?: string | null
+          endpoint_path?: string | null
+          endpoint_type?: string
+          id?: string
+          overage_requests?: number | null
+          request_count?: number | null
+          response_status?: number | null
+          response_time_ms?: number | null
+          source_ip?: unknown
+          user_agent?: string | null
+          user_id?: string | null
+          webhook_endpoint_id?: string | null
+          window_end?: string
+          window_start?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rate_limit_usage_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "rate_limit_usage_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rcs_test_access: {
+        Row: {
+          created_at: string
+          email: string
+          note: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          note?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          note?: string | null
+        }
+        Relationships: []
+      }
+      rcs_test_messages: {
+        Row: {
+          body: string | null
+          created_at: string
+          direction: string
+          error_code: string | null
+          from_addr: string | null
+          id: string
+          media_url: string | null
+          message_sid: string | null
+          raw: Json | null
+          session_key: string
+          status: string | null
+          to_addr: string | null
+          workspace_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          direction: string
+          error_code?: string | null
+          from_addr?: string | null
+          id?: string
+          media_url?: string | null
+          message_sid?: string | null
+          raw?: Json | null
+          session_key: string
+          status?: string | null
+          to_addr?: string | null
+          workspace_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          direction?: string
+          error_code?: string | null
+          from_addr?: string | null
+          id?: string
+          media_url?: string | null
+          message_sid?: string | null
+          raw?: Json | null
+          session_key?: string
+          status?: string | null
+          to_addr?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       recurring_message_logs: {
         Row: {
           body: string
@@ -7865,6 +19969,203 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: []
+      }
+      role_permissions: {
+        Row: {
+          created_at: string | null
+          id: string
+          permission_id: string | null
+          role: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          permission_id?: string | null
+          role: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          permission_id?: string | null
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "role_permissions_permission_id_fkey"
+            columns: ["permission_id"]
+            isOneToOne: false
+            referencedRelation: "permissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      saas_admin_logs: {
+        Row: {
+          action_type: string
+          admin_user_id: string | null
+          created_at: string | null
+          id: string
+          ip_address: unknown
+          new_values: Json | null
+          old_values: Json | null
+          reason: string | null
+          target_workspace_id: string | null
+          target_workspace_name: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          action_type: string
+          admin_user_id?: string | null
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown
+          new_values?: Json | null
+          old_values?: Json | null
+          reason?: string | null
+          target_workspace_id?: string | null
+          target_workspace_name?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          action_type?: string
+          admin_user_id?: string | null
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown
+          new_values?: Json | null
+          old_values?: Json | null
+          reason?: string | null
+          target_workspace_id?: string | null
+          target_workspace_name?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saas_admin_logs_target_workspace_id_fkey"
+            columns: ["target_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "saas_admin_logs_target_workspace_id_fkey"
+            columns: ["target_workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      saas_admin_users: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          permissions: Json | null
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          permissions?: Json | null
+          role?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          permissions?: Json | null
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sandbox_whitelist: {
+        Row: {
+          added_by: string | null
+          contact_id: string
+          created_at: string | null
+          email: string | null
+          id: string
+          phone_number: string | null
+          workspace_id: string
+        }
+        Insert: {
+          added_by?: string | null
+          contact_id: string
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          phone_number?: string | null
+          workspace_id: string
+        }
+        Update: {
+          added_by?: string | null
+          contact_id?: string
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          phone_number?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      saved_filters: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          filter_config: Json
+          id: string
+          is_default: boolean | null
+          name: string
+          updated_at: string | null
+          usage_count: number | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          filter_config?: Json
+          id?: string
+          is_default?: boolean | null
+          name: string
+          updated_at?: string | null
+          usage_count?: number | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          filter_config?: Json
+          id?: string
+          is_default?: boolean | null
+          name?: string
+          updated_at?: string | null
+          usage_count?: number | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_filters_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "saved_filters_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       scheduled_messages: {
         Row: {
@@ -8006,6 +20307,294 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "lead_conversion_analytics"
             referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      scheduled_time_triggers: {
+        Row: {
+          contact_id: string
+          created_at: string
+          custom_field_id: string | null
+          date_field: string
+          date_field_type: string
+          error_message: string | null
+          executed_at: string | null
+          flow_execution_id: string | null
+          id: string
+          offset_direction: string
+          offset_unit: string
+          offset_value: number
+          original_date_value: string | null
+          scheduled_for: string
+          sequence_id: string | null
+          status: string
+          target_type: string | null
+          trigger_id: string
+          trigger_run_id: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          created_at?: string
+          custom_field_id?: string | null
+          date_field: string
+          date_field_type?: string
+          error_message?: string | null
+          executed_at?: string | null
+          flow_execution_id?: string | null
+          id?: string
+          offset_direction?: string
+          offset_unit: string
+          offset_value: number
+          original_date_value?: string | null
+          scheduled_for: string
+          sequence_id?: string | null
+          status?: string
+          target_type?: string | null
+          trigger_id: string
+          trigger_run_id?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          created_at?: string
+          custom_field_id?: string | null
+          date_field?: string
+          date_field_type?: string
+          error_message?: string | null
+          executed_at?: string | null
+          flow_execution_id?: string | null
+          id?: string
+          offset_direction?: string
+          offset_unit?: string
+          offset_value?: number
+          original_date_value?: string | null
+          scheduled_for?: string
+          sequence_id?: string | null
+          status?: string
+          target_type?: string | null
+          trigger_id?: string
+          trigger_run_id?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scheduled_time_triggers_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "scheduled_time_triggers_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scheduled_time_triggers_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "scheduled_time_triggers_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scheduled_time_triggers_trigger_id_fkey"
+            columns: ["trigger_id"]
+            isOneToOne: false
+            referencedRelation: "triggers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scheduled_trigger_executions: {
+        Row: {
+          completed_at: string | null
+          contacts_processed: number | null
+          created_at: string | null
+          error_message: string | null
+          execution_timezone: string | null
+          flow_name: string | null
+          frequency_type: string | null
+          id: string
+          scheduled_for: string
+          scheduled_trigger_id: string | null
+          started_at: string | null
+          status: string
+          target_mode: string | null
+          timezone_filter_stats: Json | null
+          trigger_name: string | null
+          workflow_instance_ids: string[] | null
+          workflow_statuses: Json | null
+          workflows_triggered: number | null
+          workspace_fallback_timezone: string | null
+          workspace_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          contacts_processed?: number | null
+          created_at?: string | null
+          error_message?: string | null
+          execution_timezone?: string | null
+          flow_name?: string | null
+          frequency_type?: string | null
+          id?: string
+          scheduled_for: string
+          scheduled_trigger_id?: string | null
+          started_at?: string | null
+          status?: string
+          target_mode?: string | null
+          timezone_filter_stats?: Json | null
+          trigger_name?: string | null
+          workflow_instance_ids?: string[] | null
+          workflow_statuses?: Json | null
+          workflows_triggered?: number | null
+          workspace_fallback_timezone?: string | null
+          workspace_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          contacts_processed?: number | null
+          created_at?: string | null
+          error_message?: string | null
+          execution_timezone?: string | null
+          flow_name?: string | null
+          frequency_type?: string | null
+          id?: string
+          scheduled_for?: string
+          scheduled_trigger_id?: string | null
+          started_at?: string | null
+          status?: string
+          target_mode?: string | null
+          timezone_filter_stats?: Json | null
+          trigger_name?: string | null
+          workflow_instance_ids?: string[] | null
+          workflow_statuses?: Json | null
+          workflows_triggered?: number | null
+          workspace_fallback_timezone?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scheduled_trigger_executions_scheduled_trigger_id_fkey"
+            columns: ["scheduled_trigger_id"]
+            isOneToOne: false
+            referencedRelation: "scheduled_triggers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scheduled_triggers: {
+        Row: {
+          contact_filter: Json | null
+          created_at: string | null
+          current_execution_timezone: string | null
+          custom_interval_unit: string | null
+          custom_interval_value: number | null
+          days_of_month: number[] | null
+          days_of_week: number[] | null
+          end_date: string | null
+          execution_count: number | null
+          frequency_type: string
+          id: string
+          is_active: boolean | null
+          is_one_time_executed: boolean | null
+          last_executed_at: string | null
+          next_execution_at: string | null
+          pending_timezone_slots: Json | null
+          start_date: string | null
+          target_mode: string
+          time_of_day: string | null
+          timezone: string
+          timezone_handling: string
+          trigger_id: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          contact_filter?: Json | null
+          created_at?: string | null
+          current_execution_timezone?: string | null
+          custom_interval_unit?: string | null
+          custom_interval_value?: number | null
+          days_of_month?: number[] | null
+          days_of_week?: number[] | null
+          end_date?: string | null
+          execution_count?: number | null
+          frequency_type: string
+          id?: string
+          is_active?: boolean | null
+          is_one_time_executed?: boolean | null
+          last_executed_at?: string | null
+          next_execution_at?: string | null
+          pending_timezone_slots?: Json | null
+          start_date?: string | null
+          target_mode?: string
+          time_of_day?: string | null
+          timezone?: string
+          timezone_handling?: string
+          trigger_id: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          contact_filter?: Json | null
+          created_at?: string | null
+          current_execution_timezone?: string | null
+          custom_interval_unit?: string | null
+          custom_interval_value?: number | null
+          days_of_month?: number[] | null
+          days_of_week?: number[] | null
+          end_date?: string | null
+          execution_count?: number | null
+          frequency_type?: string
+          id?: string
+          is_active?: boolean | null
+          is_one_time_executed?: boolean | null
+          last_executed_at?: string | null
+          next_execution_at?: string | null
+          pending_timezone_slots?: Json | null
+          start_date?: string | null
+          target_mode?: string
+          time_of_day?: string | null
+          timezone?: string
+          timezone_handling?: string
+          trigger_id?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scheduled_triggers_trigger_id_fkey"
+            columns: ["trigger_id"]
+            isOneToOne: false
+            referencedRelation: "triggers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scheduled_triggers_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "scheduled_triggers_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -8170,6 +20759,433 @@ export type Database = {
           },
         ]
       }
+      sendgrid_event_webhook_config: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_enabled: boolean | null
+          last_event_at: string | null
+          sendgrid_webhook_id: string | null
+          signing_key: string | null
+          track_bounce: boolean | null
+          track_click: boolean | null
+          track_deferred: boolean | null
+          track_delivered: boolean | null
+          track_dropped: boolean | null
+          track_open: boolean | null
+          track_processed: boolean | null
+          track_spam_report: boolean | null
+          track_unsubscribe: boolean | null
+          updated_at: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          last_event_at?: string | null
+          sendgrid_webhook_id?: string | null
+          signing_key?: string | null
+          track_bounce?: boolean | null
+          track_click?: boolean | null
+          track_deferred?: boolean | null
+          track_delivered?: boolean | null
+          track_dropped?: boolean | null
+          track_open?: boolean | null
+          track_processed?: boolean | null
+          track_spam_report?: boolean | null
+          track_unsubscribe?: boolean | null
+          updated_at?: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          last_event_at?: string | null
+          sendgrid_webhook_id?: string | null
+          signing_key?: string | null
+          track_bounce?: boolean | null
+          track_click?: boolean | null
+          track_deferred?: boolean | null
+          track_delivered?: boolean | null
+          track_dropped?: boolean | null
+          track_open?: boolean | null
+          track_processed?: boolean | null
+          track_spam_report?: boolean | null
+          track_unsubscribe?: boolean | null
+          updated_at?: string | null
+          webhook_url?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      sendgrid_events: {
+        Row: {
+          bounce_type: string | null
+          created_at: string | null
+          email_address: string | null
+          email_id: string | null
+          event_payload: Json | null
+          event_type: string
+          id: string
+          ip: string | null
+          processed: boolean | null
+          processed_at: string | null
+          reason: string | null
+          response: string | null
+          sg_event_id: string | null
+          sg_message_id: string | null
+          smtp_id: string | null
+          status: string | null
+          timestamp: string | null
+          url: string | null
+          user_agent: string | null
+          workspace_id: string
+        }
+        Insert: {
+          bounce_type?: string | null
+          created_at?: string | null
+          email_address?: string | null
+          email_id?: string | null
+          event_payload?: Json | null
+          event_type: string
+          id?: string
+          ip?: string | null
+          processed?: boolean | null
+          processed_at?: string | null
+          reason?: string | null
+          response?: string | null
+          sg_event_id?: string | null
+          sg_message_id?: string | null
+          smtp_id?: string | null
+          status?: string | null
+          timestamp?: string | null
+          url?: string | null
+          user_agent?: string | null
+          workspace_id: string
+        }
+        Update: {
+          bounce_type?: string | null
+          created_at?: string | null
+          email_address?: string | null
+          email_id?: string | null
+          event_payload?: Json | null
+          event_type?: string
+          id?: string
+          ip?: string | null
+          processed?: boolean | null
+          processed_at?: string | null
+          reason?: string | null
+          response?: string | null
+          sg_event_id?: string | null
+          sg_message_id?: string | null
+          smtp_id?: string | null
+          status?: string | null
+          timestamp?: string | null
+          url?: string | null
+          user_agent?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      sendgrid_inbound_parse_config: {
+        Row: {
+          auto_create_contacts: boolean | null
+          created_at: string | null
+          default_folder: string | null
+          hostname: string
+          id: string
+          is_enabled: boolean | null
+          last_received_at: string | null
+          send_raw: boolean | null
+          sendgrid_parse_id: string | null
+          spam_check: boolean | null
+          updated_at: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Insert: {
+          auto_create_contacts?: boolean | null
+          created_at?: string | null
+          default_folder?: string | null
+          hostname: string
+          id?: string
+          is_enabled?: boolean | null
+          last_received_at?: string | null
+          send_raw?: boolean | null
+          sendgrid_parse_id?: string | null
+          spam_check?: boolean | null
+          updated_at?: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Update: {
+          auto_create_contacts?: boolean | null
+          created_at?: string | null
+          default_folder?: string | null
+          hostname?: string
+          id?: string
+          is_enabled?: boolean | null
+          last_received_at?: string | null
+          send_raw?: boolean | null
+          sendgrid_parse_id?: string | null
+          spam_check?: boolean | null
+          updated_at?: string | null
+          webhook_url?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      sendgrid_sender_identities: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          is_default_for_user: boolean | null
+          is_verified: boolean | null
+          reply_to: string | null
+          sender_email: string
+          sender_name: string | null
+          sendgrid_sender_id: string | null
+          updated_at: string | null
+          user_id: string | null
+          verified_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default_for_user?: boolean | null
+          is_verified?: boolean | null
+          reply_to?: string | null
+          sender_email: string
+          sender_name?: string | null
+          sendgrid_sender_id?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          verified_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default_for_user?: boolean | null
+          is_verified?: boolean | null
+          reply_to?: string | null
+          sender_email?: string
+          sender_name?: string | null
+          sendgrid_sender_id?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          verified_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      sendgrid_suppressions: {
+        Row: {
+          created_at: string | null
+          created_by_event_id: string | null
+          email: string
+          id: string
+          is_active: boolean | null
+          reason: string | null
+          removed_at: string | null
+          suppression_type: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by_event_id?: string | null
+          email: string
+          id?: string
+          is_active?: boolean | null
+          reason?: string | null
+          removed_at?: string | null
+          suppression_type: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by_event_id?: string | null
+          email?: string
+          id?: string
+          is_active?: boolean | null
+          reason?: string | null
+          removed_at?: string | null
+          suppression_type?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      sendgrid_verified_domains: {
+        Row: {
+          created_at: string | null
+          dkim_verified: boolean | null
+          dns_records: Json | null
+          domain: string
+          id: string
+          is_default: boolean | null
+          is_verified: boolean | null
+          sendgrid_domain_id: string | null
+          spf_verified: boolean | null
+          subdomain: string | null
+          updated_at: string | null
+          verified_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          dkim_verified?: boolean | null
+          dns_records?: Json | null
+          domain: string
+          id?: string
+          is_default?: boolean | null
+          is_verified?: boolean | null
+          sendgrid_domain_id?: string | null
+          spf_verified?: boolean | null
+          subdomain?: string | null
+          updated_at?: string | null
+          verified_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          dkim_verified?: boolean | null
+          dns_records?: Json | null
+          domain?: string
+          id?: string
+          is_default?: boolean | null
+          is_verified?: boolean | null
+          sendgrid_domain_id?: string | null
+          spf_verified?: boolean | null
+          subdomain?: string | null
+          updated_at?: string | null
+          verified_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      sequence_analytics_cache: {
+        Row: {
+          active_enrollments: number | null
+          avg_stop_step: number | null
+          cancelled_enrollments: number | null
+          completed_enrollments: number | null
+          completion_rate: number | null
+          failed_enrollments: number | null
+          message_count: number | null
+          response_rate: number | null
+          sequence_id: string
+          sequence_name: string | null
+          sequence_status: string | null
+          stopped_by_response: number | null
+          stopped_by_response_excluding_dnc: number | null
+          total_enrollments: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          active_enrollments?: number | null
+          avg_stop_step?: number | null
+          cancelled_enrollments?: number | null
+          completed_enrollments?: number | null
+          completion_rate?: number | null
+          failed_enrollments?: number | null
+          message_count?: number | null
+          response_rate?: number | null
+          sequence_id: string
+          sequence_name?: string | null
+          sequence_status?: string | null
+          stopped_by_response?: number | null
+          stopped_by_response_excluding_dnc?: number | null
+          total_enrollments?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          active_enrollments?: number | null
+          avg_stop_step?: number | null
+          cancelled_enrollments?: number | null
+          completed_enrollments?: number | null
+          completion_rate?: number | null
+          failed_enrollments?: number | null
+          message_count?: number | null
+          response_rate?: number | null
+          sequence_id?: string
+          sequence_name?: string | null
+          sequence_status?: string | null
+          stopped_by_response?: number | null
+          stopped_by_response_excluding_dnc?: number | null
+          total_enrollments?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sequence_analytics_cache_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: true
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sequence_analytics_cache_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "sequence_analytics_cache_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sequence_kanban_columns: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          id: string
+          name: string
+          notes: string | null
+          position: number
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          position?: number
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          position?: number
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       sequence_messages: {
         Row: {
           content: string
@@ -8279,6 +21295,45 @@ export type Database = {
           },
         ]
       }
+      sequence_subscriptions_daily: {
+        Row: {
+          created_at: string | null
+          date: string
+          id: string
+          subscriptions_count: number | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          date: string
+          id?: string
+          subscriptions_count?: number | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          date?: string
+          id?: string
+          subscriptions_count?: number | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sequence_subscriptions_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "sequence_subscriptions_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sequences: {
         Row: {
           campaign_id: string
@@ -8336,6 +21391,397 @@ export type Database = {
           },
         ]
       }
+      servicetitan_appointment_sync_state: {
+        Row: {
+          consecutive_failures: number | null
+          created_at: string | null
+          id: string
+          last_error: string | null
+          last_modified_cursor: string | null
+          last_successful_sync_at: string | null
+          last_sync_created: number | null
+          last_sync_errors: number | null
+          last_sync_updated: number | null
+          sync_enabled: boolean | null
+          sync_status: string | null
+          tenant_id: string
+          total_appointments_synced: number | null
+          total_jobs_synced: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          consecutive_failures?: number | null
+          created_at?: string | null
+          id?: string
+          last_error?: string | null
+          last_modified_cursor?: string | null
+          last_successful_sync_at?: string | null
+          last_sync_created?: number | null
+          last_sync_errors?: number | null
+          last_sync_updated?: number | null
+          sync_enabled?: boolean | null
+          sync_status?: string | null
+          tenant_id: string
+          total_appointments_synced?: number | null
+          total_jobs_synced?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          consecutive_failures?: number | null
+          created_at?: string | null
+          id?: string
+          last_error?: string | null
+          last_modified_cursor?: string | null
+          last_successful_sync_at?: string | null
+          last_sync_created?: number | null
+          last_sync_errors?: number | null
+          last_sync_updated?: number | null
+          sync_enabled?: boolean | null
+          sync_status?: string | null
+          tenant_id?: string
+          total_appointments_synced?: number | null
+          total_jobs_synced?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      servicetitan_sync_state: {
+        Row: {
+          consecutive_failures: number | null
+          created_at: string | null
+          id: string
+          initial_sync_completed: boolean | null
+          last_continue_from: string | null
+          last_error: string | null
+          last_modified_cursor: string | null
+          last_successful_sync_at: string | null
+          last_sync_created: number | null
+          last_sync_errors: number | null
+          last_sync_updated: number | null
+          sync_enabled: boolean | null
+          sync_interval_minutes: number | null
+          sync_status: string
+          tenant_id: string
+          total_customers_synced: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          consecutive_failures?: number | null
+          created_at?: string | null
+          id?: string
+          initial_sync_completed?: boolean | null
+          last_continue_from?: string | null
+          last_error?: string | null
+          last_modified_cursor?: string | null
+          last_successful_sync_at?: string | null
+          last_sync_created?: number | null
+          last_sync_errors?: number | null
+          last_sync_updated?: number | null
+          sync_enabled?: boolean | null
+          sync_interval_minutes?: number | null
+          sync_status?: string
+          tenant_id: string
+          total_customers_synced?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          consecutive_failures?: number | null
+          created_at?: string | null
+          id?: string
+          initial_sync_completed?: boolean | null
+          last_continue_from?: string | null
+          last_error?: string | null
+          last_modified_cursor?: string | null
+          last_successful_sync_at?: string | null
+          last_sync_created?: number | null
+          last_sync_errors?: number | null
+          last_sync_updated?: number | null
+          sync_enabled?: boolean | null
+          sync_interval_minutes?: number | null
+          sync_status?: string
+          tenant_id?: string
+          total_customers_synced?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      short_link_clicks: {
+        Row: {
+          browser: string | null
+          city: string | null
+          clicked_at: string | null
+          country_code: string | null
+          device_type: string | null
+          id: string
+          ip_address: unknown
+          metadata: Json | null
+          os: string | null
+          referrer: string | null
+          region: string | null
+          shortened_link_id: string
+          user_agent: string | null
+          workspace_id: string
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          clicked_at?: string | null
+          country_code?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown
+          metadata?: Json | null
+          os?: string | null
+          referrer?: string | null
+          region?: string | null
+          shortened_link_id: string
+          user_agent?: string | null
+          workspace_id: string
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          clicked_at?: string | null
+          country_code?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown
+          metadata?: Json | null
+          os?: string | null
+          referrer?: string | null
+          region?: string | null
+          shortened_link_id?: string
+          user_agent?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "short_link_clicks_shortened_link_id_fkey"
+            columns: ["shortened_link_id"]
+            isOneToOne: false
+            referencedRelation: "shortened_links"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shortcut_folders: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          name: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          name: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          name?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shortcut_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "shortcut_folders_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shortcuts: {
+        Row: {
+          created_at: string | null
+          folder_id: string | null
+          id: string
+          is_workspace_level: boolean
+          message: string
+          title: string
+          updated_at: string | null
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          folder_id?: string | null
+          id?: string
+          is_workspace_level?: boolean
+          message: string
+          title: string
+          updated_at?: string | null
+          user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          folder_id?: string | null
+          id?: string
+          is_workspace_level?: boolean
+          message?: string
+          title?: string
+          updated_at?: string | null
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shortcuts_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "shortcut_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "shortcuts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "shortcuts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shortened_links: {
+        Row: {
+          click_count: number | null
+          contact_data: Json | null
+          contact_id: string | null
+          created_at: string | null
+          created_by: string | null
+          custom_field_id: string | null
+          custom_field_name: string | null
+          description: string | null
+          first_clicked_at: string | null
+          id: string
+          last_clicked_at: string | null
+          link_name: string | null
+          original_url: string
+          short_code: string
+          short_domain: string | null
+          short_url: string
+          source_metadata: Json | null
+          token: string | null
+          updated_at: string | null
+          use_secure_redirect: boolean | null
+          workspace_id: string
+        }
+        Insert: {
+          click_count?: number | null
+          contact_data?: Json | null
+          contact_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          custom_field_id?: string | null
+          custom_field_name?: string | null
+          description?: string | null
+          first_clicked_at?: string | null
+          id?: string
+          last_clicked_at?: string | null
+          link_name?: string | null
+          original_url: string
+          short_code: string
+          short_domain?: string | null
+          short_url: string
+          source_metadata?: Json | null
+          token?: string | null
+          updated_at?: string | null
+          use_secure_redirect?: boolean | null
+          workspace_id: string
+        }
+        Update: {
+          click_count?: number | null
+          contact_data?: Json | null
+          contact_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          custom_field_id?: string | null
+          custom_field_name?: string | null
+          description?: string | null
+          first_clicked_at?: string | null
+          id?: string
+          last_clicked_at?: string | null
+          link_name?: string | null
+          original_url?: string
+          short_code?: string
+          short_domain?: string | null
+          short_url?: string
+          source_metadata?: Json | null
+          token?: string | null
+          updated_at?: string | null
+          use_secure_redirect?: boolean | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_custom_field"
+            columns: ["custom_field_id"]
+            isOneToOne: false
+            referencedRelation: "custom_fields"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "shortened_links_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "shortened_links_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "shortened_links_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "shortened_links_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "shortened_links_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       signup_fingerprints: {
         Row: {
           block_reason: string | null
@@ -8372,6 +21818,257 @@ export type Database = {
           last_seen?: string | null
           updated_at?: string | null
           usage_count?: number | null
+        }
+        Relationships: []
+      }
+      slack_channel_references: {
+        Row: {
+          channel_id: string
+          channel_name: string | null
+          channel_type: string
+          connection_id: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          is_default: boolean | null
+          last_message_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          channel_id: string
+          channel_name?: string | null
+          channel_type: string
+          connection_id: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_message_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          channel_id?: string
+          channel_name?: string | null
+          channel_type?: string
+          connection_id?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_message_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "slack_channel_references_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "slack_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      slack_connections: {
+        Row: {
+          bot_user_id: string | null
+          created_at: string | null
+          encrypted_bot_token: string
+          id: string
+          slack_app_id: string | null
+          slack_team_id: string
+          slack_team_name: string | null
+          status: string | null
+          updated_at: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          bot_user_id?: string | null
+          created_at?: string | null
+          encrypted_bot_token: string
+          id?: string
+          slack_app_id?: string | null
+          slack_team_id: string
+          slack_team_name?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          bot_user_id?: string | null
+          created_at?: string | null
+          encrypted_bot_token?: string
+          id?: string
+          slack_app_id?: string | null
+          slack_team_id?: string
+          slack_team_name?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "slack_connections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "slack_connections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      slack_message_logs: {
+        Row: {
+          blocks_payload: Json | null
+          channel_ref_id: string | null
+          connection_id: string
+          created_at: string | null
+          error_message: string | null
+          id: string
+          message_type: string
+          sent_at: string | null
+          slack_channel_id: string | null
+          slack_message_ts: string | null
+          status: string | null
+          text_content: string | null
+          trigger_reference_id: string | null
+          trigger_reference_type: string | null
+          trigger_type: string | null
+        }
+        Insert: {
+          blocks_payload?: Json | null
+          channel_ref_id?: string | null
+          connection_id: string
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          message_type: string
+          sent_at?: string | null
+          slack_channel_id?: string | null
+          slack_message_ts?: string | null
+          status?: string | null
+          text_content?: string | null
+          trigger_reference_id?: string | null
+          trigger_reference_type?: string | null
+          trigger_type?: string | null
+        }
+        Update: {
+          blocks_payload?: Json | null
+          channel_ref_id?: string | null
+          connection_id?: string
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          message_type?: string
+          sent_at?: string | null
+          slack_channel_id?: string | null
+          slack_message_ts?: string | null
+          status?: string | null
+          text_content?: string | null
+          trigger_reference_id?: string | null
+          trigger_reference_type?: string | null
+          trigger_type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "slack_message_logs_channel_ref_id_fkey"
+            columns: ["channel_ref_id"]
+            isOneToOne: false
+            referencedRelation: "slack_channel_references"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "slack_message_logs_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "slack_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sms_digest_logs: {
+        Row: {
+          digest_time: string | null
+          error_code: string | null
+          error_message: string | null
+          id: string
+          phone: string | null
+          recommendation_count: number | null
+          sent_at: string
+          status: string
+          timezone: string | null
+          twilio_message_sid: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          digest_time?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          phone?: string | null
+          recommendation_count?: number | null
+          sent_at?: string
+          status: string
+          timezone?: string | null
+          twilio_message_sid?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          digest_time?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          phone?: string | null
+          recommendation_count?: number | null
+          sent_at?: string
+          status?: string
+          timezone?: string | null
+          twilio_message_sid?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      staff_members: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          is_active: boolean
+          notes: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -8424,11 +22121,14 @@ export type Database = {
         Row: {
           category_id: number | null
           color: string | null
+          conversion_probability: number | null
           created_at: string | null
           created_by: string | null
           description: string | null
           display_order: number | null
           id: number
+          is_active: boolean | null
+          is_completed: boolean | null
           is_default: boolean | null
           name: string
           updated_at: string | null
@@ -8437,11 +22137,14 @@ export type Database = {
         Insert: {
           category_id?: number | null
           color?: string | null
+          conversion_probability?: number | null
           created_at?: string | null
           created_by?: string | null
           description?: string | null
           display_order?: number | null
           id?: number
+          is_active?: boolean | null
+          is_completed?: boolean | null
           is_default?: boolean | null
           name: string
           updated_at?: string | null
@@ -8450,11 +22153,14 @@ export type Database = {
         Update: {
           category_id?: number | null
           color?: string | null
+          conversion_probability?: number | null
           created_at?: string | null
           created_by?: string | null
           description?: string | null
           display_order?: number | null
           id?: number
+          is_active?: boolean | null
+          is_completed?: boolean | null
           is_default?: boolean | null
           name?: string
           updated_at?: string | null
@@ -8566,6 +22272,763 @@ export type Database = {
           },
           {
             foreignKeyName: "status_timelines_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscription_history: {
+        Row: {
+          action: string
+          created_at: string | null
+          from_plan: string | null
+          id: string
+          metadata: Json | null
+          stripe_event_id: string | null
+          to_plan: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          from_plan?: string | null
+          id?: string
+          metadata?: Json | null
+          stripe_event_id?: string | null
+          to_plan?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          from_plan?: string | null
+          id?: string
+          metadata?: Json | null
+          stripe_event_id?: string | null
+          to_plan?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscription_history_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "subscription_history_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscription_plans: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          display_name: string
+          features: Json | null
+          id: string
+          is_active: boolean | null
+          is_legacy: boolean | null
+          is_public: boolean | null
+          limits: Json
+          plan_name: string
+          plan_order: number | null
+          pricing: Json
+          rate_limits: Json
+          restrictions: Json | null
+          stripe_annual_price_id: string | null
+          stripe_monthly_price_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          display_name: string
+          features?: Json | null
+          id?: string
+          is_active?: boolean | null
+          is_legacy?: boolean | null
+          is_public?: boolean | null
+          limits?: Json
+          plan_name: string
+          plan_order?: number | null
+          pricing?: Json
+          rate_limits?: Json
+          restrictions?: Json | null
+          stripe_annual_price_id?: string | null
+          stripe_monthly_price_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          display_name?: string
+          features?: Json | null
+          id?: string
+          is_active?: boolean | null
+          is_legacy?: boolean | null
+          is_public?: boolean | null
+          limits?: Json
+          plan_name?: string
+          plan_order?: number | null
+          pricing?: Json
+          rate_limits?: Json
+          restrictions?: Json | null
+          stripe_annual_price_id?: string | null
+          stripe_monthly_price_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      suppressed_error_artifacts: {
+        Row: {
+          artifact_type: string
+          contact_id: string | null
+          created_at: string
+          error_message: string
+          execution_id: string | null
+          flow_id: string | null
+          id: string
+          metadata: Json
+          node_id: string | null
+          proof_message_id: string | null
+          sequence_id: string | null
+          source: string
+          suppressed_row_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          artifact_type: string
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string
+          execution_id?: string | null
+          flow_id?: string | null
+          id?: string
+          metadata?: Json
+          node_id?: string | null
+          proof_message_id?: string | null
+          sequence_id?: string | null
+          source?: string
+          suppressed_row_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          artifact_type?: string
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string
+          execution_id?: string | null
+          flow_id?: string | null
+          id?: string
+          metadata?: Json
+          node_id?: string | null
+          proof_message_id?: string | null
+          sequence_id?: string | null
+          source?: string
+          suppressed_row_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suppressed_error_artifacts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "suppressed_error_artifacts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suppressed_error_artifacts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "suppressed_error_artifacts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "suppressed_error_artifacts_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tags: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          id: string
+          name: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          id?: string
+          name: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          id?: string
+          name?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      team_chat_workspace_registry: {
+        Row: {
+          channel_count: number
+          first_activity_at: string
+          first_user_id: string | null
+          last_activity_at: string
+          message_count: number
+          open_count: number
+          workspace_id: string
+        }
+        Insert: {
+          channel_count?: number
+          first_activity_at?: string
+          first_user_id?: string | null
+          last_activity_at?: string
+          message_count?: number
+          open_count?: number
+          workspace_id: string
+        }
+        Update: {
+          channel_count?: number
+          first_activity_at?: string
+          first_user_id?: string | null
+          last_activity_at?: string
+          message_count?: number
+          open_count?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      team_hierarchy: {
+        Row: {
+          agent_id: string
+          created_at: string | null
+          id: string
+          manager_id: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_id: string
+          created_at?: string | null
+          id?: string
+          manager_id: string
+          workspace_id: string
+        }
+        Update: {
+          agent_id?: string
+          created_at?: string | null
+          id?: string
+          manager_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_hierarchy_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "team_hierarchy_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teams_connections: {
+        Row: {
+          bot_app_id: string | null
+          created_at: string | null
+          encrypted_access_token: string
+          encrypted_refresh_token: string
+          id: string
+          last_token_refresh: string | null
+          microsoft_user_email: string | null
+          microsoft_user_id: string | null
+          microsoft_user_name: string | null
+          status: string | null
+          tenant_id: string
+          token_expires_at: string
+          updated_at: string | null
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          bot_app_id?: string | null
+          created_at?: string | null
+          encrypted_access_token: string
+          encrypted_refresh_token: string
+          id?: string
+          last_token_refresh?: string | null
+          microsoft_user_email?: string | null
+          microsoft_user_id?: string | null
+          microsoft_user_name?: string | null
+          status?: string | null
+          tenant_id: string
+          token_expires_at: string
+          updated_at?: string | null
+          user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          bot_app_id?: string | null
+          created_at?: string | null
+          encrypted_access_token?: string
+          encrypted_refresh_token?: string
+          id?: string
+          last_token_refresh?: string | null
+          microsoft_user_email?: string | null
+          microsoft_user_id?: string | null
+          microsoft_user_name?: string | null
+          status?: string | null
+          tenant_id?: string
+          token_expires_at?: string
+          updated_at?: string | null
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teams_connections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "teams_connections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teams_conversation_references: {
+        Row: {
+          bot_id: string
+          channel_id: string | null
+          channel_name: string | null
+          connection_id: string
+          conversation_id: string
+          conversation_reference: Json
+          conversation_type: string
+          created_at: string | null
+          display_name: string | null
+          id: string
+          is_active: boolean | null
+          is_default: boolean | null
+          last_message_at: string | null
+          service_url: string
+          team_id: string | null
+          team_name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          bot_id: string
+          channel_id?: string | null
+          channel_name?: string | null
+          connection_id: string
+          conversation_id: string
+          conversation_reference: Json
+          conversation_type: string
+          created_at?: string | null
+          display_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_message_at?: string | null
+          service_url: string
+          team_id?: string | null
+          team_name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          bot_id?: string
+          channel_id?: string | null
+          channel_name?: string | null
+          connection_id?: string
+          conversation_id?: string
+          conversation_reference?: Json
+          conversation_type?: string
+          created_at?: string | null
+          display_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_message_at?: string | null
+          service_url?: string
+          team_id?: string | null
+          team_name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teams_conversation_references_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "teams_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teams_message_logs: {
+        Row: {
+          activity_id: string | null
+          adaptive_card_payload: Json | null
+          connection_id: string
+          conversation_ref_id: string | null
+          created_at: string | null
+          delivered_at: string | null
+          error_code: string | null
+          error_message: string | null
+          id: string
+          message_type: string
+          microsoft_message_id: string | null
+          sent_at: string | null
+          status: string | null
+          text_content: string | null
+          trigger_reference_id: string | null
+          trigger_reference_type: string | null
+          trigger_type: string | null
+        }
+        Insert: {
+          activity_id?: string | null
+          adaptive_card_payload?: Json | null
+          connection_id: string
+          conversation_ref_id?: string | null
+          created_at?: string | null
+          delivered_at?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          message_type: string
+          microsoft_message_id?: string | null
+          sent_at?: string | null
+          status?: string | null
+          text_content?: string | null
+          trigger_reference_id?: string | null
+          trigger_reference_type?: string | null
+          trigger_type?: string | null
+        }
+        Update: {
+          activity_id?: string | null
+          adaptive_card_payload?: Json | null
+          connection_id?: string
+          conversation_ref_id?: string | null
+          created_at?: string | null
+          delivered_at?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          message_type?: string
+          microsoft_message_id?: string | null
+          sent_at?: string | null
+          status?: string | null
+          text_content?: string | null
+          trigger_reference_id?: string | null
+          trigger_reference_type?: string | null
+          trigger_type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teams_message_logs_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "teams_connections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "teams_message_logs_conversation_ref_id_fkey"
+            columns: ["conversation_ref_id"]
+            isOneToOne: false
+            referencedRelation: "teams_conversation_references"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      text_dispositions: {
+        Row: {
+          color: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          is_active: boolean
+          is_default: boolean
+          name: string
+          sort_order: number
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          is_default?: boolean
+          name: string
+          sort_order?: number
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          is_default?: boolean
+          name?: string
+          sort_order?: number
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      ticket_roster: {
+        Row: {
+          created_at: string | null
+          day_of_week: number
+          id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          day_of_week: number
+          id?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          day_of_week?: number
+          id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ticket_routing_rules: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          enabled: boolean
+          fallback_mode: string
+          id: string
+          mode: string
+          staff_user_ids: string[]
+          updated_at: string
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          enabled?: boolean
+          fallback_mode?: string
+          id?: string
+          mode?: string
+          staff_user_ids?: string[]
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          enabled?: boolean
+          fallback_mode?: string
+          id?: string
+          mode?: string
+          staff_user_ids?: string[]
+          updated_at?: string
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      ticket_webhook_notification_logs: {
+        Row: {
+          attempted_at: string
+          duration_ms: number | null
+          error_message: string | null
+          event_type: string
+          id: string
+          ok: boolean
+          response_status: number | null
+          setting_id: string | null
+          ticket_id: string | null
+          webhook_url: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          attempted_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          event_type?: string
+          id?: string
+          ok?: boolean
+          response_status?: number | null
+          setting_id?: string | null
+          ticket_id?: string | null
+          webhook_url?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          attempted_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          event_type?: string
+          id?: string
+          ok?: boolean
+          response_status?: number | null
+          setting_id?: string | null
+          ticket_id?: string | null
+          webhook_url?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ticket_webhook_notification_logs_setting_id_fkey"
+            columns: ["setting_id"]
+            isOneToOne: false
+            referencedRelation: "ticket_webhook_notification_settings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ticket_webhook_notification_settings: {
+        Row: {
+          body_template: Json
+          created_at: string
+          created_by: string | null
+          enabled: boolean
+          event_type: string
+          headers: Json
+          id: string
+          updated_at: string
+          updated_by: string | null
+          webhook_url: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          body_template?: Json
+          created_at?: string
+          created_by?: string | null
+          enabled?: boolean
+          event_type?: string
+          headers?: Json
+          id?: string
+          updated_at?: string
+          updated_by?: string | null
+          webhook_url?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          body_template?: Json
+          created_at?: string
+          created_by?: string | null
+          enabled?: boolean
+          event_type?: string
+          headers?: Json
+          id?: string
+          updated_at?: string
+          updated_by?: string | null
+          webhook_url?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      todos: {
+        Row: {
+          completed: boolean
+          completed_at: string | null
+          created_at: string
+          created_by: string
+          description: string | null
+          due_date: string | null
+          id: string
+          is_private: boolean
+          priority: string
+          title: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          completed?: boolean
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          is_private?: boolean
+          priority: string
+          title: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          completed?: boolean
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          is_private?: boolean
+          priority?: string
+          title?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "todos_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "todos_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -8757,6 +23220,7 @@ export type Database = {
           created_at: string | null
           friendly_name: string | null
           id: string
+          is_configured: boolean | null
           phone_number: string
           sid: string
           status: string | null
@@ -8769,6 +23233,7 @@ export type Database = {
           created_at?: string | null
           friendly_name?: string | null
           id?: string
+          is_configured?: boolean | null
           phone_number: string
           sid: string
           status?: string | null
@@ -8781,6 +23246,7 @@ export type Database = {
           created_at?: string | null
           friendly_name?: string | null
           id?: string
+          is_configured?: boolean | null
           phone_number?: string
           sid?: string
           status?: string | null
@@ -8832,6 +23298,251 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      user_board_column_preferences: {
+        Row: {
+          color: string
+          column_id: string
+          created_at: string | null
+          id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          color: string
+          column_id: string
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          color?: string
+          column_id?: string
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_board_column_preferences_column_id_fkey"
+            columns: ["column_id"]
+            isOneToOne: false
+            referencedRelation: "board_columns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_dashboards: {
+        Row: {
+          created_at: string
+          filters: Json
+          id: string
+          is_default: boolean
+          layout: Json
+          name: string
+          published_at: string | null
+          published_by: string | null
+          shared_scope: string
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          filters?: Json
+          id?: string
+          is_default?: boolean
+          layout?: Json
+          name: string
+          published_at?: string | null
+          published_by?: string | null
+          shared_scope?: string
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          filters?: Json
+          id?: string
+          is_default?: boolean
+          layout?: Json
+          name?: string
+          published_at?: string | null
+          published_by?: string | null
+          shared_scope?: string
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_dashboards_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "user_dashboards_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_integrations: {
+        Row: {
+          config: Json
+          created_at: string | null
+          enabled: boolean
+          error_count: number
+          id: string
+          integration_id: string
+          last_sync_at: string | null
+          name: string
+          status: string
+          updated_at: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          config?: Json
+          created_at?: string | null
+          enabled?: boolean
+          error_count?: number
+          id?: string
+          integration_id: string
+          last_sync_at?: string | null
+          name: string
+          status?: string
+          updated_at?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          config?: Json
+          created_at?: string | null
+          enabled?: boolean
+          error_count?: number
+          id?: string
+          integration_id?: string
+          last_sync_at?: string | null
+          name?: string
+          status?: string
+          updated_at?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_integrations_integration_id_fkey"
+            columns: ["integration_id"]
+            isOneToOne: false
+            referencedRelation: "workspace_integrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_permission_overrides: {
+        Row: {
+          created_at: string | null
+          granted: boolean
+          id: string
+          permission_id: string
+          updated_at: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          granted?: boolean
+          id?: string
+          permission_id: string
+          updated_at?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          granted?: boolean
+          id?: string
+          permission_id?: string
+          updated_at?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_permission_overrides_permission_id_fkey"
+            columns: ["permission_id"]
+            isOneToOne: false
+            referencedRelation: "permissions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_permission_overrides_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "user_permission_overrides_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_preferences: {
+        Row: {
+          created_at: string | null
+          id: string
+          preference_type: string
+          preferences: Json
+          updated_at: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          preference_type?: string
+          preferences?: Json
+          updated_at?: string | null
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          preference_type?: string
+          preferences?: Json
+          updated_at?: string | null
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_preferences_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "user_preferences_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_presence: {
         Row: {
@@ -8885,7 +23596,11 @@ export type Database = {
           music_loop: boolean | null
           music_track_url: string | null
           music_volume: number | null
+          phone: string | null
+          phone_verified_at: string | null
+          signature: string | null
           timezone: string | null
+          timezone_confirmed_at: string | null
           ui_theme: string | null
           updated_at: string | null
         }
@@ -8904,7 +23619,11 @@ export type Database = {
           music_loop?: boolean | null
           music_track_url?: string | null
           music_volume?: number | null
+          phone?: string | null
+          phone_verified_at?: string | null
+          signature?: string | null
           timezone?: string | null
+          timezone_confirmed_at?: string | null
           ui_theme?: string | null
           updated_at?: string | null
         }
@@ -8923,11 +23642,483 @@ export type Database = {
           music_loop?: boolean | null
           music_track_url?: string | null
           music_volume?: number | null
+          phone?: string | null
+          phone_verified_at?: string | null
+          signature?: string | null
           timezone?: string | null
+          timezone_confirmed_at?: string | null
           ui_theme?: string | null
           updated_at?: string | null
         }
         Relationships: []
+      }
+      user_session_activity: {
+        Row: {
+          created_at: string
+          current_path: string
+          current_view: string
+          current_window: string | null
+          current_window_title: string | null
+          id: string
+          is_online: boolean
+          last_activity_at: string
+          last_sign_in_at: string | null
+          login_at: string
+          metadata: Json
+          page_visits: number
+          session_id: string | null
+          total_events: number
+          updated_at: string
+          user_email: string | null
+          user_id: string
+          view_counts: Json
+        }
+        Insert: {
+          created_at?: string
+          current_path?: string
+          current_view?: string
+          current_window?: string | null
+          current_window_title?: string | null
+          id?: string
+          is_online?: boolean
+          last_activity_at?: string
+          last_sign_in_at?: string | null
+          login_at?: string
+          metadata?: Json
+          page_visits?: number
+          session_id?: string | null
+          total_events?: number
+          updated_at?: string
+          user_email?: string | null
+          user_id: string
+          view_counts?: Json
+        }
+        Update: {
+          created_at?: string
+          current_path?: string
+          current_view?: string
+          current_window?: string | null
+          current_window_title?: string | null
+          id?: string
+          is_online?: boolean
+          last_activity_at?: string
+          last_sign_in_at?: string | null
+          login_at?: string
+          metadata?: Json
+          page_visits?: number
+          session_id?: string | null
+          total_events?: number
+          updated_at?: string
+          user_email?: string | null
+          user_id?: string
+          view_counts?: Json
+        }
+        Relationships: []
+      }
+      vapi_call_payloads: {
+        Row: {
+          event_timestamp: string | null
+          event_type: string
+          id: string
+          ingest_worker_version: string | null
+          payload: Json
+          received_at: string
+          signature_valid: boolean | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        Insert: {
+          event_timestamp?: string | null
+          event_type: string
+          id?: string
+          ingest_worker_version?: string | null
+          payload: Json
+          received_at?: string
+          signature_valid?: boolean | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        Update: {
+          event_timestamp?: string | null
+          event_type?: string
+          id?: string
+          ingest_worker_version?: string | null
+          payload?: Json
+          received_at?: string
+          signature_valid?: boolean | null
+          vapi_call_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      vapi_call_records: {
+        Row: {
+          appointment_id: string | null
+          assistant_name: string | null
+          assistant_turn_chars: number | null
+          attributed_agent_config_id: string | null
+          call_disposition: string | null
+          call_reason: string | null
+          call_summary: string | null
+          call_timestamp: string | null
+          call_type: string | null
+          caller_name: string | null
+          caller_type: string | null
+          carrier_name: string | null
+          contact_id: string | null
+          conversation_transcript: Json | null
+          cost_total_cents: number | null
+          created_at: string
+          customer_phone: string | null
+          direction: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          ended_reason: string | null
+          event: string | null
+          first_seen_at: string
+          has_transfer: boolean | null
+          id: string
+          ingest_version: number
+          last_event_at: string | null
+          line_type: string | null
+          llm_model: string | null
+          llm_provider: string | null
+          raw_payload_id: string | null
+          recording_url: string | null
+          sentiment: string | null
+          started_at: string | null
+          status: string | null
+          structured_outputs: Json | null
+          structured_outputs_raw: Json | null
+          tokens_completion: number | null
+          tokens_prompt: number | null
+          tokens_total: number | null
+          tool_call_count: number | null
+          transcript_chars: number | null
+          transcript_turn_count: number | null
+          twilio_number_id: string | null
+          twilio_phone_number: string | null
+          updated_at: string
+          user_turn_chars: number | null
+          vapi_assistant_id: string | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        Insert: {
+          appointment_id?: string | null
+          assistant_name?: string | null
+          assistant_turn_chars?: number | null
+          attributed_agent_config_id?: string | null
+          call_disposition?: string | null
+          call_reason?: string | null
+          call_summary?: string | null
+          call_timestamp?: string | null
+          call_type?: string | null
+          caller_name?: string | null
+          caller_type?: string | null
+          carrier_name?: string | null
+          contact_id?: string | null
+          conversation_transcript?: Json | null
+          cost_total_cents?: number | null
+          created_at?: string
+          customer_phone?: string | null
+          direction?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          ended_reason?: string | null
+          event?: string | null
+          first_seen_at?: string
+          has_transfer?: boolean | null
+          id?: string
+          ingest_version?: number
+          last_event_at?: string | null
+          line_type?: string | null
+          llm_model?: string | null
+          llm_provider?: string | null
+          raw_payload_id?: string | null
+          recording_url?: string | null
+          sentiment?: string | null
+          started_at?: string | null
+          status?: string | null
+          structured_outputs?: Json | null
+          structured_outputs_raw?: Json | null
+          tokens_completion?: number | null
+          tokens_prompt?: number | null
+          tokens_total?: number | null
+          tool_call_count?: number | null
+          transcript_chars?: number | null
+          transcript_turn_count?: number | null
+          twilio_number_id?: string | null
+          twilio_phone_number?: string | null
+          updated_at?: string
+          user_turn_chars?: number | null
+          vapi_assistant_id?: string | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        Update: {
+          appointment_id?: string | null
+          assistant_name?: string | null
+          assistant_turn_chars?: number | null
+          attributed_agent_config_id?: string | null
+          call_disposition?: string | null
+          call_reason?: string | null
+          call_summary?: string | null
+          call_timestamp?: string | null
+          call_type?: string | null
+          caller_name?: string | null
+          caller_type?: string | null
+          carrier_name?: string | null
+          contact_id?: string | null
+          conversation_transcript?: Json | null
+          cost_total_cents?: number | null
+          created_at?: string
+          customer_phone?: string | null
+          direction?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          ended_reason?: string | null
+          event?: string | null
+          first_seen_at?: string
+          has_transfer?: boolean | null
+          id?: string
+          ingest_version?: number
+          last_event_at?: string | null
+          line_type?: string | null
+          llm_model?: string | null
+          llm_provider?: string | null
+          raw_payload_id?: string | null
+          recording_url?: string | null
+          sentiment?: string | null
+          started_at?: string | null
+          status?: string | null
+          structured_outputs?: Json | null
+          structured_outputs_raw?: Json | null
+          tokens_completion?: number | null
+          tokens_prompt?: number | null
+          tokens_total?: number | null
+          tool_call_count?: number | null
+          transcript_chars?: number | null
+          transcript_turn_count?: number | null
+          twilio_number_id?: string | null
+          twilio_phone_number?: string | null
+          updated_at?: string
+          user_turn_chars?: number | null
+          vapi_assistant_id?: string | null
+          vapi_call_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vcr_agent_fk"
+            columns: ["attributed_agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vcr_appointment_fk"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vcr_appointment_fk"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments_with_details"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vcr_contact_fk"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "vcr_contact_fk"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vcr_contact_fk"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "vcr_raw_fk"
+            columns: ["raw_payload_id"]
+            isOneToOne: false
+            referencedRelation: "vapi_call_payloads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vcr_twilio_fk"
+            columns: ["twilio_number_id"]
+            isOneToOne: false
+            referencedRelation: "twilio_numbers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vcr_workspace_fk"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "vcr_workspace_fk"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      voice_ai_call_events: {
+        Row: {
+          call_duration_seconds: number | null
+          caller_name: string | null
+          carrier_name: string | null
+          created_at: string | null
+          customer_number: string | null
+          ended_reason: string | null
+          event_type: string
+          id: string
+          line_type: string | null
+          metadata: Json | null
+          status: string
+          summary: string | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        Insert: {
+          call_duration_seconds?: number | null
+          caller_name?: string | null
+          carrier_name?: string | null
+          created_at?: string | null
+          customer_number?: string | null
+          ended_reason?: string | null
+          event_type: string
+          id?: string
+          line_type?: string | null
+          metadata?: Json | null
+          status: string
+          summary?: string | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        Update: {
+          call_duration_seconds?: number | null
+          caller_name?: string | null
+          carrier_name?: string | null
+          created_at?: string | null
+          customer_number?: string | null
+          ended_reason?: string | null
+          event_type?: string
+          id?: string
+          line_type?: string | null
+          metadata?: Json | null
+          status?: string
+          summary?: string | null
+          vapi_call_id?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      voice_analytics_contact_stages: {
+        Row: {
+          contact_id: string
+          contact_updated_at: string | null
+          created_at: string
+          lead_status: string | null
+          lead_status_updated_at: string | null
+          phone_normalized: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id: string
+          contact_updated_at?: string | null
+          created_at?: string
+          lead_status?: string | null
+          lead_status_updated_at?: string | null
+          phone_normalized?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string
+          contact_updated_at?: string | null
+          created_at?: string
+          lead_status?: string | null
+          lead_status_updated_at?: string | null
+          phone_normalized?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      voice_assistant_mappings: {
+        Row: {
+          ai_agent_config_id: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          is_template: boolean | null
+          template_name: string | null
+          vapi_assistant_id: string
+          workspace_id: string
+        }
+        Insert: {
+          ai_agent_config_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          is_template?: boolean | null
+          template_name?: string | null
+          vapi_assistant_id: string
+          workspace_id: string
+        }
+        Update: {
+          ai_agent_config_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          is_template?: boolean | null
+          template_name?: string | null
+          vapi_assistant_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "voice_assistant_mappings_ai_agent_config_id_fkey"
+            columns: ["ai_agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "voice_assistant_mappings_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "voice_assistant_mappings_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       voice_error_logs: {
         Row: {
@@ -8974,6 +24165,121 @@ export type Database = {
           },
         ]
       }
+      voice_knowledge_lookup_logs: {
+        Row: {
+          agent_config_id: string | null
+          call_sid: string | null
+          category: string | null
+          created_at: string
+          duration_ms: number | null
+          error: string | null
+          id: string
+          query_text: string
+          result_count: number
+          selected_knowledge_ids: string[]
+          status: string
+          workspace_id: string
+        }
+        Insert: {
+          agent_config_id?: string | null
+          call_sid?: string | null
+          category?: string | null
+          created_at?: string
+          duration_ms?: number | null
+          error?: string | null
+          id?: string
+          query_text: string
+          result_count?: number
+          selected_knowledge_ids?: string[]
+          status: string
+          workspace_id: string
+        }
+        Update: {
+          agent_config_id?: string | null
+          call_sid?: string | null
+          category?: string | null
+          created_at?: string
+          duration_ms?: number | null
+          error?: string | null
+          id?: string
+          query_text?: string
+          result_count?: number
+          selected_knowledge_ids?: string[]
+          status?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "voice_knowledge_lookup_logs_agent_config_id_fkey"
+            columns: ["agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "voice_knowledge_lookup_logs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "voice_knowledge_lookup_logs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      voice_lookup_logs: {
+        Row: {
+          call_sid: string | null
+          contact_id: string | null
+          contact_name: string | null
+          created_at: string | null
+          duration_ms: number | null
+          error: string | null
+          found: boolean
+          id: string
+          mode: string | null
+          query_type: string | null
+          query_value: string | null
+          source: string | null
+          workspace_id: string
+        }
+        Insert: {
+          call_sid?: string | null
+          contact_id?: string | null
+          contact_name?: string | null
+          created_at?: string | null
+          duration_ms?: number | null
+          error?: string | null
+          found?: boolean
+          id?: string
+          mode?: string | null
+          query_type?: string | null
+          query_value?: string | null
+          source?: string | null
+          workspace_id: string
+        }
+        Update: {
+          call_sid?: string | null
+          contact_id?: string | null
+          contact_name?: string | null
+          created_at?: string | null
+          duration_ms?: number | null
+          error?: string | null
+          found?: boolean
+          id?: string
+          mode?: string | null
+          query_type?: string | null
+          query_value?: string | null
+          source?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       voice_recovery_logs: {
         Row: {
           call_sid: string | null
@@ -9015,6 +24321,513 @@ export type Database = {
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      waitlist_counter: {
+        Row: {
+          count: number
+          id: number
+          last_updated: string | null
+        }
+        Insert: {
+          count?: number
+          id?: number
+          last_updated?: string | null
+        }
+        Update: {
+          count?: number
+          id?: number
+          last_updated?: string | null
+        }
+        Relationships: []
+      }
+      waitlist_signups: {
+        Row: {
+          company: string | null
+          email: string
+          expectations: string | null
+          id: string
+          name: string
+          source: string | null
+          timestamp: string | null
+          use_case: string | null
+        }
+        Insert: {
+          company?: string | null
+          email: string
+          expectations?: string | null
+          id?: string
+          name: string
+          source?: string | null
+          timestamp?: string | null
+          use_case?: string | null
+        }
+        Update: {
+          company?: string | null
+          email?: string
+          expectations?: string | null
+          id?: string
+          name?: string
+          source?: string | null
+          timestamp?: string | null
+          use_case?: string | null
+        }
+        Relationships: []
+      }
+      webchat_configs: {
+        Row: {
+          agent_avatar_url: string | null
+          agent_bubble_color: string | null
+          agent_followup_messages: Json | null
+          ai_agent_config_id: string | null
+          allow_repositioning: boolean | null
+          auto_open_chat: boolean | null
+          auto_opt_in_on_engagement: boolean | null
+          button_color: string | null
+          contact_form_attached_flow_id: string | null
+          contact_form_attached_sequence_id: string | null
+          contact_form_enabled: boolean
+          created_at: string | null
+          custom_css: string | null
+          display_style: string | null
+          domain: string | null
+          enable_voice_chat: boolean | null
+          header_text: string | null
+          id: string
+          is_active: boolean | null
+          language: string | null
+          logo_url: string | null
+          name: string
+          notification_sound_enabled: boolean
+          offline_message: string | null
+          popup_delay: number | null
+          position: string | null
+          powered_by_text: string | null
+          powered_by_url: string | null
+          prechat_form_fields: Json | null
+          prechat_form_first: boolean | null
+          privacy_policy_url: string | null
+          show_on_desktop: boolean | null
+          show_on_mobile: boolean | null
+          show_on_tablet: boolean | null
+          show_powered_by: boolean
+          show_prechat_form: boolean | null
+          show_typing_indicator: boolean | null
+          show_welcome_popup: boolean | null
+          terms_url: string | null
+          theme_color: string | null
+          typing_delay_ms: number | null
+          updated_at: string | null
+          user_bubble_color: string | null
+          welcome_message: string | null
+          welcome_popup_quick_replies: Json | null
+          welcome_popup_title: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          agent_avatar_url?: string | null
+          agent_bubble_color?: string | null
+          agent_followup_messages?: Json | null
+          ai_agent_config_id?: string | null
+          allow_repositioning?: boolean | null
+          auto_open_chat?: boolean | null
+          auto_opt_in_on_engagement?: boolean | null
+          button_color?: string | null
+          contact_form_attached_flow_id?: string | null
+          contact_form_attached_sequence_id?: string | null
+          contact_form_enabled?: boolean
+          created_at?: string | null
+          custom_css?: string | null
+          display_style?: string | null
+          domain?: string | null
+          enable_voice_chat?: boolean | null
+          header_text?: string | null
+          id?: string
+          is_active?: boolean | null
+          language?: string | null
+          logo_url?: string | null
+          name: string
+          notification_sound_enabled?: boolean
+          offline_message?: string | null
+          popup_delay?: number | null
+          position?: string | null
+          powered_by_text?: string | null
+          powered_by_url?: string | null
+          prechat_form_fields?: Json | null
+          prechat_form_first?: boolean | null
+          privacy_policy_url?: string | null
+          show_on_desktop?: boolean | null
+          show_on_mobile?: boolean | null
+          show_on_tablet?: boolean | null
+          show_powered_by?: boolean
+          show_prechat_form?: boolean | null
+          show_typing_indicator?: boolean | null
+          show_welcome_popup?: boolean | null
+          terms_url?: string | null
+          theme_color?: string | null
+          typing_delay_ms?: number | null
+          updated_at?: string | null
+          user_bubble_color?: string | null
+          welcome_message?: string | null
+          welcome_popup_quick_replies?: Json | null
+          welcome_popup_title?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          agent_avatar_url?: string | null
+          agent_bubble_color?: string | null
+          agent_followup_messages?: Json | null
+          ai_agent_config_id?: string | null
+          allow_repositioning?: boolean | null
+          auto_open_chat?: boolean | null
+          auto_opt_in_on_engagement?: boolean | null
+          button_color?: string | null
+          contact_form_attached_flow_id?: string | null
+          contact_form_attached_sequence_id?: string | null
+          contact_form_enabled?: boolean
+          created_at?: string | null
+          custom_css?: string | null
+          display_style?: string | null
+          domain?: string | null
+          enable_voice_chat?: boolean | null
+          header_text?: string | null
+          id?: string
+          is_active?: boolean | null
+          language?: string | null
+          logo_url?: string | null
+          name?: string
+          notification_sound_enabled?: boolean
+          offline_message?: string | null
+          popup_delay?: number | null
+          position?: string | null
+          powered_by_text?: string | null
+          powered_by_url?: string | null
+          prechat_form_fields?: Json | null
+          prechat_form_first?: boolean | null
+          privacy_policy_url?: string | null
+          show_on_desktop?: boolean | null
+          show_on_mobile?: boolean | null
+          show_on_tablet?: boolean | null
+          show_powered_by?: boolean
+          show_prechat_form?: boolean | null
+          show_typing_indicator?: boolean | null
+          show_welcome_popup?: boolean | null
+          terms_url?: string | null
+          theme_color?: string | null
+          typing_delay_ms?: number | null
+          updated_at?: string | null
+          user_bubble_color?: string | null
+          welcome_message?: string | null
+          welcome_popup_quick_replies?: Json | null
+          welcome_popup_title?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webchat_configs_ai_agent_config_id_fkey"
+            columns: ["ai_agent_config_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agent_configs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_configs_contact_form_attached_flow_id_fkey"
+            columns: ["contact_form_attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "webchat_configs_contact_form_attached_flow_id_fkey"
+            columns: ["contact_form_attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_configs_contact_form_attached_sequence_id_fkey"
+            columns: ["contact_form_attached_sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_widgets_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "webchat_widgets_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webchat_contact_form_submissions: {
+        Row: {
+          contact_id: string | null
+          created_at: string
+          error_message: string | null
+          id: string
+          livechat_message_id: string | null
+          session_id: string
+          submitted_at: string
+          submitted_fields: Json
+          target_flow_id: string | null
+          target_sequence_id: string | null
+          target_type: string
+          trigger_response: Json | null
+          trigger_run_id: string | null
+          trigger_status: string
+          updated_at: string
+          webchat_message_id: string | null
+          widget_id: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          livechat_message_id?: string | null
+          session_id: string
+          submitted_at?: string
+          submitted_fields?: Json
+          target_flow_id?: string | null
+          target_sequence_id?: string | null
+          target_type?: string
+          trigger_response?: Json | null
+          trigger_run_id?: string | null
+          trigger_status?: string
+          updated_at?: string
+          webchat_message_id?: string | null
+          widget_id: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string | null
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          livechat_message_id?: string | null
+          session_id?: string
+          submitted_at?: string
+          submitted_fields?: Json
+          target_flow_id?: string | null
+          target_sequence_id?: string | null
+          target_type?: string
+          trigger_response?: Json | null
+          trigger_run_id?: string | null
+          trigger_status?: string
+          updated_at?: string
+          webchat_message_id?: string | null
+          widget_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webchat_contact_form_submissions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "webchat_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_target_flow_id_fkey"
+            columns: ["target_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_target_flow_id_fkey"
+            columns: ["target_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_target_sequence_id_fkey"
+            columns: ["target_sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_webchat_message_id_fkey"
+            columns: ["webchat_message_id"]
+            isOneToOne: false
+            referencedRelation: "webchat_messages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_contact_form_submissions_widget_id_fkey"
+            columns: ["widget_id"]
+            isOneToOne: false
+            referencedRelation: "webchat_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webchat_messages: {
+        Row: {
+          created_at: string | null
+          id: string
+          message_text: string
+          message_type: string | null
+          metadata: Json | null
+          read_at: string | null
+          sender_id: string | null
+          sender_type: string
+          sent_at: string | null
+          session_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          message_text: string
+          message_type?: string | null
+          metadata?: Json | null
+          read_at?: string | null
+          sender_id?: string | null
+          sender_type: string
+          sent_at?: string | null
+          session_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          message_text?: string
+          message_type?: string | null
+          metadata?: Json | null
+          read_at?: string | null
+          sender_id?: string | null
+          sender_type?: string
+          sent_at?: string | null
+          session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webchat_messages_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "webchat_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webchat_sessions: {
+        Row: {
+          browser_metadata: Json
+          contact_id: string | null
+          created_at: string | null
+          ended_at: string | null
+          id: string
+          page_url: string | null
+          referrer: string | null
+          session_token: string
+          started_at: string | null
+          status: string | null
+          updated_at: string | null
+          user_agent: string | null
+          visitor_email: string | null
+          visitor_id: string | null
+          visitor_ip: unknown
+          visitor_name: string | null
+          widget_id: string | null
+        }
+        Insert: {
+          browser_metadata?: Json
+          contact_id?: string | null
+          created_at?: string | null
+          ended_at?: string | null
+          id?: string
+          page_url?: string | null
+          referrer?: string | null
+          session_token: string
+          started_at?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          visitor_email?: string | null
+          visitor_id?: string | null
+          visitor_ip?: unknown
+          visitor_name?: string | null
+          widget_id?: string | null
+        }
+        Update: {
+          browser_metadata?: Json
+          contact_id?: string | null
+          created_at?: string | null
+          ended_at?: string | null
+          id?: string
+          page_url?: string | null
+          referrer?: string | null
+          session_token?: string
+          started_at?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_agent?: string | null
+          visitor_email?: string | null
+          visitor_id?: string | null
+          visitor_ip?: unknown
+          visitor_name?: string | null
+          widget_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webchat_sessions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "webchat_sessions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webchat_sessions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "webchat_sessions_widget_id_fkey"
+            columns: ["widget_id"]
+            isOneToOne: false
+            referencedRelation: "webchat_configs"
             referencedColumns: ["id"]
           },
         ]
@@ -9078,6 +24891,197 @@ export type Database = {
           },
         ]
       }
+      webhook_conditional_rules: {
+        Row: {
+          board_id: string
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          priority: number | null
+          target_column_id: string
+          updated_at: string | null
+          webhook_id: string
+          workspace_id: string
+        }
+        Insert: {
+          board_id: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          priority?: number | null
+          target_column_id: string
+          updated_at?: string | null
+          webhook_id: string
+          workspace_id: string
+        }
+        Update: {
+          board_id?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          priority?: number | null
+          target_column_id?: string
+          updated_at?: string | null
+          webhook_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_conditional_rules_webhook_id_fkey"
+            columns: ["webhook_id"]
+            isOneToOne: false
+            referencedRelation: "webhooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhook_events: {
+        Row: {
+          contact_id: string | null
+          endpoint_id: string | null
+          error_message: string | null
+          id: string
+          matched_profile_id: string | null
+          matched_rule_id: string | null
+          normalized_payload: Json | null
+          processing_time_ms: number | null
+          raw_payload: Json | null
+          received_at: string
+          request_id: string | null
+          status: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id?: string | null
+          endpoint_id?: string | null
+          error_message?: string | null
+          id?: string
+          matched_profile_id?: string | null
+          matched_rule_id?: string | null
+          normalized_payload?: Json | null
+          processing_time_ms?: number | null
+          raw_payload?: Json | null
+          received_at?: string
+          request_id?: string | null
+          status: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string | null
+          endpoint_id?: string | null
+          error_message?: string | null
+          id?: string
+          matched_profile_id?: string | null
+          matched_rule_id?: string | null
+          normalized_payload?: Json | null
+          processing_time_ms?: number | null
+          raw_payload?: Json | null
+          received_at?: string
+          request_id?: string | null
+          status?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_events_endpoint_id_fkey"
+            columns: ["endpoint_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_intake_endpoints"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_events_matched_profile_id_fkey"
+            columns: ["matched_profile_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_mapping_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_events_matched_rule_id_fkey"
+            columns: ["matched_rule_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_routing_rules"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "webhook_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhook_intake_endpoints: {
+        Row: {
+          auth_mode: string
+          auth_secret: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          slug: string
+          status: string
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          auth_mode?: string
+          auth_secret?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+          status?: string
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          auth_mode?: string
+          auth_secret?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          status?: string
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_intake_endpoints_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "webhook_intake_endpoints_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       webhook_logs: {
         Row: {
           error_message: string | null
@@ -9087,10 +25091,11 @@ export type Database = {
           preprocessing_error: string | null
           processed_contact_id: string | null
           result: Json | null
+          source: string | null
           status: string
           timestamp: string
           webhook_id: string
-          workspace_id: string
+          workspace_id: string | null
         }
         Insert: {
           error_message?: string | null
@@ -9100,10 +25105,11 @@ export type Database = {
           preprocessing_error?: string | null
           processed_contact_id?: string | null
           result?: Json | null
+          source?: string | null
           status: string
           timestamp?: string
           webhook_id: string
-          workspace_id: string
+          workspace_id?: string | null
         }
         Update: {
           error_message?: string | null
@@ -9113,10 +25119,11 @@ export type Database = {
           preprocessing_error?: string | null
           processed_contact_id?: string | null
           result?: Json | null
+          source?: string | null
           status?: string
           timestamp?: string
           webhook_id?: string
-          workspace_id?: string
+          workspace_id?: string | null
         }
         Relationships: [
           {
@@ -9142,14 +25149,261 @@ export type Database = {
           },
         ]
       }
+      webhook_mapping_profiles: {
+        Row: {
+          attached_flow_id: string | null
+          attached_sequence_id: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          mappings: Json
+          name: string
+          sample_payload: Json | null
+          transformation_template: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          attached_flow_id?: string | null
+          attached_sequence_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          mappings?: Json
+          name: string
+          sample_payload?: Json | null
+          transformation_template?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          attached_flow_id?: string | null
+          attached_sequence_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          mappings?: Json
+          name?: string
+          sample_payload?: Json | null
+          transformation_template?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_mapping_profiles_attached_flow_id_fkey"
+            columns: ["attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "webhook_mapping_profiles_attached_flow_id_fkey"
+            columns: ["attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_mapping_profiles_attached_sequence_id_fkey"
+            columns: ["attached_sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_mapping_profiles_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "webhook_mapping_profiles_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhook_routing_rules: {
+        Row: {
+          assign_board_id: string | null
+          assign_phone_number: string | null
+          attached_flow_id: string | null
+          attached_sequence_id: string | null
+          conditions: Json
+          created_at: string
+          enabled: boolean
+          endpoint_id: string
+          id: string
+          mapping_profile_id: string | null
+          match_mode: string
+          name: string
+          outputs: Json
+          priority: number
+          stop_on_match: boolean
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          assign_board_id?: string | null
+          assign_phone_number?: string | null
+          attached_flow_id?: string | null
+          attached_sequence_id?: string | null
+          conditions?: Json
+          created_at?: string
+          enabled?: boolean
+          endpoint_id: string
+          id?: string
+          mapping_profile_id?: string | null
+          match_mode?: string
+          name: string
+          outputs?: Json
+          priority?: number
+          stop_on_match?: boolean
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          assign_board_id?: string | null
+          assign_phone_number?: string | null
+          attached_flow_id?: string | null
+          attached_sequence_id?: string | null
+          conditions?: Json
+          created_at?: string
+          enabled?: boolean
+          endpoint_id?: string
+          id?: string
+          mapping_profile_id?: string | null
+          match_mode?: string
+          name?: string
+          outputs?: Json
+          priority?: number
+          stop_on_match?: boolean
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_routing_rules_assign_board_id_fkey"
+            columns: ["assign_board_id"]
+            isOneToOne: false
+            referencedRelation: "board_performance_ranking"
+            referencedColumns: ["board_id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_assign_board_id_fkey"
+            columns: ["assign_board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_attached_flow_id_fkey"
+            columns: ["attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_attached_flow_id_fkey"
+            columns: ["attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_attached_sequence_id_fkey"
+            columns: ["attached_sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_endpoint_id_fkey"
+            columns: ["endpoint_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_intake_endpoints"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_mapping_profile_id_fkey"
+            columns: ["mapping_profile_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_mapping_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "webhook_routing_rules_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhook_rule_conditions: {
+        Row: {
+          created_at: string | null
+          field_name: string
+          field_value: string
+          id: string
+          json_path: string | null
+          operator: string
+          rule_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          field_name: string
+          field_value: string
+          id?: string
+          json_path?: string | null
+          operator: string
+          rule_id: string
+        }
+        Update: {
+          created_at?: string | null
+          field_name?: string
+          field_value?: string
+          id?: string
+          json_path?: string | null
+          operator?: string
+          rule_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_rule_conditions_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_conditional_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       webhooks: {
         Row: {
+          attached_flow_id: string | null
+          attached_sequence_id: string | null
+          board_id: string | null
           call_count: number | null
           created_at: string
           created_by_email: string
           id: string
           last_used: string | null
           mappings: Json | null
+          metadata: Json | null
           name: string
           preprocessing_code: string | null
           preprocessing_enabled: boolean | null
@@ -9160,12 +25414,16 @@ export type Database = {
           workspace_id: string
         }
         Insert: {
+          attached_flow_id?: string | null
+          attached_sequence_id?: string | null
+          board_id?: string | null
           call_count?: number | null
           created_at?: string
           created_by_email: string
           id?: string
           last_used?: string | null
           mappings?: Json | null
+          metadata?: Json | null
           name: string
           preprocessing_code?: string | null
           preprocessing_enabled?: boolean | null
@@ -9176,12 +25434,16 @@ export type Database = {
           workspace_id: string
         }
         Update: {
+          attached_flow_id?: string | null
+          attached_sequence_id?: string | null
+          board_id?: string | null
           call_count?: number | null
           created_at?: string
           created_by_email?: string
           id?: string
           last_used?: string | null
           mappings?: Json | null
+          metadata?: Json | null
           name?: string
           preprocessing_code?: string | null
           preprocessing_enabled?: boolean | null
@@ -9192,6 +25454,20 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "fk_webhook_board"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "board_performance_ranking"
+            referencedColumns: ["board_id"]
+          },
+          {
+            foreignKeyName: "fk_webhook_board"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "fk_webhook_workspace"
             columns: ["workspace_id"]
@@ -9206,7 +25482,70 @@ export type Database = {
             referencedRelation: "workspaces"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "webhooks_attached_flow_id_fkey"
+            columns: ["attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "webhooks_attached_flow_id_fkey"
+            columns: ["attached_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "webhooks_attached_sequence_id_fkey"
+            columns: ["attached_sequence_id"]
+            isOneToOne: false
+            referencedRelation: "flow_sequences"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      worker_process_logs: {
+        Row: {
+          category: string
+          created_at: string | null
+          execution_time_ms: number | null
+          id: string
+          level: string
+          message: string
+          metadata: Json | null
+          phone_or_email: string | null
+          request_id: string | null
+          worker_name: string
+          workspace_id: string
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          level?: string
+          message: string
+          metadata?: Json | null
+          phone_or_email?: string | null
+          request_id?: string | null
+          worker_name: string
+          workspace_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          level?: string
+          message?: string
+          metadata?: Json | null
+          phone_or_email?: string | null
+          request_id?: string | null
+          worker_name?: string
+          workspace_id?: string
+        }
+        Relationships: []
       }
       workflow_actions: {
         Row: {
@@ -9233,66 +25572,112 @@ export type Database = {
           position?: number
           workflow_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "workflow_actions_workflow_id_fkey"
-            columns: ["workflow_id"]
-            isOneToOne: false
-            referencedRelation: "workflows"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      workflows: {
+      workflow_data_store: {
         Row: {
+          category: string | null
           created_at: string | null
           description: string | null
+          expires_at: string | null
           id: string
-          is_active: boolean | null
-          name: string
-          trigger_config: Json
-          trigger_type: string
+          key: string
+          source_execution_id: string | null
+          source_flow_id: string | null
           updated_at: string | null
-          workspace_id: string | null
+          value: Json
+          workspace_id: string
         }
         Insert: {
+          category?: string | null
           created_at?: string | null
           description?: string | null
+          expires_at?: string | null
           id?: string
-          is_active?: boolean | null
-          name: string
-          trigger_config: Json
-          trigger_type: string
+          key: string
+          source_execution_id?: string | null
+          source_flow_id?: string | null
           updated_at?: string | null
-          workspace_id?: string | null
+          value?: Json
+          workspace_id: string
         }
         Update: {
+          category?: string | null
           created_at?: string | null
           description?: string | null
+          expires_at?: string | null
           id?: string
-          is_active?: boolean | null
-          name?: string
-          trigger_config?: Json
-          trigger_type?: string
+          key?: string
+          source_execution_id?: string | null
+          source_flow_id?: string | null
           updated_at?: string | null
-          workspace_id?: string | null
+          value?: Json
+          workspace_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "workflows_workspace_id_fkey"
+            foreignKeyName: "workflow_data_store_source_execution_id_fkey"
+            columns: ["source_execution_id"]
+            isOneToOne: false
+            referencedRelation: "flow_executions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workflow_data_store_source_flow_id_fkey"
+            columns: ["source_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flow_performance_stats"
+            referencedColumns: ["flow_id"]
+          },
+          {
+            foreignKeyName: "workflow_data_store_source_flow_id_fkey"
+            columns: ["source_flow_id"]
+            isOneToOne: false
+            referencedRelation: "flows"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workflow_data_store_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "user_profiles_with_workspace"
             referencedColumns: ["workspace_id"]
           },
           {
-            foreignKeyName: "workflows_workspace_id_fkey"
+            foreignKeyName: "workflow_data_store_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
             referencedColumns: ["id"]
           },
         ]
+      }
+      workspace_action_badge_state: {
+        Row: {
+          calls_24h_count: number
+          custom_notifications_count: number
+          emails_count: number
+          messages_count: number
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          calls_24h_count?: number
+          custom_notifications_count?: number
+          emails_count?: number
+          messages_count?: number
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          calls_24h_count?: number
+          custom_notifications_count?: number
+          emails_count?: number
+          messages_count?: number
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
       }
       workspace_ai_config: {
         Row: {
@@ -9307,6 +25692,7 @@ export type Database = {
           modified_time: string
           organization: string | null
           provider: string
+          silenced_lead_statuses: string[]
           system_prompt: string
           temperature: number | null
           workspace_id: string
@@ -9323,6 +25709,7 @@ export type Database = {
           modified_time?: string
           organization?: string | null
           provider: string
+          silenced_lead_statuses?: string[]
           system_prompt?: string
           temperature?: number | null
           workspace_id: string
@@ -9339,6 +25726,7 @@ export type Database = {
           modified_time?: string
           organization?: string | null
           provider?: string
+          silenced_lead_statuses?: string[]
           system_prompt?: string
           temperature?: number | null
           workspace_id?: string
@@ -9360,11 +25748,458 @@ export type Database = {
           },
         ]
       }
+      workspace_analytics_daily: {
+        Row: {
+          ai_messages_count: number | null
+          appointments_count: number | null
+          contacts_count: number | null
+          created_at: string | null
+          date: string
+          id: string
+          messages_count: number | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_messages_count?: number | null
+          appointments_count?: number | null
+          contacts_count?: number | null
+          created_at?: string | null
+          date: string
+          id?: string
+          messages_count?: number | null
+          workspace_id: string
+        }
+        Update: {
+          ai_messages_count?: number | null
+          appointments_count?: number | null
+          contacts_count?: number | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          messages_count?: number | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_analytics_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_analytics_daily_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_analytics_totals: {
+        Row: {
+          ai_messages: number | null
+          total_appointments: number | null
+          total_contacts: number | null
+          total_messages: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          ai_messages?: number | null
+          total_appointments?: number | null
+          total_contacts?: number | null
+          total_messages?: number | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          ai_messages?: number | null
+          total_appointments?: number | null
+          total_contacts?: number | null
+          total_messages?: number | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_analytics_totals_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_analytics_totals_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_api_credentials: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          credentials: Json
+          id: string
+          last_used_at: string | null
+          service_name: string
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          credentials: Json
+          id?: string
+          last_used_at?: string | null
+          service_name: string
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          credentials?: Json
+          id?: string
+          last_used_at?: string | null
+          service_name?: string
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_api_credentials_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_api_credentials_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_auto_assign_config: {
+        Row: {
+          assignment_strategy: string
+          context_aware: boolean | null
+          created_at: string | null
+          fallback_strategy: string | null
+          id: string
+          is_enabled: boolean | null
+          reassign_on_agent_response: boolean | null
+          role_type: string | null
+          selected_agent_ids: string[] | null
+          skip_presence_check: boolean | null
+          specific_agent_id: string | null
+          trigger_on_agent_response: boolean | null
+          trigger_on_first_message: boolean | null
+          trigger_on_new_contact: boolean | null
+          trigger_on_unassigned: boolean | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          assignment_strategy: string
+          context_aware?: boolean | null
+          created_at?: string | null
+          fallback_strategy?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          reassign_on_agent_response?: boolean | null
+          role_type?: string | null
+          selected_agent_ids?: string[] | null
+          skip_presence_check?: boolean | null
+          specific_agent_id?: string | null
+          trigger_on_agent_response?: boolean | null
+          trigger_on_first_message?: boolean | null
+          trigger_on_new_contact?: boolean | null
+          trigger_on_unassigned?: boolean | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          assignment_strategy?: string
+          context_aware?: boolean | null
+          created_at?: string | null
+          fallback_strategy?: string | null
+          id?: string
+          is_enabled?: boolean | null
+          reassign_on_agent_response?: boolean | null
+          role_type?: string | null
+          selected_agent_ids?: string[] | null
+          skip_presence_check?: boolean | null
+          specific_agent_id?: string | null
+          trigger_on_agent_response?: boolean | null
+          trigger_on_first_message?: boolean | null
+          trigger_on_new_contact?: boolean | null
+          trigger_on_unassigned?: boolean | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_auto_assign_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_auto_assign_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_churn_events: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          event_date: string
+          event_type: string
+          health_at_event: number | null
+          id: string
+          is_exogenous: boolean | null
+          notes: string | null
+          reason_category: string | null
+          tier_at_event: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          event_date?: string
+          event_type: string
+          health_at_event?: number | null
+          id?: string
+          is_exogenous?: boolean | null
+          notes?: string | null
+          reason_category?: string | null
+          tier_at_event?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          event_date?: string
+          event_type?: string
+          health_at_event?: number | null
+          id?: string
+          is_exogenous?: boolean | null
+          notes?: string | null
+          reason_category?: string | null
+          tier_at_event?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      workspace_contact_counts: {
+        Row: {
+          active_count: number
+          archived_count: number
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          active_count?: number
+          archived_count?: number
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          active_count?: number
+          archived_count?: number
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      workspace_custom_fields: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          field_id: string
+          id: string
+          updated_at: string | null
+          updated_by: string | null
+          value: Json
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          field_id: string
+          id?: string
+          updated_at?: string | null
+          updated_by?: string | null
+          value: Json
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          field_id?: string
+          id?: string
+          updated_at?: string | null
+          updated_by?: string | null
+          value?: Json
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_custom_fields_field_id_fkey"
+            columns: ["field_id"]
+            isOneToOne: false
+            referencedRelation: "custom_fields"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workspace_custom_fields_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_custom_fields_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_developer_config: {
+        Row: {
+          applied_at: string | null
+          approval_status: string | null
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string | null
+          created_by: string | null
+          dev_subscription_current_period_end: string | null
+          dev_subscription_current_period_start: string | null
+          dev_subscription_id: string | null
+          dev_subscription_status: string | null
+          developer_bio: string | null
+          developer_email: string | null
+          developer_name: string | null
+          developer_website: string | null
+          id: string
+          intended_use: string | null
+          is_developer_mode: boolean | null
+          rejected_at: string | null
+          rejected_by: string | null
+          rejection_reason: string | null
+          stripe_connect_account_id: string | null
+          stripe_connect_charges_enabled: boolean | null
+          stripe_connect_onboarding_complete: boolean | null
+          stripe_connect_payouts_enabled: boolean | null
+          suspended_at: string | null
+          suspended_by: string | null
+          suspension_reason: string | null
+          updated_at: string | null
+          updated_by: string | null
+          workspace_id: string
+        }
+        Insert: {
+          applied_at?: string | null
+          approval_status?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          dev_subscription_current_period_end?: string | null
+          dev_subscription_current_period_start?: string | null
+          dev_subscription_id?: string | null
+          dev_subscription_status?: string | null
+          developer_bio?: string | null
+          developer_email?: string | null
+          developer_name?: string | null
+          developer_website?: string | null
+          id?: string
+          intended_use?: string | null
+          is_developer_mode?: boolean | null
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_reason?: string | null
+          stripe_connect_account_id?: string | null
+          stripe_connect_charges_enabled?: boolean | null
+          stripe_connect_onboarding_complete?: boolean | null
+          stripe_connect_payouts_enabled?: boolean | null
+          suspended_at?: string | null
+          suspended_by?: string | null
+          suspension_reason?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          workspace_id: string
+        }
+        Update: {
+          applied_at?: string | null
+          approval_status?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          dev_subscription_current_period_end?: string | null
+          dev_subscription_current_period_start?: string | null
+          dev_subscription_id?: string | null
+          dev_subscription_status?: string | null
+          developer_bio?: string | null
+          developer_email?: string | null
+          developer_name?: string | null
+          developer_website?: string | null
+          id?: string
+          intended_use?: string | null
+          is_developer_mode?: boolean | null
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_reason?: string | null
+          stripe_connect_account_id?: string | null
+          stripe_connect_charges_enabled?: boolean | null
+          stripe_connect_onboarding_complete?: boolean | null
+          stripe_connect_payouts_enabled?: boolean | null
+          suspended_at?: string | null
+          suspended_by?: string | null
+          suspension_reason?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_developer_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_developer_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       workspace_email_config: {
         Row: {
+          active_provider: string | null
           created_at: string | null
           from_email: string
           from_name: string | null
+          inbound_reply_to_domain: string | null
           is_active: boolean | null
           reply_to: string | null
           resend_api_key: string
@@ -9372,9 +26207,11 @@ export type Database = {
           workspace_id: string
         }
         Insert: {
+          active_provider?: string | null
           created_at?: string | null
           from_email: string
           from_name?: string | null
+          inbound_reply_to_domain?: string | null
           is_active?: boolean | null
           reply_to?: string | null
           resend_api_key: string
@@ -9382,14 +26219,70 @@ export type Database = {
           workspace_id: string
         }
         Update: {
+          active_provider?: string | null
           created_at?: string | null
           from_email?: string
           from_name?: string | null
+          inbound_reply_to_domain?: string | null
           is_active?: boolean | null
           reply_to?: string | null
           resend_api_key?: string
           updated_at?: string | null
           workspace_id?: string
+        }
+        Relationships: []
+      }
+      workspace_integrations: {
+        Row: {
+          auth_type: string
+          category: string
+          config_schema: Json
+          created_at: string | null
+          description: string | null
+          documentation_url: string | null
+          features: Json
+          icon_url: string | null
+          id: string
+          name: string
+          setup_complexity: string
+          status: string
+          supported_actions: Json
+          updated_at: string | null
+          webhook_url: string | null
+        }
+        Insert: {
+          auth_type?: string
+          category: string
+          config_schema?: Json
+          created_at?: string | null
+          description?: string | null
+          documentation_url?: string | null
+          features?: Json
+          icon_url?: string | null
+          id: string
+          name: string
+          setup_complexity?: string
+          status?: string
+          supported_actions?: Json
+          updated_at?: string | null
+          webhook_url?: string | null
+        }
+        Update: {
+          auth_type?: string
+          category?: string
+          config_schema?: Json
+          created_at?: string | null
+          description?: string | null
+          documentation_url?: string | null
+          features?: Json
+          icon_url?: string | null
+          id?: string
+          name?: string
+          setup_complexity?: string
+          status?: string
+          supported_actions?: Json
+          updated_at?: string | null
+          webhook_url?: string | null
         }
         Relationships: []
       }
@@ -9482,24 +26375,33 @@ export type Database = {
       }
       workspace_members: {
         Row: {
+          auto_assign_enabled: boolean
           created_at: string
           id: string
+          last_seen_at: string | null
+          member_type: string | null
           role: string
           updated_at: string
           user_id: string | null
           workspace_id: string | null
         }
         Insert: {
+          auto_assign_enabled?: boolean
           created_at?: string
           id?: string
+          last_seen_at?: string | null
+          member_type?: string | null
           role: string
           updated_at?: string
           user_id?: string | null
           workspace_id?: string | null
         }
         Update: {
+          auto_assign_enabled?: boolean
           created_at?: string
           id?: string
+          last_seen_at?: string | null
+          member_type?: string | null
           role?: string
           updated_at?: string
           user_id?: string | null
@@ -9522,12 +26424,250 @@ export type Database = {
           },
         ]
       }
+      workspace_meta_integrations: {
+        Row: {
+          connected_at: string | null
+          created_at: string | null
+          error_message: string | null
+          id: string
+          instagram_account_id: string | null
+          instagram_username: string | null
+          last_sync_at: string | null
+          page_access_token: string
+          page_id: string
+          page_name: string | null
+          status: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          connected_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          instagram_account_id?: string | null
+          instagram_username?: string | null
+          last_sync_at?: string | null
+          page_access_token: string
+          page_id: string
+          page_name?: string | null
+          status?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          connected_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          instagram_account_id?: string | null
+          instagram_username?: string | null
+          last_sync_at?: string | null
+          page_access_token?: string
+          page_id?: string
+          page_name?: string | null
+          status?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_meta_integrations_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_meta_integrations_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_oauth_tokens: {
+        Row: {
+          access_token: string | null
+          client_id: string
+          client_secret: string
+          connection_status: string | null
+          created_at: string | null
+          created_by: string | null
+          display_name: string | null
+          environment: string | null
+          expires_at: string | null
+          extra_credentials: Json | null
+          id: string
+          is_active: boolean | null
+          last_error: string | null
+          last_refreshed_at: string | null
+          last_used_at: string | null
+          provider: string
+          provider_account_id: string | null
+          refresh_token: string | null
+          token_endpoint: string
+          token_type: string | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          access_token?: string | null
+          client_id: string
+          client_secret: string
+          connection_status?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          display_name?: string | null
+          environment?: string | null
+          expires_at?: string | null
+          extra_credentials?: Json | null
+          id?: string
+          is_active?: boolean | null
+          last_error?: string | null
+          last_refreshed_at?: string | null
+          last_used_at?: string | null
+          provider: string
+          provider_account_id?: string | null
+          refresh_token?: string | null
+          token_endpoint: string
+          token_type?: string | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          access_token?: string | null
+          client_id?: string
+          client_secret?: string
+          connection_status?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          display_name?: string | null
+          environment?: string | null
+          expires_at?: string | null
+          extra_credentials?: Json | null
+          id?: string
+          is_active?: boolean | null
+          last_error?: string | null
+          last_refreshed_at?: string | null
+          last_used_at?: string | null
+          provider?: string
+          provider_account_id?: string | null
+          refresh_token?: string | null
+          token_endpoint?: string
+          token_type?: string | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_oauth_tokens_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_oauth_tokens_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_risk_flags: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          flag_type: string
+          id: string
+          notes: string | null
+          resolved_at: string | null
+          severity: string
+          status: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          flag_type: string
+          id?: string
+          notes?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          flag_type?: string
+          id?: string
+          notes?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      workspace_sendgrid_config: {
+        Row: {
+          api_key: string
+          created_at: string | null
+          default_from_email: string
+          default_from_name: string | null
+          default_reply_to: string | null
+          id: string
+          is_active: boolean | null
+          is_configured: boolean | null
+          last_test_at: string | null
+          last_test_status: string | null
+          updated_at: string | null
+          verified_domain: string | null
+          workspace_id: string
+        }
+        Insert: {
+          api_key: string
+          created_at?: string | null
+          default_from_email: string
+          default_from_name?: string | null
+          default_reply_to?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_configured?: boolean | null
+          last_test_at?: string | null
+          last_test_status?: string | null
+          updated_at?: string | null
+          verified_domain?: string | null
+          workspace_id: string
+        }
+        Update: {
+          api_key?: string
+          created_at?: string | null
+          default_from_email?: string
+          default_from_name?: string | null
+          default_reply_to?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_configured?: boolean | null
+          last_test_at?: string | null
+          last_test_status?: string | null
+          updated_at?: string | null
+          verified_domain?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       workspace_settings: {
         Row: {
           created_at: string | null
           id: string
           settings_key: string
           settings_value: Json
+          sms_failover_enabled: boolean | null
           updated_at: string | null
           workspace_id: string
         }
@@ -9536,6 +26676,7 @@ export type Database = {
           id?: string
           settings_key: string
           settings_value: Json
+          sms_failover_enabled?: boolean | null
           updated_at?: string | null
           workspace_id: string
         }
@@ -9544,7 +26685,288 @@ export type Database = {
           id?: string
           settings_key?: string
           settings_value?: Json
+          sms_failover_enabled?: boolean | null
           updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      workspace_smtp_configs: {
+        Row: {
+          api_key: string | null
+          auth_type: string
+          created_at: string | null
+          from_email: string
+          from_name: string | null
+          host: string
+          id: string
+          is_active: boolean | null
+          is_default: boolean | null
+          last_test_at: string | null
+          last_test_error: string | null
+          last_test_status: string | null
+          name: string
+          oauth2_access_token: string | null
+          oauth2_client_id: string | null
+          oauth2_client_secret: string | null
+          oauth2_expires_at: string | null
+          oauth2_refresh_token: string | null
+          password: string | null
+          port: number
+          reply_to: string | null
+          secure: boolean | null
+          updated_at: string | null
+          username: string | null
+          workspace_id: string
+        }
+        Insert: {
+          api_key?: string | null
+          auth_type?: string
+          created_at?: string | null
+          from_email: string
+          from_name?: string | null
+          host: string
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_test_at?: string | null
+          last_test_error?: string | null
+          last_test_status?: string | null
+          name: string
+          oauth2_access_token?: string | null
+          oauth2_client_id?: string | null
+          oauth2_client_secret?: string | null
+          oauth2_expires_at?: string | null
+          oauth2_refresh_token?: string | null
+          password?: string | null
+          port?: number
+          reply_to?: string | null
+          secure?: boolean | null
+          updated_at?: string | null
+          username?: string | null
+          workspace_id: string
+        }
+        Update: {
+          api_key?: string | null
+          auth_type?: string
+          created_at?: string | null
+          from_email?: string
+          from_name?: string | null
+          host?: string
+          id?: string
+          is_active?: boolean | null
+          is_default?: boolean | null
+          last_test_at?: string | null
+          last_test_error?: string | null
+          last_test_status?: string | null
+          name?: string
+          oauth2_access_token?: string | null
+          oauth2_client_id?: string | null
+          oauth2_client_secret?: string | null
+          oauth2_expires_at?: string | null
+          oauth2_refresh_token?: string | null
+          password?: string | null
+          port?: number
+          reply_to?: string | null
+          secure?: boolean | null
+          updated_at?: string | null
+          username?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      workspace_subscriptions: {
+        Row: {
+          addon_api_boost: number | null
+          addon_expires_at: string | null
+          addon_webhook_boost: number | null
+          billing_cycle: string | null
+          billing_email: string | null
+          cancel_at_period_end: boolean | null
+          canceled_at: string | null
+          created_at: string | null
+          created_by: string | null
+          current_period_end: string | null
+          current_period_start: string | null
+          custom_limits: Json | null
+          id: string
+          last_payment_date: string | null
+          last_usage_reset: string | null
+          plan_name: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          subscription_plan_id: string
+          subscription_status: string | null
+          updated_at: string | null
+          updated_by: string | null
+          webhook_links_used: number | null
+          workspace_id: string
+          workspace_name: string
+        }
+        Insert: {
+          addon_api_boost?: number | null
+          addon_expires_at?: string | null
+          addon_webhook_boost?: number | null
+          billing_cycle?: string | null
+          billing_email?: string | null
+          cancel_at_period_end?: boolean | null
+          canceled_at?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          custom_limits?: Json | null
+          id?: string
+          last_payment_date?: string | null
+          last_usage_reset?: string | null
+          plan_name: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_plan_id: string
+          subscription_status?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          webhook_links_used?: number | null
+          workspace_id: string
+          workspace_name: string
+        }
+        Update: {
+          addon_api_boost?: number | null
+          addon_expires_at?: string | null
+          addon_webhook_boost?: number | null
+          billing_cycle?: string | null
+          billing_email?: string | null
+          cancel_at_period_end?: boolean | null
+          canceled_at?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          custom_limits?: Json | null
+          id?: string
+          last_payment_date?: string | null
+          last_usage_reset?: string | null
+          plan_name?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_plan_id?: string
+          subscription_status?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+          webhook_links_used?: number | null
+          workspace_id?: string
+          workspace_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_subscriptions_subscription_plan_id_fkey"
+            columns: ["subscription_plan_id"]
+            isOneToOne: false
+            referencedRelation: "subscription_plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "workspace_subscriptions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_subscriptions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_tag_matching_config: {
+        Row: {
+          fallback_strategy: string | null
+          matching_mode: string
+          tag_priority_order: Json | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        Insert: {
+          fallback_strategy?: string | null
+          matching_mode?: string
+          tag_priority_order?: Json | null
+          updated_at?: string | null
+          workspace_id: string
+        }
+        Update: {
+          fallback_strategy?: string | null
+          matching_mode?: string
+          tag_priority_order?: Json | null
+          updated_at?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_tag_matching_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_tag_matching_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_trust_score_history: {
+        Row: {
+          brand_feedback: Json | null
+          brand_score: number | null
+          brand_sid: string | null
+          captured_at: string
+          captured_date: string
+          entity_type: string | null
+          error_message: string | null
+          failure_reason: string | null
+          fetch_status: string
+          raw_response: Json | null
+          status: string | null
+          tcr_brand_id: string | null
+          vertical: string | null
+          workspace_id: string
+        }
+        Insert: {
+          brand_feedback?: Json | null
+          brand_score?: number | null
+          brand_sid?: string | null
+          captured_at?: string
+          captured_date?: string
+          entity_type?: string | null
+          error_message?: string | null
+          failure_reason?: string | null
+          fetch_status?: string
+          raw_response?: Json | null
+          status?: string | null
+          tcr_brand_id?: string | null
+          vertical?: string | null
+          workspace_id: string
+        }
+        Update: {
+          brand_feedback?: Json | null
+          brand_score?: number | null
+          brand_sid?: string | null
+          captured_at?: string
+          captured_date?: string
+          entity_type?: string | null
+          error_message?: string | null
+          failure_reason?: string | null
+          fetch_status?: string
+          raw_response?: Json | null
+          status?: string | null
+          tcr_brand_id?: string | null
+          vertical?: string | null
           workspace_id?: string
         }
         Relationships: []
@@ -9609,6 +27031,186 @@ export type Database = {
           },
         ]
       }
+      workspace_vapi_config: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          outbound_webhook_events: string[] | null
+          outbound_webhook_id: string | null
+          outbound_webhook_provisioned_at: string | null
+          outbound_webhook_url: string | null
+          private_key_encrypted: string | null
+          public_key: string | null
+          server_url_configured_at: string | null
+          structured_output_attached_at: string | null
+          structured_output_id: string | null
+          updated_at: string | null
+          vapi_workspace_id: string | null
+          voice_ai_account_created_at: string | null
+          voice_ai_account_email: string | null
+          voice_ai_api_key_created_at: string | null
+          voice_ai_api_key_encrypted: string | null
+          voice_ai_api_key_prefix: string | null
+          voice_ai_user_id: string | null
+          voice_ai_workspace_id: string | null
+          voice_config_webhook_url: string | null
+          webhook_secret_encrypted: string | null
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          outbound_webhook_events?: string[] | null
+          outbound_webhook_id?: string | null
+          outbound_webhook_provisioned_at?: string | null
+          outbound_webhook_url?: string | null
+          private_key_encrypted?: string | null
+          public_key?: string | null
+          server_url_configured_at?: string | null
+          structured_output_attached_at?: string | null
+          structured_output_id?: string | null
+          updated_at?: string | null
+          vapi_workspace_id?: string | null
+          voice_ai_account_created_at?: string | null
+          voice_ai_account_email?: string | null
+          voice_ai_api_key_created_at?: string | null
+          voice_ai_api_key_encrypted?: string | null
+          voice_ai_api_key_prefix?: string | null
+          voice_ai_user_id?: string | null
+          voice_ai_workspace_id?: string | null
+          voice_config_webhook_url?: string | null
+          webhook_secret_encrypted?: string | null
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          outbound_webhook_events?: string[] | null
+          outbound_webhook_id?: string | null
+          outbound_webhook_provisioned_at?: string | null
+          outbound_webhook_url?: string | null
+          private_key_encrypted?: string | null
+          public_key?: string | null
+          server_url_configured_at?: string | null
+          structured_output_attached_at?: string | null
+          structured_output_id?: string | null
+          updated_at?: string | null
+          vapi_workspace_id?: string | null
+          voice_ai_account_created_at?: string | null
+          voice_ai_account_email?: string | null
+          voice_ai_api_key_created_at?: string | null
+          voice_ai_api_key_encrypted?: string | null
+          voice_ai_api_key_prefix?: string | null
+          voice_ai_user_id?: string | null
+          voice_ai_workspace_id?: string | null
+          voice_config_webhook_url?: string | null
+          webhook_secret_encrypted?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_vapi_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_vapi_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_webhook_connections: {
+        Row: {
+          connection_id: string
+          connection_name: string
+          connection_slug: string
+          created_at: string | null
+          destination_id: string
+          id: string
+          status: string
+          updated_at: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Insert: {
+          connection_id: string
+          connection_name: string
+          connection_slug: string
+          created_at?: string | null
+          destination_id: string
+          id?: string
+          status?: string
+          updated_at?: string | null
+          webhook_url: string
+          workspace_id: string
+        }
+        Update: {
+          connection_id?: string
+          connection_name?: string
+          connection_slug?: string
+          created_at?: string | null
+          destination_id?: string
+          id?: string
+          status?: string
+          updated_at?: string | null
+          webhook_url?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_webhook_connections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_webhook_connections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspace_webhook_logs: {
+        Row: {
+          created_at: string | null
+          id: string
+          request_payload: Json | null
+          response_body: Json | null
+          response_status: number | null
+          webhook_type: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          request_payload?: Json | null
+          response_body?: Json | null
+          response_status?: number | null
+          webhook_type: string
+          workspace_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          request_payload?: Json | null
+          response_body?: Json | null
+          response_status?: number | null
+          webhook_type?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
       workspaces: {
         Row: {
           created_at: string
@@ -9616,8 +27218,17 @@ export type Database = {
           email_sender: string | null
           id: string
           is_default: boolean | null
+          is_sandbox_mode: boolean | null
           name: string
+          permission_mode: string | null
           settings: Json | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          subdomain: string | null
+          subscription_cancel_at_period_end: boolean | null
+          subscription_current_period_end: string | null
+          subscription_plan: string | null
+          subscription_status: string | null
           timezone: string | null
           updated_at: string
           workspace_code: string | null
@@ -9628,8 +27239,17 @@ export type Database = {
           email_sender?: string | null
           id?: string
           is_default?: boolean | null
+          is_sandbox_mode?: boolean | null
           name: string
+          permission_mode?: string | null
           settings?: Json | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subdomain?: string | null
+          subscription_cancel_at_period_end?: boolean | null
+          subscription_current_period_end?: string | null
+          subscription_plan?: string | null
+          subscription_status?: string | null
           timezone?: string | null
           updated_at?: string
           workspace_code?: string | null
@@ -9640,8 +27260,17 @@ export type Database = {
           email_sender?: string | null
           id?: string
           is_default?: boolean | null
+          is_sandbox_mode?: boolean | null
           name?: string
+          permission_mode?: string | null
           settings?: Json | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subdomain?: string | null
+          subscription_cancel_at_period_end?: boolean | null
+          subscription_current_period_end?: string | null
+          subscription_plan?: string | null
+          subscription_status?: string | null
           timezone?: string | null
           updated_at?: string
           workspace_code?: string | null
@@ -9684,6 +27313,96 @@ export type Database = {
           },
         ]
       }
+      api_requests_summary: {
+        Row: {
+          avg_response_time_ms: number | null
+          endpoint: string | null
+          last_request_at: string | null
+          max_response_time_ms: number | null
+          min_response_time_ms: number | null
+          success_rate_percent: number | null
+          total_requests: number | null
+          unique_workspaces: number | null
+        }
+        Relationships: []
+      }
+      appointments_with_details: {
+        Row: {
+          appointment_date: string | null
+          attribution_source: string | null
+          booking_timezone: string | null
+          contact_data: Json | null
+          contact_id: string | null
+          created_at: string | null
+          created_by: string | null
+          deleted_at: string | null
+          description: string | null
+          duration_minutes: number | null
+          enhanced_data_raw: Json | null
+          id: string | null
+          location: string | null
+          meeting_link: string | null
+          result_id: number | null
+          status_color: string | null
+          status_id: number | null
+          status_name: string | null
+          title: string | null
+          updated_at: string | null
+          updated_by: string | null
+          workspace_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "appointments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "appointments_result_id_fkey"
+            columns: ["result_id"]
+            isOneToOne: false
+            referencedRelation: "status_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_result_id_fkey"
+            columns: ["result_id"]
+            isOneToOne: false
+            referencedRelation: "statuses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_status_id_fkey"
+            columns: ["status_id"]
+            isOneToOne: false
+            referencedRelation: "status_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_status_id_fkey"
+            columns: ["status_id"]
+            isOneToOne: false
+            referencedRelation: "statuses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       board_performance_ranking: {
         Row: {
           board_id: string | null
@@ -9717,7 +27436,7 @@ export type Database = {
         Row: {
           audience: Json | null
           broadcast_id: string | null
-          campaign_duration: unknown | null
+          campaign_duration: string | null
           content: Json | null
           delivered_count: number | null
           delivery_rate: number | null
@@ -9935,12 +27654,12 @@ export type Database = {
       }
       campaign_time_metrics: {
         Row: {
-          avg_completion_time: unknown | null
-          avg_response_time: unknown | null
+          avg_completion_time: string | null
+          avg_response_time: string | null
           board_id: string | null
           board_name: string | null
           hour_of_day: number | null
-          median_response_time: unknown | null
+          median_response_time: string | null
           response_rate: number | null
           responses: number | null
           workspace_id: string | null
@@ -10002,13 +27721,6 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "status_timelines_status_id_fkey"
-            columns: ["appointment_status_id"]
-            isOneToOne: false
-            referencedRelation: "status_options"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "status_timelines_status_id_fkey"
             columns: ["lead_status_id"]
             isOneToOne: false
             referencedRelation: "status_options"
@@ -10018,7 +27730,7 @@ export type Database = {
             foreignKeyName: "status_timelines_status_id_fkey"
             columns: ["appointment_status_id"]
             isOneToOne: false
-            referencedRelation: "statuses"
+            referencedRelation: "status_options"
             referencedColumns: ["id"]
           },
           {
@@ -10026,6 +27738,45 @@ export type Database = {
             columns: ["lead_status_id"]
             isOneToOne: false
             referencedRelation: "statuses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "status_timelines_status_id_fkey"
+            columns: ["appointment_status_id"]
+            isOneToOne: false
+            referencedRelation: "statuses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      developer_payout_summary: {
+        Row: {
+          developer_email: string | null
+          developer_name: string | null
+          payout_count: number | null
+          pending_payout: number | null
+          stripe_connect_account_id: string | null
+          stripe_connect_payouts_enabled: boolean | null
+          total_gross_revenue: number | null
+          total_net_payouts: number | null
+          total_paid_out: number | null
+          total_platform_fees: number | null
+          workspace_id: string | null
+          workspace_name: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workspace_developer_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "workspace_developer_config_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: true
+            referencedRelation: "workspaces"
             referencedColumns: ["id"]
           },
         ]
@@ -10192,6 +27943,37 @@ export type Database = {
           },
         ]
       }
+      flow_performance_stats: {
+        Row: {
+          avg_response_time_minutes: number | null
+          completed_count: number | null
+          failed_count: number | null
+          first_execution_at: string | null
+          flow_id: string | null
+          flow_name: string | null
+          last_execution_at: string | null
+          responded_count: number | null
+          response_rate_percent: number | null
+          total_executions: number | null
+          workspace_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "flows_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles_with_workspace"
+            referencedColumns: ["workspace_id"]
+          },
+          {
+            foreignKeyName: "flows_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       folder_unread_counts: {
         Row: {
           email_account_id: string | null
@@ -10226,6 +28008,21 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      lead_activity_summary: {
+        Row: {
+          avg_quality_score: number | null
+          call_count: number | null
+          email_count: number | null
+          last_activity_at: string | null
+          lead_id: string | null
+          meeting_count: number | null
+          sms_count: number | null
+          total_activities: number | null
+          total_duration_minutes: number | null
+          workspace_id: string | null
+        }
+        Relationships: []
       }
       lead_conversion_analytics: {
         Row: {
@@ -10275,6 +28072,19 @@ export type Database = {
           lead_source?: string | null
           status_change_count?: never
           workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      lead_pipeline_summary: {
+        Row: {
+          avg_lead_score: number | null
+          color: string | null
+          lead_count: number | null
+          leads_last_30_days: number | null
+          stage_name: string | null
+          stage_order: number | null
+          stage_slug: string | null
+          workspace_id: string | null
         }
         Relationships: []
       }
@@ -10345,6 +28155,138 @@ export type Database = {
           },
           {
             foreignKeyName: "livechat_contact_assignments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "lead_conversion_analytics"
+            referencedColumns: ["contact_id"]
+          },
+        ]
+      }
+      livechat_messages_v2: {
+        Row: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string | null
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string | null
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string | null
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          message_type: string | null
+          metadata: Json | null
+          parent_id: string | null
+          sender: string | null
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_name: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string | null
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string | null
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string | null
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          parent_id?: string | null
+          sender?: string | null
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          ai_log_id?: string | null
+          archived?: boolean | null
+          board_id?: string | null
+          body?: string | null
+          chat_url?: string | null
+          column_id?: string | null
+          contact_id?: string | null
+          conversation_id?: string | null
+          created_at?: string | null
+          direction?: Database["public"]["Enums"]["message_direction"] | null
+          id?: string | null
+          is_ai_generated?: boolean | null
+          is_internal?: boolean | null
+          is_read?: boolean | null
+          media_paths?: Json | null
+          media_urls?: Json | null
+          message_type?: string | null
+          metadata?: Json | null
+          parent_id?: string | null
+          sender?: string | null
+          status?: string | null
+          subject?: string | null
+          thread_id?: string | null
+          twilio_number?: string | null
+          twilio_sid?: string | null
+          updated_at?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "livechat_messages_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "livechat_board"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_messages_column_id_fkey"
+            columns: ["column_id"]
+            isOneToOne: false
+            referencedRelation: "livechat_board_column"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contact_current_status"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "livechat_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "livechat_messages_contact_id_fkey"
             columns: ["contact_id"]
             isOneToOne: false
             referencedRelation: "lead_conversion_analytics"
@@ -10444,12 +28386,56 @@ export type Database = {
           },
         ]
       }
+      system_logs_view: {
+        Row: {
+          category: string | null
+          id: string | null
+          level: string | null
+          message: string | null
+          metadata: Json | null
+          phone_or_email: string | null
+          source_type: string | null
+          timestamp: string | null
+          workspace_id: string | null
+        }
+        Relationships: []
+      }
+      unified_calls: {
+        Row: {
+          call_disposition: string | null
+          call_reason: string | null
+          call_type: string | null
+          contact_id: string | null
+          cost_total_cents: number | null
+          created_at: string | null
+          customer_phone: string | null
+          direction: string | null
+          duration_seconds: number | null
+          end_time: string | null
+          ended_reason: string | null
+          from_number: string | null
+          id: string | null
+          provider_call_id: string | null
+          recording_url: string | null
+          source_call_type: string | null
+          source_table: string | null
+          started_at: string | null
+          status: string | null
+          to_number: string | null
+          updated_at: string | null
+          vapi_assistant_id: string | null
+          vapi_call_id: string | null
+          workspace_id: string | null
+        }
+        Relationships: []
+      }
       user_profiles_with_workspace: {
         Row: {
           avatar_url: string | null
           created_at: string | null
           full_name: string | null
           id: string | null
+          member_type: string | null
           timezone: string | null
           updated_at: string | null
           workspace_id: string | null
@@ -10482,6 +28468,7 @@ export type Database = {
       }
     }
     Functions: {
+      _is_saas_admin: { Args: never; Returns: boolean }
       accept_workspace_invite: {
         Args: { p_token: string; p_user_id: string }
         Returns: boolean
@@ -10490,8 +28477,8 @@ export type Database = {
         Args: {
           p_email: string
           p_password: string
-          p_workspace_id: string
           p_role?: string
+          p_workspace_id: string
         }
         Returns: Json
       }
@@ -10499,86 +28486,2279 @@ export type Database = {
         Args: {
           p_email: string
           p_password: string
-          p_workspace_id: string
           p_role?: string
+          p_workspace_id: string
         }
         Returns: Json
+      }
+      analytics_backfill_client_kpi_v2: {
+        Args: { p_days?: number; p_workspace_id?: string }
+        Returns: undefined
+      }
+      analytics_campaign_contacts: {
+        Args: { p_campaign_ids: string[]; p_workspace_id: string }
+        Returns: string[]
+      }
+      analytics_client_kpi_current_lead_status_v2: {
+        Args: {
+          p_campaign_ids?: string[]
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_count: number
+          lead_status: string
+        }[]
+      }
+      analytics_client_kpi_email_flow_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          email_bounce_rate: number
+          email_click_rate: number
+          email_open_rate: number
+          email_spam_rate: number
+          email_unique_click_rate: number
+          email_unique_open_rate: number
+          email_unsubscribe_rate: number
+          flow_id: string
+          flow_name: string
+          total_email_bounces: number
+          total_email_clicks: number
+          total_email_opens: number
+          total_email_recipients: number
+          total_email_spam_complaints: number
+          total_email_unique_clicks: number
+          total_email_unique_opens: number
+          total_email_unsubscribes: number
+        }[]
+      }
+      analytics_client_kpi_email_link_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          email_click_rate: number
+          email_unique_click_rate: number
+          flow_id: string
+          flow_name: string
+          link_url: string
+          message_id: string
+          message_name: string
+          total_email_clicks: number
+          total_email_unique_clicks: number
+        }[]
+      }
+      analytics_client_kpi_email_message_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          email_bounce_rate: number
+          email_click_rate: number
+          email_open_rate: number
+          email_spam_rate: number
+          email_unique_click_rate: number
+          email_unique_open_rate: number
+          email_unsubscribe_rate: number
+          flow_id: string
+          flow_name: string
+          message_id: string
+          message_name: string
+          total_email_bounces: number
+          total_email_clicks: number
+          total_email_opens: number
+          total_email_recipients: number
+          total_email_spam_complaints: number
+          total_email_unique_clicks: number
+          total_email_unique_opens: number
+          total_email_unsubscribes: number
+        }[]
+      }
+      analytics_client_kpi_historical_v2: {
+        Args: {
+          p_campaign_only?: boolean
+          p_date_range?: string
+          p_from_date?: string
+          p_lead_statuses?: string[]
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointments: number
+          email_clicks: number
+          email_opens: number
+          email_unsubscribed: number
+          leads: number
+          metric_date: string
+          sms_clicked: number
+          sms_delivered: number
+          sms_sent: number
+        }[]
+      }
+      analytics_client_kpi_lead_journey_attribution_v2: {
+        Args: {
+          p_campaign_ids?: string[]
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          changed_to: string
+          contacts_count: number
+          message_type: string
+          sequence_name: string
+          step_name: string
+          step_number: number
+        }[]
+      }
+      analytics_client_kpi_lead_journey_v2: {
+        Args: {
+          p_campaign_ids?: string[]
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_count: number
+          lead_status: string
+        }[]
+      }
+      analytics_client_kpi_lead_status_conversion_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversion_rate_pct: number
+          converted_contacts: number
+          source_contacts: number
+          transition_key: string
+          transition_label: string
+        }[]
+      }
+      analytics_client_kpi_lead_status_options_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          lead_status: string
+          total_changes: number
+        }[]
+      }
+      analytics_client_kpi_sms_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_client_kpi_summary_v2: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_replica_strict_override?: boolean
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_client_kpi_v2_enforce_replica: {
+        Args: { p_replica_strict_override?: boolean; p_workspace_id: string }
+        Returns: undefined
+      }
+      analytics_client_kpi_v2_resolve_window: {
+        Args: {
+          p_date_range?: string
+          p_from_date?: string
+          p_to_date?: string
+        }
+        Returns: {
+          end_date: string
+          start_date: string
+        }[]
+      }
+      analytics_refresh_client_kpi_v2:
+        | {
+            Args: {
+              p_from_date?: string
+              p_to_date?: string
+              p_workspace_id?: string
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              p_date_range: string
+              p_from_date: string
+              p_replica_strict_override?: boolean
+              p_to_date: string
+              p_workspace_id: string
+            }
+            Returns: undefined
+          }
+      analytics_resolve_attribution_channel: {
+        Args: {
+          p_contact_id: string
+          p_event_ts: string
+          p_lookback_days: number
+          p_workspace_id: string
+        }
+        Returns: string
+      }
+      analytics_v3_appointment_attribution: {
+        Args: {
+          p_appointment_statuses?: string[]
+          p_campaign_ids?: string[]
+          p_from_date?: string
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_v3_appointment_attribution_details: {
+        Args: {
+          p_appointment_statuses?: string[]
+          p_campaign_ids?: string[]
+          p_from_date?: string
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_v3_appointment_overview: {
+        Args: {
+          p_appointment_statuses?: string[]
+          p_campaign_ids?: string[]
+          p_from_date?: string
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_v3_appointment_overview_trend: {
+        Args: {
+          p_appointment_statuses?: string[]
+          p_campaign_ids?: string[]
+          p_from_date?: string
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_v3_conversion_funnel: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          avg_days: number
+          contact_count: number
+          from_status: string
+          pct_of_arrived: number
+          to_status: string
+        }[]
+      }
+      analytics_v3_funnel_summary: {
+        Args: {
+          p_campaign_ids?: string[]
+          p_from_date?: string
+          p_to_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      analytics_v3_per_touchpoint: {
+        Args: {
+          p_campaign_ids?: string[]
+          p_from_date: string
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          channel: string
+          click_rate: number
+          open_rate: number
+          source_name: string
+          step_name: string
+          touchpoint_label: string
+          touchpoint_order: number
+          unique_clicked: number
+          unique_delivered: number
+          unique_opened: number
+          unique_optout: number
+          unique_replied: number
+          unique_sent: number
+        }[]
       }
       analyze_broadcast_performance: {
         Args: { p_days?: number }
         Returns: {
-          metric_name: string
           current_value: number
+          metric_name: string
           trend: string
         }[]
       }
+      apply_filter_operator: {
+        Args: { field_value: string; filter_config: Json }
+        Returns: boolean
+      }
       assign_workspace_to_user: {
-        Args: { user_id: string; user_email: string; user_full_name?: string }
+        Args: { user_email: string; user_full_name?: string; user_id: string }
         Returns: string
       }
-      binary_quantize: {
-        Args: { "": string } | { "": unknown }
-        Returns: unknown
+      backfill_voice_analytics_contact_stages: {
+        Args: { p_batch_size?: number; p_workspace_id?: string }
+        Returns: number
       }
-      build_segment_query: {
-        Args: { segment_id: string }
-        Returns: string
-      }
+      build_segment_query: { Args: { segment_id: string }; Returns: string }
       bulk_update_contact_status: {
         Args: {
           contact_ids: string[]
-          new_status_id: string
+          new_status_id: number
           workspace_id: string
         }
         Returns: undefined
       }
-      bytea_to_text: {
-        Args: { data: string }
-        Returns: string
+      bytea_to_text: { Args: { data: string }; Returns: string }
+      calculate_pending_developer_payout: {
+        Args: {
+          p_period_end: string
+          p_period_start: string
+          p_workspace_id: string
+        }
+        Returns: {
+          gross_revenue: number
+          line_items: Json
+          net_payout: number
+          platform_fee: number
+        }[]
+      }
+      call_missed_call_webhook: {
+        Args: {
+          p_call_log_id: string
+          p_call_sid: string
+          p_contact_id: string
+          p_from_number: string
+          p_to_number: string
+          p_workspace_id: string
+        }
+        Returns: undefined
       }
       call_trigger_webhook: {
         Args: {
           p_contact_id: string
-          p_workspace_id: string
           p_field_name: string
-          p_old_value?: string
           p_new_value?: string
+          p_old_value?: string
+          p_workspace_id: string
         }
         Returns: undefined
+      }
+      can_access_custom_inbox_id: {
+        Args: {
+          p_inbox_id: string
+          p_include_private_admin?: boolean
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      can_create_custom_inbox: {
+        Args: {
+          p_scope_type: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      can_delete_custom_inbox: {
+        Args: {
+          p_owner_user_id: string
+          p_scope_type: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      can_edit_contact: {
+        Args: {
+          p_contact_id: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      can_edit_custom_inbox: {
+        Args: {
+          p_owner_user_id: string
+          p_scope_type: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      can_enroll_contact_in_flow: {
+        Args: { p_contact_id: string; p_flow_id: string }
+        Returns: Json
+      }
+      can_read_workspace_contacts: {
+        Args: { p_workspace_id: string }
+        Returns: boolean
+      }
+      can_view_contact: {
+        Args: {
+          p_contact_id: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      can_view_custom_inbox: {
+        Args: {
+          p_owner_user_id: string
+          p_scope_type: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      cancel_ai_no_response_run: {
+        Args: { p_run_id: string }
+        Returns: {
+          cancelled_at: string
+          run_id: string
+          status: string
+        }[]
+      }
+      cdo_activity_breakdown: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          activity_type: string
+          current_count: number
+          previous_count: number
+        }[]
+      }
+      cdo_agent_engagement_summary: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      cdo_ai_activity_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          ai_messages: number
+          metric_date: string
+          unique_contacts: number
+        }[]
+      }
+      cdo_ai_assisted_appointments_daily_src: {
+        Args: { p_from: string; p_to: string; p_workspace_id: string }
+        Returns: {
+          ai_engaged: number
+          ai_involved: number
+          ai_started: number
+          ai_touched: number
+          metric_date: string
+          total_appointments: number
+        }[]
+      }
+      cdo_ai_assisted_appointments_detail_src: {
+        Args: { p_from: string; p_to: string; p_workspace_id: string }
+        Returns: {
+          ai_msg_count: number
+          ai_snippet: string
+          appointment_date: string
+          appointment_id: string
+          appt_created_at: string
+          contact_id: string
+          contact_name: string
+          contact_phone: string
+          first_ai_touch_at: string
+          signal: string
+        }[]
+      }
+      cdo_ai_assisted_appointments_leaderboard: {
+        Args: { p_from_date: string; p_to_date: string }
+        Returns: {
+          ai_engaged: number
+          ai_involved: number
+          ai_started: number
+          ai_touched: number
+          total_appointments: number
+          workspace_id: string
+          workspace_name: string
+        }[]
+      }
+      cdo_ai_assisted_appointments_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          ai_engaged: number
+          ai_involved: number
+          ai_started: number
+          ai_touched: number
+          total_appointments: number
+        }[]
+      }
+      cdo_ai_assisted_workspaces: {
+        Args: { p_from: string; p_to: string }
+        Returns: {
+          workspace_id: string
+        }[]
+      }
+      cdo_ai_intent_bucket: { Args: { p_intent: string }; Returns: string }
+      cdo_appointment_attribution: {
+        Args: {
+          p_flow_ids?: string[]
+          p_from_date: string
+          p_sequence_ids?: string[]
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointments: number
+          channel: string
+        }[]
+      }
+      cdo_appointments_daily: {
+        Args: {
+          p_flow_ids?: string[]
+          p_from_date: string
+          p_sequence_ids?: string[]
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointments_booked: number
+          metric_date: string
+        }[]
+      }
+      cdo_assert_saas_admin: { Args: never; Returns: undefined }
+      cdo_attribution_catalog: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          attribution_id: string
+          attribution_kind: string
+          name: string
+          recent_lead_count: number
+        }[]
+      }
+      cdo_auto_link_voice_assistant_mappings: { Args: never; Returns: number }
+      cdo_clean_vendor_source: { Args: { p_value: string }; Returns: string }
+      cdo_compute_ai_activity: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          ai_messages: number
+          metric_date: string
+          unique_contacts: number
+        }[]
+      }
+      cdo_compute_appointment_attribution: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          appointments_booked: number
+          attribution_id: string
+          attribution_kind: string
+          metric_date: string
+        }[]
+      }
+      cdo_compute_appointment_attribution_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          appointment_id: string
+          attribution_id: string
+          attribution_kind: string
+          channel: string
+          contact_id: string
+          metric_date: string
+        }[]
+      }
+      cdo_compute_chat_conversations: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          out_attribution_sequence_id: string
+          out_contact_id: string
+          out_first_inbound_at: string
+          out_first_response_at: string
+          out_inbound_msg_count: number
+          out_is_closed: boolean
+          out_last_outbound_at: string
+          out_last_rep_user_id: string
+          out_lead_source: string
+          out_metric_date: string
+          out_outbound_rep_msg_count: number
+        }[]
+      }
+      cdo_compute_contact_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          contact_id: string
+          contact_lead_score: number
+          contact_lead_score_tier: string
+          email_validity: string
+          enhanced_credit_range: string
+          enhanced_credit_tier: string
+          lead_status: string
+          metric_date: string
+          phone_number: string
+          scrub_status: string
+          tier: string
+        }[]
+      }
+      cdo_compute_contact_sources: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          contacts: number
+          lead_source: string
+          metric_date: string
+        }[]
+      }
+      cdo_compute_duplicate_lead_arrival_pairs: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          affected_contacts: number
+          duplicate_events: number
+          duplicate_source: string
+          match_type: string
+          metric_date: string
+          original_source: string
+        }[]
+      }
+      cdo_compute_duplicate_lead_arrival_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          crm_id_duplicates: number
+          cross_source_duplicates: number
+          duplicate_lead_arrivals: number
+          eligible_lead_arrivals: number
+          metric_date: string
+          new_lead_arrivals: number
+          phone_duplicates: number
+          same_source_duplicates: number
+          total_lead_arrivals: number
+        }[]
+      }
+      cdo_compute_email_engagement: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          bounced: boolean
+          clicked: boolean
+          contact_id: string
+          delivered: boolean
+          emailed: boolean
+          metric_date: string
+          opened: boolean
+        }[]
+      }
+      cdo_compute_engagement_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          out_email_clicks: number
+          out_email_opens: number
+          out_hour: number
+          out_metric_date: string
+          out_sms_clicks: number
+          out_sms_replies: number
+        }[]
+      }
+      cdo_compute_flow_execution_steps_age_daily: {
+        Args: { p_from_date: string; p_to_date: string }
+        Returns: {
+          metric_date: string
+          step_count: number
+          step_status: string
+        }[]
+      }
+      cdo_compute_inbound_outbound: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          email_in: number
+          email_out: number
+          metric_date: string
+          sms_in: number
+          sms_out: number
+        }[]
+      }
+      cdo_compute_intent_message_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          ai_logged_at: string
+          contact_id: string
+          intent_bucket: string
+          intent_source: string
+          keywords: string[]
+          livechat_message_id: string
+          metric_date: string
+          msg_type: string
+          raw_intent: string
+        }[]
+      }
+      cdo_compute_lead_attribution: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          attribution_id: string
+          attribution_kind: string
+          metric_date: string
+          new_leads: number
+        }[]
+      }
+      cdo_compute_lead_score_signal_sources: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          email_open_events: number
+          email_open_points: number
+          inbound_email_events: number
+          inbound_email_points: number
+          inbound_sms_events: number
+          inbound_sms_points: number
+          lead_source: string
+          metric_date: string
+          scheduler_link_click_events: number
+          scheduler_link_click_points: number
+          total_events: number
+          total_points: number
+          tracked_link_click_events: number
+          tracked_link_click_points: number
+        }[]
+      }
+      cdo_compute_new_contacts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          metric_date: string
+          new_contacts: number
+        }[]
+      }
+      cdo_compute_sms_engagement: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          clicked: boolean
+          contact_id: string
+          delivered: boolean
+          metric_date: string
+          replied: boolean
+          sent: boolean
+        }[]
+      }
+      cdo_compute_sms_failure_by_code_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          error_code: string
+          failed_count: number
+          metric_date: string
+          total_count: number
+          undelivered_count: number
+        }[]
+      }
+      cdo_compute_sms_failure_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          failed_count: number
+          metric_date: string
+          total_outbound: number
+          undelivered_count: number
+        }[]
+      }
+      cdo_compute_sms_first_response_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_sessions: number
+          hour_of_day: number
+          metric_date: string
+          sum_response_seconds: number
+          unanswered_sessions: number
+        }[]
+      }
+      cdo_compute_sms_session_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          hour_of_day: number
+          inbound_msgs: number
+          metric_date: string
+          session_count: number
+        }[]
+      }
+      cdo_compute_team_activity: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          activity_count: number
+          metric_date: string
+          user_id: string
+        }[]
+      }
+      cdo_compute_touchpoint_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          out_channel: string
+          out_clicked: boolean
+          out_contact_id: string
+          out_delivered: boolean
+          out_metric_date: string
+          out_opened: boolean
+          out_replied: boolean
+          out_sequence_id: string
+          out_step_id: string
+          out_step_name: string
+          out_step_order: number
+        }[]
+      }
+      cdo_compute_voice_ai_booking_funnel: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          appointment_attribution_source: string
+          appointment_booking_channel: string
+          appointment_created_at: string
+          appointment_date: string
+          appointment_id: string
+          booking_link_clicks: number
+          booking_link_id: string
+          booking_link_short_url: string
+          booking_sms_livechat_message_id: string
+          booking_sms_sent_at: string
+          booking_sms_status: string
+          contact_id: string
+          contact_name: string
+          execution_id: string
+          existing_appointment_created_at: string
+          existing_appointment_date: string
+          existing_appointment_id: string
+          first_booking_link_clicked_at: string
+          in_salesforce: boolean
+          last_booking_link_clicked_at: string
+          message_job_id: string
+          metric_date: string
+          needs_salesforce_entry: boolean
+          normalized_phone: string
+          salesforce_appointment_created: string
+          salesforce_appointment_id: string
+          salesforce_appointment_status: string
+          salesforce_contact_id: string
+          sequence_id: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_call_reason: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          call_reason: string
+          calls: number
+          metric_date: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_call_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_calls: number
+          avg_duration_seconds: number
+          conversion_pct: number
+          cost_total_cents: number
+          direction: string
+          dnc_calls: number
+          metric_date: string
+          missed_calls: number
+          set_appointments: number
+          tokens_completion: number
+          tokens_prompt: number
+          tokens_total: number
+          total_calls: number
+          total_duration_seconds: number
+          unverified_calls: number
+          vapi_assistant_id: string
+          verified_calls: number
+          voicemail_calls: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_carrier_lti: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_calls: number
+          calls: number
+          carrier_name: string
+          direction: string
+          dnc_calls: number
+          line_type: string
+          metric_date: string
+          set_appointments: number
+          total_duration_seconds: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_concurrency_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls_started: number
+          carrier_name: string
+          direction: string
+          hour_utc: number
+          metric_date: string
+          total_duration_seconds: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_direction: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls: number
+          direction: string
+          metric_date: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_disposition: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls: number
+          direction: string
+          ended_reason: string
+          metric_date: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_dow_hour: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_calls: number
+          direction: string
+          hour_utc: number
+          metric_date: string
+          total_calls: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_funnel_appointment_status: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          appointments: number
+          created_at: string
+          metric_date: string
+          status_bucket: string
+          workspace_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "cdo_voice_funnel_appointment_status_daily_facts"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      cdo_compute_voice_intent: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls: number
+          intent_value: string
+          metric_date: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_llm_usage: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls: number
+          cost_total_cents: number
+          llm_model: string
+          llm_provider: string
+          metric_date: string
+          tokens_completion: number
+          tokens_prompt: number
+          tokens_total: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_number_health: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answer_rate_pct: number
+          answered_calls: number
+          metric_date: string
+          missed_calls: number
+          total_calls: number
+          total_duration_seconds: number
+          twilio_phone_number: string
+          voicemail_calls: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_prospect_customer: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          bucket: string
+          calls: number
+          metric_date: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_reason_direction: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          call_reason: string
+          calls: number
+          direction: string
+          metric_date: string
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_voice_transcript_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          assistant_chars: number
+          direction: string
+          metric_date: string
+          set_appointments_count: number
+          total_calls: number
+          total_chars: number
+          total_turns: number
+          user_chars: number
+          workspace_id: string
+        }[]
+      }
+      cdo_compute_workspace_activity: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          activity_count: number
+          activity_type: string
+          metric_date: string
+        }[]
+      }
+      cdo_contact_appointments: {
+        Args: { p_contact_id: string; p_limit?: number; p_workspace_id: string }
+        Returns: {
+          appointment_date: string
+          attribution_source: string
+          booking_timezone: string
+          created_at: string
+          id: string
+          status_id: number
+          status_name: string
+          title: string
+        }[]
+      }
+      cdo_contact_lead_score_breakdown: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          contacts: number
+          tier: string
+        }[]
+      }
+      cdo_contact_lead_score_tier: {
+        Args: { p_score: number }
+        Returns: string
+      }
+      cdo_contact_sms: {
+        Args: { p_contact_id: string; p_limit?: number; p_workspace_id: string }
+        Returns: {
+          body: string
+          created_at: string
+          direction: string
+          id: string
+          is_ai_generated: boolean
+          media_urls: Json
+          msg_type: string
+          sender: string
+          user_name: string
+        }[]
+      }
+      cdo_contact_sources: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          contacts: number
+          is_other: boolean
+          source_name: string
+        }[]
+      }
+      cdo_contact_state: {
+        Args: { p_contact_id: string; p_workspace_id: string }
+        Returns: {
+          booking_offered: boolean
+          contact_id: string
+          exchange_count: number
+          first_message_at: string
+          intent_history: Json
+          last_intent: string
+          last_message_at: string
+          objection_count: number
+          objections_raised: Json
+          should_escalate: boolean
+        }[]
+      }
+      cdo_contact_voice: {
+        Args: { p_contact_id: string; p_limit?: number; p_workspace_id: string }
+        Returns: {
+          assistant_name: string
+          call_disposition: string
+          call_reason: string
+          call_summary: string
+          conversation_transcript: Json
+          direction: string
+          duration_seconds: number
+          ended_reason: string
+          recording_url: string
+          sentiment: string
+          started_at: string
+          vapi_call_id: string
+        }[]
+      }
+      cdo_credit_range_tier: {
+        Args: { p_credit_range: string }
+        Returns: string
+      }
+      cdo_distinct_lead_statuses: {
+        Args: { p_top_n?: number; p_workspace_id: string }
+        Returns: {
+          contact_count: number
+          lead_status: string
+        }[]
+      }
+      cdo_duplicate_lead_arrival_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          crm_id_duplicates: number
+          cross_source_duplicates: number
+          duplicate_lead_arrivals: number
+          eligible_lead_arrivals: number
+          new_lead_arrivals: number
+          phone_duplicates: number
+          same_source_duplicates: number
+          total_lead_arrivals: number
+        }[]
+      }
+      cdo_duplicate_lead_events: {
+        Args: { p_to_date: string; p_workspace_id: string }
+        Returns: {
+          contact_id: string
+          crm_id: string
+          event_id: string
+          match_key: string
+          match_type: string
+          metric_date: string
+          normalized_phone: string
+          received_at: string
+          vendor_source: string
+          workspace_id: string
+        }[]
+      }
+      cdo_duplicate_lead_source_pairs: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          affected_contacts: number
+          crm_id_duplicates: number
+          duplicate_events: number
+          duplicate_source: string
+          is_same_source: boolean
+          original_source: string
+          phone_duplicates: number
+        }[]
+      }
+      cdo_duplicate_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          avg_frequency: number
+          contacts_no_phone: number
+          duplicate_phones: number
+          total_contacts: number
+          unique_phones: number
+        }[]
+      }
+      cdo_email_validity_breakdown: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          contacts: number
+          validity: string
+        }[]
+      }
+      cdo_engagement_by_hour: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          email_clicks: number
+          email_opens: number
+          hour: number
+          sms_clicks: number
+          sms_replies: number
+          total: number
+        }[]
+      }
+      cdo_engagement_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: Json
+      }
+      cdo_funnel_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: Json
+      }
+      cdo_inbound_outbound_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          email_in: number
+          email_out: number
+          metric_date: string
+          sms_in: number
+          sms_out: number
+        }[]
+      }
+      cdo_intake_leads_daily: {
+        Args: {
+          p_flow_ids?: string[]
+          p_from_date: string
+          p_sequence_ids?: string[]
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          metric_date: string
+          new_leads: number
+        }[]
+      }
+      cdo_intent_mood_breakdown: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          ai_labeled: number
+          intent_bucket: string
+          keyword_fallback: number
+          messages: number
+          metadata_labeled: number
+        }[]
+      }
+      cdo_intent_top_keywords: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          hits: number
+          intent_bucket: string
+          keyword: string
+        }[]
+      }
+      cdo_keyword_intent_bucket: { Args: { p_body: string }; Returns: string }
+      cdo_lead_score_signals_by_source: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          email_open_points: number
+          inbound_email_points: number
+          inbound_sms_points: number
+          lead_source: string
+          scheduler_link_click_points: number
+          total_events: number
+          total_points: number
+          tracked_link_click_points: number
+        }[]
+      }
+      cdo_lead_scoring_breakdown: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          contacts: number
+          tier: string
+        }[]
+      }
+      cdo_lead_scrub_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          dnc_count: number
+          email_optout_count: number
+          reachable_count: number
+          sms_optout_count: number
+          total_received: number
+        }[]
+      }
+      cdo_lead_status_breakdown: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          contacts: number
+          is_other: boolean
+          status_name: string
+        }[]
+      }
+      cdo_leads_daily: {
+        Args: {
+          p_flow_ids?: string[]
+          p_from_date: string
+          p_sequence_ids?: string[]
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          metric_date: string
+          new_leads: number
+        }[]
+      }
+      cdo_log_churn_event: {
+        Args: {
+          p_event_date?: string
+          p_event_type: string
+          p_is_exogenous?: boolean
+          p_notes?: string
+          p_reason_category?: string
+          p_workspace_id: string
+        }
+        Returns: string
+      }
+      cdo_long_running_queries: {
+        Args: { p_threshold_seconds?: number }
+        Returns: {
+          pid: number
+          query_snippet: string
+          run_seconds: number
+          state: string
+          wait_event_type: string
+        }[]
+      }
+      cdo_message_keyword_hits: { Args: { p_body: string }; Returns: string[] }
+      cdo_message_reply_lead: { Args: { p_body: string }; Returns: string }
+      cdo_new_contacts_kpi: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          current_count: number
+          delta_pct: number
+          previous_count: number
+        }[]
+      }
+      cdo_normalize_lead_phone: { Args: { p_phone: string }; Returns: string }
+      cdo_refresh_agent_engagement: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_ai_activity: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_ai_assisted_appointments: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_ai_followup_outcome: {
+        Args: { p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_ai_lead_scores: {
+        Args: { p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_ai_qualifying_funnel: {
+        Args: { p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_appointment_attribution: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_appointment_attribution_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_chat_conversations: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_contact_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_contact_sources: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_contact_state_facts: {
+        Args: { p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_duplicate_lead_arrivals: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_email_engagement: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_email_replies: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_engagement_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_flow_execution_steps_age_daily: {
+        Args: { p_from_date: string; p_to_date: string }
+        Returns: number
+      }
+      cdo_refresh_inbound_outbound: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_intent_message_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_lead_attribution: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_lead_score_signal_sources: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_new_contacts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_sms_engagement: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_sms_failure_by_code_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_sms_failure_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_sms_first_response_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_sms_session_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_team_activity: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_touchpoint_facts: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_ai_booking_funnel: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_call_reason: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_call_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_carrier_lti: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_concurrency_hourly: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_direction: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_disposition: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_dow_hour: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_funnel_appointment_status: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_intent: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_llm_usage: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_number_health: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_prospect_customer: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_reason_direction: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_voice_transcript_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_refresh_workspace_activity: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: number
+      }
+      cdo_resolve_risk_flag: {
+        Args: { p_flag_id: string; p_status?: string }
+        Returns: undefined
+      }
+      cdo_sender_health_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          carrier_filter_score: number
+          composite_score: number
+          delivery_score: number
+          hard_bounce_score: number
+          metric_date: string
+          reply_score: number
+          stop_score: number
+          total_outbound: number
+        }[]
+      }
+      cdo_sender_health_score: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          carrier_filter_count: number
+          carrier_filter_rate: number
+          carrier_filter_score: number
+          delivered: number
+          delivery_rate: number
+          delivery_score: number
+          hard_bounce_count: number
+          hard_bounce_rate: number
+          hard_bounce_score: number
+          inbound_sms: number
+          letter_grade: string
+          reply_rate: number
+          reply_score: number
+          score_0_100: number
+          stop_count: number
+          stop_rate: number
+          stop_score: number
+          total_outbound: number
+        }[]
+      }
+      cdo_set_risk_flag: {
+        Args: {
+          p_flag_type: string
+          p_notes?: string
+          p_severity?: string
+          p_workspace_id: string
+        }
+        Returns: string
+      }
+      cdo_sms_failure_by_code: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          error_code: string
+          error_description: string
+          failed_count: number
+          is_unknown: boolean
+          total_count: number
+          undelivered_count: number
+        }[]
+      }
+      cdo_sms_failure_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          failed_count: number
+          total_outbound: number
+          undelivered_count: number
+        }[]
+      }
+      cdo_sms_first_response_by_hour: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_sessions: number
+          avg_response_minutes: number
+          hour_of_day: number
+          unanswered_sessions: number
+        }[]
+      }
+      cdo_sms_session_daily: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          inbound_msgs: number
+          metric_date: string
+          sessions: number
+        }[]
+      }
+      cdo_sms_session_demand: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          avg_inbound_msgs: number
+          avg_sessions: number
+          dow: number
+          hour_of_day: number
+          sample_days: number
+          total_inbound_msgs: number
+          total_sessions: number
+        }[]
+      }
+      cdo_snapshot_workspace_health: { Args: never; Returns: number }
+      cdo_team_activity: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          activities: number
+          display_name: string
+          user_id: string
+        }[]
+      }
+      cdo_top_sequences:
+        | {
+            Args: {
+              p_from_date: string
+              p_to_date: string
+              p_top_n?: number
+              p_workspace_id: string
+            }
+            Returns: {
+              appointments_booked: number
+              conversion_pct: number
+              leads_enrolled: number
+              sequence_id: string
+              sequence_name: string
+            }[]
+          }
+        | {
+            Args: {
+              p_from_date: string
+              p_sequence_ids?: string[]
+              p_to_date: string
+              p_top_n?: number
+              p_workspace_id: string
+            }
+            Returns: {
+              appointments_booked: number
+              conversion_pct: number
+              leads_enrolled: number
+              sequence_id: string
+              sequence_name: string
+            }[]
+          }
+      cdo_try_uuid: { Args: { p_value: string }; Returns: string }
+      cdo_unified_calls_recent: {
+        Args: {
+          p_contact_id?: string
+          p_limit?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          call_disposition: string
+          call_reason: string
+          call_type: string
+          contact_id: string
+          cost_total_cents: number
+          created_at: string
+          direction: string
+          duration_seconds: number
+          end_time: string
+          ended_reason: string
+          from_number: string
+          id: string
+          provider_call_id: string
+          recording_url: string
+          source_call_type: string
+          source_table: string
+          started_at: string
+          status: string
+          to_number: string
+          vapi_assistant_id: string
+          vapi_call_id: string
+        }[]
+      }
+      cdo_voice_ai_booking_funnel_dashboard: {
+        Args: {
+          p_from_date: string
+          p_phone_numbers?: string[]
+          p_sequence_id?: string
+          p_sequence_name?: string
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      cdo_voice_ai_booking_funnel_report: {
+        Args: {
+          p_from_date: string
+          p_phone_numbers?: string[]
+          p_sequence_id?: string
+          p_sequence_name?: string
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      cdo_voice_appts_confirmed_list: {
+        Args: {
+          p_from: string
+          p_limit?: number
+          p_to: string
+          p_workspace_id: string
+        }
+        Returns: {
+          agent_label: string
+          appointment_date: string
+          appointment_id: string
+          basis: string
+          booking_timezone: string
+          confirmed_at: string
+          contact_id: string
+          customer_phone: string
+        }[]
+      }
+      cdo_voice_appts_set_list: {
+        Args: {
+          p_from: string
+          p_limit?: number
+          p_to: string
+          p_workspace_id: string
+        }
+        Returns: {
+          agent_label: string
+          appointment_date: string
+          appointment_id: string
+          attribution_source: string
+          booking_timezone: string
+          contact_id: string
+          created_at: string
+          customer_phone: string
+        }[]
+      }
+      cdo_voice_appts_set_recent: {
+        Args: { p_limit?: number; p_workspace_id: string }
+        Returns: {
+          agent_label: string
+          appointment_date: string
+          appointment_id: string
+          attribution_source: string
+          booking_timezone: string
+          contact_id: string
+          created_at: string
+          customer_phone: string
+        }[]
+      }
+      cdo_voice_call_by_id: {
+        Args: { p_vapi_call_id: string; p_workspace_id: string }
+        Returns: {
+          appointment_id: string | null
+          assistant_name: string | null
+          assistant_turn_chars: number | null
+          attributed_agent_config_id: string | null
+          call_disposition: string | null
+          call_reason: string | null
+          call_summary: string | null
+          call_timestamp: string | null
+          call_type: string | null
+          caller_name: string | null
+          caller_type: string | null
+          carrier_name: string | null
+          contact_id: string | null
+          conversation_transcript: Json | null
+          cost_total_cents: number | null
+          created_at: string
+          customer_phone: string | null
+          direction: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          ended_reason: string | null
+          event: string | null
+          first_seen_at: string
+          has_transfer: boolean | null
+          id: string
+          ingest_version: number
+          last_event_at: string | null
+          line_type: string | null
+          llm_model: string | null
+          llm_provider: string | null
+          raw_payload_id: string | null
+          recording_url: string | null
+          sentiment: string | null
+          started_at: string | null
+          status: string | null
+          structured_outputs: Json | null
+          structured_outputs_raw: Json | null
+          tokens_completion: number | null
+          tokens_prompt: number | null
+          tokens_total: number | null
+          tool_call_count: number | null
+          transcript_chars: number | null
+          transcript_turn_count: number | null
+          twilio_number_id: string | null
+          twilio_phone_number: string | null
+          updated_at: string
+          user_turn_chars: number | null
+          vapi_assistant_id: string | null
+          vapi_call_id: string
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "vapi_call_records"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      cdo_voice_call_reason: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          call_reason: string
+          calls: number
+          is_other: boolean
+        }[]
+      }
+      cdo_voice_call_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_calls: number
+          avg_duration_seconds: number
+          conversion_pct: number
+          cost_total_cents: number
+          direction: string
+          dnc_calls: number
+          metric_date: string
+          missed_calls: number
+          set_appointments: number
+          tokens_completion: number
+          tokens_prompt: number
+          tokens_total: number
+          total_calls: number
+          total_duration_seconds: number
+          unverified_calls: number
+          vapi_assistant_id: string
+          verified_calls: number
+          voicemail_calls: number
+        }[]
+      }
+      cdo_voice_callback_queue_recent: {
+        Args: { p_limit?: number; p_workspace_id: string }
+        Returns: {
+          call_disposition: string
+          call_reason: string
+          customer_phone: string
+          duration_seconds: number
+          started_at: string
+          vapi_call_id: string
+        }[]
+      }
+      cdo_voice_callers_count: {
+        Args: {
+          p_call_reasons?: string[]
+          p_call_type?: string
+          p_direction?: string
+          p_dispositions?: string[]
+          p_from_date: string
+          p_min_duration?: number
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      cdo_voice_callers_list: {
+        Args: {
+          p_call_reasons?: string[]
+          p_call_type?: string
+          p_direction?: string
+          p_dispositions?: string[]
+          p_from_date: string
+          p_limit?: number
+          p_min_duration?: number
+          p_offset?: number
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          agent_label: string
+          call_disposition: string
+          call_reason: string
+          call_type: string
+          carrier_name: string
+          contact_id: string
+          customer_phone: string
+          direction: string
+          duration_seconds: number
+          ended_reason: string
+          id: string
+          line_type: string
+          sentiment: string
+          source_table: string
+          started_at: string
+          vapi_assistant_id: string
+        }[]
+      }
+      cdo_voice_carrier_lti: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answered_calls: number
+          calls: number
+          carrier_name: string
+          direction: string
+          dnc_calls: number
+          line_type: string
+          set_appointments: number
+          total_duration_seconds: number
+        }[]
+      }
+      cdo_voice_concurrency_hourly: {
+        Args: {
+          p_carrier_name?: string
+          p_direction?: string
+          p_from_date: string
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          calls_started: number
+          carrier_name: string
+          direction: string
+          hour_utc: number
+          metric_date: string
+          total_duration_seconds: number
+        }[]
+      }
+      cdo_voice_direction: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls: number
+          direction: string
+          metric_date: string
+        }[]
+      }
+      cdo_voice_disposition: {
+        Args: {
+          p_direction?: string
+          p_from_date: string
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          calls: number
+          direction: string
+          ended_reason: string
+        }[]
+      }
+      cdo_voice_dnc_recent: {
+        Args: {
+          p_from: string
+          p_limit?: number
+          p_to: string
+          p_workspace_id: string
+        }
+        Returns: {
+          channel: string
+          contact_id: string
+          contact_name: string
+          id: string
+          occurred_at: string
+          phone_e164: string
+          reason: string
+          source: string
+        }[]
+      }
+      cdo_voice_dow_hour: {
+        Args: {
+          p_direction?: string
+          p_from_date: string
+          p_to_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          answered_calls: number
+          direction: string
+          dow_utc: number
+          hour_utc: number
+          total_calls: number
+        }[]
+      }
+      cdo_voice_funnel_appointment_status: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          appointments: number
+          status_bucket: string
+        }[]
+      }
+      cdo_voice_intent: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          calls: number
+          intent_value: string
+          is_other: boolean
+        }[]
+      }
+      cdo_voice_llm_usage: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          calls: number
+          cost_total_cents: number
+          llm_model: string
+          llm_provider: string
+          tokens_completion: number
+          tokens_prompt: number
+          tokens_total: number
+        }[]
+      }
+      cdo_voice_number_health: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          answer_rate_pct: number
+          answered_calls: number
+          missed_calls: number
+          total_calls: number
+          total_duration_seconds: number
+          twilio_phone_number: string
+          voicemail_calls: number
+        }[]
+      }
+      cdo_voice_prospect_customer: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          bucket: string
+          calls: number
+          metric_date: string
+        }[]
+      }
+      cdo_voice_reason_direction: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          call_reason: string
+          calls: number
+          direction: string
+          is_other: boolean
+        }[]
+      }
+      cdo_voice_recent_calls: {
+        Args: { p_limit?: number; p_offset?: number; p_workspace_id: string }
+        Returns: {
+          appointment_id: string | null
+          assistant_name: string | null
+          assistant_turn_chars: number | null
+          attributed_agent_config_id: string | null
+          call_disposition: string | null
+          call_reason: string | null
+          call_summary: string | null
+          call_timestamp: string | null
+          call_type: string | null
+          caller_name: string | null
+          caller_type: string | null
+          carrier_name: string | null
+          contact_id: string | null
+          conversation_transcript: Json | null
+          cost_total_cents: number | null
+          created_at: string
+          customer_phone: string | null
+          direction: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          ended_reason: string | null
+          event: string | null
+          first_seen_at: string
+          has_transfer: boolean | null
+          id: string
+          ingest_version: number
+          last_event_at: string | null
+          line_type: string | null
+          llm_model: string | null
+          llm_provider: string | null
+          raw_payload_id: string | null
+          recording_url: string | null
+          sentiment: string | null
+          started_at: string | null
+          status: string | null
+          structured_outputs: Json | null
+          structured_outputs_raw: Json | null
+          tokens_completion: number | null
+          tokens_prompt: number | null
+          tokens_total: number | null
+          tool_call_count: number | null
+          transcript_chars: number | null
+          transcript_turn_count: number | null
+          twilio_number_id: string | null
+          twilio_phone_number: string | null
+          updated_at: string
+          user_turn_chars: number | null
+          vapi_assistant_id: string | null
+          vapi_call_id: string
+          workspace_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "vapi_call_records"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      cdo_voice_transcript_summary: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          assistant_chars: number
+          direction: string
+          metric_date: string
+          set_appointments_count: number
+          total_calls: number
+          total_chars: number
+          total_turns: number
+          user_chars: number
+        }[]
+      }
+      cdo_workspace_churn_risk_preview: {
+        Args: { p_workspace_ids?: string[] }
+        Returns: {
+          archetype: string
+          created: string
+          days_dark: number
+          health: number
+          name: string
+          reasons: string[]
+          signals: Json
+          tier: string
+          workspace_id: string
+        }[]
+      }
+      cdo_workspace_health_alerts: {
+        Args: never
+        Returns: {
+          health: number
+          metric_date: string
+          name: string
+          prev_tier: string
+          reasons: string[]
+          tier: string
+          workspace_id: string
+        }[]
+      }
+      cdo_workspace_risk_flags: {
+        Args: { p_workspace_ids?: string[] }
+        Returns: {
+          created_at: string
+          flag_type: string
+          id: string
+          notes: string
+          severity: string
+          workspace_id: string
+        }[]
+      }
+      cdo_workspace_trust_score: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          brand_feedback: Json
+          brand_score: number
+          captured_at: string
+          entity_type: string
+          failure_reason: string
+          fetch_status: string
+          status: string
+          tcr_brand_id: string
+          vertical: string
+        }[]
       }
       check_broadcast_completion: {
         Args: { p_broadcast_id: string }
         Returns: boolean
       }
+      check_campaign_eligibility: {
+        Args: {
+          p_contact_id: string
+          p_sequence_id: string
+          p_workspace_id: string
+        }
+        Returns: boolean
+      }
+      check_feature_request_workspace_access: {
+        Args: { workspace_id_param: string }
+        Returns: boolean
+      }
       check_invite_by_token: {
         Args: { p_token: string }
         Returns: {
-          id: string
-          workspace_id: string
-          text_workspace_id: string
           email: string
-          role: string
-          token: string
           expires_at: string
+          id: string
+          role: string
+          text_workspace_id: string
+          token: string
+          workspace_id: string
           workspace_name: string
         }[]
       }
       check_onboarding_status: {
         Args: { p_user_id: string; p_workspace_id: string }
         Returns: {
-          is_completed: boolean
           created_at: string
+          is_completed: boolean
           updated_at: string
         }[]
       }
-      check_table_exists: {
-        Args: { p_table_name: string }
-        Returns: boolean
-      }
-      check_user_has_workspace: {
-        Args: { user_id: string }
-        Returns: boolean
-      }
+      check_table_exists: { Args: { p_table_name: string }; Returns: boolean }
+      check_user_has_workspace: { Args: { user_id: string }; Returns: boolean }
       check_user_workspace_membership: {
         Args: { user_id: string; workspace_id: string }
         Returns: boolean
@@ -10587,21 +30767,306 @@ export type Database = {
         Args: { user_id: string; workspace_id: string }
         Returns: boolean
       }
-      cleanup_broadcast_test_data: {
-        Args: Record<PropertyKey, never>
+      claim_due_ai_no_response_runs: {
+        Args: { p_claim_by: string; p_limit?: number }
+        Returns: {
+          agent_config_id: string
+          attempt_count: number
+          contact_id: string
+          outbound_message_id: string
+          policy_id: string
+          run_id: string
+          stage_type: string
+          workspace_id: string
+        }[]
+      }
+      claim_inbound_sms_processing_outbox: {
+        Args: { p_claimed_by: string; p_limit?: number }
+        Returns: {
+          attempt_count: number
+          claimed_at: string | null
+          claimed_by: string | null
+          contact_id: string | null
+          created_at: string
+          event_type: string
+          id: string
+          last_error: string | null
+          legacy_message_id: string | null
+          livechat_message_id: string | null
+          max_attempts: number
+          next_attempt_at: string
+          payload: Json
+          processed_at: string | null
+          status: string
+          trigger_run_id: string | null
+          twilio_sid: string
+          updated_at: string
+          workspace_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "inbound_sms_processing_outbox"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      claim_outbound_trigger_outbox: {
+        Args: { p_limit?: number }
+        Returns: {
+          contact_id: string | null
+          created_at: string
+          delivery_attempt_count: number
+          dispatch_attempt_count: number
+          dispatched_at: string | null
+          event_data: Json
+          event_type: string
+          id: string
+          last_error: string | null
+          message_id: string
+          next_attempt_at: string
+          processed_at: string | null
+          status: string
+          trigger_id: string
+          updated_at: string
+          workflow_instance_id: string | null
+          workspace_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "outbound_trigger_outbox"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      cleanup_all_duplicate_contacts: {
+        Args: never
+        Returns: {
+          batch_number: number
+          phone_numbers_processed: number
+          status: string
+          total_duplicates_deleted: number
+        }[]
+      }
+      cleanup_all_remaining_duplicates: {
+        Args: never
+        Returns: {
+          status: string
+          total_duplicates_deleted: number
+        }[]
+      }
+      cleanup_broadcast_test_data: { Args: never; Returns: Json }
+      cleanup_duplicate_contacts_aggressive: {
+        Args: never
+        Returns: {
+          duplicates_deleted: number
+          duplicates_found: number
+          kept_contact_id: string
+          phone_number: string
+          status: string
+        }[]
+      }
+      cleanup_duplicate_contacts_by_phone: {
+        Args: never
+        Returns: {
+          duplicates_deleted: number
+          duplicates_found: number
+          error_message: string
+          kept_contact_id: string
+          phone_number: string
+        }[]
+      }
+      cleanup_lead_replying_status: {
+        Args: { p_stale_after?: string }
+        Returns: number
+      }
+      cleanup_livechat_contact_viewer_presence: {
+        Args: { p_stale_after?: string }
+        Returns: number
+      }
+      cleanup_old_segment_jobs: { Args: never; Returns: undefined }
+      cleanup_stale_presence: { Args: never; Returns: undefined }
+      cleanup_workspace_duplicate_contacts: {
+        Args: never
+        Returns: {
+          duplicates_deleted: number
+          duplicates_found: number
+          kept_contact_id: string
+          phone_number: string
+          status: string
+          workspace_id: string
+        }[]
+      }
+      clear_agent_presence_session: {
+        Args: {
+          p_session_id: string
+          p_user_id: string
+          p_workspace_id: string
+        }
         Returns: Json
       }
-      cleanup_old_segment_jobs: {
-        Args: Record<PropertyKey, never>
+      clear_contact_unread_count: {
+        Args: { p_contact_id: string }
+        Returns: undefined
+      }
+      clear_contacts_unread_count: {
+        Args: { p_contact_ids: string[] }
         Returns: undefined
       }
       complete_onboarding: {
         Args: { p_user_id: string; p_workspace_id: string }
         Returns: boolean
       }
-      complete_user_onboarding: {
-        Args: { user_id: string }
-        Returns: boolean
+      complete_user_onboarding: { Args: { user_id: string }; Returns: boolean }
+      contact_enhanced_field_value: {
+        Args: {
+          p_contact_id: string
+          p_contact_metadata: Json
+          p_field: string
+          p_workspace_id: string
+        }
+        Returns: string
+      }
+      copy_default_pipeline_stages: {
+        Args: { target_workspace_id: string }
+        Returns: undefined
+      }
+      count_accessible_inbox_contacts: {
+        Args: {
+          p_conversation_status?: string
+          p_inbox_id: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      count_accessible_inboxes_for_workspace: {
+        Args: {
+          p_conversation_status?: string
+          p_include_private_admin?: boolean
+          p_workspace_id: string
+        }
+        Returns: {
+          count: number
+          inbox_id: string
+        }[]
+      }
+      count_contacts_by_enhanced_tier_fast: {
+        Args: {
+          p_conversation_status?: string
+          p_search_query?: string
+          p_tier: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      count_contacts_by_sequence_step_filtered: {
+        Args: {
+          p_condition?: string
+          p_lead_status_operator?: string
+          p_lead_status_value?: string
+          p_lead_status_values?: string[]
+          p_sequence_id: string
+          p_step_number: number
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      count_contacts_by_tags:
+        | {
+            Args: {
+              p_tag_ids?: string[]
+              p_tag_mode?: string
+              p_workspace_id: string
+            }
+            Returns: number
+          }
+        | {
+            Args: { p_workspace_id: string }
+            Returns: {
+              contact_count: number
+              tag_color: string
+              tag_id: string
+              tag_name: string
+            }[]
+          }
+      count_contacts_by_webhook_name_fast: {
+        Args: {
+          p_conversation_status?: string
+          p_webhook_name: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      count_contacts_filtered: {
+        Args: {
+          p_conversation_status?: string
+          p_created_end?: string
+          p_created_start?: string
+          p_custom_field_id?: string
+          p_custom_field_operator?: string
+          p_custom_field_value?: string
+          p_date_field_end?: string
+          p_date_field_name?: string
+          p_date_field_start?: string
+          p_field_conditions?: Json
+          p_flow_filter_id?: string
+          p_flow_filter_mode?: string
+          p_flow_filter_status?: string
+          p_flow_step_condition?: string
+          p_flow_step_flow_id?: string
+          p_flow_step_node_id?: string
+          p_has_appointment?: string
+          p_lead_score_max?: number
+          p_lead_score_min?: number
+          p_lead_score_operator?: string
+          p_lead_score_value?: number
+          p_lead_source?: string
+          p_lead_status_operator?: string
+          p_lead_status_value?: string
+          p_lead_status_values?: string[]
+          p_market?: string
+          p_message_keyword?: string
+          p_message_type?: string
+          p_search_query?: string
+          p_sequence_id?: string
+          p_sequence_mode?: string
+          p_state?: string
+          p_step_condition?: string
+          p_step_number?: number
+          p_step_sequence_id?: string
+          p_sub_source?: string
+          p_tag_exclude_ids?: string[]
+          p_tag_ids?: string[]
+          p_tag_mode?: string
+          p_updated_end?: string
+          p_updated_start?: string
+          p_webhook_name?: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      count_contacts_in_sequence: {
+        Args: { p_sequence_id: string; p_workspace_id: string }
+        Returns: number
+      }
+      count_contacts_not_in_sequence: {
+        Args: { p_sequence_id: string; p_workspace_id: string }
+        Returns: number
+      }
+      count_contacts_with_tag_not_in_sequence: {
+        Args: {
+          p_sequence_id: string
+          p_tag_ids: string[]
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      count_inbox_contacts: {
+        Args: {
+          p_conversation_status?: string
+          p_inbox_id: string
+          p_workspace_id: string
+        }
+        Returns: number
       }
       create_broadcast_recipients: {
         Args: {
@@ -10625,16 +31090,51 @@ export type Database = {
         Args: { email_address: string }
         Returns: Json
       }
+      create_custom_inbox: {
+        Args: {
+          p_color?: string
+          p_filters?: Json
+          p_icon?: string
+          p_name: string
+          p_scope_type?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          filters: Json | null
+          icon: string | null
+          id: string
+          name: string
+          owner_user_id: string | null
+          scope_type: string
+          sort_order: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "custom_inboxes"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       create_default_email_folders: {
-        Args: { p_workspace_id: string; p_email_account_id: string }
+        Args: { p_email_account_id: string; p_workspace_id: string }
+        Returns: undefined
+      }
+      create_default_tcpa_keyword_rule: {
+        Args: { p_created_by?: string; p_workspace_id: string }
         Returns: undefined
       }
       create_default_workspace_for_user: {
         Args: { p_user_id: string }
         Returns: Json
       }
+      create_event_slug: { Args: { event_name: string }; Returns: string }
       create_monthly_partition: {
-        Args: { table_name: string; start_date: string }
+        Args: { start_date: string; table_name: string }
         Returns: undefined
       }
       create_status_categories_safely: {
@@ -10644,16 +31144,16 @@ export type Database = {
       create_user: {
         Args: {
           email_param: string
-          password_param: string
           is_admin?: boolean
+          password_param: string
         }
         Returns: Json
       }
       create_user_with_password: {
         Args: {
           email_param: string
-          password_param: string
           metadata_param?: Json
+          password_param: string
         }
         Returns: Json
       }
@@ -10661,54 +31161,103 @@ export type Database = {
         Args: { p_name: string; p_user_id?: string }
         Returns: string
       }
-      create_workspace_member: {
-        Args:
-          | { p_email: string; p_workspace_id: string; p_role?: string }
-          | {
+      create_workspace_member:
+        | {
+            Args: { p_email: string; p_role?: string; p_workspace_id: string }
+            Returns: Json
+          }
+        | {
+            Args: {
               p_email: string
-              p_workspace_id: string
-              p_role?: string
               p_password?: string
+              p_role?: string
+              p_workspace_id: string
             }
-        Returns: Json
-      }
+            Returns: Json
+          }
       create_workspace_simple: {
         Args: { p_name: string; p_user_id: string }
         Returns: string
       }
-      create_workspace_user: {
-        Args:
-          | { p_email: string; p_workspace_id: string; p_role?: string }
-          | {
+      create_workspace_user:
+        | {
+            Args: { p_email: string; p_role?: string; p_workspace_id: string }
+            Returns: Json
+          }
+        | {
+            Args: {
               p_email: string
-              p_workspace_id: string
-              p_role?: string
               p_password?: string
+              p_role?: string
+              p_workspace_id: string
             }
-        Returns: Json
+            Returns: Json
+          }
+      deactivate_livechat_contact_assignment: {
+        Args: {
+          p_assignment_id: string
+          p_event_type?: string
+          p_metadata?: Json
+        }
+        Returns: {
+          contact_id: string
+          created_at: string | null
+          created_by: string | null
+          id: string
+          status: string | null
+          user_id: string
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "livechat_contact_assignments"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
-      detect_message_type: {
-        Args: { message_text: string }
-        Returns: string
+      delete_custom_inbox: { Args: { p_inbox_id: string }; Returns: boolean }
+      delete_user_preferences: {
+        Args: { p_preference_type: string; p_workspace_id: string }
+        Returns: undefined
       }
+      detect_message_type: { Args: { message_text: string }; Returns: string }
       detect_stuck_broadcasts: {
         Args: { p_minutes_threshold?: number }
         Returns: {
           broadcast_id: string
-          workspace_id: string
-          status: string
-          stuck_duration: unknown
           pending_count: number
+          status: string
+          stuck_duration: string
           total_recipients: number
+          workspace_id: string
         }[]
       }
-      ensure_livechat_partitions: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
+      dnc_log_event: {
+        Args: {
+          p_channel: string
+          p_contact_id: string
+          p_metadata?: Json
+          p_phone: string
+          p_reason?: string
+          p_source?: string
+          p_workspace_id: string
+        }
+        Returns: string
       }
-      ensure_user_has_workspace: {
-        Args: { p_user_id: string }
-        Returns: Json
+      ensure_livechat_partitions: { Args: never; Returns: undefined }
+      ensure_unassigned_column: {
+        Args: { board_id_text: string }
+        Returns: string
+      }
+      ensure_user_has_workspace: { Args: { p_user_id: string }; Returns: Json }
+      ensure_workspace_pipeline: {
+        Args: { target_workspace_id: string }
+        Returns: {
+          stage_id: string
+          stage_name: string
+          stage_order: number
+          stage_slug: string
+        }[]
       }
       evaluate_segment_conditions: {
         Args: { contact_record: Json; segment_id: string }
@@ -10718,34 +31267,123 @@ export type Database = {
         Args: { event_data: Json; trigger_conditions: Json }
         Returns: boolean
       }
-      exec_sql: {
-        Args: { sql_query: string }
-        Returns: undefined
-      }
+      exec_sql: { Args: { sql_query: string }; Returns: undefined }
       execute_analytics_query: {
-        Args: { query_sql: string; workspace_id?: string }
+        Args: { query_sql: string; workspace_id: string }
         Returns: Json
       }
-      execute_sql: {
-        Args: { sql_query: string }
-        Returns: undefined
+      execute_sql: { Args: { sql_query: string }; Returns: undefined }
+      expert_insight_appointments_overview: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: {
+          booked: number
+          cancelled: number
+          lead_time: Json
+          monthly: Json
+          null_status: number
+        }[]
+      }
+      expert_insight_cancellation_by_source: {
+        Args: { p_days?: number; p_min_appts?: number; p_workspace_id: string }
+        Returns: {
+          appts: number
+          cancel_pct: number
+          cancelled: number
+          source: string
+        }[]
+      }
+      expert_insight_compliance: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          dnc: number
+          email_opt_out: number
+          engaged_total: number
+          sms_opt_out: number
+        }[]
+      }
+      expert_insight_email: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: {
+          bounced: number
+          clicked: number
+          delivered: number
+          opened: number
+          sent: number
+        }[]
+      }
+      expert_insight_lead_funnel: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          lead_status: string
+          n: number
+        }[]
+      }
+      expert_insight_line_type: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          landline: number
+          mobile: number
+          total: number
+          unknown: number
+          voip: number
+        }[]
+      }
+      expert_insight_link_clicks: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: {
+          total_clicks: number
+        }[]
+      }
+      expert_insight_messaging: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: {
+          month: string
+          reply_pct: number
+          sms_in: number
+          sms_out: number
+        }[]
       }
       extend_developer_access: {
         Args: {
-          p_workspace_id: string
-          p_developer_id: string
           p_additional_hours: number
+          p_developer_id: string
           p_reason?: string
+          p_workspace_id: string
         }
         Returns: Json
+      }
+      field_op_match_date: {
+        Args: {
+          p_end: string
+          p_operator: string
+          p_start: string
+          p_value: string
+        }
+        Returns: boolean
+      }
+      field_op_match_text: {
+        Args: { p_operator: string; p_target: string; p_value: string }
+        Returns: boolean
+      }
+      filter_schedule_contacts: {
+        Args: { p_conditions: Json; p_limit?: number; p_workspace_id: string }
+        Returns: {
+          id: string
+        }[]
       }
       find_contact_by_email: {
         Args: { email_param: string; workspace_id_param: string }
         Returns: {
+          ai_reset_at: string | null
+          appointment_date: string | null
+          appointment_date_display: string | null
           appointment_result_id: number | null
           appointment_status_id: number | null
+          appointment_time: string | null
+          automation_paused_until: string | null
           board_id: string | null
           board_name: string | null
+          calendar_links: Json | null
           city: string | null
           conversation_status: string | null
           created_at: string | null
@@ -10755,17 +31393,28 @@ export type Database = {
           firstname: string
           follow_up_date: string | null
           id: string
+          instagram_id: string | null
           is_archived: boolean | null
           is_completed: boolean | null
           is_demo: boolean | null
           is_favorite: boolean | null
           last_action_at: string | null
           last_action_type: string | null
+          last_ai_response_at: string | null
+          last_inbound_at: string | null
+          last_inbound_text: string | null
+          last_outbound_at: string | null
+          last_outbound_by: string | null
+          last_outbound_text: string | null
+          last_outbound_type: string | null
           lastname: string
+          lead_score: number | null
+          lead_score_updated_at: string | null
           lead_source: string | null
           lead_status: string | null
           lead_status_id: number | null
           market: string | null
+          messenger_psid: string | null
           metadata: Json | null
           name: string | null
           needs_response: boolean | null
@@ -10773,18 +31422,22 @@ export type Database = {
           opt_in_through: string
           opted_in_email: boolean | null
           opted_in_sms: boolean | null
-          phone_number: string
+          phone_number: string | null
           priority: string | null
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
-          search_vector: unknown | null
+          search_vector: unknown
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
           state: string | null
+          sub_source: string | null
           tags: Json | null
           team: string | null
+          text_disposition: string | null
+          text_disposition_id: string | null
+          timezone: string | null
           unread_count: number | null
           updated_at: string | null
           webhook_id: string | null
@@ -10793,14 +31446,26 @@ export type Database = {
           workspace_id: string
           zip: string | null
         }[]
+        SetofOptions: {
+          from: "*"
+          to: "contacts"
+          isOneToOne: false
+          isSetofReturn: true
+        }
       }
       find_contact_by_lead_status: {
-        Args: { lead_status_id_param: string; workspace_id_param: string }
+        Args: { lead_status_id_param: number; workspace_id_param: string }
         Returns: {
+          ai_reset_at: string | null
+          appointment_date: string | null
+          appointment_date_display: string | null
           appointment_result_id: number | null
           appointment_status_id: number | null
+          appointment_time: string | null
+          automation_paused_until: string | null
           board_id: string | null
           board_name: string | null
+          calendar_links: Json | null
           city: string | null
           conversation_status: string | null
           created_at: string | null
@@ -10810,17 +31475,28 @@ export type Database = {
           firstname: string
           follow_up_date: string | null
           id: string
+          instagram_id: string | null
           is_archived: boolean | null
           is_completed: boolean | null
           is_demo: boolean | null
           is_favorite: boolean | null
           last_action_at: string | null
           last_action_type: string | null
+          last_ai_response_at: string | null
+          last_inbound_at: string | null
+          last_inbound_text: string | null
+          last_outbound_at: string | null
+          last_outbound_by: string | null
+          last_outbound_text: string | null
+          last_outbound_type: string | null
           lastname: string
+          lead_score: number | null
+          lead_score_updated_at: string | null
           lead_source: string | null
           lead_status: string | null
           lead_status_id: number | null
           market: string | null
+          messenger_psid: string | null
           metadata: Json | null
           name: string | null
           needs_response: boolean | null
@@ -10828,18 +31504,22 @@ export type Database = {
           opt_in_through: string
           opted_in_email: boolean | null
           opted_in_sms: boolean | null
-          phone_number: string
+          phone_number: string | null
           priority: string | null
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
-          search_vector: unknown | null
+          search_vector: unknown
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
           state: string | null
+          sub_source: string | null
           tags: Json | null
           team: string | null
+          text_disposition: string | null
+          text_disposition_id: string | null
+          timezone: string | null
           unread_count: number | null
           updated_at: string | null
           webhook_id: string | null
@@ -10848,26 +31528,255 @@ export type Database = {
           workspace_id: string
           zip: string | null
         }[]
+        SetofOptions: {
+          from: "*"
+          to: "contacts"
+          isOneToOne: false
+          isSetofReturn: true
+        }
       }
-      fix_user_workspace: {
-        Args: { p_user_id: string }
+      find_duplicate_livechat_twilio_sids: {
+        Args: { p_since?: string }
+        Returns: {
+          duplicate_count: number
+          first_seen: string
+          last_seen: string
+          message_ids: string[]
+          twilio_sid: string
+          workspace_id: string
+        }[]
+      }
+      fire_ai_no_response_run_now: {
+        Args: { p_run_id: string }
+        Returns: {
+          due_at: string
+          run_id: string
+          status: string
+        }[]
+      }
+      fix_user_workspace: { Args: { p_user_id: string }; Returns: string }
+      generate_email_sender: { Args: { company_name: string }; Returns: string }
+      generate_system_report: { Args: never; Returns: Json }
+      generate_unique_slug: {
+        Args: { base_slug: string; workspace_id: string }
         Returns: string
       }
-      generate_email_sender: {
-        Args: { company_name: string }
+      generate_workspace_code: { Args: never; Returns: string }
+      generate_workspace_id: { Args: never; Returns: string }
+      generate_workspace_subdomain: {
+        Args: { company_name: string; workspace_id: string }
         Returns: string
       }
-      generate_system_report: {
-        Args: Record<PropertyKey, never>
+      get_accessible_inbox_contacts: {
+        Args: {
+          p_conversation_status?: string
+          p_cursor_id?: string
+          p_cursor_updated_at?: string
+          p_inbox_id: string
+          p_page_size?: number
+          p_search_query?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+        }[]
+      }
+      get_accessible_inbox_contacts_sorted: {
+        Args: {
+          p_conversation_status?: string
+          p_cursor_id?: string
+          p_cursor_sort_value?: string
+          p_inbox_id: string
+          p_page_size?: number
+          p_search_query?: string
+          p_sort_by: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          last_inbound_at: string
+          last_outbound_at: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+        }[]
+      }
+      get_accessible_matching_inbox_ids_for_contact: {
+        Args: {
+          p_contact_id: string
+          p_conversation_status?: string
+          p_include_private_admin?: boolean
+          p_workspace_id: string
+        }
+        Returns: string[]
+      }
+      get_active_sessions: {
+        Args: never
+        Returns: {
+          created_at: string
+          current_path: string
+          current_view: string
+          current_window: string
+          current_window_title: string
+          ip: string
+          is_online: boolean
+          last_sign_in_at: string
+          page_visits: number
+          refreshed_at: string
+          session_id: string
+          total_events: number
+          tracked_last_activity_at: string
+          tracked_last_sign_in_at: string
+          updated_at: string
+          user_agent: string
+          user_email: string
+          user_id: string
+          view_counts: Json
+        }[]
+      }
+      get_agent_channel_load: {
+        Args: { p_user_id: string; p_workspace_id: string }
         Returns: Json
       }
-      generate_workspace_code: {
-        Args: Record<PropertyKey, never>
-        Returns: string
+      get_agent_presence_capacity_settings: {
+        Args: { p_workspace_id: string }
+        Returns: Json
       }
-      generate_workspace_id: {
-        Args: Record<PropertyKey, never>
-        Returns: string
+      get_agent_recommendations: {
+        Args: {
+          p_limit?: number
+          p_scope?: string
+          p_user_id?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          action_label: string
+          appointment_count: number
+          click_signal_label: string
+          click_signal_source: string
+          contact_id: string
+          contact_name: string
+          email_opens_30d: number
+          hours_since_click: number
+          hours_since_inbound: number
+          hours_since_outbound: number
+          inbound_count_14d: number
+          last_click_at: string
+          last_inbound_at: string
+          last_message_direction: string
+          last_outbound_at: string
+          lead_score: number
+          lead_status: string
+          next_appointment_at: string
+          outbound_count_14d: number
+          phone_number: string
+          priority_score: number
+          reason: string
+          recommendation_type: string
+          total_messages_14d: number
+          tracked_clicks_30d: number
+          unread_count: number
+        }[]
+      }
+      get_ai_agent_misconfigurations: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          agent_id: string
+          agent_name: string
+          code: string
+          count_affected: number
+          severity: string
+          summary: string
+        }[]
+      }
+      get_ai_agent_overview: {
+        Args: { p_agent_type?: string; p_workspace_id: string }
+        Returns: {
+          active_contacts_count: number
+          agent_created_at: string
+          agent_id: string
+          agent_name: string
+          agent_type: string
+          bookings_30d: number
+          is_active: boolean
+          is_default: boolean
+          priority: number
+          reroutes_7d: number
+          routing_rules: Json
+          takeovers_7d: number
+          workspace_id: string
+        }[]
+      }
+      get_ai_followup_outcome_summary: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          booked: number
+          disqualified: number
+          in_progress: number
+          no_response: number
+          other: number
+          refreshed_at: string
+          total_contacts: number
+        }[]
+      }
+      get_ai_lead_score_for_contact: {
+        Args: { p_contact_id: string; p_workspace_id: string }
+        Returns: {
+          current_stage: string
+          falloff_field_key: string
+          grade: string
+          score: number
+          updated_at: string
+        }[]
+      }
+      get_ai_lead_score_summary: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          avg_score: number
+          cold: number
+          hot: number
+          refreshed_at: string
+          total_scored: number
+          warm: number
+        }[]
+      }
+      get_ai_qualifying_funnel: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          agent_config_id: string
+          contacts_answered: number
+          contacts_reached: number
+          field_key: string
+          question_id: string
+          question_order: number
+          question_text: string
+          refreshed_at: string
+        }[]
       }
       get_all_board_unread_counts: {
         Args: { workspace_id_param: string }
@@ -10876,17 +31785,83 @@ export type Database = {
           unread_count: number
         }[]
       }
-      get_appointment_result_options: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
-      }
+      get_appointment_funnel: { Args: { p_days?: number }; Returns: Json }
+      get_appointment_result_options: { Args: never; Returns: Json }
       get_appointment_status_options: {
         Args: { workspace_id_param: string }
         Returns: Json
       }
+      get_appointments_timeseries_fast: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: Json
+      }
+      get_appointments_with_attribution: {
+        Args: {
+          p_appointment_date_from?: string
+          p_end_date?: string
+          p_limit?: number
+          p_offset?: number
+          p_start_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          all_campaign_ids: string[]
+          appointment_date: string
+          appointment_id: string
+          attribution_source: string
+          booking_timezone: string
+          call_count: number
+          call_ended_reasons: Json
+          campaign_id: string
+          campaign_name: string
+          contact_email: string
+          contact_id: string
+          contact_name: string
+          contact_phone: string
+          converting_step: number
+          created_at: string
+          duration_minutes: number
+          sequence_started_at: string
+          status_id: number
+          stopped_by_response: boolean
+        }[]
+      }
+      get_assignment_counts: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          assigned_contacts: number
+          total_contacts: number
+          unassigned_count: number
+        }[]
+      }
+      get_auth_method_breakdown: { Args: { p_days?: number }; Returns: Json }
       get_board_unread_count: {
         Args: { board_id_param: string }
         Returns: number
+      }
+      get_board_webhooks_with_flows: {
+        Args: {
+          p_board_id?: string
+          p_timeframe_hours?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          attached_flow_id: string
+          attached_flow_name: string
+          attached_sequence_id: string
+          attached_sequence_name: string
+          error_count: number
+          success_count: number
+          total_events: number
+          webhook_board_id: string
+          webhook_board_name: string
+          webhook_call_count: number
+          webhook_id: string
+          webhook_last_used: string
+          webhook_name: string
+          webhook_source: string
+          webhook_status: string
+        }[]
       }
       get_broadcast_analytics: {
         Args: { p_broadcast_id: string; p_workspace_id: string }
@@ -10898,15 +31873,15 @@ export type Database = {
       }
       get_broadcast_audience: {
         Args: {
-          p_workspace_id: string
-          p_filter_criteria: Json
           p_broadcast_type: string
+          p_filter_criteria: Json
+          p_workspace_id: string
         }
         Returns: {
           estimated_recipients: number
+          recipient_emails: string[]
           recipient_ids: string[]
           recipient_phones: string[]
-          recipient_emails: string[]
         }[]
       }
       get_broadcast_audience_estimate: {
@@ -10915,32 +31890,32 @@ export type Database = {
       }
       get_broadcast_audience_v2: {
         Args: {
-          p_workspace_id: string
-          p_metadata_filter?: Json
-          p_lead_source?: string
           p_broadcast_type?: string
+          p_lead_source?: string
+          p_metadata_filter?: Json
+          p_workspace_id: string
         }
         Returns: {
           estimated_recipients: number
+          recipient_emails: string[]
           recipient_ids: string[]
           recipient_phones: string[]
-          recipient_emails: string[]
         }[]
       }
       get_broadcast_audience_v3: {
         Args: {
-          p_workspace_id: string
-          p_metadata_filter?: Json
+          p_broadcast_type?: string
           p_lead_source?: string
           p_market?: string
+          p_metadata_filter?: Json
           p_product?: string
-          p_broadcast_type?: string
+          p_workspace_id: string
         }
         Returns: {
           estimated_recipients: number
+          recipient_emails: string[]
           recipient_ids: string[]
           recipient_phones: string[]
-          recipient_emails: string[]
         }[]
       }
       get_broadcast_recipient_stats: {
@@ -10948,31 +31923,91 @@ export type Database = {
         Returns: Json
       }
       get_broadcast_recipients_count_v1: {
-        Args: { p_workspace_id: string; p_filters: Json }
+        Args: { p_filters: Json; p_workspace_id: string }
         Returns: number
       }
       get_broadcast_recipients_v1: {
-        Args: { p_workspace_id: string; p_filters: Json }
+        Args: { p_filters: Json; p_workspace_id: string }
         Returns: {
+          city: string
           contact_id: string
+          conversation_status: string
+          email: string
           firstname: string
           lastname: string
-          phone_number: string
-          email: string
-          metadata: Json
           lead_status: string
-          lead_source: string
-          conversation_status: string
+          metadata: Json
+          phone_number: string
+          state: string
           tags: Json
+          webhook_name: string
         }[]
       }
       get_broadcast_summary: {
         Args: { p_broadcast_id: string; p_workspace_id: string }
         Returns: Json
       }
-      get_broadcast_system_health: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
+      get_broadcast_system_health: { Args: never; Returns: Json }
+      get_campaign_conversion_stats: {
+        Args: {
+          p_end_date?: string
+          p_start_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointments_by_step: Json
+          avg_converting_step: number
+          call_outcomes: Json
+          campaign_id: string
+          campaign_name: string
+          total_appointments: number
+          total_calls: number
+        }[]
+      }
+      get_campaign_conversions_simple: {
+        Args: {
+          p_end_date?: string
+          p_start_date?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_count: number
+          sequence_id: string
+          sequence_name: string
+        }[]
+      }
+      get_campaign_insights: { Args: { p_workspace_id: string }; Returns: Json }
+      get_channel_mix: { Args: { p_days?: number }; Returns: Json }
+      get_channel_volume_series: { Args: { p_days?: number }; Returns: Json }
+      get_column_contacts_with_last_message: {
+        Args: {
+          p_board_id: string
+          p_column_id: string
+          p_cursor_id?: string
+          p_cursor_updated_at?: string
+          p_limit?: number
+        }
+        Returns: {
+          bc_metadata: Json
+          board_id: string
+          column_id: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          last_action_at: string
+          last_message_body: string
+          last_message_created_at: string
+          last_message_direction: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          total_count: number
+          updated_at: string
+        }[]
       }
       get_contact_by_chat_id: {
         Args: { chat_id: string }
@@ -10984,514 +32019,2381 @@ export type Database = {
       get_contact_conversation_history: {
         Args: { p_contact_id: string; p_limit?: number }
         Returns: {
-          message_time: string
-          message_direction: string
-          sender: string
           message_body: string
+          message_direction: string
+          message_time: string
+          sender: string
+        }[]
+      }
+      get_contact_counts: {
+        Args: { user_id_param?: string; workspace_id_param: string }
+        Returns: {
+          all_count: number
+          assigned_to_me_count: number
+          closed_count: number
+          open_count: number
+          unassigned_count: number
+        }[]
+      }
+      get_contact_custom_fields_json: {
+        Args: { p_contact_id: string; p_workspace_id: string }
+        Returns: Json
+      }
+      get_contact_effective_assignment_visibility_mode: {
+        Args: { p_contact_id: string; p_workspace_id: string }
+        Returns: string
+      }
+      get_contact_field_distinct_values: {
+        Args: { p_column_name: string; p_workspace_id: string }
+        Returns: {
+          value: string
         }[]
       }
       get_contact_fields: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           column_name: string
           data_type: string
         }[]
       }
-      get_contact_status: {
-        Args: { contact_id_param: string }
+      get_contact_ids_in_sequence: {
+        Args: { p_sequence_id: string; p_workspace_id: string }
+        Returns: {
+          contact_id: string
+        }[]
+      }
+      get_contact_ids_not_in_sequence: {
+        Args: { p_sequence_id: string; p_workspace_id: string }
+        Returns: {
+          contact_id: string
+        }[]
+      }
+      get_contact_lead_score_events: {
+        Args: { p_contact_id: string; p_limit?: number; p_workspace_id: string }
+        Returns: {
+          active_event_count: number
+          active_total_points: number
+          event_label: string
+          event_source_id: string
+          event_type: string
+          expires_at: string
+          id: string
+          is_active: boolean
+          is_expired: boolean
+          new_score: number
+          occurred_at: string
+          points: number
+          previous_score: number
+          source_detail: string
+          source_label: string
+          source_url: string
+        }[]
+      }
+      get_contact_lead_score_stats: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          avg_score: number
+          max_score: number
+          min_score: number
+          with_score_count: number
+        }[]
+      }
+      get_contact_status: { Args: { contact_id_param: string }; Returns: Json }
+      get_contact_time_metrics: {
+        Args: { p_workspace_id: string }
         Returns: Json
+      }
+      get_contacts_by_enhanced_tier_fast: {
+        Args: {
+          p_conversation_status?: string
+          p_cursor?: string
+          p_limit?: number
+          p_search_query?: string
+          p_tier: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_date: string
+          city: string
+          conversation_status: string
+          created_at: string
+          crm_id: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          last_action_at: string
+          last_inbound_at: string
+          last_outbound_at: string
+          lastname: string
+          lead_score: number
+          lead_source: string
+          lead_status: string
+          market: string
+          metadata: Json
+          name: string
+          phone_number: string
+          product: string
+          st_address: string
+          state: string
+          sub_source: string
+          tags: Json
+          updated_at: string
+          webhook_name: string
+          webhook_received_at: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_by_ids: {
+        Args: {
+          p_contact_ids: string[]
+          p_cursor?: string
+          p_limit?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_result_id: number
+          appointment_status_id: number
+          city: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          is_completed: boolean
+          lastname: string
+          lead_source: string
+          lead_status: string
+          lead_status_id: number
+          market: string
+          metadata: Json
+          name: string
+          notes: string
+          opt_in_through: string
+          opted_in_email: boolean
+          opted_in_sms: boolean
+          phone_number: string
+          product: string
+          st_address: string
+          state: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          workspace_id: string
+          zip: string
+        }[]
       }
       get_contacts_by_lead_status: {
         Args: {
-          workspace_id_param: string
           lead_status_param?: string
           page_number?: number
           page_size?: number
+          workspace_id_param: string
         }
         Returns: {
+          city: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          follow_up_date: string
           id: string
+          is_archived: boolean
+          is_favorite: boolean
+          lastMessage: string
+          lastMessageDirection: string
+          lastMessageId: string
+          lastMessageSender: string
+          lastMessageTimestamp: string
+          lastMessageType: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          phone_number: string
+          priority: string
+          product: string
+          sentiment: string
+          st_address: string
+          state: string
+          tags: Json
+          team: string
+          total_count: number
+          unread_count: number
+          updated_at: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_by_message_filter: {
+        Args: {
+          p_direction?: string
+          p_filter_type: string
+          p_keyword?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_id: string
+        }[]
+      }
+      get_contacts_by_sequence_step: {
+        Args: {
+          p_condition?: string
+          p_sequence_id: string
+          p_step_number: number
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_id: string
+        }[]
+      }
+      get_contacts_by_sequence_step_filtered: {
+        Args: {
+          p_condition?: string
+          p_cursor?: string
+          p_lead_status_operator?: string
+          p_lead_status_value?: string
+          p_lead_status_values?: string[]
+          p_limit?: number
+          p_sequence_id: string
+          p_step_number: number
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_status: string
+          metadata: Json
           name: string
           phone_number: string
-          email: string
-          workspace_id: string
-          created_at: string
-          updated_at: string
-          metadata: Json
-          unread_count: number
-          firstname: string
-          lastname: string
-          conversation_status: string
+          state: string
           tags: Json
-          priority: string
-          follow_up_date: string
-          is_favorite: boolean
-          is_archived: boolean
-          needs_response: boolean
-          sentiment: string
-          team: string
+          updated_at: string
+          workspace_id: string
+        }[]
+      }
+      get_contacts_by_sequence_step_paginated: {
+        Args: {
+          p_condition?: string
+          p_limit?: number
+          p_offset?: number
+          p_sequence_id: string
+          p_step_number: number
+          p_workspace_id: string
+        }
+        Returns: {
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
           lead_status: string
-          lastMessage: string
-          lastMessageTimestamp: string
-          lastMessageDirection: string
-          lastMessageSender: string
-          lastMessageId: string
-          lastMessageType: string
+          phone_number: string
+          state: string
           total_count: number
+          updated_at: string
         }[]
       }
       get_contacts_by_webhook: {
         Args: {
-          workspace_id_param: string
-          webhook_name_param?: string
           page_number?: number
           page_size?: number
+          webhook_name_param?: string
+          workspace_id_param: string
         }
         Returns: {
+          city: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          follow_up_date: string
           id: string
+          is_archived: boolean
+          is_favorite: boolean
+          lastMessage: string
+          lastMessageDirection: string
+          lastMessageId: string
+          lastMessageSender: string
+          lastMessageTimestamp: string
+          lastMessageType: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          phone_number: string
+          priority: string
+          product: string
+          sentiment: string
+          st_address: string
+          state: string
+          tags: Json
+          team: string
+          total_count: number
+          unread_count: number
+          updated_at: string
+          webhook_id: string
+          webhook_name: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_filtered: {
+        Args: {
+          p_conversation_status?: string
+          p_created_end?: string
+          p_created_start?: string
+          p_cursor?: string
+          p_cursor_created_at?: string
+          p_cursor_sort_value?: string
+          p_custom_field_id?: string
+          p_custom_field_operator?: string
+          p_custom_field_value?: string
+          p_date_field_end?: string
+          p_date_field_name?: string
+          p_date_field_start?: string
+          p_field_conditions?: Json
+          p_flow_filter_id?: string
+          p_flow_filter_mode?: string
+          p_flow_filter_status?: string
+          p_flow_step_condition?: string
+          p_flow_step_flow_id?: string
+          p_flow_step_node_id?: string
+          p_has_appointment?: string
+          p_lead_score_max?: number
+          p_lead_score_min?: number
+          p_lead_score_operator?: string
+          p_lead_score_value?: number
+          p_lead_source?: string
+          p_lead_status_operator?: string
+          p_lead_status_value?: string
+          p_lead_status_values?: string[]
+          p_limit?: number
+          p_market?: string
+          p_message_keyword?: string
+          p_message_type?: string
+          p_search_query?: string
+          p_sequence_id?: string
+          p_sequence_mode?: string
+          p_sort_direction?: string
+          p_sort_field?: string
+          p_state?: string
+          p_step_condition?: string
+          p_step_number?: number
+          p_step_sequence_id?: string
+          p_sub_source?: string
+          p_tag_exclude_ids?: string[]
+          p_tag_ids?: string[]
+          p_tag_mode?: string
+          p_updated_end?: string
+          p_updated_start?: string
+          p_webhook_name?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_date: string
+          city: string
+          conversation_status: string
+          created_at: string
+          crm_id: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          last_action_at: string
+          last_inbound_at: string
+          last_outbound_at: string
+          lastname: string
+          lead_score: number
+          lead_source: string
+          lead_status: string
+          market: string
+          metadata: Json
           name: string
           phone_number: string
-          email: string
-          workspace_id: string
-          created_at: string
-          updated_at: string
-          metadata: Json
-          unread_count: number
-          firstname: string
-          lastname: string
-          conversation_status: string
+          product: string
+          st_address: string
+          state: string
+          sub_source: string
           tags: Json
-          priority: string
-          follow_up_date: string
-          is_favorite: boolean
-          is_archived: boolean
-          needs_response: boolean
-          sentiment: string
-          team: string
+          text_disposition: string
+          text_disposition_id: string
+          updated_at: string
           webhook_name: string
-          webhook_id: string
-          lastMessage: string
-          lastMessageTimestamp: string
-          lastMessageDirection: string
-          lastMessageSender: string
-          lastMessageId: string
-          lastMessageType: string
+          webhook_received_at: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_for_phone_swap: {
+        Args: {
+          p_batch_size?: number
+          p_old_phone: string
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_id: string
+          days_old: number
+          lead_status: string
+          priority_group: number
+        }[]
+      }
+      get_contacts_in_sequence: {
+        Args: {
+          p_cursor?: string
+          p_limit?: number
+          p_sequence_id: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_result_id: number
+          appointment_status_id: number
+          board_id: string
+          board_name: string
+          city: string
+          conversation_status: string
+          created_at: string
+          crm_id: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          is_archived: boolean
+          is_completed: boolean
+          is_favorite: boolean
+          lastname: string
+          lead_source: string
+          lead_status: string
+          lead_status_id: number
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          opt_in_through: string
+          phone_number: string
+          priority: string
+          product: string
+          sentiment: string
+          st_address: string
+          state: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_not_in_sequence: {
+        Args: {
+          p_cursor?: string
+          p_limit?: number
+          p_sequence_id: string
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_result_id: number
+          appointment_status_id: number
+          board_id: string
+          board_name: string
+          city: string
+          conversation_status: string
+          created_at: string
+          crm_id: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          is_archived: boolean
+          is_completed: boolean
+          is_favorite: boolean
+          lastname: string
+          lead_source: string
+          lead_status: string
+          lead_status_id: number
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          opt_in_through: string
+          phone_number: string
+          priority: string
+          product: string
+          sentiment: string
+          st_address: string
+          state: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_timeseries_fast: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: Json
+      }
+      get_contacts_unified: {
+        Args: {
+          filter_type?: string
+          filter_value?: string
+          page_number?: number
+          page_size?: number
+          sort_by?: string
+          sort_direction?: string
+          user_id_param?: string
+          workspace_id_param: string
+        }
+        Returns: {
+          assigned_agent_name: string
+          assigned_user_id: string
+          city: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          is_archived: boolean
+          is_demo: boolean
+          is_favorite: boolean
+          last_message_body: string
+          last_message_direction: string
+          last_message_id: string
+          last_message_sender: string
+          last_message_timestamp: string
+          last_message_type: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          phone_number: string
+          priority: string
+          product: string
+          sentiment: string
+          st_address: string
+          state: string
+          tags: Json
+          team: string
           total_count: number
+          unread_count: number
+          updated_at: string
+          webhook_id: string
+          webhook_name: string
+          webhook_received_at: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_contacts_with_campaign_view: {
+        Args: {
+          p_flow_ids?: string[]
+          p_limit?: number
+          p_offset?: number
+          p_sequence_ids?: string[]
+          p_stages?: string[]
+          p_statuses?: string[]
+          p_workspace_id: string
+        }
+        Returns: {
+          campaign_name: string
+          campaign_stage: string
+          campaign_type: string
+          created_at: string
+          email: string
+          execution_status: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_status: string
+          name: string
+          phone_number: string
+          product: string
+          tags: Json
+          total_count: number
+        }[]
+      }
+      get_contacts_with_tag_not_in_sequence: {
+        Args: {
+          p_cursor?: string
+          p_limit?: number
+          p_sequence_id: string
+          p_tag_ids: string[]
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          lead_status_id: number
+          market: string
+          metadata: Json
+          name: string
+          phone_number: string
+          tags: Json
+          updated_at: string
+          workspace_id: string
+        }[]
+      }
+      get_contacts_with_tagged_messages: {
+        Args: { p_tag_ids?: string[]; p_workspace_id: string }
+        Returns: {
+          contact_id: string
+        }[]
+      }
+      get_contacts_with_tags: {
+        Args: {
+          p_cursor?: string
+          p_limit?: number
+          p_tag_ids?: string[]
+          p_tag_mode?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_id: string
+          contact_tags: Json
+        }[]
+      }
+      get_contacts_with_tags_filtered: {
+        Args: {
+          p_cursor?: string
+          p_limit?: number
+          p_tag_ids?: string[]
+          p_workspace_id: string
+        }
+        Returns: {
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_status_id: number
+          metadata: Json
+          name: string
+          phone_number: string
+          tags: Json
+          updated_at: string
+          workspace_id: string
+        }[]
+      }
+      get_conversation_status_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          conversation_status: string
+          count: number
+        }[]
+      }
+      get_conversion_funnel: { Args: { p_workspace_id: string }; Returns: Json }
+      get_conversion_funnel_fast:
+        | { Args: { p_workspace_id: string }; Returns: Json }
+        | {
+            Args: { p_sequence_id?: string; p_workspace_id: string }
+            Returns: Json
+          }
+      get_dashboard_kpis: { Args: { p_workspace_id: string }; Returns: Json }
+      get_dashboard_kpis_contact_count: {
+        Args: {
+          p_end?: string
+          p_lead_statuses?: string[]
+          p_start?: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      get_dashboard_kpis_fast: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      get_dashboard_widget_data_fast: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: Json
+      }
+      get_default_stage_for_workspace: {
+        Args: { target_workspace_id: string }
+        Returns: {
+          stage_slug: string
+        }[]
+      }
+      get_distinct_contact_lead_statuses: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          count: number
+          lead_status: string
+        }[]
+      }
+      get_distinct_contact_timezones: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          timezone: string
+        }[]
+      }
+      get_distinct_contact_webhook_names: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          count: number
+          webhook_name: string
         }[]
       }
       get_distinct_field_values: {
         Args: { p_workspace_id: string }
         Returns: {
           field_name: string
-          field_values: Json
+          field_values: string[]
         }[]
       }
-      get_folder_counts: {
-        Args: { workspace_id_param: string } | { workspace_id_param: string }
+      get_distinct_lead_statuses: {
+        Args: { p_workspace_id: string }
         Returns: {
-          folder: string
           count: number
+          lead_status: string
+        }[]
+      }
+      get_dynamic_sender_stats: {
+        Args: {
+          p_limit?: number
+          p_timeframe_days?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          boards_using: number
+          contacts_count: number
+          sender_area_code: string
+          sender_phone: string
+        }[]
+      }
+      get_dynamic_sender_stats_with_delivery: {
+        Args: {
+          p_limit?: number
+          p_timeframe_days?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          boards_using: number
+          contacts_count: number
+          delivery_rate: number
+          error_rate: number
+          messages_delivered: number
+          messages_failed: number
+          messages_sent: number
+          sender_area_code: string
+          sender_phone: string
+        }[]
+      }
+      get_effective_assignment_permission_mode: {
+        Args: { p_workspace_id: string }
+        Returns: string
+      }
+      get_effective_reminder_settings: {
+        Args: { p_event_type_id?: string; p_workspace_id: string }
+        Returns: {
+          confirmation_email_subject: string
+          confirmation_email_template: string
+          confirmation_sms_template: string
+          email_enabled: boolean
+          event_type_id: string
+          id: string
+          is_default: boolean
+          reminder_1hr_email_subject: string
+          reminder_1hr_email_template: string
+          reminder_1hr_sms_template: string
+          reminder_24hr_email_subject: string
+          reminder_24hr_email_template: string
+          reminder_24hr_sms_template: string
+          send_1hr_reminder: boolean
+          send_24hr_reminder: boolean
+          send_confirmation: boolean
+          sms_enabled: boolean
+          workspace_id: string
+        }[]
+      }
+      get_email_bounce_details: {
+        Args: { p_date_range?: string; p_workspace_id: string }
+        Returns: Json
+      }
+      get_email_engagement: { Args: { p_days?: number }; Returns: Json }
+      get_email_folder_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          cnt: number
+          folder: string
+        }[]
+      }
+      get_email_metrics_summary: {
+        Args: { p_date_range?: string; p_workspace_id: string }
+        Returns: Json
+      }
+      get_email_trends_by_day: {
+        Args: { p_date_range?: string; p_workspace_id: string }
+        Returns: Json
+      }
+      get_endpoint_trends: {
+        Args: { days?: number }
+        Returns: {
+          avg_response_time: number
+          date: string
+          error_count: number
+          total_requests: number
+          unique_endpoints: number
+        }[]
+      }
+      get_engagement_heatmap: { Args: { p_days?: number }; Returns: Json }
+      get_failed_login_attempts: { Args: { p_hours?: number }; Returns: Json }
+      get_filtered_contacts_with_assignments: {
+        Args: {
+          filter_type?: string
+          page_number?: number
+          page_size?: number
+          user_id_param?: string
+          workspace_id_param: string
+        }
+        Returns: {
+          city: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          is_archived: boolean
+          is_favorite: boolean
+          lastMessage: string
+          lastMessageDirection: string
+          lastMessageId: string
+          lastMessageSender: string
+          lastMessageTimestamp: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          phone_number: string
+          priority: string
+          product: string
+          sentiment: string
+          st_address: string
+          state: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_flow_execution_logs_page: {
+        Args: {
+          p_action?: string
+          p_contact_id?: string
+          p_end_date?: string
+          p_flow_id: string
+          p_limit?: number
+          p_start_date?: string
+          p_status?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          completed_at: string
+          contact: Json
+          execution_id: string
+          flow_execution: Json
+          id: string
+          node_id: string
+          node_type: string
+          result: Json
+          started_at: string
+          status: string
+        }[]
+      }
+      get_flow_execution_steps_retention_overview: {
+        Args: {
+          p_failure_retention_days?: number
+          p_success_retention_days?: number
+        }
+        Returns: Json
+      }
+      get_flow_execution_trends: { Args: { p_days?: number }; Returns: Json }
+      get_folder_counts:
+        | {
+            Args: { workspace_id_param: string }
+            Returns: {
+              error: true
+            } & "Could not choose the best candidate function between: public.get_folder_counts(workspace_id_param => text), public.get_folder_counts(workspace_id_param => uuid). Try renaming the parameters or the function itself in the database so function overloading can be resolved"[]
+          }
+        | {
+            Args: { workspace_id_param: string }
+            Returns: {
+              error: true
+            } & "Could not choose the best candidate function between: public.get_folder_counts(workspace_id_param => text), public.get_folder_counts(workspace_id_param => uuid). Try renaming the parameters or the function itself in the database so function overloading can be resolved"[]
+          }
+      get_inbound_outbound_breakdown: {
+        Args: {
+          p_end_date: string
+          p_start_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          date: string
+          day_name: string
+          inbound: number
+          inbound_email: number
+          inbound_sms: number
+          name: string
+          outbound: number
+          outbound_email: number
+          outbound_sms: number
+        }[]
+      }
+      get_inbox_contacts: {
+        Args: {
+          p_conversation_status?: string
+          p_cursor_id?: string
+          p_cursor_updated_at?: string
+          p_inbox_id: string
+          p_page_size?: number
+          p_search_query?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+        }[]
+      }
+      get_inbox_contacts_sorted: {
+        Args: {
+          p_conversation_status?: string
+          p_cursor_id?: string
+          p_cursor_sort_value?: string
+          p_inbox_id: string
+          p_page_size?: number
+          p_search_query?: string
+          p_sort_by: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          last_inbound_at: string
+          last_outbound_at: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+        }[]
+      }
+      get_inbox_distribution_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          count: number
+          webhook_name: string
+        }[]
+      }
+      get_latest_messages_per_contact: {
+        Args: { p_contact_ids: string[]; p_workspace_id: string }
+        Returns: {
+          body: string
+          contact_id: string
+          created_at: string
+          direction: string
+          id: string
+          is_read: boolean
+          media_urls: Json
+          metadata: Json
+          msg_type: string
+          sender: string
+          twilio_number: string
+          user_id: string
+          user_name: string
+        }[]
+      }
+      get_lead_area_code_stats: {
+        Args: {
+          p_limit?: number
+          p_timeframe_days?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          area_code: string
+          lead_count: number
+          state_abbr: string
+          state_name: string
+        }[]
+      }
+      get_lead_score_distribution: { Args: { p_days?: number }; Returns: Json }
+      get_lead_source_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          count: number
+          lead_source: string
+        }[]
+      }
+      get_lead_status_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          count: number
+          lead_status: string
         }[]
       }
       get_lead_status_sources: {
         Args: { workspace_id_param: string }
         Returns: {
-          lead_status: string
           count: number
+          lead_status: string
         }[]
       }
-      get_media_url: {
-        Args: { media_path: string }
-        Returns: string
+      get_live_session_breakdown: { Args: never; Returns: Json }
+      get_livechat_board_buckets: {
+        Args: {
+          p_inbox_id?: string
+          p_limit_per_bucket?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          bucket_key: string
+          contacts: Json
+          total_count: number
+        }[]
+      }
+      get_logins_by_dow: { Args: { p_days?: number }; Returns: Json }
+      get_logins_by_hour: { Args: { p_days?: number }; Returns: Json }
+      get_matching_inbox_ids_for_contact: {
+        Args: {
+          p_contact_id: string
+          p_conversation_status?: string
+          p_workspace_id: string
+        }
+        Returns: string[]
+      }
+      get_media_url: { Args: { media_path: string }; Returns: string }
+      get_message_job_stats: {
+        Args: { p_message_ids: string[] }
+        Returns: {
+          failed: number
+          message_id: string
+          pending: number
+          sent: number
+        }[]
+      }
+      get_messages_by_hour: {
+        Args: {
+          p_end_date?: string
+          p_start_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      get_messages_time_series: {
+        Args: {
+          p_end_date?: string
+          p_group_by?: string
+          p_start_date?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      get_messages_timeseries_fast: {
+        Args: { p_days?: number; p_workspace_id: string }
+        Returns: Json
       }
       get_messages_with_workspace: {
         Args: { p_contact_id: string; p_limit?: number; p_offset?: number }
         Returns: {
-          id: string
-          contact_id: string
-          workspace_id: string
           body: string
-          direction: string
-          status: string
+          contact_id: string
           created_at: string
-          updated_at: string
-          twilio_sid: string
+          direction: string
+          id: string
           message_type: string
           metadata: Json
+          status: string
+          twilio_sid: string
+          updated_at: string
+          workspace_id: string
+        }[]
+      }
+      get_messaging_by_carrier: {
+        Args: {
+          p_end_date: string
+          p_limit?: number
+          p_start_date: string
+          p_workspace_id: string
+        }
+        Returns: {
+          carrier_name: string
+          delivered: number
+          delivery_unknown: number
+          failed: number
+          total_sent: number
+          undelivered: number
+        }[]
+      }
+      get_messaging_delivery_stats:
+        | {
+            Args: {
+              p_end_date: string
+              p_start_date: string
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              p_end_date: string
+              p_start_date: string
+              p_unique_contacts?: boolean
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+      get_messaging_error_breakdown:
+        | {
+            Args: {
+              p_end_date: string
+              p_limit?: number
+              p_start_date: string
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              p_end_date: string
+              p_limit?: number
+              p_start_date: string
+              p_unique_contacts?: boolean
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+      get_messaging_health_score:
+        | {
+            Args: {
+              p_end_date: string
+              p_start_date: string
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              p_end_date: string
+              p_start_date: string
+              p_unique_contacts?: boolean
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+      get_messaging_response_stats:
+        | {
+            Args: {
+              p_end_date: string
+              p_start_date: string
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              p_end_date: string
+              p_start_date: string
+              p_unique_contacts?: boolean
+              p_workspace_id: string
+            }
+            Returns: Json
+          }
+      get_most_used_endpoints: {
+        Args: { limit_count?: number; time_range_hours?: number }
+        Returns: {
+          avg_response_time: number
+          endpoint: string
+          request_count: number
+          success_rate: number
+        }[]
+      }
+      get_open_conversations_by_board: {
+        Args: { workspace_id_param: string }
+        Returns: {
+          board_name: string
+          open_count: number
+        }[]
+      }
+      get_or_create_developer_usage: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          api_calls_count: number | null
+          api_calls_limit: number | null
+          base_charge: number | null
+          connector_executions: number | null
+          contacts_count: number | null
+          contacts_limit: number | null
+          contacts_overage_count: number | null
+          created_at: string | null
+          developer_share: number | null
+          email_limit: number | null
+          emails_received: number | null
+          emails_sent: number | null
+          id: string
+          is_paid: boolean | null
+          marketplace_revenue: number | null
+          overage_charges: number | null
+          paid_at: string | null
+          period_end: string
+          period_start: string
+          platform_share: number | null
+          sms_limit: number | null
+          sms_overage_count: number | null
+          sms_received: number | null
+          sms_sent: number | null
+          stripe_invoice_id: string | null
+          total_charge: number | null
+          updated_at: string | null
+          webhooks_limit: number | null
+          webhooks_received: number | null
+          webhooks_sent: number | null
+          workflow_executions: number | null
+          workflow_limit: number | null
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "developer_usage_tracking"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      get_or_create_short_link_field: {
+        Args: { p_field_name?: string; p_workspace_id: string }
+        Returns: string
+      }
+      get_paginated_board_contacts_for_user: {
+        Args: {
+          p_board_id: string
+          p_column_id?: string
+          p_filter?: string
+          p_page?: number
+          p_page_size?: number
+          p_search?: string
+          p_sort_by?: string
+          p_sort_order?: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: {
+          assigned_agents: Json
+          board_column_id: string
+          board_id: string
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          last_activity_at: string
+          last_message: string
+          last_message_direction: string
+          last_message_id: string
+          last_message_sender: string
+          last_message_timestamp: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          metadata: Json
+          name: string
+          opted_in_sms: boolean
+          phone_number: string
+          primary_assignee_avatar_url: string
+          primary_assignee_id: string
+          primary_assignee_name: string
+          total_count: number
+          updated_at: string
+          workspace_id: string
         }[]
       }
       get_paginated_contacts_with_last_message: {
         Args: {
-          workspace_id_param: string
+          filter_status?: string
           page_number?: number
           page_size?: number
-          filter_status?: string
+          workspace_id_param: string
         }
         Returns: {
-          id: string
-          name: string
-          phone_number: string
-          email: string
-          workspace_id: string
-          created_at: string
-          updated_at: string
-          metadata: Json
-          unread_count: number
-          firstname: string
-          lastname: string
-          conversation_status: string
-          tags: Json
-          priority: string
-          follow_up_date: string
-          is_favorite: boolean
-          is_archived: boolean
-          needs_response: boolean
-          sentiment: string
-          team: string
-          lastMessage: string
-          lastMessageTimestamp: string
-          lastMessageDirection: string
-          lastMessageSender: string
-          lastMessageId: string
-          lastMessageType: string
+          appointment_result_id: number
+          appointment_status_id: number
           assignee_id: string
-          webhook_name: string
+          board_id: string
+          board_name: string
+          city: string
+          conversation_status: string
+          created_at: string
+          created_by: string
+          crm_id: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          is_archived: boolean
+          is_completed: boolean
+          is_demo: boolean
+          is_favorite: boolean
+          last_action_at: string
+          last_action_type: string
+          lastMessage: string
+          lastMessageDirection: string
+          lastMessageId: string
+          lastMessageSender: string
+          lastMessageTimestamp: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          lead_status_id: number
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          opt_in_through: string
+          opted_in_email: boolean
+          opted_in_sms: boolean
+          phone_number: string
+          priority: string
+          product: string
+          property_insights_data: Json
+          property_insights_updated_at: string
+          search_vector: unknown
+          sentiment: string
+          sentiment_history: Json
+          st_address: string
+          state: string
+          tags: Json
+          team: string
           total_count: number
+          unread_count: number
+          updated_at: string
+          webhook_id: string
+          webhook_name: string
+          webhook_received_at: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_paginated_contacts_with_last_message_sorted: {
+        Args: {
+          contact_filter_type?: string
+          filter_status?: string
+          page_number?: number
+          page_size?: number
+          sort_by?: string
+          user_id_param?: string
+          workspace_id_param: string
+        }
+        Returns: {
+          appointment_result_id: number
+          appointment_status_id: number
+          assignee_id: string
+          board_id: string
+          board_name: string
+          city: string
+          conversation_status: string
+          created_at: string
+          created_by: string
+          crm_id: string
+          email: string
+          firstname: string
+          follow_up_date: string
+          id: string
+          is_archived: boolean
+          is_completed: boolean
+          is_demo: boolean
+          is_favorite: boolean
+          last_action_at: string
+          last_action_type: string
+          lastMessage: string
+          lastMessageDirection: string
+          lastMessageId: string
+          lastMessageMetadata: Json
+          lastMessageSender: string
+          lastMessageTimestamp: string
+          lastMessageUserId: string
+          lastMessageUserName: string
+          lastname: string
+          lead_source: string
+          lead_status: string
+          lead_status_id: number
+          market: string
+          metadata: Json
+          name: string
+          needs_response: boolean
+          notes: string
+          opt_in_through: string
+          opted_in_email: boolean
+          opted_in_sms: boolean
+          phone_number: string
+          priority: string
+          product: string
+          property_insights_data: Json
+          property_insights_updated_at: string
+          search_vector: unknown
+          sentiment: string
+          sentiment_history: Json
+          st_address: string
+          state: string
+          tags: Json
+          team: string
+          total_count: number
+          unread_count: number
+          updated_at: string
+          webhook_id: string
+          webhook_name: string
+          webhook_received_at: string
+          workspace_id: string
+          zip: string
+        }[]
+      }
+      get_pending_product_announcements: {
+        Args: { p_limit?: number; p_workspace_id: string }
+        Returns: {
+          attachments: Json
+          body: string
+          category: string
+          cta_label: string
+          cta_url: string
+          dismissed_at: string
+          first_seen_at: string
+          highlights: Json
+          id: string
+          image_alt: string
+          image_url: string
+          opened_at: string
+          published_at: string
+          slug: string
+          summary: string
+          title: string
+        }[]
+      }
+      get_platform_summary: { Args: { p_days?: number }; Returns: Json }
+      get_product_announcement_recipients: {
+        Args: { p_announcement_id: string }
+        Returns: {
+          dismissed_at: string
+          email: string
+          first_seen_at: string
+          full_name: string
+          opened_at: string
+          status: string
+          user_id: string
+          workspace_id: string
+          workspace_name: string
         }[]
       }
       get_recipient_status_summary: {
         Args: { p_broadcast_id: string; p_workspace_id: string }
         Returns: {
-          status: string
           count: number
           percentage: number
+          status: string
         }[]
+      }
+      get_sequence_analytics_consolidated: {
+        Args: {
+          p_date_range?: string
+          p_sequence_id: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      get_sequence_conversion_analysis: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      get_sequence_enrollment_history: {
+        Args: {
+          p_limit?: number
+          p_search_query?: string
+          p_sequence_id: string
+          p_started_after?: string
+          p_status?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          completed_at: string
+          contact_email: string
+          contact_id: string
+          contact_name: string
+          contact_phone: string
+          enrollment_reason: string
+          execution_id: string
+          started_at: string
+          status: string
+          stopped_at_step: number
+          stopped_by_response: boolean
+        }[]
+      }
+      get_sequence_enrollment_stats: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      get_sequence_enrollment_stats_by_id: {
+        Args: { p_sequence_id: string; p_workspace_id: string }
+        Returns: Json
+      }
+      get_sequence_enrollment_stats_fast: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      get_sequence_performance: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      get_sequence_performance_fast: {
+        Args: { p_workspace_id: string }
+        Returns: Json
       }
       get_sequence_schedule: {
         Args: { p_broadcast_id: string; p_workspace_id: string }
         Returns: {
           day_number: number
-          scheduled_date: string
-          recipient_count: number
           delivered_count: number
-          pending_count: number
           failed_count: number
+          pending_count: number
+          recipient_count: number
+          scheduled_date: string
         }[]
       }
+      get_sequence_subscription_stats_fast: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
       get_system_recommendations: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
-          priority: number
           category: string
-          recommendation: string
           details: Json
+          priority: number
+          recommendation: string
         }[]
       }
       get_table_columns: {
         Args: { table_name: string }
         Returns: {
+          column_default: string
           column_name: string
           data_type: string
           is_nullable: boolean
-          column_default: string
         }[]
       }
       get_table_list: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
+          row_count: number
           table_name: string
           table_type: string
-          row_count: number
         }[]
       }
+      get_tag_options: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          contact_count: number
+          tag_id: string
+          tag_name: string
+        }[]
+      }
+      get_team_member_ids: {
+        Args: { p_manager_id: string; p_workspace_id: string }
+        Returns: string[]
+      }
+      get_top_active_users: { Args: { p_limit?: number }; Returns: Json }
+      get_top_workspaces: {
+        Args: { p_days?: number; p_limit?: number }
+        Returns: Json
+      }
+      get_total_logins_today: { Args: never; Returns: number }
       get_trigger_analytics: {
         Args: { workspace_id_param: string }
         Returns: {
-          trigger_id: string
-          trigger_name: string
+          affected_contacts: Json
           event_type: string
+          field_conditions: Json
           is_active: boolean
-          total_executions: number
-          unique_contacts_affected: number
           last_execution_at: string
           recent_executions: Json
-          affected_contacts: Json
-          field_conditions: Json
+          total_executions: number
+          trigger_id: string
+          trigger_name: string
+          unique_contacts_affected: number
         }[]
       }
       get_trigger_analytics_simple: {
         Args: { workspace_id_param: string }
         Returns: {
+          affected_contact_names: string[]
+          event_type: string
+          field_conditions: Json
+          is_active: boolean
+          last_execution_at: string
+          total_executions: number
           trigger_id: string
           trigger_name: string
-          event_type: string
-          is_active: boolean
-          total_executions: number
           unique_contacts_affected: number
-          last_execution_at: string
-          affected_contact_names: string[]
-          field_conditions: Json
         }[]
+      }
+      get_unassigned_contact_ids: {
+        Args: { p_workspace_id: string }
+        Returns: string[]
+      }
+      get_unassigned_contacts_count:
+        | { Args: { workspace_id_param: string }; Returns: number }
+        | {
+            Args: { user_id_param?: string; workspace_id_param: string }
+            Returns: number
+          }
+      get_unified_contact_counts: {
+        Args: { user_id_param: string; workspace_id_param: string }
+        Returns: Json
       }
       get_user_accessible_tables: {
         Args: { workspace_id_param: string }
         Returns: string[]
       }
-      get_user_workspace_ids: {
-        Args: { p_user_id: string }
-        Returns: string[]
+      get_user_activity_range: { Args: { p_days?: number }; Returns: Json }
+      get_user_by_email: {
+        Args: { user_email: string }
+        Returns: {
+          created_at: string
+          email: string
+          id: string
+        }[]
       }
-      get_user_workspaces: {
-        Args: Record<PropertyKey, never>
-        Returns: string[]
+      get_user_preferences: {
+        Args: { p_preference_type: string; p_workspace_id: string }
+        Returns: Json
+      }
+      get_user_presence_context: {
+        Args: { p_user_ids: string[] }
+        Returns: {
+          presence: Json
+          updated_at: string
+          user_id: string
+        }[]
+      }
+      get_user_workspace_ids: { Args: { p_user_id: string }; Returns: string[] }
+      get_user_workspaces: { Args: never; Returns: string[] }
+      get_webhook_hourly_activity: {
+        Args: { p_timeframe_hours?: number; p_workspace_id: string }
+        Returns: {
+          day_name: string
+          day_of_week: number
+          error_count: number
+          event_count: number
+          hour_of_day: number
+          success_count: number
+        }[]
       }
       get_webhook_sources: {
         Args: { workspace_id_param: string }
         Returns: {
-          webhook_name: string
           count: number
+          webhook_name: string
         }[]
       }
       get_webhook_url: {
         Args: { webhook_id: string; workspace_id: string }
         Returns: string
       }
+      get_webhook_volume_trend: { Args: { p_days?: number }; Returns: Json }
+      get_workspace_action_badge_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          calls_24h_count: number
+          custom_notifications_count: number
+          emails_count: number
+          messages_count: number
+        }[]
+      }
+      get_workspace_action_badge_counts_v2: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          calls_24h_count: number
+          custom_notifications_count: number
+          emails_count: number
+          messages_count: number
+        }[]
+      }
+      get_workspace_agent_assignment_visibility_mode: {
+        Args: { p_workspace_id: string }
+        Returns: string
+      }
+      get_workspace_agent_capacity_overrides: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          avatar_url: string
+          calls_capacity: number
+          email_capacity: number
+          full_name: string
+          messaging_capacity: number
+          updated_at: string
+          user_id: string
+          workspace_role: string
+        }[]
+      }
+      get_workspace_agent_presence_overview: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          active_call: boolean
+          avatar_url: string
+          calls_capacity: number
+          calls_enabled: boolean
+          calls_load: number
+          effective_status: string
+          email_capacity: number
+          email_enabled: boolean
+          email_load: number
+          full_name: string
+          last_seen_at: string
+          manual_status: string
+          messaging_capacity: number
+          messaging_enabled: boolean
+          messaging_load: number
+          user_id: string
+          workspace_role: string
+        }[]
+      }
+      get_workspace_daily_priorities: {
+        Args: { p_since: string; p_user_id: string; p_workspace_id: string }
+        Returns: {
+          active_in_sequence: number
+          ai_responses: number
+          contacted: number
+          messages_received: number
+          messages_sent: number
+          new_leads: number
+        }[]
+      }
+      get_workspace_growth: { Args: { p_days?: number }; Returns: Json }
+      get_workspace_ops_overview: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
+      get_workspace_short_domain: {
+        Args: { p_workspace_id: string }
+        Returns: string
+      }
+      get_workspace_status_counts: {
+        Args: { p_workspace_id: string }
+        Returns: {
+          closed_count: number
+          new_count: number
+          open_count: number
+        }[]
+      }
+      get_workspace_upcoming_attributed_appointments: {
+        Args: {
+          p_appointment_date_from?: string
+          p_limit?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          appointment_date: string
+          appointment_id: string
+          campaign_id: string
+        }[]
+      }
+      get_workspace_webhook_summaries: {
+        Args: { p_board_id?: string; p_workspace_id: string }
+        Returns: {
+          attached_flow_id: string
+          attached_sequence_id: string
+          board_id: string
+          call_count: number
+          created_at: string
+          created_by_email: string
+          field_mappings: Json
+          id: string
+          last_used: string
+          metadata: Json
+          name: string
+          recent_stats: Json
+          source: string
+          status: string
+          workspace_id: string
+        }[]
+      }
       grant_developer_access: {
         Args: {
-          p_workspace_id: string
-          p_developer_id: string
           p_access_level: string
-          p_reason: string
+          p_developer_id: string
           p_duration_hours?: number
+          p_reason: string
+          p_workspace_id: string
         }
         Returns: string
       }
-      gtrgm_compress: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      gtrgm_decompress: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      gtrgm_in: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      gtrgm_options: {
-        Args: { "": unknown }
-        Returns: undefined
-      }
-      gtrgm_out: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      halfvec_avg: {
-        Args: { "": number[] }
-        Returns: unknown
-      }
-      halfvec_out: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      halfvec_send: {
-        Args: { "": unknown }
-        Returns: string
-      }
-      halfvec_typmod_in: {
-        Args: { "": unknown[] }
-        Returns: number
-      }
       has_developer_access: {
-        Args: { p_workspace_id: string; p_user_id?: string }
+        Args: { p_user_id?: string; p_workspace_id: string }
         Returns: boolean
       }
-      hnsw_bit_support: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      hnsw_halfvec_support: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      hnsw_sparsevec_support: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      hnswhandler: {
-        Args: { "": unknown }
-        Returns: unknown
+      has_successful_workspaceid_sms_twin: {
+        Args: {
+          p_contact_id: string
+          p_created_at: string
+          p_flow_id?: string
+          p_require_workflow_match?: boolean
+          p_sequence_id?: string
+          p_workspace_id: string
+        }
+        Returns: boolean
       }
       http: {
         Args: { request: Database["public"]["CompositeTypes"]["http_request"] }
         Returns: Database["public"]["CompositeTypes"]["http_response"]
+        SetofOptions: {
+          from: "http_request"
+          to: "http_response"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
-      http_delete: {
-        Args:
-          | { uri: string }
-          | { uri: string; content: string; content_type: string }
-        Returns: Database["public"]["CompositeTypes"]["http_response"]
-      }
-      http_get: {
-        Args: { uri: string } | { uri: string; data: Json }
-        Returns: Database["public"]["CompositeTypes"]["http_response"]
-      }
+      http_delete:
+        | {
+            Args: { uri: string }
+            Returns: Database["public"]["CompositeTypes"]["http_response"]
+            SetofOptions: {
+              from: "*"
+              to: "http_response"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
+        | {
+            Args: { content: string; content_type: string; uri: string }
+            Returns: Database["public"]["CompositeTypes"]["http_response"]
+            SetofOptions: {
+              from: "*"
+              to: "http_response"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
+      http_get:
+        | {
+            Args: { uri: string }
+            Returns: Database["public"]["CompositeTypes"]["http_response"]
+            SetofOptions: {
+              from: "*"
+              to: "http_response"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
+        | {
+            Args: { data: Json; uri: string }
+            Returns: Database["public"]["CompositeTypes"]["http_response"]
+            SetofOptions: {
+              from: "*"
+              to: "http_response"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
       http_head: {
         Args: { uri: string }
         Returns: Database["public"]["CompositeTypes"]["http_response"]
+        SetofOptions: {
+          from: "*"
+          to: "http_response"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       http_header: {
         Args: { field: string; value: string }
         Returns: Database["public"]["CompositeTypes"]["http_header"]
+        SetofOptions: {
+          from: "*"
+          to: "http_header"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       http_list_curlopt: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           curlopt: string
           value: string
         }[]
       }
       http_patch: {
-        Args: { uri: string; content: string; content_type: string }
+        Args: { content: string; content_type: string; uri: string }
         Returns: Database["public"]["CompositeTypes"]["http_response"]
+        SetofOptions: {
+          from: "*"
+          to: "http_response"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
-      http_post: {
-        Args:
-          | { uri: string; content: string; content_type: string }
-          | { uri: string; data: Json }
-        Returns: Database["public"]["CompositeTypes"]["http_response"]
-      }
+      http_post:
+        | {
+            Args: { content: string; content_type: string; uri: string }
+            Returns: Database["public"]["CompositeTypes"]["http_response"]
+            SetofOptions: {
+              from: "*"
+              to: "http_response"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
+        | {
+            Args: { data: Json; uri: string }
+            Returns: Database["public"]["CompositeTypes"]["http_response"]
+            SetofOptions: {
+              from: "*"
+              to: "http_response"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
       http_put: {
-        Args: { uri: string; content: string; content_type: string }
+        Args: { content: string; content_type: string; uri: string }
         Returns: Database["public"]["CompositeTypes"]["http_response"]
+        SetofOptions: {
+          from: "*"
+          to: "http_response"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
-      http_reset_curlopt: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      http_reset_curlopt: { Args: never; Returns: boolean }
       http_set_curlopt: {
         Args: { curlopt: string; value: string }
         Returns: boolean
       }
-      increment: {
-        Args: { row_id: string; increment_by: number }
-        Returns: undefined
+      inbox_condition_matches: {
+        Args: {
+          p_filter_value: string
+          p_operator: string
+          p_raw_value: string
+        }
+        Returns: boolean
       }
-      ivfflat_bit_support: {
-        Args: { "": unknown }
-        Returns: unknown
+      inbox_contact_field_value: {
+        Args: {
+          p_contact: Database["public"]["Tables"]["contacts"]["Row"]
+          p_field: string
+          p_field_type?: string
+        }
+        Returns: string
       }
-      ivfflat_halfvec_support: {
-        Args: { "": unknown }
-        Returns: unknown
+      inbox_contact_matches_filters: {
+        Args: {
+          p_contact: Database["public"]["Tables"]["contacts"]["Row"]
+          p_filters: Json
+          p_workspace_id: string
+        }
+        Returns: boolean
       }
-      ivfflathandler: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      l2_norm: {
-        Args: { "": unknown } | { "": unknown }
+      inbox_count_contacts_fast: {
+        Args: {
+          p_conversation_status: string
+          p_filters: Json
+          p_workspace_id: string
+        }
         Returns: number
       }
-      l2_normalize: {
-        Args: { "": string } | { "": unknown } | { "": unknown }
-        Returns: unknown
+      inbox_count_single_contact_field_fast: {
+        Args: {
+          p_conversation_status: string
+          p_field: string
+          p_operator: string
+          p_value: string
+          p_workspace_id: string
+        }
+        Returns: number
+      }
+      inbox_drift_check: {
+        Args: {
+          p_conversation_status?: string
+          p_filters: Json
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      inbox_fast_contact_field_value: {
+        Args: {
+          c: Database["public"]["Tables"]["contacts"]["Row"]
+          p_field: string
+        }
+        Returns: string
+      }
+      inbox_field_filter_fast_supported: {
+        Args: { p_field: string; p_field_type: string; p_operator: string }
+        Returns: boolean
+      }
+      inbox_filters_have_only_webhook_name: {
+        Args: { p_filters: Json }
+        Returns: boolean
+      }
+      inbox_filters_is_single_contact_presence_check: {
+        Args: { p_filters: Json }
+        Returns: boolean
+      }
+      inbox_filters_uses_advanced_features: {
+        Args: { p_filters: Json }
+        Returns: boolean
+      }
+      inbox_jsonb_text_array: { Args: { p_value: Json }; Returns: string[] }
+      inbox_safe_numeric: { Args: { p_value: string }; Returns: number }
+      inbox_safe_timestamptz: { Args: { p_value: string }; Returns: string }
+      inbox_safe_uuid: { Args: { p_value: string }; Returns: string }
+      inbox_select_contacts_fast: {
+        Args: {
+          p_conversation_status: string
+          p_cursor_id: string
+          p_cursor_updated_at: string
+          p_filters: Json
+          p_page_size: number
+          p_search_query: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+        }[]
+      }
+      inbox_select_contacts_sorted_fast: {
+        Args: {
+          p_conversation_status: string
+          p_cursor_id: string
+          p_cursor_sort_value: string
+          p_filters: Json
+          p_page_size: number
+          p_search_query: string
+          p_sort_by: string
+          p_workspace_id: string
+        }
+        Returns: {
+          conversation_status: string
+          created_at: string
+          email: string
+          firstname: string
+          id: string
+          last_inbound_at: string
+          last_outbound_at: string
+          lastname: string
+          lead_status: string
+          lead_status_id: number
+          name: string
+          phone_number: string
+          tags: Json
+          unread_count: number
+          updated_at: string
+          webhook_name: string
+          workspace_id: string
+        }[]
+      }
+      increment: {
+        Args: { increment_by: number; row_id: string }
+        Returns: undefined
+      }
+      increment_connector_failure: {
+        Args: { p_connector_id: string }
+        Returns: undefined
+      }
+      increment_connector_installs: {
+        Args: { connector_id: string }
+        Returns: undefined
+      }
+      increment_connector_stats: {
+        Args: { p_connector_id: string; p_success: boolean }
+        Returns: undefined
+      }
+      increment_connector_success: {
+        Args: { p_connector_id: string }
+        Returns: undefined
+      }
+      increment_developer_sms_usage: {
+        Args: { p_direction?: string; p_workspace_id: string }
+        Returns: boolean
+      }
+      increment_feature_request_votes: {
+        Args: { request_id: string }
+        Returns: undefined
+      }
+      increment_outbound_trigger_execution_count: {
+        Args: { p_trigger_id: string }
+        Returns: undefined
+      }
+      increment_webhook_call_count: {
+        Args: { p_webhook_id: string }
+        Returns: undefined
+      }
+      is_agent_channel_eligible: {
+        Args: { p_channel: string; p_user_id: string; p_workspace_id: string }
+        Returns: boolean
+      }
+      is_field_monitored: {
+        Args: { p_field_name: string; p_workspace_id: string }
+        Returns: boolean
+      }
+      is_operator_filter: { Args: { val: Json }; Returns: boolean }
+      is_saas_admin: { Args: never; Returns: boolean }
+      is_saas_owner: { Args: never; Returns: boolean }
+      list_accessible_custom_inboxes: {
+        Args: { p_include_private_admin?: boolean; p_workspace_id: string }
+        Returns: {
+          can_delete: boolean
+          can_edit: boolean
+          color: string
+          created_at: string
+          filters: Json
+          icon: string
+          id: string
+          name: string
+          owner_full_name: string
+          owner_user_id: string
+          scope_type: string
+          sort_order: number
+          updated_at: string
+          workspace_id: string
+        }[]
       }
       list_developer_accessible_workspaces: {
         Args: { p_developer_id?: string }
         Returns: {
+          access_level: string
+          access_reason: string
+          expires_at: string
+          granted_at: string
+          time_remaining: string
           workspace_id: string
           workspace_name: string
-          access_level: string
-          granted_at: string
-          expires_at: string
-          time_remaining: unknown
-          access_reason: string
         }[]
       }
       load_demo_boards: {
-        Args: { p_workspace_id: string; p_user_id: string }
+        Args: { p_user_id: string; p_workspace_id: string }
         Returns: Json
       }
       load_demo_contacts: {
-        Args: { p_workspace_id: string; p_user_id: string }
+        Args: { p_user_id: string; p_workspace_id: string }
         Returns: Json
       }
       load_demo_data: {
-        Args: { p_workspace_id: string; p_user_id: string }
+        Args: { p_user_id: string; p_workspace_id: string }
         Returns: Json
       }
       load_demo_messages: {
-        Args: { p_workspace_id: string; p_user_id: string }
+        Args: { p_user_id: string; p_workspace_id: string }
         Returns: Json
+      }
+      log_suppressed_workspaceid_artifact: {
+        Args: {
+          p_artifact_type: string
+          p_contact_id: string
+          p_execution_id?: string
+          p_flow_id?: string
+          p_metadata?: Json
+          p_node_id?: string
+          p_proof_message_id?: string
+          p_sequence_id?: string
+          p_suppressed_row_id?: string
+          p_workspace_id: string
+        }
+        Returns: undefined
       }
       log_trigger_execution: {
         Args: {
-          trigger_id: string
-          event_id: string
-          execution_status: string
           error_text?: string
+          event_id: string
           execution_data?: Json
+          execution_status: string
+          trigger_id: string
         }
         Returns: string
       }
-      maintain_livechat_partitions: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
-      }
+      maintain_livechat_partitions: { Args: never; Returns: Json }
       manually_process_user_registration: {
         Args: { p_user_id: string }
         Returns: Json
       }
-      move_contact_between_boards: {
-        Args:
-          | {
-              p_contact_id: string
-              p_from_board_id: string
-              p_to_board_id: string
-              p_to_column_id: string
-              p_metadata: Json
-            }
-          | {
-              p_contact_id: string
-              p_from_board_id: string
-              p_to_board_id: string
-              p_to_column_id: string
-              p_metadata: Json
-            }
-        Returns: {
-          board_id: string
-          column_id: string | null
-          contact_id: string
-          created_at: string | null
-          created_by: string | null
-          duplicate_group_id: string | null
-          id: string
-          inquiry_type: string | null
-          is_demo: boolean | null
-          is_duplicate: boolean | null
-          last_activity_at: string | null
-          metadata: Json | null
-          notes: string | null
-          source: string | null
-          source_data: Json | null
-          status: string | null
-          updated_at: string | null
+      mark_user_session_offline: {
+        Args: {
+          p_current_path?: string
+          p_current_view?: string
+          p_reason?: string
         }
+        Returns: undefined
+      }
+      move_contact_between_boards:
+        | {
+            Args: {
+              p_contact_id: string
+              p_from_board_id: string
+              p_metadata: Json
+              p_to_board_id: string
+              p_to_column_id: string
+            }
+            Returns: {
+              board_id: string
+              column_id: string | null
+              contact_id: string
+              created_at: string | null
+              created_by: string | null
+              duplicate_group_id: string | null
+              id: string
+              inquiry_type: string | null
+              is_demo: boolean | null
+              is_duplicate: boolean | null
+              last_activity_at: string | null
+              metadata: Json | null
+              notes: string | null
+              source: string | null
+              source_data: Json | null
+              status: string | null
+              updated_at: string | null
+            }
+            SetofOptions: {
+              from: "*"
+              to: "board_contacts"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
+        | {
+            Args: {
+              p_contact_id: string
+              p_from_board_id: string
+              p_metadata: Json
+              p_to_board_id: string
+              p_to_column_id: string
+            }
+            Returns: {
+              board_id: string
+              column_id: string | null
+              contact_id: string
+              created_at: string | null
+              created_by: string | null
+              duplicate_group_id: string | null
+              id: string
+              inquiry_type: string | null
+              is_demo: boolean | null
+              is_duplicate: boolean | null
+              last_activity_at: string | null
+              metadata: Json | null
+              notes: string | null
+              source: string | null
+              source_data: Json | null
+              status: string | null
+              updated_at: string | null
+            }
+            SetofOptions: {
+              from: "*"
+              to: "board_contacts"
+              isOneToOne: true
+              isSetofReturn: false
+            }
+          }
+      move_contact_to_board: {
+        Args: {
+          p_contact_id: string
+          p_from_board_id: string
+          p_to_board_id: string
+          p_to_column_id: string
+        }
+        Returns: boolean
+      }
+      move_contact_to_column: {
+        Args: {
+          p_board_id: string
+          p_contact_id: string
+          p_to_column_id: string
+        }
+        Returns: boolean
+      }
+      product_announcement_visible_to_workspace: {
+        Args: { p_announcement_id: string; p_workspace_id: string }
+        Returns: boolean
       }
       purchase_partner_phone_number: {
         Args: {
-          phone_number: string
-          workspace_id: string
-          user_id: string
           fingerprint_data: Json
+          phone_number: string
+          user_id: string
+          workspace_id: string
         }
         Returns: Json
       }
+      purge_inbound_sms_async_retention: {
+        Args: { p_terminal_retention?: string }
+        Returns: {
+          deleted_orphan_action_log_rows: number
+          deleted_outbox_rows: number
+        }[]
+      }
       queue_ai_response: {
         Args: {
+          p_contact_id: string
           p_message_id: string
           p_workspace_id: string
-          p_contact_id: string
         }
         Returns: string
       }
@@ -11503,32 +34405,123 @@ export type Database = {
         Args: { p_campaign_id: string; p_send_immediately?: boolean }
         Returns: undefined
       }
+      reassign_livechat_contact_exclusive: {
+        Args: { p_contact_id: string; p_workspace_id: string }
+        Returns: {
+          contact_id: string
+          created_at: string | null
+          created_by: string | null
+          id: string
+          status: string | null
+          user_id: string
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "livechat_contact_assignments"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      recompute_agent_presence_current: {
+        Args: { p_user_id: string; p_workspace_id: string }
+        Returns: Json
+      }
+      record_livechat_assignment_event: {
+        Args: {
+          p_actor_user_id: string
+          p_contact_id: string
+          p_event_type: string
+          p_metadata?: Json
+          p_subject_user_id: string
+          p_workspace_id: string
+        }
+        Returns: string
+      }
+      record_product_announcement_event: {
+        Args: {
+          p_announcement_id: string
+          p_event: string
+          p_workspace_id: string
+        }
+        Returns: undefined
+      }
+      record_team_chat_activity: {
+        Args: { p_kind: string; p_user_id: string; p_workspace_id: string }
+        Returns: undefined
+      }
       refresh_segment_contacts: {
         Args: { p_segment_id: string }
         Returns: number
       }
-      remove_demo_data: {
-        Args: { p_workspace_id: string }
-        Returns: Json
-      }
+      remove_demo_data: { Args: { p_workspace_id: string }; Returns: Json }
       revoke_developer_access: {
         Args: {
-          p_workspace_id: string
           p_developer_id: string
           p_reason?: string
+          p_workspace_id: string
         }
         Returns: Json
       }
+      safe_delete_column: { Args: { column_id_text: string }; Returns: boolean }
       sanitize_company_name_for_email: {
         Args: { company_name: string }
         Returns: string
       }
+      save_inbound_livechat_message_idempotent: {
+        Args: {
+          p_body: string
+          p_contact_id: string
+          p_has_media?: boolean
+          p_media_urls?: Json
+          p_twilio_sid: string
+          p_workspace_id: string
+        }
+        Returns: {
+          ai_log_id: string | null
+          archived: boolean | null
+          board_id: string | null
+          body: string
+          chat_url: string | null
+          column_id: string | null
+          contact_id: string | null
+          conversation_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["message_direction"] | null
+          id: string
+          is_ai_generated: boolean | null
+          is_internal: boolean | null
+          is_read: boolean | null
+          media_paths: Json | null
+          media_urls: Json | null
+          metadata: Json | null
+          msg_type: string
+          parent_id: string | null
+          sender: string
+          status: string | null
+          subject: string | null
+          thread_id: string | null
+          twilio_number: string | null
+          twilio_sid: string | null
+          updated_at: string | null
+          user_avatar: string | null
+          user_id: string | null
+          user_name: string | null
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "livechat_messages"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       save_onboarding_response: {
         Args: {
+          p_response: Json
+          p_step_id: string
           p_user_id: string
           p_workspace_id: string
-          p_step_id: string
-          p_response: Json
         }
         Returns: boolean
       }
@@ -11536,82 +34529,196 @@ export type Database = {
         Args: { area_code: string; limit_count?: number }
         Returns: Json
       }
-      search_contacts: {
-        Args:
-          | {
-              workspace_id_param: string
-              search_term: string
+      search_contacts:
+        | {
+            Args: {
               result_limit?: number
-            }
-          | {
-              workspace_id_param: string
               search_term: string
-              result_limit?: number
+              workspace_id_param: string
             }
-        Returns: {
-          appointment_result_id: number | null
-          appointment_status_id: number | null
-          board_id: string | null
-          board_name: string | null
-          city: string | null
-          conversation_status: string | null
-          created_at: string | null
-          created_by: string | null
-          crm_id: string | null
-          email: string | null
-          firstname: string
-          follow_up_date: string | null
-          id: string
-          is_archived: boolean | null
-          is_completed: boolean | null
-          is_demo: boolean | null
-          is_favorite: boolean | null
-          last_action_at: string | null
-          last_action_type: string | null
-          lastname: string
-          lead_source: string | null
-          lead_status: string | null
-          lead_status_id: number | null
-          market: string | null
-          metadata: Json | null
-          name: string | null
-          needs_response: boolean | null
-          notes: string | null
-          opt_in_through: string
-          opted_in_email: boolean | null
-          opted_in_sms: boolean | null
-          phone_number: string
-          priority: string | null
-          product: string | null
-          property_insights_data: Json | null
-          property_insights_updated_at: string | null
-          search_vector: unknown | null
-          sentiment: string | null
-          sentiment_history: Json | null
-          st_address: string | null
-          state: string | null
-          tags: Json | null
-          team: string | null
-          unread_count: number | null
-          updated_at: string | null
-          webhook_id: string | null
-          webhook_name: string | null
-          webhook_received_at: string | null
-          workspace_id: string
-          zip: string | null
-        }[]
-      }
+            Returns: {
+              ai_reset_at: string | null
+              appointment_date: string | null
+              appointment_date_display: string | null
+              appointment_result_id: number | null
+              appointment_status_id: number | null
+              appointment_time: string | null
+              automation_paused_until: string | null
+              board_id: string | null
+              board_name: string | null
+              calendar_links: Json | null
+              city: string | null
+              conversation_status: string | null
+              created_at: string | null
+              created_by: string | null
+              crm_id: string | null
+              email: string | null
+              firstname: string
+              follow_up_date: string | null
+              id: string
+              instagram_id: string | null
+              is_archived: boolean | null
+              is_completed: boolean | null
+              is_demo: boolean | null
+              is_favorite: boolean | null
+              last_action_at: string | null
+              last_action_type: string | null
+              last_ai_response_at: string | null
+              last_inbound_at: string | null
+              last_inbound_text: string | null
+              last_outbound_at: string | null
+              last_outbound_by: string | null
+              last_outbound_text: string | null
+              last_outbound_type: string | null
+              lastname: string
+              lead_score: number | null
+              lead_score_updated_at: string | null
+              lead_source: string | null
+              lead_status: string | null
+              lead_status_id: number | null
+              market: string | null
+              messenger_psid: string | null
+              metadata: Json | null
+              name: string | null
+              needs_response: boolean | null
+              notes: string | null
+              opt_in_through: string
+              opted_in_email: boolean | null
+              opted_in_sms: boolean | null
+              phone_number: string | null
+              priority: string | null
+              product: string | null
+              property_insights_data: Json | null
+              property_insights_updated_at: string | null
+              search_vector: unknown
+              sentiment: string | null
+              sentiment_history: Json | null
+              st_address: string | null
+              state: string | null
+              sub_source: string | null
+              tags: Json | null
+              team: string | null
+              text_disposition: string | null
+              text_disposition_id: string | null
+              timezone: string | null
+              unread_count: number | null
+              updated_at: string | null
+              webhook_id: string | null
+              webhook_name: string | null
+              webhook_received_at: string | null
+              workspace_id: string
+              zip: string | null
+            }[]
+            SetofOptions: {
+              from: "*"
+              to: "contacts"
+              isOneToOne: false
+              isSetofReturn: true
+            }
+          }
+        | {
+            Args: {
+              result_limit?: number
+              search_term: string
+              workspace_id_param: string
+            }
+            Returns: {
+              ai_reset_at: string | null
+              appointment_date: string | null
+              appointment_date_display: string | null
+              appointment_result_id: number | null
+              appointment_status_id: number | null
+              appointment_time: string | null
+              automation_paused_until: string | null
+              board_id: string | null
+              board_name: string | null
+              calendar_links: Json | null
+              city: string | null
+              conversation_status: string | null
+              created_at: string | null
+              created_by: string | null
+              crm_id: string | null
+              email: string | null
+              firstname: string
+              follow_up_date: string | null
+              id: string
+              instagram_id: string | null
+              is_archived: boolean | null
+              is_completed: boolean | null
+              is_demo: boolean | null
+              is_favorite: boolean | null
+              last_action_at: string | null
+              last_action_type: string | null
+              last_ai_response_at: string | null
+              last_inbound_at: string | null
+              last_inbound_text: string | null
+              last_outbound_at: string | null
+              last_outbound_by: string | null
+              last_outbound_text: string | null
+              last_outbound_type: string | null
+              lastname: string
+              lead_score: number | null
+              lead_score_updated_at: string | null
+              lead_source: string | null
+              lead_status: string | null
+              lead_status_id: number | null
+              market: string | null
+              messenger_psid: string | null
+              metadata: Json | null
+              name: string | null
+              needs_response: boolean | null
+              notes: string | null
+              opt_in_through: string
+              opted_in_email: boolean | null
+              opted_in_sms: boolean | null
+              phone_number: string | null
+              priority: string | null
+              product: string | null
+              property_insights_data: Json | null
+              property_insights_updated_at: string | null
+              search_vector: unknown
+              sentiment: string | null
+              sentiment_history: Json | null
+              st_address: string | null
+              state: string | null
+              sub_source: string | null
+              tags: Json | null
+              team: string | null
+              text_disposition: string | null
+              text_disposition_id: string | null
+              timezone: string | null
+              unread_count: number | null
+              updated_at: string | null
+              webhook_id: string | null
+              webhook_name: string | null
+              webhook_received_at: string | null
+              workspace_id: string
+              zip: string | null
+            }[]
+            SetofOptions: {
+              from: "*"
+              to: "contacts"
+              isOneToOne: false
+              isSetofReturn: true
+            }
+          }
       search_contacts_hybrid: {
         Args: {
-          workspace_id_param: string
-          search_term: string
           result_limit?: number
+          search_term: string
+          workspace_id_param: string
         }
         Returns: {
+          ai_reset_at: string | null
+          appointment_date: string | null
+          appointment_date_display: string | null
           appointment_result_id: number | null
           appointment_status_id: number | null
+          appointment_time: string | null
+          automation_paused_until: string | null
           board_id: string | null
           board_name: string | null
+          calendar_links: Json | null
           city: string | null
           conversation_status: string | null
           created_at: string | null
@@ -11621,17 +34728,28 @@ export type Database = {
           firstname: string
           follow_up_date: string | null
           id: string
+          instagram_id: string | null
           is_archived: boolean | null
           is_completed: boolean | null
           is_demo: boolean | null
           is_favorite: boolean | null
           last_action_at: string | null
           last_action_type: string | null
+          last_ai_response_at: string | null
+          last_inbound_at: string | null
+          last_inbound_text: string | null
+          last_outbound_at: string | null
+          last_outbound_by: string | null
+          last_outbound_text: string | null
+          last_outbound_type: string | null
           lastname: string
+          lead_score: number | null
+          lead_score_updated_at: string | null
           lead_source: string | null
           lead_status: string | null
           lead_status_id: number | null
           market: string | null
+          messenger_psid: string | null
           metadata: Json | null
           name: string | null
           needs_response: boolean | null
@@ -11639,18 +34757,22 @@ export type Database = {
           opt_in_through: string
           opted_in_email: boolean | null
           opted_in_sms: boolean | null
-          phone_number: string
+          phone_number: string | null
           priority: string | null
           product: string | null
           property_insights_data: Json | null
           property_insights_updated_at: string | null
-          search_vector: unknown | null
+          search_vector: unknown
           sentiment: string | null
           sentiment_history: Json | null
           st_address: string | null
           state: string | null
+          sub_source: string | null
           tags: Json | null
           team: string | null
+          text_disposition: string | null
+          text_disposition_id: string | null
+          timezone: string | null
           unread_count: number | null
           updated_at: string | null
           webhook_id: string | null
@@ -11659,26 +34781,77 @@ export type Database = {
           workspace_id: string
           zip: string | null
         }[]
+        SetofOptions: {
+          from: "*"
+          to: "contacts"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      search_voice_knowledge: {
+        Args: {
+          p_agent_config_id?: string
+          p_category?: string
+          p_limit?: number
+          p_query?: string
+          p_workspace_id: string
+        }
+        Returns: {
+          category: string
+          confidence: number
+          content: string
+          id: string
+          title: string
+        }[]
+      }
+      search_webhook_logs: {
+        Args: {
+          p_date_from?: string
+          p_limit?: number
+          p_search?: string
+          p_status?: string
+          p_webhook_id: string
+        }
+        Returns: {
+          error_message: string | null
+          id: string
+          payload: Json | null
+          preprocessing_duration: number | null
+          preprocessing_error: string | null
+          processed_contact_id: string | null
+          result: Json | null
+          source: string | null
+          status: string
+          timestamp: string
+          webhook_id: string
+          workspace_id: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "webhook_logs"
+          isOneToOne: false
+          isSetofReturn: true
+        }
       }
       send_livechat_comment: {
         Args: {
           p_body: string
           p_contact_id: string
-          p_workspace_id: string
           p_mentioned_users?: string[]
           p_visibility?: string
+          p_workspace_id: string
         }
         Returns: string
       }
       send_livechat_email: {
         Args: {
-          p_body: string
-          p_contact_id: string
-          p_workspace_id: string
-          p_subject?: string
-          p_cc?: string[]
-          p_bcc?: string[]
           p_attachments?: Json
+          p_bcc?: string[]
+          p_body: string
+          p_cc?: string[]
+          p_contact_id: string
+          p_subject?: string
+          p_workspace_id: string
         }
         Returns: string
       }
@@ -11688,108 +34861,215 @@ export type Database = {
       }
       set_contact_webhook_fields: {
         Args: {
+          p_phone_number: string
           p_webhook_id: string
           p_webhook_name: string
-          p_phone_number: string
           p_workspace_id: string
         }
         Returns: boolean
       }
-      set_limit: {
-        Args: { "": number }
-        Returns: number
-      }
       set_user_password: {
-        Args: { p_user_id: string; p_password: string }
+        Args: { p_password: string; p_user_id: string }
         Returns: boolean
       }
       set_workspace_context: {
         Args: { workspace_id: string }
         Returns: undefined
       }
-      setup_workspace_lead_status: {
-        Args:
-          | { workspace_id: string; creator_id: string }
-          | { workspace_id: string; creator_id: string }
-        Returns: undefined
-      }
-      show_limit: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
-      show_trgm: {
-        Args: { "": string }
-        Returns: string[]
-      }
-      sparsevec_out: {
-        Args: { "": unknown }
-        Returns: unknown
-      }
-      sparsevec_send: {
-        Args: { "": unknown }
-        Returns: string
-      }
-      sparsevec_typmod_in: {
-        Args: { "": unknown[] }
+      setup_workspace_lead_status:
+        | {
+            Args: { creator_id: string; workspace_id: string }
+            Returns: undefined
+          }
+        | {
+            Args: { creator_id: string; workspace_id: string }
+            Returns: undefined
+          }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
+      swap_contact_phone_batch: {
+        Args: { p_contact_ids: string[]; p_new_phone: string }
         Returns: number
       }
       test_developer_access: {
         Args: {
-          p_workspace_id: string
           p_developer_id: string
           p_test_duration_hours?: number
+          p_workspace_id: string
         }
         Returns: Json
       }
       test_field_change_detection: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
-          step_name: string
-          result: string
           details: Json
+          result: string
+          step_name: string
         }[]
       }
-      test_grant_developer_access: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
+      test_grant_developer_access: { Args: never; Returns: Json }
+      text_to_bytea: { Args: { data: string }; Returns: string }
+      track_rate_limit_usage: {
+        Args: {
+          p_api_key_id?: string
+          p_endpoint_path: string
+          p_endpoint_type: string
+          p_response_status?: number
+          p_response_time_ms?: number
+          p_source_ip?: string
+          p_user_agent?: string
+          p_user_id?: string
+          p_window_end: string
+          p_window_start: string
+          p_workspace_id: string
+        }
+        Returns: undefined
       }
-      text_to_bytea: {
-        Args: { data: string }
-        Returns: string
+      track_user_session_activity: {
+        Args: {
+          p_current_path: string
+          p_current_view: string
+          p_current_window?: string
+          p_current_window_title?: string
+          p_event_type?: string
+          p_last_sign_in_at?: string
+          p_login_at?: string
+        }
+        Returns: undefined
       }
-      trigger_update_campaign_statuses: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
+      trigger_campaign_performance_report: { Args: never; Returns: undefined }
+      trigger_update_campaign_statuses: { Args: never; Returns: Json }
+      txt_overview_by_lead_source: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          conversations: number
+          lead_source: string
+        }[]
+      }
+      txt_overview_by_rep: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          conversations: number
+          full_name: string
+          messages: number
+          user_id: string
+        }[]
+      }
+      txt_overview_by_sequence: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          conversations: number
+          sequence_id: string
+          sequence_name: string
+        }[]
+      }
+      txt_overview_closed_by_rep: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          closed_count: number
+          full_name: string
+          user_id: string
+        }[]
+      }
+      txt_overview_first_response_by_rep: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          avg_minutes: number
+          conversations: number
+          full_name: string
+          user_id: string
+        }[]
+      }
+      txt_overview_session_length_by_rep: {
+        Args: {
+          p_from_date: string
+          p_to_date: string
+          p_top_n?: number
+          p_workspace_id: string
+        }
+        Returns: {
+          avg_minutes: number
+          conversations: number
+          full_name: string
+          user_id: string
+        }[]
+      }
+      txt_per_touchpoint: {
+        Args: { p_from_date: string; p_to_date: string; p_workspace_id: string }
+        Returns: {
+          channel: string
+          click_rate: number
+          open_rate: number
+          reply_rate: number
+          step_id: string
+          step_name: string
+          step_order: number
+          unique_clicked: number
+          unique_delivered: number
+          unique_opened: number
+          unique_optout: number
+          unique_replied: number
+          unique_sent: number
+        }[]
       }
       update_broadcast_statistics: {
         Args: { p_broadcast_id: string }
         Returns: undefined
       }
-      update_campaign_statuses: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
+      update_campaign_statuses: { Args: never; Returns: number }
       update_contact_conversation_status: {
-        Args: { p_contact_id: string; p_workspace_id: string; p_status: string }
+        Args: { p_contact_id: string; p_status: string; p_workspace_id: string }
         Returns: boolean
       }
-      update_contact_status: {
-        Args:
-          | {
+      update_contact_short_link: {
+        Args: { p_contact_id: string; p_field_id: string; p_short_url: string }
+        Returns: undefined
+      }
+      update_contact_status:
+        | {
+            Args: {
               contact_id_param: string
-              workspace_id_param: string
               status_param: string
+              workspace_id_param: string
             }
-          | {
+            Returns: boolean
+          }
+        | {
+            Args: {
               p_contact_id: string
-              p_status_type: string
-              p_status_id: number
-              p_workspace_id: string
-              p_notes?: string
               p_created_by?: string
+              p_notes?: string
+              p_status_id: number
+              p_status_type: string
+              p_workspace_id: string
             }
-        Returns: boolean
-      }
+            Returns: string
+          }
       update_contact_webhook: {
         Args: {
           p_contact_id: string
@@ -11798,20 +35078,60 @@ export type Database = {
         }
         Returns: boolean
       }
-      update_conversation_status: {
-        Args:
-          | { p_contact_id: string; p_status: string; p_unread_count: number }
-          | { p_contact_id: string; p_status: string; p_unread_count?: number }
-        Returns: boolean
+      update_conversation_status:
+        | {
+            Args: {
+              p_contact_id: string
+              p_status: string
+              p_unread_count: number
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              p_contact_id: string
+              p_status: string
+              p_unread_count?: number
+            }
+            Returns: boolean
+          }
+      update_custom_inbox: {
+        Args: {
+          p_color?: string
+          p_filters?: Json
+          p_icon?: string
+          p_inbox_id: string
+          p_name: string
+        }
+        Returns: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          filters: Json | null
+          icon: string | null
+          id: string
+          name: string
+          owner_user_id: string | null
+          scope_type: string
+          sort_order: number | null
+          updated_at: string | null
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "custom_inboxes"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       update_recipient_status: {
         Args: {
           p_broadcast_id: string
+          p_error_message?: string
+          p_message_id?: string
           p_recipient_id: string
           p_status: string
-          p_error_message?: string
           p_twilio_status?: string
-          p_message_id?: string
         }
         Returns: undefined
       }
@@ -11824,64 +35144,171 @@ export type Database = {
         Returns: Json
       }
       update_sms_job_status_failed: {
-        Args: { _id: string; _error: string }
+        Args: { _error: string; _id: string }
         Returns: undefined
       }
       update_sms_job_status_failed_direct: {
-        Args: { _id: string; _error: string }
+        Args: { _error: string; _id: string }
+        Returns: Json
+      }
+      update_user_notification_pref: {
+        Args: {
+          p_path: string[]
+          p_user_id: string
+          p_value: Json
+          p_workspace_id: string
+        }
         Returns: Json
       }
       update_user_workspace_metadata: {
         Args: { user_id: string; workspace_id: string }
         Returns: boolean
       }
-      urlencode: {
-        Args: { data: Json } | { string: string } | { string: string }
-        Returns: string
+      upsert_agent_capacity_override: {
+        Args: {
+          p_calls_capacity?: number
+          p_email_capacity?: number
+          p_messaging_capacity?: number
+          p_updated_by?: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: Json
       }
-      user_has_workspace: {
-        Args: { p_user_id: string }
+      upsert_agent_presence_session: {
+        Args: {
+          p_active_call?: boolean
+          p_activity_state?: string
+          p_apply_global_preferences?: boolean
+          p_calls_enabled?: boolean
+          p_email_enabled?: boolean
+          p_manual_status?: string
+          p_messaging_enabled?: boolean
+          p_session_id: string
+          p_user_id: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      upsert_contact_by_phone: {
+        Args: {
+          p_city?: string
+          p_email?: string
+          p_firstname?: string
+          p_lastname?: string
+          p_lead_source?: string
+          p_market?: string
+          p_metadata?: Json
+          p_name?: string
+          p_notes?: string
+          p_phone_number: string
+          p_product?: string
+          p_st_address?: string
+          p_state?: string
+          p_tags?: Json
+          p_workspace_id: string
+          p_zip?: string
+        }
+        Returns: {
+          action_taken: string
+          contact_id: string
+          message: string
+        }[]
+      }
+      upsert_livechat_contact_assignment: {
+        Args: {
+          p_contact_id: string
+          p_event_type?: string
+          p_metadata?: Json
+          p_target_user_id: string
+          p_workspace_id: string
+        }
+        Returns: {
+          contact_id: string
+          created_at: string | null
+          created_by: string | null
+          id: string
+          status: string | null
+          user_id: string
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "livechat_contact_assignments"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      upsert_user_preferences: {
+        Args: {
+          p_preference_type: string
+          p_preferences: Json
+          p_workspace_id: string
+        }
+        Returns: undefined
+      }
+      urlencode:
+        | { Args: { data: Json }; Returns: string }
+        | {
+            Args: { string: string }
+            Returns: {
+              error: true
+            } & "Could not choose the best candidate function between: public.urlencode(string => bytea), public.urlencode(string => varchar). Try renaming the parameters or the function itself in the database so function overloading can be resolved"
+          }
+        | {
+            Args: { string: string }
+            Returns: {
+              error: true
+            } & "Could not choose the best candidate function between: public.urlencode(string => bytea), public.urlencode(string => varchar). Try renaming the parameters or the function itself in the database so function overloading can be resolved"
+          }
+      user_has_permission: {
+        Args: {
+          p_permission_name: string
+          p_user_id: string
+          p_workspace_id: string
+        }
         Returns: boolean
       }
+      user_has_workspace: { Args: { p_user_id: string }; Returns: boolean }
       validate_broadcast_filters: {
         Args: { p_filters: Json }
         Returns: {
-          is_valid: boolean
           error_message: string
+          is_valid: boolean
         }[]
-      }
-      vector_avg: {
-        Args: { "": number[] }
-        Returns: string
-      }
-      vector_dims: {
-        Args: { "": string } | { "": unknown }
-        Returns: number
-      }
-      vector_norm: {
-        Args: { "": string }
-        Returns: number
-      }
-      vector_out: {
-        Args: { "": string }
-        Returns: unknown
-      }
-      vector_send: {
-        Args: { "": string }
-        Returns: string
-      }
-      vector_typmod_in: {
-        Args: { "": unknown[] }
-        Returns: number
       }
       verify_broadcast_system: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           check_name: string
-          status: string
           details: Json
+          status: string
         }[]
       }
+      voice_knowledge_searchable: {
+        Args: { p_category: string; p_content: string; p_title: string }
+        Returns: string
+      }
+      webhook_intake_event_stats: {
+        Args: {
+          p_bucket_secs: number
+          p_endpoint_id?: string
+          p_profile_id?: string
+          p_since: string
+          p_status?: string
+          p_workspace_id: string
+        }
+        Returns: Json
+      }
+      webhook_log_counts: {
+        Args: { p_webhook_id: string }
+        Returns: {
+          failed: number
+          success: number
+          total: number
+        }[]
+      }
+      webhook_log_searchable: { Args: { p: Json }; Returns: string }
     }
     Enums: {
       campaign_status: "draft" | "active" | "paused" | "completed" | "archived"
@@ -11895,6 +35322,7 @@ export type Database = {
         | "phone"
         | "url"
         | "boolean"
+        | "json"
       job_status: "pending" | "processing" | "completed" | "failed"
       mapping_type: "direct" | "jsonpath"
       message_direction: "inbound" | "outbound"
@@ -11914,7 +35342,7 @@ export type Database = {
         value: string | null
       }
       http_request: {
-        method: unknown | null
+        method: unknown
         uri: string | null
         headers: Database["public"]["CompositeTypes"]["http_header"][] | null
         content_type: string | null
@@ -11930,21 +35358,25 @@ export type Database = {
   }
 }
 
-type DefaultSchema = Database[Extract<keyof Database, "public">]
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
@@ -11962,14 +35394,16 @@ export type Tables<
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
@@ -11985,14 +35419,16 @@ export type TablesInsert<
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
@@ -12008,14 +35444,16 @@ export type TablesUpdate<
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never
@@ -12023,14 +35461,16 @@ export type Enums<
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
-> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
@@ -12049,6 +35489,7 @@ export const Constants = {
         "phone",
         "url",
         "boolean",
+        "json",
       ],
       job_status: ["pending", "processing", "completed", "failed"],
       mapping_type: ["direct", "jsonpath"],
