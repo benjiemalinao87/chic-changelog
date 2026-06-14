@@ -64,26 +64,6 @@ const Header = () => {
           API
         </motion.a>
         
-        <motion.a 
-          href="https://cc1.automate8.com/" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium px-4 py-2 rounded-full shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-all hover:shadow-[0_0_20px_rgba(155,135,245,0.7)] hover:scale-105" 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          animate={{
-            boxShadow: ['0 0 15px rgba(155,135,245,0.5)', '0 0 25px rgba(155,135,245,0.7)', '0 0 15px rgba(155,135,245,0.5)']
-          }}
-          transition={{
-            boxShadow: {
-              repeat: Infinity,
-              duration: 2
-            }
-          }}
-        >
-          Sign up
-        </motion.a>
-        
         <div className="hidden md:block text-sm text-right">
           <p className="text-muted-foreground">Latest Update</p>
           <p className="font-medium">v0.29 · {currentDate}</p>
